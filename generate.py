@@ -105,24 +105,21 @@ def write_preserving_marker(path: Path, new_header: str):
     # else: substantive content without marker — leave it alone.
 
 
-def mermaid_graph() -> str:
-    lines = ["```mermaid", "graph TD"]
-    for level_name, info in LEVELS.items():
-        lines.append(f"  classDef {level_name} fill:{info['color']},stroke:#333,stroke-width:1px;")
+def concept_index() -> str:
+    """Plain markdown index — clickable on GitHub browse view, no JS needed."""
+    by_level = {}
     for c in CONCEPTS:
-        node_id = c["id"]
-        title = c["title"].replace('"', "'")
-        lines.append(f'  {node_id}["{node_id}: {title}"]')
-    for c in CONCEPTS:
-        for prereq in c["prereqs"]:
-            prereq_id = prereq.split("-")[0]
-            lines.append(f"  {prereq_id} --> {c['id']}")
-    for c in CONCEPTS:
-        lines.append(f"  class {c['id']} {c['level']};")
-    for c in CONCEPTS:
-        # Click navigates to the folder's README.
-        lines.append(f'  click {c["id"]} "concepts/{slug_of(c)}/README.md" "{c["title"]}"')
-    lines.append("```")
+        by_level.setdefault(c["level"], []).append(c)
+    lines = []
+    for level_name in sorted(LEVELS.keys(), key=lambda n: LEVELS[n]["order"]):
+        if level_name not in by_level:
+            continue
+        lines.append(f"\n### {LEVELS[level_name]['label']}\n")
+        for c in by_level[level_name]:
+            sl = slug_of(c)
+            lines.append(
+                f"- **{c['id']}** [{c['title']}](concepts/{sl}/README.md) — {c['summary']}"
+            )
     return "\n".join(lines)
 
 

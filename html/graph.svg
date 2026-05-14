@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1400 840" font-family="-apple-system, BlinkMacSystemFont, sans-serif" role="img" aria-label="math-foundations dependency graph">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#888"/></marker></defs>
+<rect width="1400" height="840" fill="white"/>
+<text x="700.0" y="36" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">math-foundations — concept dependency graph (click a node)</text>
+<text x="10" y="122.0" font-size="11" fill="#666" font-style="italic">Novice (high-school+)</text>
+<rect x="0" y="88.0" width="1400" height="124" fill="#a8e6cf" opacity="0.15"/>
+<text x="10" y="262.0" font-size="11" fill="#666" font-style="italic">Intermediate (calc + linear algebra)</text>
+<rect x="0" y="228.0" width="1400" height="124" fill="#dcedc1" opacity="0.15"/>
+<text x="10" y="402.0" font-size="11" fill="#666" font-style="italic">Advanced (analysis + probability)</text>
+<rect x="0" y="368.0" width="1400" height="124" fill="#ffd3b6" opacity="0.15"/>
+<text x="10" y="542.0" font-size="11" fill="#666" font-style="italic">Graduate (measure theory + stochastic)</text>
+<rect x="0" y="508.0" width="1400" height="124" fill="#ffaaa5" opacity="0.15"/>
+<text x="10" y="682.0" font-size="11" fill="#666" font-style="italic">Frontier (information geometry + OT)</text>
+<rect x="0" y="648.0" width="1400" height="124" fill="#ff8b94" opacity="0.15"/>
+<line x1="220.0" y1="172.0" x2="540.0" y2="128.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="220.0" y1="172.0" x2="860.0" y2="128.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="220.0" y1="172.0" x2="1180.0" y2="128.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="220.0" y1="172.0" x2="166.7" y2="268.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="540.0" y1="172.0" x2="166.7" y2="268.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="166.7" y1="312.0" x2="380.0" y2="268.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="380.0" y1="312.0" x2="593.3" y2="268.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="593.3" y1="312.0" x2="806.7" y2="268.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="380.0" y1="312.0" x2="1020.0" y2="268.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="380.0" y1="312.0" x2="1233.3" y2="268.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="1233.3" y1="312.0" x2="89.1" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="89.1" y1="452.0" x2="147.3" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="147.3" y1="452.0" x2="205.5" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="205.5" y1="452.0" x2="263.6" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="263.6" y1="452.0" x2="321.8" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="593.3" y1="312.0" x2="321.8" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="147.3" y1="452.0" x2="380.0" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="89.1" y1="452.0" x2="438.2" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="220.0" y1="172.0" x2="496.4" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="496.4" y1="452.0" x2="151.4" y2="548.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="151.4" y1="592.0" x2="334.3" y2="548.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="334.3" y1="592.0" x2="554.5" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="554.5" y1="452.0" x2="612.7" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="334.3" y1="592.0" x2="670.9" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="670.9" y1="452.0" x2="729.1" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="729.1" y1="452.0" x2="787.3" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="380.0" y1="452.0" x2="787.3" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="729.1" y1="452.0" x2="845.5" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="380.0" y1="452.0" x2="845.5" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="845.5" y1="452.0" x2="903.6" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="845.5" y1="452.0" x2="517.1" y2="548.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="554.5" y1="452.0" x2="517.1" y2="548.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="787.3" y1="452.0" x2="961.8" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="321.8" y1="452.0" x2="961.8" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="205.5" y1="452.0" x2="1020.0" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="1020.0" y1="452.0" x2="700.0" y2="548.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="147.3" y1="452.0" x2="700.0" y2="548.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="670.9" y1="452.0" x2="882.9" y2="548.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="882.9" y1="592.0" x2="1065.7" y2="548.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="1020.0" y1="452.0" x2="1248.6" y2="548.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="1065.7" y1="592.0" x2="1248.6" y2="548.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="1248.6" y1="592.0" x2="273.3" y2="688.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="729.1" y1="452.0" x2="1078.2" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="1078.2" y1="452.0" x2="1136.4" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="845.5" y1="452.0" x2="1136.4" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="1136.4" y1="452.0" x2="1194.5" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="1194.5" y1="452.0" x2="1252.7" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="1252.7" y1="452.0" x2="1310.9" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="612.7" y1="452.0" x2="1310.9" y2="408.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="1252.7" y1="452.0" x2="700.0" y2="688.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="321.8" y1="452.0" x2="700.0" y2="688.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="334.3" y1="592.0" x2="1126.7" y2="688.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<line x1="1233.3" y1="312.0" x2="1126.7" y2="688.0" stroke="#aaa" stroke-width="1.2" opacity="0.55" marker-end="url(#arrow)"/>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/00-sets-and-functions/README.md" target="_blank"><title>00: Sets and Functions
+The two foundational objects: collections and rules that map elements between them.</title><circle cx="220.0" cy="150.0" r="22" fill="#a8e6cf" stroke="#333" stroke-width="1.5"/><text x="220.0" y="154.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">00</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/01-logic-and-proof/README.md" target="_blank"><title>01: Logic and Proof
+Propositional and predicate logic, truth tables, the basic proof strategies (direct, contrapositive, contradiction, indu</title><circle cx="540.0" cy="150.0" r="22" fill="#a8e6cf" stroke="#333" stroke-width="1.5"/><text x="540.0" y="154.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">01</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/02-counting/README.md" target="_blank"><title>02: Counting and Combinatorics
+Counting principles: permutations, combinations, the pigeonhole principle, inclusion-exclusion.</title><circle cx="860.0" cy="150.0" r="22" fill="#a8e6cf" stroke="#333" stroke-width="1.5"/><text x="860.0" y="154.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">02</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/03-relations-and-orderings/README.md" target="_blank"><title>03: Relations and Orderings
+Equivalence relations, partial and total orders, equivalence classes.</title><circle cx="1180.0" cy="150.0" r="22" fill="#a8e6cf" stroke="#333" stroke-width="1.5"/><text x="1180.0" y="154.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">03</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/04-groups-rings-fields/README.md" target="_blank"><title>04: Groups, Rings, Fields
+Abstract algebraic structures with binary operations satisfying axioms.</title><circle cx="166.7" cy="290.0" r="22" fill="#dcedc1" stroke="#333" stroke-width="1.5"/><text x="166.7" y="294.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">04</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/05-vector-spaces/README.md" target="_blank"><title>05: Vector Spaces
+Sets closed under linear combinations over a field; the universal object of linear algebra.</title><circle cx="380.0" cy="290.0" r="22" fill="#dcedc1" stroke="#333" stroke-width="1.5"/><text x="380.0" y="294.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">05</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/06-linear-maps/README.md" target="_blank"><title>06: Linear Maps and Matrices
+Structure-preserving functions between vector spaces; the matrix representation.</title><circle cx="593.3" cy="290.0" r="22" fill="#dcedc1" stroke="#333" stroke-width="1.5"/><text x="593.3" y="294.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">06</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/07-eigenvalues/README.md" target="_blank"><title>07: Eigenvalues and Eigenvectors
+Directions preserved by a linear map up to scaling; the building blocks of spectral analysis.</title><circle cx="806.7" cy="290.0" r="22" fill="#dcedc1" stroke="#333" stroke-width="1.5"/><text x="806.7" y="294.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">07</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/08-inner-product-spaces/README.md" target="_blank"><title>08: Inner Product Spaces
+Vector spaces equipped with a notion of angle and length via an inner product.</title><circle cx="1020.0" cy="290.0" r="22" fill="#dcedc1" stroke="#333" stroke-width="1.5"/><text x="1020.0" y="294.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">08</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/09-norms-and-metrics/README.md" target="_blank"><title>09: Norms and Metrics
+Generalised notions of distance; the foundation of analysis on vector spaces.</title><circle cx="1233.3" cy="290.0" r="22" fill="#dcedc1" stroke="#333" stroke-width="1.5"/><text x="1233.3" y="294.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">09</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/10-sequences-and-limits/README.md" target="_blank"><title>10: Sequences and Limits
+Convergence of sequences; the epsilon-N definition; Cauchy sequences and completeness.</title><circle cx="89.1" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="89.1" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">10</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/11-continuity/README.md" target="_blank"><title>11: Continuity
+The epsilon-delta definition; continuity as preservation of limits; uniform vs pointwise continuity.</title><circle cx="147.3" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="147.3" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">11</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/12-derivatives/README.md" target="_blank"><title>12: Derivatives (Univariate)
+The local linear approximation; the limit of a difference quotient; differentiation rules.</title><circle cx="205.5" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="205.5" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">12</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/13-multivariate-calculus/README.md" target="_blank"><title>13: Multivariate Calculus
+Partial derivatives; the chain rule in multiple variables; directional derivatives.</title><circle cx="263.6" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="263.6" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">13</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/14-gradient-jacobian/README.md" target="_blank"><title>14: Gradient and Jacobian
+The gradient as the vector of partial derivatives; the Jacobian as the matrix of partial derivatives of a vector-valued </title><circle cx="321.8" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="321.8" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">14</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/15-integration/README.md" target="_blank"><title>15: Integration (Riemann)
+The Riemann integral as a limit of step-function approximations; the fundamental theorem of calculus.</title><circle cx="380.0" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="380.0" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">15</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/16-series-and-convergence/README.md" target="_blank"><title>16: Series and Convergence
+Convergence of infinite sums; absolute vs conditional; power series and Taylor expansions.</title><circle cx="438.2" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="438.2" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">16</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/17-sample-spaces/README.md" target="_blank"><title>17: Sample Spaces
+The set of all possible outcomes of an experiment; the starting point of probability.</title><circle cx="496.4" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="496.4" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">17</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/18-sigma-algebras/README.md" target="_blank"><title>18: Events and Sigma-Algebras
+A sigma-algebra is a collection of subsets closed under complement and countable union; the rigorous basis for which eve</title><circle cx="151.4" cy="570.0" r="22" fill="#ffaaa5" stroke="#333" stroke-width="1.5"/><text x="151.4" y="574.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">18</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/19-probability-measures/README.md" target="_blank"><title>19: Probability Measures
+A function from a sigma-algebra to [0,1] satisfying countable additivity and P(Omega) = 1.</title><circle cx="334.3" cy="570.0" r="22" fill="#ffaaa5" stroke="#333" stroke-width="1.5"/><text x="334.3" y="574.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">19</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/20-conditional-probability/README.md" target="_blank"><title>20: Conditional Probability
+P(A | B) = P(A and B) / P(B); the update rule for new information.</title><circle cx="554.5" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="554.5" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">20</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/21-independence/README.md" target="_blank"><title>21: Independence
+P(A and B) = P(A) P(B); events that do not influence each other.</title><circle cx="612.7" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="612.7" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">21</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/22-random-variables/README.md" target="_blank"><title>22: Random Variables
+Measurable functions from the sample space to the real line; the bridge from sets-of-outcomes to numerical values.</title><circle cx="670.9" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="670.9" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">22</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/23-distributions/README.md" target="_blank"><title>23: Probability Distributions
+The full description of a random variable: its cumulative distribution function, its discrete probability mass function,</title><circle cx="729.1" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="729.1" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">23</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/24-pdf/README.md" target="_blank"><title>24: Probability Density Functions
+A non-negative integrable function whose integral over a set gives the probability that a continuous random variable lan</title><circle cx="787.3" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="787.3" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">24</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/25-expectation/README.md" target="_blank"><title>25: Expectation
+The weighted average of a random variable's values, weighted by their probability; the integral of the random variable a</title><circle cx="845.5" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="845.5" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">25</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/26-variance-covariance/README.md" target="_blank"><title>26: Variance and Covariance
+Second-order moments measuring spread (variance) and linear association (covariance).</title><circle cx="903.6" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="903.6" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">26</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/27-conditional-expectation/README.md" target="_blank"><title>27: Conditional Expectation
+The expected value of a random variable given the value of another (or given a sub-sigma-algebra); the foundation of reg</title><circle cx="517.1" cy="570.0" r="22" fill="#ffaaa5" stroke="#333" stroke-width="1.5"/><text x="517.1" y="574.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">27</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/28-change-of-variables-probability/README.md" target="_blank"><title>28: Change of Variables (Probability)
+How densities transform under invertible smooth maps; the Jacobian determinant appears as the volume-correction factor.</title><circle cx="961.8" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="961.8" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">28</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/29-ode/README.md" target="_blank"><title>29: Ordinary Differential Equations
+Equations relating a function to its derivatives; the basic objects of dynamical systems.</title><circle cx="1020.0" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="1020.0" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">29</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/30-existence-uniqueness/README.md" target="_blank"><title>30: Existence and Uniqueness (Picard-Lindelöf)
+Sufficient conditions (Lipschitz) under which an ODE has a unique solution; the foundation of well-posed dynamical syste</title><circle cx="700.0" cy="570.0" r="22" fill="#ffaaa5" stroke="#333" stroke-width="1.5"/><text x="700.0" y="574.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">30</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/31-stochastic-processes/README.md" target="_blank"><title>31: Stochastic Processes
+Indexed families of random variables; the time-evolution of randomness.</title><circle cx="882.9" cy="570.0" r="22" fill="#ffaaa5" stroke="#333" stroke-width="1.5"/><text x="882.9" y="574.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">31</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/32-brownian-motion/README.md" target="_blank"><title>32: Brownian Motion / Wiener Process
+The canonical continuous-time stochastic process with independent Gaussian increments; the building block of stochastic </title><circle cx="1065.7" cy="570.0" r="22" fill="#ffaaa5" stroke="#333" stroke-width="1.5"/><text x="1065.7" y="574.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">32</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/33-sde/README.md" target="_blank"><title>33: Stochastic Differential Equations
+Differential equations driven by Brownian motion; the continuous-time analogue of random walks.</title><circle cx="1248.6" cy="570.0" r="22" fill="#ffaaa5" stroke="#333" stroke-width="1.5"/><text x="1248.6" y="574.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">33</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/34-ito-calculus/README.md" target="_blank"><title>34: Itô Calculus
+The calculus of stochastic integrals where the integrator is non-smooth (Brownian); Itô's lemma replaces the chain rule.</title><circle cx="273.3" cy="710.0" r="22" fill="#ff8b94" stroke="#333" stroke-width="1.5"/><text x="273.3" y="714.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">34</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/35-self-information/README.md" target="_blank"><title>35: Self-Information (Surprisal)
+I(x) = -log p(x); the surprise associated with observing an outcome under a probability distribution.</title><circle cx="1078.2" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="1078.2" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">35</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/36-shannon-entropy/README.md" target="_blank"><title>36: Shannon Entropy
+H(X) = E[-log p(X)]; the average information content of a random variable; measures uncertainty.</title><circle cx="1136.4" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="1136.4" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">36</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/37-cross-entropy/README.md" target="_blank"><title>37: Cross-Entropy
+H(p, q) = -E_p[log q]; the average code-length when using distribution q to encode samples drawn from p.</title><circle cx="1194.5" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="1194.5" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">37</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/38-kl-divergence/README.md" target="_blank"><title>38: KL Divergence
+D_KL(p || q) = E_p[log p - log q]; the relative entropy / information gain in moving from q to p. Non-symmetric, non-met</title><circle cx="1252.7" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="1252.7" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">38</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/39-mutual-information/README.md" target="_blank"><title>39: Mutual Information
+I(X; Y) = D_KL(p(x,y) || p(x) p(y)); the reduction in uncertainty about X from observing Y.</title><circle cx="1310.9" cy="430.0" r="22" fill="#ffd3b6" stroke="#333" stroke-width="1.5"/><text x="1310.9" y="434.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">39</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/40-information-geometry/README.md" target="_blank"><title>40: Information Geometry (Fisher Metric)
+Treats probability distributions as points on a Riemannian manifold; the Fisher information matrix as the natural metric</title><circle cx="700.0" cy="710.0" r="22" fill="#ff8b94" stroke="#333" stroke-width="1.5"/><text x="700.0" y="714.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">40</text></a>
+<a xlink:href="https://github.com/pleyva2004/math-foundations/blob/main/concepts/41-optimal-transport/README.md" target="_blank"><title>41: Optimal Transport (Wasserstein)
+Wasserstein distance W_p(mu, nu) = inf over couplings of E[|X - Y|^p]^(1/p); the cost of optimally moving one distributi</title><circle cx="1126.7" cy="710.0" r="22" fill="#ff8b94" stroke="#333" stroke-width="1.5"/><text x="1126.7" y="714.0" text-anchor="middle" font-size="12" font-weight="bold" fill="#222" pointer-events="none">41</text></a>
+<rect x="1170" y="712" width="220" height="116" fill="white" stroke="#ccc" stroke-width="1" rx="4"/>
+<text x="1180" y="726" font-size="11" font-weight="bold" fill="#222">Skill levels</text>
+<rect x="1180" y="733" width="14" height="14" fill="#a8e6cf" stroke="#333" stroke-width="1"/>
+<text x="1202" y="744" font-size="11" fill="#333">Novice (high-school+)</text>
+<rect x="1180" y="751" width="14" height="14" fill="#dcedc1" stroke="#333" stroke-width="1"/>
+<text x="1202" y="762" font-size="11" fill="#333">Intermediate (calc + linear algebra)</text>
+<rect x="1180" y="769" width="14" height="14" fill="#ffd3b6" stroke="#333" stroke-width="1"/>
+<text x="1202" y="780" font-size="11" fill="#333">Advanced (analysis + probability)</text>
+<rect x="1180" y="787" width="14" height="14" fill="#ffaaa5" stroke="#333" stroke-width="1"/>
+<text x="1202" y="798" font-size="11" fill="#333">Graduate (measure theory + stochastic)</text>
+<rect x="1180" y="805" width="14" height="14" fill="#ff8b94" stroke="#333" stroke-width="1"/>
+<text x="1202" y="816" font-size="11" fill="#333">Frontier (information geometry + OT)</text>
+</svg>
