@@ -1,0 +1,554 @@
+{
+  "nodes": [
+    {
+      "id": "00",
+      "slug": "sets-and-functions",
+      "title": "Sets and Functions",
+      "level": "novice",
+      "summary": "The two foundational objects: collections and rules that map elements between them.",
+      "color": "#a8e6cf"
+    },
+    {
+      "id": "01",
+      "slug": "logic-and-proof",
+      "title": "Logic and Proof",
+      "level": "novice",
+      "summary": "Propositional and predicate logic, truth tables, the basic proof strategies (direct, contrapositive, contradiction, induction).",
+      "color": "#a8e6cf"
+    },
+    {
+      "id": "02",
+      "slug": "counting",
+      "title": "Counting and Combinatorics",
+      "level": "novice",
+      "summary": "Counting principles: permutations, combinations, the pigeonhole principle, inclusion-exclusion.",
+      "color": "#a8e6cf"
+    },
+    {
+      "id": "03",
+      "slug": "relations-and-orderings",
+      "title": "Relations and Orderings",
+      "level": "novice",
+      "summary": "Equivalence relations, partial and total orders, equivalence classes.",
+      "color": "#a8e6cf"
+    },
+    {
+      "id": "04",
+      "slug": "groups-rings-fields",
+      "title": "Groups, Rings, Fields",
+      "level": "intermediate",
+      "summary": "Abstract algebraic structures with binary operations satisfying axioms.",
+      "color": "#dcedc1"
+    },
+    {
+      "id": "05",
+      "slug": "vector-spaces",
+      "title": "Vector Spaces",
+      "level": "intermediate",
+      "summary": "Sets closed under linear combinations over a field; the universal object of linear algebra.",
+      "color": "#dcedc1"
+    },
+    {
+      "id": "06",
+      "slug": "linear-maps",
+      "title": "Linear Maps and Matrices",
+      "level": "intermediate",
+      "summary": "Structure-preserving functions between vector spaces; the matrix representation.",
+      "color": "#dcedc1"
+    },
+    {
+      "id": "07",
+      "slug": "eigenvalues",
+      "title": "Eigenvalues and Eigenvectors",
+      "level": "intermediate",
+      "summary": "Directions preserved by a linear map up to scaling; the building blocks of spectral analysis.",
+      "color": "#dcedc1"
+    },
+    {
+      "id": "08",
+      "slug": "inner-product-spaces",
+      "title": "Inner Product Spaces",
+      "level": "intermediate",
+      "summary": "Vector spaces equipped with a notion of angle and length via an inner product.",
+      "color": "#dcedc1"
+    },
+    {
+      "id": "09",
+      "slug": "norms-and-metrics",
+      "title": "Norms and Metrics",
+      "level": "intermediate",
+      "summary": "Generalised notions of distance; the foundation of analysis on vector spaces.",
+      "color": "#dcedc1"
+    },
+    {
+      "id": "10",
+      "slug": "sequences-and-limits",
+      "title": "Sequences and Limits",
+      "level": "advanced",
+      "summary": "Convergence of sequences; the epsilon-N definition; Cauchy sequences and completeness.",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "11",
+      "slug": "continuity",
+      "title": "Continuity",
+      "level": "advanced",
+      "summary": "The epsilon-delta definition; continuity as preservation of limits; uniform vs pointwise continuity.",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "12",
+      "slug": "derivatives",
+      "title": "Derivatives (Univariate)",
+      "level": "advanced",
+      "summary": "The local linear approximation; the limit of a difference quotient; differentiation rules.",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "13",
+      "slug": "multivariate-calculus",
+      "title": "Multivariate Calculus",
+      "level": "advanced",
+      "summary": "Partial derivatives; the chain rule in multiple variables; directional derivatives.",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "14",
+      "slug": "gradient-jacobian",
+      "title": "Gradient and Jacobian",
+      "level": "advanced",
+      "summary": "The gradient as the vector of partial derivatives; the Jacobian as the matrix of partial derivatives of a vector-valued function.",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "15",
+      "slug": "integration",
+      "title": "Integration (Riemann)",
+      "level": "advanced",
+      "summary": "The Riemann integral as a limit of step-function approximations; the fundamental theorem of calculus.",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "16",
+      "slug": "series-and-convergence",
+      "title": "Series and Convergence",
+      "level": "advanced",
+      "summary": "Convergence of infinite sums; absolute vs conditional; power series and Taylor expansions.",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "17",
+      "slug": "sample-spaces",
+      "title": "Sample Spaces",
+      "level": "advanced",
+      "summary": "The set of all possible outcomes of an experiment; the starting point of probability.",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "18",
+      "slug": "sigma-algebras",
+      "title": "Events and Sigma-Algebras",
+      "level": "graduate",
+      "summary": "A sigma-algebra is a collection of subsets closed under complement and countable union; the rigorous basis for which events can be assigned probabilities.",
+      "color": "#ffaaa5"
+    },
+    {
+      "id": "19",
+      "slug": "probability-measures",
+      "title": "Probability Measures",
+      "level": "graduate",
+      "summary": "A function from a sigma-algebra to [0,1] satisfying countable additivity and P(Omega) = 1.",
+      "color": "#ffaaa5"
+    },
+    {
+      "id": "20",
+      "slug": "conditional-probability",
+      "title": "Conditional Probability",
+      "level": "advanced",
+      "summary": "P(A | B) = P(A and B) / P(B); the update rule for new information.",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "21",
+      "slug": "independence",
+      "title": "Independence",
+      "level": "advanced",
+      "summary": "P(A and B) = P(A) P(B); events that do not influence each other.",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "22",
+      "slug": "random-variables",
+      "title": "Random Variables",
+      "level": "advanced",
+      "summary": "Measurable functions from the sample space to the real line; the bridge from sets-of-outcomes to numerical values.",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "23",
+      "slug": "distributions",
+      "title": "Probability Distributions",
+      "level": "advanced",
+      "summary": "The full description of a random variable: its cumulative distribution function, its discrete probability mass function, or its continuous probability density function.",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "24",
+      "slug": "pdf",
+      "title": "Probability Density Functions",
+      "level": "advanced",
+      "summary": "A non-negative integrable function whose integral over a set gives the probability that a continuous random variable lands in that set.",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "25",
+      "slug": "expectation",
+      "title": "Expectation",
+      "level": "advanced",
+      "summary": "The weighted average of a random variable's values, weighted by their probability; the integral of the random variable against its distribution.",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "26",
+      "slug": "variance-covariance",
+      "title": "Variance and Covariance",
+      "level": "advanced",
+      "summary": "Second-order moments measuring spread (variance) and linear association (covariance).",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "27",
+      "slug": "conditional-expectation",
+      "title": "Conditional Expectation",
+      "level": "graduate",
+      "summary": "The expected value of a random variable given the value of another (or given a sub-sigma-algebra); the foundation of regression and martingale theory.",
+      "color": "#ffaaa5"
+    },
+    {
+      "id": "28",
+      "slug": "change-of-variables-probability",
+      "title": "Change of Variables (Probability)",
+      "level": "advanced",
+      "summary": "How densities transform under invertible smooth maps; the Jacobian determinant appears as the volume-correction factor.",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "29",
+      "slug": "ode",
+      "title": "Ordinary Differential Equations",
+      "level": "advanced",
+      "summary": "Equations relating a function to its derivatives; the basic objects of dynamical systems.",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "30",
+      "slug": "existence-uniqueness",
+      "title": "Existence and Uniqueness (Picard-Lindel\u00f6f)",
+      "level": "graduate",
+      "summary": "Sufficient conditions (Lipschitz) under which an ODE has a unique solution; the foundation of well-posed dynamical systems.",
+      "color": "#ffaaa5"
+    },
+    {
+      "id": "31",
+      "slug": "stochastic-processes",
+      "title": "Stochastic Processes",
+      "level": "graduate",
+      "summary": "Indexed families of random variables; the time-evolution of randomness.",
+      "color": "#ffaaa5"
+    },
+    {
+      "id": "32",
+      "slug": "brownian-motion",
+      "title": "Brownian Motion / Wiener Process",
+      "level": "graduate",
+      "summary": "The canonical continuous-time stochastic process with independent Gaussian increments; the building block of stochastic calculus.",
+      "color": "#ffaaa5"
+    },
+    {
+      "id": "33",
+      "slug": "sde",
+      "title": "Stochastic Differential Equations",
+      "level": "graduate",
+      "summary": "Differential equations driven by Brownian motion; the continuous-time analogue of random walks.",
+      "color": "#ffaaa5"
+    },
+    {
+      "id": "34",
+      "slug": "ito-calculus",
+      "title": "It\u00f4 Calculus",
+      "level": "frontier",
+      "summary": "The calculus of stochastic integrals where the integrator is non-smooth (Brownian); It\u00f4's lemma replaces the chain rule.",
+      "color": "#ff8b94"
+    },
+    {
+      "id": "35",
+      "slug": "self-information",
+      "title": "Self-Information (Surprisal)",
+      "level": "advanced",
+      "summary": "I(x) = -log p(x); the surprise associated with observing an outcome under a probability distribution.",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "36",
+      "slug": "shannon-entropy",
+      "title": "Shannon Entropy",
+      "level": "advanced",
+      "summary": "H(X) = E[-log p(X)]; the average information content of a random variable; measures uncertainty.",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "37",
+      "slug": "cross-entropy",
+      "title": "Cross-Entropy",
+      "level": "advanced",
+      "summary": "H(p, q) = -E_p[log q]; the average code-length when using distribution q to encode samples drawn from p.",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "38",
+      "slug": "kl-divergence",
+      "title": "KL Divergence",
+      "level": "advanced",
+      "summary": "D_KL(p || q) = E_p[log p - log q]; the relative entropy / information gain in moving from q to p. Non-symmetric, non-metric.",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "39",
+      "slug": "mutual-information",
+      "title": "Mutual Information",
+      "level": "advanced",
+      "summary": "I(X; Y) = D_KL(p(x,y) || p(x) p(y)); the reduction in uncertainty about X from observing Y.",
+      "color": "#ffd3b6"
+    },
+    {
+      "id": "40",
+      "slug": "information-geometry",
+      "title": "Information Geometry (Fisher Metric)",
+      "level": "frontier",
+      "summary": "Treats probability distributions as points on a Riemannian manifold; the Fisher information matrix as the natural metric tensor.",
+      "color": "#ff8b94"
+    },
+    {
+      "id": "41",
+      "slug": "optimal-transport",
+      "title": "Optimal Transport (Wasserstein)",
+      "level": "frontier",
+      "summary": "Wasserstein distance W_p(mu, nu) = inf over couplings of E[|X - Y|^p]^(1/p); the cost of optimally moving one distribution to another. Provides a meaningful metric on distributions even when they have disjoint supports.",
+      "color": "#ff8b94"
+    }
+  ],
+  "links": [
+    {
+      "source": "00",
+      "target": "01"
+    },
+    {
+      "source": "00",
+      "target": "02"
+    },
+    {
+      "source": "00",
+      "target": "03"
+    },
+    {
+      "source": "00",
+      "target": "04"
+    },
+    {
+      "source": "01",
+      "target": "04"
+    },
+    {
+      "source": "04",
+      "target": "05"
+    },
+    {
+      "source": "05",
+      "target": "06"
+    },
+    {
+      "source": "06",
+      "target": "07"
+    },
+    {
+      "source": "05",
+      "target": "08"
+    },
+    {
+      "source": "05",
+      "target": "09"
+    },
+    {
+      "source": "09",
+      "target": "10"
+    },
+    {
+      "source": "10",
+      "target": "11"
+    },
+    {
+      "source": "11",
+      "target": "12"
+    },
+    {
+      "source": "12",
+      "target": "13"
+    },
+    {
+      "source": "13",
+      "target": "14"
+    },
+    {
+      "source": "06",
+      "target": "14"
+    },
+    {
+      "source": "11",
+      "target": "15"
+    },
+    {
+      "source": "10",
+      "target": "16"
+    },
+    {
+      "source": "00",
+      "target": "17"
+    },
+    {
+      "source": "17",
+      "target": "18"
+    },
+    {
+      "source": "18",
+      "target": "19"
+    },
+    {
+      "source": "19",
+      "target": "20"
+    },
+    {
+      "source": "20",
+      "target": "21"
+    },
+    {
+      "source": "19",
+      "target": "22"
+    },
+    {
+      "source": "22",
+      "target": "23"
+    },
+    {
+      "source": "23",
+      "target": "24"
+    },
+    {
+      "source": "15",
+      "target": "24"
+    },
+    {
+      "source": "23",
+      "target": "25"
+    },
+    {
+      "source": "15",
+      "target": "25"
+    },
+    {
+      "source": "25",
+      "target": "26"
+    },
+    {
+      "source": "25",
+      "target": "27"
+    },
+    {
+      "source": "20",
+      "target": "27"
+    },
+    {
+      "source": "24",
+      "target": "28"
+    },
+    {
+      "source": "14",
+      "target": "28"
+    },
+    {
+      "source": "12",
+      "target": "29"
+    },
+    {
+      "source": "29",
+      "target": "30"
+    },
+    {
+      "source": "11",
+      "target": "30"
+    },
+    {
+      "source": "22",
+      "target": "31"
+    },
+    {
+      "source": "31",
+      "target": "32"
+    },
+    {
+      "source": "29",
+      "target": "33"
+    },
+    {
+      "source": "32",
+      "target": "33"
+    },
+    {
+      "source": "33",
+      "target": "34"
+    },
+    {
+      "source": "23",
+      "target": "35"
+    },
+    {
+      "source": "35",
+      "target": "36"
+    },
+    {
+      "source": "25",
+      "target": "36"
+    },
+    {
+      "source": "36",
+      "target": "37"
+    },
+    {
+      "source": "37",
+      "target": "38"
+    },
+    {
+      "source": "38",
+      "target": "39"
+    },
+    {
+      "source": "21",
+      "target": "39"
+    },
+    {
+      "source": "38",
+      "target": "40"
+    },
+    {
+      "source": "14",
+      "target": "40"
+    },
+    {
+      "source": "19",
+      "target": "41"
+    },
+    {
+      "source": "09",
+      "target": "41"
+    }
+  ]
+}

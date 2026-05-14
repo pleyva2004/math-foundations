@@ -1,0 +1,60 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate manifest JSON
+        run: python -c "import json; json.load(open('manifest.json'))"
+
+      - name: Verify concept files exist for every manifest entry
+        run: |
+          python <<'PY'
+          import json, os, sys
+          m = json.load(open('manifest.json'))
+          missing = []
+          for c in m['concepts']:
+              for kind in ('concepts', 'code'):
+                  ext = '.md' if kind == 'concepts' else '.py'
+                  p = f"{kind}/{c['id']}-{c['slug']}{ext}"
+                  if not os.path.exists(p):
+                      missing.append(p)
+          if missing:
+              print("MISSING:")
+              for p in missing: print(" ", p)
+              sys.exit(1)
+          print(f"OK: {len(m['concepts'])} concepts, all .md and .py present")
+          PY
+
+      - name: Parse every .py
+        run: |
+          set -e
+          for f in code/*.py; do
+            python -c "import ast; ast.parse(open('$f').read())"
+          done
+          echo "All .py parse OK"
+
+      - name: Regenerate from manifest and verify no diff
+        run: |
+          python generate.py
+          if [ -n "$(git diff --stat)" ]; then
+            echo "Files drifted from manifest:"
+            git diff --stat
+            exit 1
+          fi

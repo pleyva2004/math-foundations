@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Math Foundations — Interactive Graph</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Math Foundations</h1>
+    <p>An interactive map. Drag nodes; click for detail; filter by level.</p>
+    <div id="level-filter"></div>
+  </header>
+
+  <div id="layout">
+    <svg id="graph" width="100%" height="600"></svg>
+    <aside id="detail">
+      <h2 id="detail-title">Click a node</h2>
+      <p id="detail-level"></p>
+      <p id="detail-summary"></p>
+      <p id="detail-link"></p>
+    </aside>
+  </div>
+
+  <script>
+    const REPO_RAW = "https://raw.githubusercontent.com/pleyva2004/math-foundations/main";
+    const REPO_BLOB = "https://github.com/pleyva2004/math-foundations/blob/main";
+
+    fetch("data.json").then(r => r.json()).then(data => {
+      const svg = d3.select("#graph");
+      const width = svg.node().getBoundingClientRect().width;
+      const height = +svg.attr("height");
+
+      const sim = d3.forceSimulation(data.nodes)
+        .force("link", d3.forceLink(data.links).id(d => d.id).distance(80))
+        .force("charge", d3.forceManyBody().strength(-280))
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("collide", d3.forceCollide().radius(28));
+
+      const link = svg.append("g")
+        .attr("stroke", "#999")
+        .attr("stroke-opacity", 0.5)
+        .selectAll("line")
+        .data(data.links)
+        .join("line")
+        .attr("stroke-width", 1.5);
+
+      const node = svg.append("g").selectAll("g")
+        .data(data.nodes)
+        .join("g")
+        .attr("class", "node")
+        .call(drag(sim))
+        .on("click", (event, d) => detail(d));
+
+      node.append("circle")
+        .attr("r", 18)
+        .attr("fill", d => d.color)
+        .attr("stroke", "#333")
+        .attr("stroke-width", 1.5);
+
+      node.append("text")
+        .attr("text-anchor", "middle")
+        .attr("dy", "0.32em")
+        .style("font-size", "10px")
+        .style("pointer-events", "none")
+        .text(d => d.id);
+
+      node.append("title").text(d => `${d.id}: ${d.title}\n${d.summary}`);
+
+      sim.on("tick", () => {
+        link.attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+            .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+        node.attr("transform", d => `translate(${d.x},${d.y})`);
+      });
+
+      const levels = [...new Set(data.nodes.map(n => n.level))];
+      const filter = d3.select("#level-filter");
+      levels.forEach(l => {
+        filter.append("label")
+          .style("margin-right", "10px")
+          .html(`<input type="checkbox" value="${l}" checked /> ${l}`);
+      });
+      filter.selectAll("input").on("change", function () {
+        const enabled = new Set(
+          [...filter.selectAll("input").nodes()]
+            .filter(i => i.checked).map(i => i.value)
+        );
+        node.style("opacity", d => enabled.has(d.level) ? 1 : 0.1);
+        link.style("opacity", d =>
+          enabled.has(d.source.level) && enabled.has(d.target.level) ? 0.5 : 0.05
+        );
+      });
+    });
+
+    function drag(sim) {
+      return d3.drag()
+        .on("start", (e, d) => { if (!e.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+        .on("drag", (e, d) => { d.fx = e.x; d.fy = e.y; })
+        .on("end", (e, d) => { if (!e.active) sim.alphaTarget(0); d.fx = null; d.fy = null; });
+    }
+
+    function detail(d) {
+      document.getElementById("detail-title").textContent = `${d.id}: ${d.title}`;
+      document.getElementById("detail-level").textContent = `Level: ${d.level}`;
+      document.getElementById("detail-summary").textContent = d.summary;
+      const link = document.getElementById("detail-link");
+      const url = `${REPO_BLOB}/concepts/${d.id}-${d.slug}.md`;
+      link.innerHTML = `<a href="${url}" target="_blank">Open concept page →</a>`;
+    }
+  </script>
+</body>
+</html>
