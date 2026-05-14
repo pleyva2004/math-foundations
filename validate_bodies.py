@@ -127,14 +127,16 @@ def check_concept(c):
 
 def main():
     for c in CONCEPTS:
+        slug = f"{c['id']}-{c['slug']}"
+        print(f"  checking {slug}…", flush=True)
         check_concept(c)
 
     if failures:
-        print(f"❌ {len(failures)} failures across {len(set(s for s, _ in failures))} concept(s):\n")
+        print(f"\n❌ {len(failures)} failures across {len(set(s for s, _ in failures))} concept(s):\n")
         for slug, reason in failures:
             print(f"  {slug}: {reason}")
         return 1
-    print(f"✅ All {len(CONCEPTS)} concepts pass quality gate.")
+    print(f"\n✅ All {len(CONCEPTS)} concepts pass quality gate.")
     return 0
 
 
