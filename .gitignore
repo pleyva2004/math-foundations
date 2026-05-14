@@ -6,3 +6,10 @@ venv/
 .ipynb_checkpoints/
 .DS_Score
 .DS_Store
+
+# pdflatex byproducts in concept folders (never commit these — only lesson.pdf)
+concepts/*/lesson.aux
+concepts/*/lesson.log
+concepts/*/lesson.out
+concepts/*/lesson.fls
+concepts/*/lesson.fdb_latexmk

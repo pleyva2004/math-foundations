@@ -105,6 +105,10 @@ def write_preserving_marker(path: Path, new_header: str):
     # else: substantive content without marker — leave it alone.
 
 
+def _LEVELS_TABLE_NOTE_DROPPED_COLOR_COLUMN_ABOVE():
+    """The Pick-your-entry-point table now has 3 columns (Order, Level, Audience).
+    The level color stays in the legend on the SVG; no need in the table."""
+
 def concept_index() -> str:
     """Plain markdown index — clickable on GitHub browse view, no JS needed."""
     by_level = {}
@@ -125,7 +129,7 @@ def concept_index() -> str:
 
 def top_readme() -> str:
     levels_table = "\n".join(
-        f"| {info['order']} | `{name}` | {info['label']} | Color {info['color']} |"
+        f"| {info['order']} | `{name}` | {info['label']} |"
         for name, info in sorted(LEVELS.items(), key=lambda x: x[1]['order'])
     )
     tours_table = """
@@ -138,36 +142,57 @@ def top_readme() -> str:
 """
     return f"""# math-foundations
 
-> A canonical mathematical foundations graph used as the shared substrate for the [`study-paper`](https://github.com/pleyva2004/claude-skill-study-paper) Claude Code skill's per-study learning maps.
+> A canonical mathematical foundations graph — {len(CONCEPTS)} concepts spanning sets through optimal transport — used as the shared substrate for the [`study-paper`](https://github.com/pleyva2004/claude-skill-study-paper) Claude Code skill's per-study learning maps.
 
-Each concept lives in `concepts/<NN>-<slug>/` and ships **four artifacts**:
-1. `README.md` — plain-English intro + LaTeX math + cross-links (GitHub-renderable).
-2. `lesson.tex` — standalone-compilable formal LaTeX exposition; CI renders to `lesson.pdf`.
+## 🌐 Interactive views
+
+| View | URL | Best for |
+|------|-----|----------|
+| 🔵 **D3 force graph** — drag, zoom, filter | [`pleyva2004.github.io/math-foundations/html/`](https://pleyva2004.github.io/math-foundations/html/) | Exploring relationships visually |
+| 🗺️ **Clickable SVG dependency graph** | [`pleyva2004.github.io/math-foundations/html/graph.svg`](https://pleyva2004.github.io/math-foundations/html/graph.svg) | Click any node → jump to that concept |
+| 📓 **Aggregate Jupyter notebook** | [`notebook/foundations.ipynb`](notebook/foundations.ipynb) | Cell-by-cell linked index |
+
+> **Note:** the live URLs above are served by GitHub Pages. If they don't work, enable Pages: *Settings → Pages → Source: Deploy from a branch → main → /(root) → Save*.
+
+## The dependency graph
+
+[![math-foundations dependency graph](html/graph.svg)](https://pleyva2004.github.io/math-foundations/html/graph.svg)
+
+*Click the image above → opens the live SVG where each node is a working link to its concept folder.*
+
+## Each concept ships four artifacts
+
+Every concept lives in `concepts/<NN>-<slug>/`:
+1. `README.md` — plain-English intro + LaTeX math + cross-links.
+2. `lesson.tex` → `lesson.pdf` (CI-rendered) — standalone formal exposition with theorem + proof.
 3. `code.py` — runnable demonstration (<30 s on CPU; finite/discrete witness for abstract concepts).
-4. `notebook.ipynb` — interactive Jupyter form, runnable cell-by-cell in Colab.
-
-Plus three interactive aggregate views: mermaid (this README), notebook ([`notebook/foundations.ipynb`](notebook/foundations.ipynb), an index), and HTML force graph ([`html/index.html`](html/index.html)).
+4. `notebook.ipynb` — interactive Jupyter form, runnable in Colab.
 
 ## Pick your entry point
 
-| Order | Level | Audience | Style |
-|-------|-------|----------|-------|
+| Order | Level | Audience |
+|-------|-------|----------|
 {levels_table}
 
 ### Curated tours
 {tours_table}
 
-## The graph
+## Concept index (clickable)
 
-{mermaid_graph()}
-
-## Status
-
-This is **v0.1** of the framework with v1.7 folder layout. All {len(CONCEPTS)} concepts have folders + skeleton headers. The subagent fleet (v1.7 Part 2) fills the bodies.
+The full {len(CONCEPTS)}-concept list, by level. Every entry below is a working markdown link.
+{concept_index()}
 
 ## How the graph evolves
 
 When the [`study-paper`](https://github.com/pleyva2004/claude-skill-study-paper) skill encounters a paper whose math deep dive defines a concept not yet in this graph, Stage 7 of the skill adds it here. This repo is the durable shared substrate.
+
+## Regenerating views from `manifest.json`
+
+```bash
+python generate.py        # refresh README, html/data.json, aggregate notebook
+python generate_svg.py    # refresh html/graph.svg
+python validate_bodies.py # quality-gate the 42 concept folders
+```
 
 ## License
 
