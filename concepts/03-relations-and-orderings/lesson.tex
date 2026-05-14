@@ -1,5 +1,126 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+
+\title{Relations and Orderings}
+\author{Math Foundations --- Concept 03}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Relations on a Set}
+
+A \emph{binary relation} on a set $A$ is a subset $R \subseteq A \times A$.
+We write $a \mathrel{R} b$ as shorthand for $(a,b) \in R$.
+
+\begin{definition}[Reflexivity]
+A relation $R$ on $A$ is \emph{reflexive} if
+\[ \forall a \in A,\quad a \mathrel{R} a. \]
+\end{definition}
+
+\begin{definition}[Symmetry]
+A relation $R$ on $A$ is \emph{symmetric} if
+\[ \forall a, b \in A,\quad a \mathrel{R} b \implies b \mathrel{R} a. \]
+\end{definition}
+
+\begin{definition}[Transitivity]
+A relation $R$ on $A$ is \emph{transitive} if
+\[ \forall a, b, c \in A,\quad (a \mathrel{R} b \wedge b \mathrel{R} c) \implies a \mathrel{R} c. \]
+\end{definition}
+
+\begin{definition}[Antisymmetry]
+A relation $R$ on $A$ is \emph{antisymmetric} if
+\[ \forall a, b \in A,\quad (a \mathrel{R} b \wedge b \mathrel{R} a) \implies a = b. \]
+\end{definition}
+
+\begin{definition}[Equivalence relation]
+A relation $\sim$ on $A$ is an \emph{equivalence relation} if it is reflexive, symmetric, and transitive. For each $a \in A$ the \emph{equivalence class} of $a$ is
+\[ [a] \;=\; \{ x \in A : a \sim x \}, \]
+and the \emph{quotient set} is $A/{\sim} = \{ [a] : a \in A \}$.
+\end{definition}
+
+\begin{definition}[Partition]
+A \emph{partition} of $A$ is a family $\mathcal{P} \subseteq \mathcal{P}(A)$ of nonempty subsets of $A$ such that
+\begin{enumerate}[label=(P\arabic*)]
+  \item $\bigcup_{B \in \mathcal{P}} B = A$ (covering);
+  \item $B, B' \in \mathcal{P}$ with $B \neq B' \implies B \cap B' = \emptyset$ (pairwise disjoint).
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Partial order]
+A relation $\le$ on $A$ is a \emph{partial order} if it is reflexive, antisymmetric, and transitive. It is a \emph{total order} if additionally $\forall a, b \in A,\ a \le b \vee b \le a$.
+\end{definition}
+
+\section{Equivalence Relations Correspond to Partitions}
+
+We now prove the central structural theorem of this concept.
+
+\begin{lemma}\label{lem:classes-disjoint-or-equal}
+Let $\sim$ be an equivalence relation on $A$, and let $a, b \in A$. Then $[a] = [b]$ if $a \sim b$, and $[a] \cap [b] = \emptyset$ otherwise.
+\end{lemma}
+
+\begin{proof}
+Suppose $a \sim b$. If $x \in [a]$, then $a \sim x$, so by symmetry $x \sim a$, and combined with $a \sim b$ transitivity gives $x \sim b$, hence $b \sim x$ by symmetry, i.e. $x \in [b]$. The reverse inclusion is symmetric, so $[a] = [b]$.
+
+Suppose instead $a \not\sim b$, but for contradiction take $x \in [a] \cap [b]$. Then $a \sim x$ and $b \sim x$. By symmetry $x \sim b$, and transitivity yields $a \sim b$, contradicting the hypothesis. Hence $[a] \cap [b] = \emptyset$.
+\end{proof}
+
+\begin{theorem}[Equivalence relations $\leftrightarrow$ partitions]\label{thm:eq-partition}
+Let $A$ be a set. There is a bijection between the set of equivalence relations on $A$ and the set of partitions of $A$, given by
+\[
+\Phi(\sim) \;=\; \{ [a]_\sim : a \in A \},
+\qquad
+\Psi(\mathcal{P}) \;=\; \{ (a, b) \in A \times A : \exists B \in \mathcal{P},\ a, b \in B \}.
+\]
+\end{theorem}
+
+\begin{proof}
+\emph{Step 1: $\Phi(\sim)$ is a partition.}
+For every $a \in A$, reflexivity gives $a \in [a]$, so each class is nonempty and $\bigcup_a [a] = A$. Pairwise disjointness of distinct classes is Lemma~\ref{lem:classes-disjoint-or-equal}.
+
+\emph{Step 2: $\Psi(\mathcal{P})$ is an equivalence relation.}
+Let $\approx := \Psi(\mathcal{P})$.
+\begin{itemize}
+  \item Reflexive: each $a \in A$ lies in some $B \in \mathcal{P}$ by (P1), so $a \approx a$.
+  \item Symmetric: $a \approx b$ means $a, b \in B$ for some $B$; the same $B$ witnesses $b \approx a$.
+  \item Transitive: if $a, b \in B$ and $b, c \in B'$, then $b \in B \cap B'$, forcing $B = B'$ by (P2); hence $a, c \in B$ and $a \approx c$.
+\end{itemize}
+
+\emph{Step 3: $\Phi \circ \Psi = \mathrm{id}$.}
+Let $\mathcal{P}$ be a partition and set $\approx = \Psi(\mathcal{P})$. Pick any $a \in A$ and let $B_a \in \mathcal{P}$ be the (unique) block containing $a$. The class $[a]_\approx$ consists of all $x$ sharing some block with $a$, but uniqueness of the block makes this exactly $B_a$. Thus $\Phi(\Psi(\mathcal{P})) = \{ B_a : a \in A \} = \mathcal{P}$, since every block of $\mathcal{P}$ contains at least one element.
+
+\emph{Step 4: $\Psi \circ \Phi = \mathrm{id}$.}
+Let $\sim$ be an equivalence relation and set $\mathcal{P} = \Phi(\sim)$. For $a, b \in A$,
+\[
+a \,\Psi(\mathcal{P})\, b
+\iff \exists [c] \in \mathcal{P},\ a, b \in [c]
+\iff c \sim a \wedge c \sim b
+\iff a \sim b,
+\]
+using symmetry and transitivity for the last equivalence. So $\Psi(\Phi(\sim)) = \sim$.
+
+The two maps are mutually inverse, hence bijective.
+\end{proof}
+
+\section{An Example to Hold Onto}
+
+\begin{example}[Congruence mod $n$]
+Fix $n \in \mathbb{Z}_{>0}$. Define $a \equiv b \pmod n$ iff $n \mid (a - b)$. This is an equivalence relation on $\mathbb{Z}$, and Theorem~\ref{thm:eq-partition} shows the residue classes $[0], [1], \ldots, [n-1]$ form a partition of $\mathbb{Z}$ into exactly $n$ blocks.
+\end{example}
+
+\begin{example}[Divisibility]
+On $\mathbb{N}_{>0}$, define $a \le_{\mid} b$ iff $a \mid b$. This is a partial order: reflexive ($a \mid a$), antisymmetric ($a \mid b \wedge b \mid a \Rightarrow a = b$ for positive integers), and transitive. It is \emph{not} total: $2 \nmid 3$ and $3 \nmid 2$.
+\end{example}
+
 \end{document}

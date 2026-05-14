@@ -1,5 +1,150 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\KL}{D_{\mathrm{KL}}}
+\newcommand{\X}{\mathcal{X}}
+
+\title{Cross-Entropy}
+\author{math-foundations \texttt{37-cross-entropy}}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Definitions}
+
+\begin{definition}[Discrete cross-entropy]
+Let $p, q$ be probability mass functions on a countable alphabet $\X$, with
+$q(x) > 0$ whenever $p(x) > 0$. The \emph{cross-entropy} of $p$ with respect to
+$q$ is
+\[
+  H(p, q) \;=\; -\sum_{x \in \X} p(x) \log q(x) \;=\; -\E_{X \sim p}[\log q(X)].
+\]
+We adopt $0 \log 0 = 0$. If there exists $x \in \X$ with $p(x) > 0$ and
+$q(x) = 0$, then $H(p, q) = +\infty$.
+\end{definition}
+
+\begin{definition}[Continuous cross-entropy]
+For probability densities $f_p, f_q$ on $\R^d$ with $f_q > 0$ on the support
+of $f_p$,
+\[
+  H(p, q) \;=\; -\int_{\R^d} f_p(x) \log f_q(x) \, dx.
+\]
+\end{definition}
+
+\begin{definition}[Kullback--Leibler divergence]
+With the same hypotheses,
+\[
+  \KL(p \,\|\, q) \;=\; \sum_{x} p(x) \log \frac{p(x)}{q(x)} \;=\; H(p, q) - H(p),
+\]
+where $H(p) = -\sum_x p(x) \log p(x)$ is Shannon's entropy.
+\end{definition}
+
+\section{Gibbs' inequality}
+
+\begin{lemma}[Logarithm bound]
+\label{lem:logbound}
+For all $z > 0$,
+\[
+  \ln z \;\le\; z - 1,
+\]
+with equality if and only if $z = 1$.
+\end{lemma}
+
+\begin{proof}
+Let $f(z) = z - 1 - \ln z$ on $(0, \infty)$. Then $f'(z) = 1 - 1/z$, so $f'(z) < 0$
+for $z \in (0, 1)$ and $f'(z) > 0$ for $z > 1$, with $f'(1) = 0$. Hence $f$ has a
+strict global minimum at $z = 1$ with $f(1) = 0$. Therefore $f(z) \ge 0$
+everywhere, with equality only at $z = 1$.
+\end{proof}
+
+\begin{theorem}[Gibbs' inequality]
+\label{thm:gibbs}
+For any two distributions $p, q$ on a common alphabet $\X$ with $q$ absolutely
+continuous with respect to $p$ on the support of $p$,
+\[
+  H(p, q) \;\ge\; H(p),
+\]
+with equality if and only if $p(x) = q(x)$ for all $x$ in the support of $p$.
+\end{theorem}
+
+\begin{proof}
+We show the equivalent statement $\KL(p \,\|\, q) \ge 0$. Restrict the sum to
+$\X_0 = \{x : p(x) > 0\}$; on this set $q(x) > 0$ by hypothesis, so
+$q(x)/p(x)$ is a positive real number.
+
+Apply Lemma~\ref{lem:logbound} with $z = q(x)/p(x)$ for each $x \in \X_0$:
+\[
+  \ln \frac{q(x)}{p(x)} \;\le\; \frac{q(x)}{p(x)} - 1.
+\]
+Multiplying both sides by $p(x) \ge 0$ preserves the inequality, and summing
+over $x \in \X_0$ gives
+\[
+  \sum_{x \in \X_0} p(x) \ln \frac{q(x)}{p(x)}
+  \;\le\;
+  \sum_{x \in \X_0} \left( q(x) - p(x) \right)
+  \;=\; \left( \sum_{x \in \X_0} q(x) \right) - 1
+  \;\le\; 1 - 1 = 0,
+\]
+where the last inequality uses $\sum_{x \in \X_0} q(x) \le \sum_{x \in \X} q(x) = 1$.
+Converting to an arbitrary log base by dividing through by $\ln(\text{base})$ does
+not change the sign, so
+\[
+  -\KL(p \,\|\, q) \;=\; \sum_{x \in \X_0} p(x) \log \frac{q(x)}{p(x)} \;\le\; 0,
+\]
+i.e.\ $\KL(p \,\|\, q) \ge 0$. By the decomposition
+$H(p, q) = H(p) + \KL(p \,\|\, q)$, this gives $H(p, q) \ge H(p)$.
+
+\medskip
+\emph{Equality case.} Suppose $H(p, q) = H(p)$, so $\KL(p \,\|\, q) = 0$.
+Each summand $p(x) \ln(q(x)/p(x))$ is bounded above by $q(x) - p(x)$
+(Lemma~\ref{lem:logbound}), and we must have equality in both the
+Lemma-\ref{lem:logbound} step and the marginal step. Equality in
+Lemma~\ref{lem:logbound} forces $q(x)/p(x) = 1$ for every $x \in \X_0$, i.e.\
+$q(x) = p(x)$ on the support of $p$. The marginal step requires
+$\sum_{x \in \X_0} q(x) = 1$, which is now automatic since
+$\sum_{x \in \X_0} q(x) = \sum_{x \in \X_0} p(x) = 1$. Conversely, if $p = q$ on
+$\X_0$ then every term in $\KL$ vanishes, so $H(p, q) = H(p)$.
+\end{proof}
+
+\begin{corollary}[Decomposition]
+For any $p, q$ as above,
+\[
+  H(p, q) \;=\; H(p) + \KL(p \,\|\, q),
+\]
+and minimizing $H(p, q)$ over $q$ (with $p$ fixed) is equivalent to minimizing
+$\KL(p \,\|\, q)$ over $q$.
+\end{corollary}
+
+\begin{proof}
+Direct from the definitions: $-\sum_x p(x) \log q(x) = -\sum_x p(x) \log p(x) + \sum_x p(x) \log \frac{p(x)}{q(x)}$.
+The second statement follows because $H(p)$ does not depend on $q$.
+\end{proof}
+
+\begin{example}[Fair coin, biased code]
+Let $p = (\tfrac{1}{2}, \tfrac{1}{2})$ and $q = (0.9, 0.1)$ on $\X = \{0, 1\}$.
+Then $H(p) = 1$ bit, and
+\[
+  H(p, q) = -\tfrac{1}{2} \log_2 0.9 - \tfrac{1}{2} \log_2 0.1 \approx 1.737 \text{ bits},
+\]
+so $\KL(p \,\|\, q) \approx 0.737$ bits --- the per-symbol coding overhead of
+using a code matched to $q$ on data drawn from $p$.
+\end{example}
+
 \end{document}

@@ -1,5 +1,109 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\title{Vector Spaces}
+\author{Math Foundations --- Concept 05}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Motivation}
+
+A vector space is the algebraic structure that captures ``things you can scale and add together.'' The motivating examples are arrows in $\mathbb{R}^n$, but the abstraction subsumes polynomial spaces $\mathbb{R}[x]$, function spaces $C([0,1])$ and $L^2(\mathbb{R})$, sequence spaces $\ell^2$, and the embedding spaces $\mathbb{R}^d$ that store token representations inside transformers. Linear algebra is the study of these spaces and the structure-preserving maps between them.
+
+\section{Axioms}
+
+\begin{definition}[Vector space]
+Let $\mathbb{F}$ be a field (e.g.\ $\mathbb{R}$, $\mathbb{C}$, or $\mathbb{F}_p$). A \emph{vector space over $\mathbb{F}$} is a set $V$ equipped with operations
+\[
++ : V \times V \to V, \qquad \cdot : \mathbb{F} \times V \to V
+\]
+such that $(V, +)$ is an abelian group and for all $\alpha, \beta \in \mathbb{F}$ and $u, v \in V$:
+\begin{enumerate}
+  \item $\alpha(u + v) = \alpha u + \alpha v$,
+  \item $(\alpha + \beta) v = \alpha v + \beta v$,
+  \item $(\alpha\beta) v = \alpha(\beta v)$,
+  \item $1 \cdot v = v$.
+\end{enumerate}
+Elements of $V$ are called \emph{vectors}; elements of $\mathbb{F}$ are \emph{scalars}.
+\end{definition}
+
+\begin{definition}[Linear combination, span]
+Given $v_1, \dots, v_k \in V$ and $\alpha_1, \dots, \alpha_k \in \mathbb{F}$, the vector $\sum_i \alpha_i v_i$ is a \emph{linear combination}. The \emph{span} of a set $S \subseteq V$, denoted $\operatorname{span}(S)$, is the set of all finite linear combinations of elements of $S$; it is the smallest subspace containing $S$.
+\end{definition}
+
+\begin{definition}[Linear independence]
+A set $S \subseteq V$ is \emph{linearly independent} if for every finite subset $\{v_1, \dots, v_k\} \subseteq S$, the equation $\sum_i \alpha_i v_i = 0$ implies $\alpha_1 = \dots = \alpha_k = 0$. Otherwise $S$ is \emph{linearly dependent}.
+\end{definition}
+
+\begin{definition}[Basis]
+A \emph{basis} of $V$ is a linearly independent set $B \subseteq V$ with $\operatorname{span}(B) = V$. Equivalently, every $v \in V$ admits a \emph{unique} expression as a finite linear combination of elements of $B$.
+\end{definition}
+
+\begin{definition}[Dimension]
+If $V$ admits a finite basis, the \emph{dimension} $\dim_{\mathbb{F}} V$ is the cardinality of any such basis (well-defined by Theorem~\ref{thm:dim} below). If no finite basis exists, $V$ is \emph{infinite-dimensional}.
+\end{definition}
+
+\section{The Dimension Theorem}
+
+\begin{lemma}[Steinitz exchange]\label{lem:steinitz}
+Let $V$ be a vector space, let $\{v_1, \dots, v_m\}$ be a spanning set, and let $\{w_1, \dots, w_n\}$ be linearly independent. Then $n \le m$, and after relabeling we may replace $n$ of the $v_i$ by the $w_j$ to obtain another spanning set $\{w_1, \dots, w_n, v_{n+1}, \dots, v_m\}$.
+\end{lemma}
+
+\begin{proof}
+Induct on $n$. The base case $n = 0$ is trivial. Suppose the result holds for $n - 1$: after relabeling, $\{w_1, \dots, w_{n-1}, v_n, \dots, v_m\}$ spans $V$. Since this set spans, write
+\[
+w_n = \sum_{i=1}^{n-1} \alpha_i w_i + \sum_{j=n}^{m} \beta_j v_j.
+\]
+Not all $\beta_j$ are zero, else $w_n \in \operatorname{span}(w_1, \dots, w_{n-1})$, contradicting independence of $\{w_1, \dots, w_n\}$. In particular $m \ge n$. After relabeling, $\beta_n \ne 0$, so
+\[
+v_n = \beta_n^{-1}\Bigl(w_n - \sum_{i < n} \alpha_i w_i - \sum_{j > n} \beta_j v_j\Bigr) \in \operatorname{span}(w_1, \dots, w_n, v_{n+1}, \dots, v_m).
+\]
+Therefore $\{w_1, \dots, w_n, v_{n+1}, \dots, v_m\}$ spans $V$, completing the induction.
+\end{proof}
+
+\begin{theorem}[Dimension is well-defined]\label{thm:dim}
+Let $V$ be a vector space and suppose $V$ has a finite basis. Then any two bases of $V$ have the same cardinality.
+\end{theorem}
+
+\begin{proof}
+Let $B_1 = \{v_1, \dots, v_m\}$ and $B_2 = \{w_1, \dots, w_n\}$ be two bases of $V$. Since $B_1$ spans $V$ and $B_2$ is linearly independent, Lemma~\ref{lem:steinitz} gives $n \le m$. By symmetry (swap the roles: $B_2$ spans, $B_1$ is independent), $m \le n$. Therefore $m = n$.
+\end{proof}
+
+\begin{proposition}[Existence of a basis, finite case]
+If $V$ is spanned by finitely many vectors $v_1, \dots, v_m$, then some subset of $\{v_1, \dots, v_m\}$ is a basis of $V$.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+If $\{v_1, \dots, v_m\}$ is linearly independent, done. Otherwise some $v_k$ is a linear combination of the others; remove it. The remaining set still spans. Iterate; the process terminates because the set is finite, yielding a linearly independent spanning set.
+\end{proof}
+
+\section{Examples}
+
+\begin{example}[$\mathbb{R}^3$]
+The standard basis $\{e_1, e_2, e_3\}$ with $e_i$ the $i$-th coordinate vector gives $\dim \mathbb{R}^3 = 3$. The set $\{(1,1,0), (0,1,1), (1,0,1)\}$ is another basis (the $3 \times 3$ matrix with these columns has determinant $-2$).
+\end{example}
+
+\begin{example}[Polynomial space]
+$\mathbb{R}[x]_{\le n} = \{a_0 + a_1 x + \cdots + a_n x^n : a_i \in \mathbb{R}\}$ has basis $\{1, x, x^2, \dots, x^n\}$, so $\dim = n+1$.
+\end{example}
+
+\begin{example}[Function space]
+$C([0,1])$, the continuous real functions on $[0,1]$, is infinite-dimensional: $\{1, x, x^2, x^3, \dots\}$ is linearly independent.
+\end{example}
+
+\section{Connection to ML}
+
+In transformer-style models, every token is mapped to a vector in $\mathbb{R}^d$ ($d \approx 4096$ for large models). Attention computes weighted sums (linear combinations) of value vectors; layer norm, residual streams, and gradient updates all operate inside this vector space. The ELF paper (arxiv:2605.10938) defines flow-matching trajectories $x_t = (1-t)x_0 + t x_1$ in $\mathbb{R}^d$, a literal application of the vector-space axioms.
+
 \end{document}

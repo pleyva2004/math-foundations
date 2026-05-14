@@ -1,5 +1,123 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\title{Stochastic Differential Equations}
+\author{math-foundations / 33-sde}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{From ODE to SDE}
+
+Classical ODEs $\dot x = b(x,t)$ describe smooth deterministic dynamics.
+To model systems perturbed by ``continuous'' noise, replace the increment
+$dx = b(x,t)\,dt$ with
+\[
+dX_t \;=\; b(X_t, t)\,dt \;+\; \sigma(X_t, t)\,dW_t,
+\]
+where $W_t$ is a standard Brownian motion on a filtered probability space
+$(\Omega, \mathcal{F}, \{\mathcal{F}_t\}, \mathbb{P})$. Because Brownian paths have
+unbounded total variation, this expression is shorthand for the It\^o integral
+equation
+\[
+X_t \;=\; X_0 + \int_0^t b(X_s,s)\,ds + \int_0^t \sigma(X_s,s)\,dW_s.
+\]
+
+\begin{definition}[SDE, drift, diffusion]
+A (one-dimensional, time-inhomogeneous) \emph{It\^o SDE} is the relation
+$dX_t = b(X_t,t)\,dt + \sigma(X_t,t)\,dW_t$ with $X_0$ an
+$\mathcal{F}_0$-measurable random variable. The map $b:\mathbb{R}\times[0,T]\to\mathbb{R}$ is the
+\emph{drift coefficient}; $\sigma:\mathbb{R}\times[0,T]\to\mathbb{R}$ is the \emph{diffusion
+coefficient}. A \emph{strong solution} is an adapted continuous process $X_t$
+satisfying the integral equation a.s.
+\end{definition}
+
+\begin{remark}[Existence/uniqueness]
+If $b,\sigma$ are uniformly Lipschitz in $x$ and of linear growth, then for any
+$X_0 \in L^2$ independent of $W$ there exists a unique strong solution with
+$\mathbb{E}\sup_{t\le T}|X_t|^2 < \infty$. The proof is Picard iteration on the Banach
+space $L^2(\Omega; C([0,T]))$ with the It\^o isometry replacing $|\cdot|$
+estimates in the stochastic integral.
+\end{remark}
+
+\section{Discretization: Euler--Maruyama}
+
+\begin{definition}[Euler--Maruyama scheme]
+Fix $N\in\mathbb{N}$, $\Delta t = T/N$, $t_n = n\,\Delta t$. The
+\emph{Euler--Maruyama} (EM) discretization of $dX_t = b(X_t,t)\,dt + \sigma(X_t,t)\,dW_t$ is
+\[
+X_{n+1} \;=\; X_n \;+\; b(X_n, t_n)\,\Delta t \;+\; \sigma(X_n, t_n)\sqrt{\Delta t}\,Z_n,
+\qquad Z_n \stackrel{\text{iid}}{\sim} \mathcal{N}(0,1).
+\]
+\end{definition}
+
+\begin{theorem}[Strong convergence of Euler--Maruyama]
+\label{thm:em}
+Let $b,\sigma:\mathbb{R}\times[0,T]\to\mathbb{R}$ be uniformly Lipschitz in $x$, $\tfrac{1}{2}$-H\"older
+in $t$, and of linear growth. Let $X_t$ be the strong solution of
+$dX_t = b(X_t,t)\,dt + \sigma(X_t,t)\,dW_t$ on $[0,T]$ with $X_0 \in L^2$, and let
+$\{X_n\}_{n=0}^N$ be the EM approximation on the same Brownian path with step
+$\Delta t = T/N$. Then there exists a constant $C = C(T, K, \mathbb{E}|X_0|^2)$ such that
+\[
+\mathbb{E}\bigl[\,|X_{t_n} - X_n|\,\bigr] \;\le\; C\,\sqrt{\Delta t}
+\qquad \text{for all } 0 \le n \le N.
+\]
+That is, EM has \emph{strong order} $1/2$. (Its \emph{weak order} is $1$.)
+\end{theorem}
+
+\begin{proof}[Heuristic sketch]
+Fix a step $[t_n, t_{n+1}]$ and write $\Delta W_n := W_{t_{n+1}} - W_{t_n}$, so
+$\Delta W_n \sim \mathcal{N}(0, \Delta t)$ and $\mathbb{E}[(\Delta W_n)^2] = \Delta t$.
+Taylor-expand the exact increment of $X$:
+\[
+X_{t_{n+1}} - X_{t_n}
+= \underbrace{b(X_{t_n}, t_n)\,\Delta t}_{A_n}
++ \underbrace{\sigma(X_{t_n}, t_n)\,\Delta W_n}_{B_n}
++ R_n,
+\]
+where $R_n$ collects higher-order It\^o--Taylor corrections. The EM increment
+keeps exactly $A_n + B_n$, so the local error is $R_n$. By It\^o--Taylor expansion,
+\[
+R_n \;=\; \tfrac{1}{2}\sigma\,\partial_x\sigma \bigl((\Delta W_n)^2 - \Delta t\bigr)
+\;+\; O\bigl((\Delta t)^{3/2}\bigr) \;+\; \text{terms of order } \Delta t \cdot \Delta W_n.
+\]
+The Brownian-increment scaling $\Delta W_n \sim \sqrt{\Delta t}$ implies:
+\begin{itemize}
+\item the pathwise (strong) local error has size $\sqrt{\Delta t}\cdot\Delta t = (\Delta t)^{3/2}$
+  per step from the $\Delta t\,\Delta W_n$ term, summed over $N = T/\Delta t$ steps and combined
+  with Gronwall on the Lipschitz bound, this gives global strong error $\le C\sqrt{\Delta t}$;
+\item the mean-zero terms $(\Delta W_n)^2 - \Delta t$ and $\Delta W_n$ \emph{cancel in expectation},
+  so for test functions the leading error reduces by a half-power, yielding weak
+  order $1$.
+\end{itemize}
+A Gr\"onwall argument on $e_n := \mathbb{E}|X_{t_n} - X_n|^2$, using the Lipschitz
+hypothesis on $b,\sigma$ and the It\^o isometry, then closes the recursion
+$e_{n+1} \le (1 + C\Delta t)\,e_n + C(\Delta t)^2$, giving $e_n \le C\Delta t$, hence
+$\mathbb{E}|X_{t_n} - X_n| \le C\sqrt{\Delta t}$.
+\end{proof}
+
+\begin{remark}[Higher-order schemes]
+Adding the It\^o--Taylor term $\tfrac{1}{2}\sigma\,\partial_x\sigma\,((\Delta W_n)^2 - \Delta t)$
+to the increment gives the \emph{Milstein scheme}, with strong order $1$.
+\end{remark}
+
+\section{Worked example: Ornstein--Uhlenbeck}
+
+For $dX_t = -\theta X_t\,dt + \sigma\,dW_t$, the integrating factor $e^{\theta t}$ gives
+\[
+X_t = X_0 e^{-\theta t} + \sigma\!\int_0^t e^{-\theta(t-s)}\,dW_s,
+\quad
+\mathrm{Var}(X_t) = \tfrac{\sigma^2}{2\theta}\bigl(1 - e^{-2\theta t}\bigr) \xrightarrow{t\to\infty}
+\tfrac{\sigma^2}{2\theta}.
+\]
+The companion code verifies the stationary variance empirically by averaging
+$X_T^2$ over many EM-simulated paths at large $T$.
+
 \end{document}

@@ -1,5 +1,94 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{KL Divergence}
+\author{Math Foundations --- Concept 38}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Definition}
+
+Let $p$ and $q$ be probability distributions on a common measurable space $(\mathcal{X}, \mathcal{F})$, with $p$ absolutely continuous with respect to $q$ (written $p \ll q$). The \emph{Kullback--Leibler divergence} of $p$ from $q$ is
+\[
+D_{\mathrm{KL}}(p \,\|\, q) \;=\; \mathbb{E}_{p}\!\left[\log \frac{dp}{dq}\right].
+\]
+
+\begin{definition}[Discrete KL divergence]
+For probability mass functions $p, q$ on a countable set $\mathcal{X}$,
+\[
+D_{\mathrm{KL}}(p \,\|\, q) \;=\; \sum_{x \in \mathcal{X}} p(x) \log \frac{p(x)}{q(x)},
+\]
+with conventions $0 \log 0 = 0$ and $0 \log (0/0) = 0$. The sum is $+\infty$ if there exists $x$ with $p(x) > 0$ and $q(x) = 0$.
+\end{definition}
+
+\begin{definition}[Continuous KL divergence]
+For probability densities $f_p, f_q$ on $\mathbb{R}^d$ (with respect to Lebesgue measure),
+\[
+D_{\mathrm{KL}}(p \,\|\, q) \;=\; \int_{\mathbb{R}^d} f_p(x) \log \frac{f_p(x)}{f_q(x)} \, dx,
+\]
+defined whenever the integrand is integrable and $\{f_q = 0\} \subseteq \{f_p = 0\}$ up to null sets.
+\end{definition}
+
+\begin{remark}
+$D_{\mathrm{KL}}$ is \emph{not} symmetric and does \emph{not} satisfy the triangle inequality, so it is not a metric. Nonetheless it is non-negative, vanishes only when $p = q$, and behaves additively under independence, justifying its role as a ``relative information'' measure.
+\end{remark}
+
+\section{Gibbs' inequality}
+
+\begin{theorem}[Non-negativity of KL]
+\label{thm:gibbs}
+For any pair of probability distributions $p, q$ on the same space with $p \ll q$,
+\[
+D_{\mathrm{KL}}(p \,\|\, q) \;\ge\; 0,
+\]
+with equality if and only if $p = q$ almost everywhere.
+\end{theorem}
+
+\begin{proof}
+Write $r(x) = q(x) / p(x)$ on the support of $p$. By definition,
+\[
+D_{\mathrm{KL}}(p \,\|\, q) \;=\; \mathbb{E}_{p}\!\left[\log \frac{p(X)}{q(X)}\right] \;=\; \mathbb{E}_{p}\!\left[-\log r(X)\right].
+\]
+The function $\varphi(t) = -\log t$ is strictly convex on $(0, \infty)$. By Jensen's inequality applied to $\varphi$ and the random variable $r(X)$ under $p$,
+\[
+\mathbb{E}_{p}\!\left[-\log r(X)\right] \;\ge\; -\log \mathbb{E}_{p}\!\left[r(X)\right].
+\]
+We compute the right-hand side:
+\[
+\mathbb{E}_{p}\!\left[r(X)\right] \;=\; \int r(x) \, p(x) \, dx \;=\; \int \frac{q(x)}{p(x)} \, p(x) \, dx \;=\; \int q(x) \, dx \;=\; 1,
+\]
+since $q$ is a probability distribution. Therefore
+\[
+D_{\mathrm{KL}}(p \,\|\, q) \;\ge\; -\log 1 \;=\; 0.
+\]
+Because $\varphi$ is \emph{strictly} convex, Jensen's inequality is an equality iff $r(X)$ is $p$-almost-surely constant. Combined with $\mathbb{E}_p[r(X)] = 1$, this forces $r \equiv 1$ on the support of $p$, i.e.\ $p = q$ a.e. The discrete case is identical with integrals replaced by sums.
+\end{proof}
+
+\begin{remark}
+Run with $\varphi = -\log$ replaced by an arbitrary convex $\varphi$ with $\varphi(1) = 0$, the same proof yields the family of \emph{$f$-divergences} (Csisz\'ar). KL corresponds to $\varphi(t) = t \log t$ (after a sign convention); other choices recover total variation, Hellinger, and $\chi^2$ divergences.
+\end{remark}
+
+\section{Consequences}
+
+\begin{lemma}[Cross-entropy decomposition]
+For all $p, q$ with $p \ll q$,
+\[
+H(p, q) \;=\; H(p) + D_{\mathrm{KL}}(p \,\|\, q),
+\]
+where $H(p) = -\mathbb{E}_p[\log p]$ and $H(p, q) = -\mathbb{E}_p[\log q]$.
+\end{lemma}
+
+By Theorem~\ref{thm:gibbs}, $H(p, q) \ge H(p)$ with equality iff $q = p$. Hence minimizing cross-entropy in $q$ for fixed $p$ is the same as minimizing KL divergence --- the foundational identity behind maximum likelihood estimation and the categorical cross-entropy loss.
+
 \end{document}

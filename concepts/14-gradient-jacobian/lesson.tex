@@ -1,5 +1,162 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+
+\title{Gradient and Jacobian}
+\author{math-foundations / concept 14}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Setup and motivation}
+
+We work in finite-dimensional Euclidean space $\mathbb{R}^n$ with the standard
+inner product $\langle u, v\rangle = u^\top v$ and induced norm
+$\|v\| = \sqrt{\langle v, v\rangle}$. For scalar functions, the derivative
+captures a single rate of change; for vector-valued functions, it captures
+\emph{all} pairwise rates between input and output coordinates, organized
+into a matrix.
+
+\section{Definitions}
+
+\begin{definition}[Partial derivative]
+Let $U \subseteq \mathbb{R}^n$ be open and $f : U \to \mathbb{R}$. The
+\emph{partial derivative} of $f$ with respect to $x_j$ at $x \in U$ is
+\[
+\frac{\partial f}{\partial x_j}(x)
+   = \lim_{h \to 0} \frac{f(x + h e_j) - f(x)}{h},
+\]
+where $e_j$ is the $j$th standard basis vector, when this limit exists.
+\end{definition}
+
+\begin{definition}[Gradient]
+Let $f : U \subseteq \mathbb{R}^n \to \mathbb{R}$ be differentiable at $x$.
+The \emph{gradient} of $f$ at $x$ is the column vector
+\[
+\nabla f(x) \;=\; \Bigl( \tfrac{\partial f}{\partial x_1}(x),\, \ldots,\,
+\tfrac{\partial f}{\partial x_n}(x) \Bigr)^{\!\top} \in \mathbb{R}^n.
+\]
+Equivalently, $\nabla f(x)$ is the unique vector such that
+$D_v f(x) = \langle \nabla f(x), v\rangle$ for every $v \in \mathbb{R}^n$,
+where $D_v f(x) = \lim_{t\to 0}\bigl(f(x + tv) - f(x)\bigr)/t$ is the
+directional derivative.
+\end{definition}
+
+\begin{definition}[Jacobian matrix]
+Let $F : U \subseteq \mathbb{R}^n \to \mathbb{R}^m$ with components
+$F = (F_1, \ldots, F_m)$, differentiable at $x$. The \emph{Jacobian
+matrix} of $F$ at $x$ is the $m \times n$ matrix
+\[
+J_F(x) \;=\; \begin{pmatrix}
+\dfrac{\partial F_1}{\partial x_1}(x) & \cdots & \dfrac{\partial F_1}{\partial x_n}(x) \\[1ex]
+\vdots & \ddots & \vdots \\[1ex]
+\dfrac{\partial F_m}{\partial x_1}(x) & \cdots & \dfrac{\partial F_m}{\partial x_n}(x)
+\end{pmatrix},
+\qquad [J_F(x)]_{ij} = \frac{\partial F_i}{\partial x_j}(x).
+\]
+$J_F(x)$ is the matrix of the total derivative
+$dF_x : \mathbb{R}^n \to \mathbb{R}^m$ in standard bases.
+\end{definition}
+
+\begin{definition}[Jacobian determinant]
+If $m = n$, the \emph{Jacobian determinant} of $F$ at $x$ is
+$\det J_F(x) \in \mathbb{R}$. It is the signed factor by which $F$
+locally scales $n$-dimensional volume at $x$: a small parallelepiped
+of volume $V$ at $x$ has image of volume $|\det J_F(x)|\,V + o(V)$.
+\end{definition}
+
+\section{The gradient and steepest ascent}
+
+\begin{lemma}[Directional-derivative formula]
+\label{lem:dirderiv}
+If $f$ is differentiable at $x$, then for every $v \in \mathbb{R}^n$,
+\[
+D_v f(x) = \langle \nabla f(x), v\rangle.
+\]
+\end{lemma}
+\begin{proof}[Sketch]
+Differentiability at $x$ means $f(x + h) = f(x) + \langle \nabla f(x), h\rangle + r(h)$
+with $r(h)/\|h\| \to 0$. Setting $h = tv$ and dividing by $t$ gives the claim
+in the limit $t \to 0$.
+\end{proof}
+
+\begin{theorem}[Direction of maximum directional derivative]
+\label{thm:steepest}
+Let $f : U \subseteq \mathbb{R}^n \to \mathbb{R}$ be differentiable at
+$x \in U$, with $\nabla f(x) \neq 0$. Then among all unit vectors
+$v \in \mathbb{R}^n$ (i.e.\ $\|v\| = 1$), the directional derivative
+$D_v f(x)$ attains its maximum at
+\[
+v^\star = \frac{\nabla f(x)}{\|\nabla f(x)\|},
+\]
+and the maximum value is $\|\nabla f(x)\|$.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:dirderiv}, $D_v f(x) = \langle \nabla f(x), v\rangle$.
+The Cauchy--Schwarz inequality states that for any $u, v \in \mathbb{R}^n$,
+\[
+|\langle u, v\rangle| \;\le\; \|u\|\,\|v\|,
+\]
+with equality iff $u$ and $v$ are linearly dependent. Applying this with
+$u = \nabla f(x)$ and a unit vector $v$,
+\[
+D_v f(x) = \langle \nabla f(x), v\rangle \;\le\; \|\nabla f(x)\|\,\|v\|
+        = \|\nabla f(x)\|.
+\]
+Equality holds iff $v$ is a positive scalar multiple of $\nabla f(x)$;
+since $\|v\| = 1$ and $\nabla f(x) \neq 0$, the unique maximizer is
+$v^\star = \nabla f(x)/\|\nabla f(x)\|$. Substituting back gives
+$D_{v^\star} f(x) = \langle \nabla f(x), \nabla f(x)/\|\nabla f(x)\|\rangle
+= \|\nabla f(x)\|$. \qedhere
+\end{proof}
+
+\begin{example}
+For $f(x, y) = x^2 + 3y^2$, $\nabla f(x, y) = (2x, 6y)$. At $(1, 1)$,
+the steepest-ascent direction is $(2, 6)/\sqrt{40} = (1, 3)/\sqrt{10}$
+with rate $\sqrt{40}$, while $-\nabla f$ points toward the minimum at
+the origin.
+\end{example}
+
+\section{The chain rule for vector-valued maps}
+
+\begin{theorem}[Chain rule]
+Let $G : \mathbb{R}^p \to \mathbb{R}^n$ be differentiable at $x$, and
+$F : \mathbb{R}^n \to \mathbb{R}^m$ differentiable at $y = G(x)$.
+Then $H = F \circ G$ is differentiable at $x$ and
+\[
+J_H(x) \;=\; J_F(G(x)) \cdot J_G(x),
+\]
+an $m \times p$ matrix obtained as the product of an $m \times n$ matrix
+and an $n \times p$ matrix.
+\end{theorem}
+
+This is the algebraic backbone of reverse-mode automatic differentiation:
+for a deep composition $F_L \circ F_{L-1} \circ \cdots \circ F_1$, the
+overall Jacobian factors as a product of layer Jacobians, and the loss
+gradient propagates by successive vector--Jacobian products.
+
+\section{Worked example: $F(x, y) = (x^2 - y, e^{xy})$}
+
+The partials are $\partial F_1/\partial x = 2x$, $\partial F_1/\partial y = -1$,
+$\partial F_2/\partial x = y e^{xy}$, $\partial F_2/\partial y = x e^{xy}$.
+Hence
+\[
+J_F(x, y) = \begin{pmatrix} 2x & -1 \\ y e^{xy} & x e^{xy} \end{pmatrix},
+\qquad
+J_F(1, 0) = \begin{pmatrix} 2 & -1 \\ 0 & 1 \end{pmatrix},
+\quad \det J_F(1, 0) = 2.
+\]
+By the inverse function theorem, $F$ is a local diffeomorphism near $(1, 0)$,
+locally doubling area.
+
 \end{document}

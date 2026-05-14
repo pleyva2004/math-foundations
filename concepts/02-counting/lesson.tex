@@ -1,5 +1,163 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb, amsthm, mathtools, hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\title{Counting and Combinatorics}
+\author{math-foundations / concept 02}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section*{Introduction}
+
+This lesson develops the basic toolkit of finite combinatorics:
+permutations, combinations, multinomial coefficients, the pigeonhole
+principle, and inclusion--exclusion. The centerpiece is the binomial
+theorem, which we state and prove by induction. Combinatorial reasoning
+underlies all of discrete probability and many counting arguments in
+machine learning theory (sample-space sizes, VC growth functions,
+counting of hypothesis classes).
+
+\section*{Basic Principles}
+
+\begin{definition}[Multiplication Principle]
+If a procedure consists of $k$ stages, with $n_i$ choices available at
+stage $i$ independently of previous choices, then the total number of
+ways to execute the procedure is $\prod_{i=1}^k n_i$.
+\end{definition}
+
+\begin{definition}[Addition Principle]
+If a set $S$ is the disjoint union $S = \bigsqcup_{i=1}^k S_i$, then
+$|S| = \sum_{i=1}^k |S_i|$.
+\end{definition}
+
+\section*{Permutations and Combinations}
+
+\begin{definition}[Permutation]
+Let $n,k$ be nonnegative integers with $k \leq n$. A $k$-\emph{permutation}
+of an $n$-element set $S$ is an injection $\{1,\ldots,k\} \to S$,
+equivalently an ordered tuple of $k$ distinct elements of $S$. The number
+of $k$-permutations is
+\[
+  P(n,k) = \frac{n!}{(n-k)!} = n(n-1)\cdots(n-k+1).
+\]
+\end{definition}
+
+\begin{definition}[Combination]
+A $k$-\emph{combination} of an $n$-element set $S$ is a $k$-element subset
+of $S$. The number of $k$-combinations is the binomial coefficient
+\[
+  \binom{n}{k} = \frac{n!}{k!(n-k)!}.
+\]
+\end{definition}
+
+\begin{proposition}[Pascal's rule]
+For $1 \leq k \leq n-1$,
+\[
+  \binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}.
+\]
+\end{proposition}
+
+\begin{proof}
+Fix an element $x \in S$ with $|S|=n$. A $k$-subset either contains $x$
+(there are $\binom{n-1}{k-1}$ such, choosing the remaining $k-1$ from
+$S\setminus\{x\}$) or excludes $x$ (there are $\binom{n-1}{k}$). These
+cases are disjoint, so the count is the sum.
+\end{proof}
+
+\section*{The Pigeonhole Principle}
+
+\begin{definition}[Pigeonhole Principle]
+If $f \colon X \to Y$ is a function between finite sets with $|X| > |Y|$,
+then $f$ is not injective: there exist $x_1 \neq x_2$ in $X$ with
+$f(x_1) = f(x_2)$. More generally, if $|X| > k \cdot |Y|$, then some
+$y \in Y$ has at least $k+1$ preimages.
+\end{definition}
+
+\section*{The Binomial Theorem}
+
+\begin{theorem}[Binomial Theorem]\label{thm:binomial}
+For all $n \in \mathbb{Z}_{\geq 0}$ and all $x,y$ in a commutative ring,
+\[
+  (x+y)^n \;=\; \sum_{k=0}^{n} \binom{n}{k} x^{k} y^{\,n-k}.
+\]
+\end{theorem}
+
+\begin{proof}
+We proceed by induction on $n$.
+
+\emph{Base case ($n=0$):} Both sides equal $1$. Indeed
+$(x+y)^0 = 1$ and $\sum_{k=0}^{0}\binom{0}{k}x^k y^{-k}$ has its single
+term $\binom{0}{0}x^0 y^0 = 1$.
+
+\emph{Inductive step:} Assume the formula holds for some $n \geq 0$. Then
+\begin{align*}
+(x+y)^{n+1}
+  &= (x+y)\,(x+y)^n
+  = (x+y)\sum_{k=0}^{n} \binom{n}{k} x^k y^{n-k} \\
+  &= \sum_{k=0}^{n} \binom{n}{k} x^{k+1} y^{n-k}
+   + \sum_{k=0}^{n} \binom{n}{k} x^{k} y^{n-k+1}.
+\end{align*}
+Reindex the first sum with $j = k+1$:
+\[
+  \sum_{k=0}^{n} \binom{n}{k} x^{k+1} y^{n-k}
+  = \sum_{j=1}^{n+1} \binom{n}{j-1} x^{j} y^{n+1-j}.
+\]
+The second sum is already indexed in the form $\sum_{j=0}^{n}
+\binom{n}{j} x^{j} y^{n+1-j}$. Combining and isolating the $j=0$ and
+$j=n+1$ boundary terms,
+\begin{align*}
+(x+y)^{n+1}
+  &= \binom{n}{n} x^{n+1} y^{0}
+   + \sum_{j=1}^{n} \left[\binom{n}{j-1} + \binom{n}{j}\right] x^j y^{n+1-j}
+   + \binom{n}{0} x^0 y^{n+1} \\
+  &= x^{n+1}
+   + \sum_{j=1}^{n} \binom{n+1}{j} x^j y^{n+1-j}
+   + y^{n+1}
+\end{align*}
+by Pascal's rule. Since $\binom{n+1}{0} = \binom{n+1}{n+1} = 1$, this is
+exactly $\sum_{j=0}^{n+1} \binom{n+1}{j} x^j y^{n+1-j}$, completing the
+induction.
+\end{proof}
+
+\section*{Inclusion--Exclusion}
+
+\begin{theorem}[Inclusion--Exclusion]
+For finite sets $A_1,\ldots,A_n$,
+\[
+  \left| \bigcup_{i=1}^{n} A_i \right|
+  = \sum_{\emptyset \neq S \subseteq [n]} (-1)^{|S|+1}
+     \left| \bigcap_{i \in S} A_i \right|.
+\]
+\end{theorem}
+
+\section*{Worked Examples}
+
+\paragraph{(a) Permutation.} The number of ways to arrange $3$ chosen
+books in order out of $7$ available is $P(7,3) = 7\cdot 6 \cdot 5 = 210$.
+
+\paragraph{(b) Combination.} The number of $5$-card poker hands from a
+standard deck is $\binom{52}{5} = 2{,}598{,}960$.
+
+\paragraph{(c) Pigeonhole.} Among any $367$ people, at least two share a
+birthday: $|X|=367 > 366 = |Y|$.
+
+\paragraph{(d) Inclusion--Exclusion.} Integers in $\{1,\ldots,100\}$
+divisible by $2$, $3$, or $5$:
+\[
+  50 + 33 + 20 - 16 - 10 - 6 + 3 = 74.
+\]
+
+\paragraph{(e) Binomial theorem.} Setting $x = y = 1$ in
+Theorem~\ref{thm:binomial} yields $2^n = \sum_{k=0}^n \binom{n}{k}$, the
+count of all subsets of an $n$-set.
+
 \end{document}

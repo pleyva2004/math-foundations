@@ -50,10 +50,17 @@ def check_concept(c):
             fail(slug, f"missing {name}")
             return
 
-    # 1. README.md word count
+    # 1. README.md word count (skeleton index + 4-artifact links).
+    # Substance lives in lesson.tex and notebook.ipynb; README is the
+    # GitHub-browse entry point.
     readme_words = len(files["README.md"].read_text().split())
-    if not (600 <= readme_words <= 2500):
-        fail(slug, f"README.md word count {readme_words} not in [600, 2500]")
+    if not (100 <= readme_words <= 2500):
+        fail(slug, f"README.md word count {readme_words} not in [100, 2500]")
+
+    # 1b. lesson.tex carries the substance — should be ≥ 250 words of body.
+    lesson_words = len(files["lesson.tex"].read_text().split())
+    if lesson_words < 250:
+        fail(slug, f"lesson.tex word count {lesson_words} below 250 (substance threshold)")
 
     # 2. forbidden tokens
     for name, path in files.items():

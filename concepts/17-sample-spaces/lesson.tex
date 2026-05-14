@@ -1,5 +1,126 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\title{Sample Spaces}
+\author{math-foundations / 17-sample-spaces}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section*{1. Introduction}
+
+Probability theory begins with a single primitive: a set whose elements are
+the possible outcomes of an experiment. This set is the \emph{sample space}.
+Every subsequent concept --- events, random variables, expectations,
+conditional distributions --- is built on top of this primitive. Before
+we can assign probabilities, we must first agree on what we are assigning
+probabilities \emph{to}.
+
+\section*{2. Definitions}
+
+\begin{definition}[Sample Space]
+A \emph{sample space} is a non-empty set $\Omega$ whose elements represent
+the mutually exclusive and collectively exhaustive outcomes of an
+experiment or random phenomenon.
+\end{definition}
+
+\begin{definition}[Outcome]
+An \emph{outcome} is an element $\omega \in \Omega$. It represents one
+complete atomic realization of the experiment.
+\end{definition}
+
+\begin{definition}[Event]
+An \emph{event} is a subset $A \subseteq \Omega$. We say the event $A$
+\emph{occurs} on outcome $\omega$ if $\omega \in A$. In the finite case,
+the family of all events is the power set
+\[
+2^{\Omega} \;=\; \{A : A \subseteq \Omega\}.
+\]
+\end{definition}
+
+\begin{example}[Coin flip]
+$\Omega = \{H, T\}$. The events are $\emptyset, \{H\}, \{T\}, \{H, T\}$.
+\end{example}
+
+\begin{example}[Die roll]
+$\Omega = \{1, 2, 3, 4, 5, 6\}$. The event ``even'' is $\{2, 4, 6\}$.
+\end{example}
+
+\begin{example}[Two dice]
+$\Omega = \{1, \ldots, 6\}^2$, with $|\Omega| = 36$. The event ``sum is
+$7$'' is $\{(1,6), (2,5), (3,4), (4,3), (5,2), (6,1)\}$.
+\end{example}
+
+\begin{example}[Infinite coin sequences]
+$\Omega = \{H, T\}^{\mathbb{N}}$, an uncountable set. This is the natural
+sample space for asymptotic statements such as the strong law of large
+numbers.
+\end{example}
+
+\section*{3. The Power Set Theorem}
+
+\begin{theorem}[Power Set Cardinality]
+If $\Omega$ is a finite set with $|\Omega| = n$, then the power set
+$2^{\Omega}$ has cardinality $2^n$.
+\end{theorem}
+
+\begin{proof}
+We proceed by induction on $n$.
+
+\medskip
+\noindent\textbf{Base case} ($n = 0$). The unique set of cardinality $0$
+is $\Omega = \emptyset$. Its only subset is $\emptyset$ itself, so
+$|2^{\emptyset}| = 1 = 2^0$.
+
+\medskip
+\noindent\textbf{Inductive step.} Assume the claim holds for all sets of
+cardinality $n$. Let $\Omega$ have cardinality $n + 1$. Fix any element
+$x \in \Omega$ and let $\Omega' = \Omega \setminus \{x\}$, which has
+cardinality $n$.
+
+Partition the subsets of $\Omega$ into two classes:
+\begin{enumerate}
+\item Subsets that do \emph{not} contain $x$ --- these are exactly the
+subsets of $\Omega'$, and by the inductive hypothesis there are $2^n$
+of them.
+\item Subsets that \emph{do} contain $x$ --- each such subset has the form
+$A \cup \{x\}$ where $A \subseteq \Omega'$. The map $A \mapsto A \cup \{x\}$
+is a bijection between $2^{\Omega'}$ and $\{B \subseteq \Omega : x \in B\}$,
+so there are again $2^n$ such subsets.
+\end{enumerate}
+The two classes are disjoint and exhaust $2^{\Omega}$, so
+\[
+|2^{\Omega}| \;=\; 2^n + 2^n \;=\; 2 \cdot 2^n \;=\; 2^{n+1}.
+\]
+This completes the induction.
+\end{proof}
+
+\begin{corollary}
+A coin flip ($n=2$) admits $2^2 = 4$ events; a die ($n=6$) admits
+$2^6 = 64$ events; two dice ($n=36$) admit $2^{36} \approx 6.87 \times
+10^{10}$ events.
+\end{corollary}
+
+\section*{4. Remarks on the Infinite Case}
+
+When $\Omega$ is uncountable (e.g.\ $\Omega = [0,1]$), one cannot in
+general use the full power set $2^{\Omega}$ as the event family --- there
+exist subsets to which no translation-invariant probability measure can
+be consistently assigned (the Vitali construction). Instead one restricts
+to a $\sigma$-algebra $\mathcal{F} \subseteq 2^{\Omega}$, typically the
+Borel $\sigma$-algebra. The triple $(\Omega, \mathcal{F}, \mathbb{P})$
+is then called a \emph{probability space}; sample spaces are the first
+slot of this triple. See node 18-sigma-algebras for the continuation.
+
 \end{document}

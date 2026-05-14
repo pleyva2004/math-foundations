@@ -1,5 +1,141 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\grad}{\nabla}
+\DeclareMathOperator{\dist}{dist}
+
+\title{Multivariate Calculus: Partials, Total Derivatives, and the Chain Rule}
+\author{Math Foundations --- Node 13}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Definitions}
+
+Throughout, $U \subset \R^n$ is open and $f: U \to \R$. We write $\norm{\cdot}$ for the Euclidean norm and $e_1, \dots, e_n$ for the standard basis.
+
+\begin{definition}[Partial derivative]
+Let $x \in U$. The \emph{$i$-th partial derivative} of $f$ at $x$ is
+\[
+\frac{\partial f}{\partial x_i}(x) := \lim_{h \to 0} \frac{f(x + h e_i) - f(x)}{h},
+\]
+provided the limit exists. Equivalently, holding all coordinates fixed except the $i$-th and viewing $f$ as a univariate function of $x_i$, the partial is its ordinary derivative.
+\end{definition}
+
+\begin{definition}[Gradient]
+When all $n$ partials of $f$ at $x$ exist, the \emph{gradient} of $f$ at $x$ is
+\[
+\grad f(x) := \left( \frac{\partial f}{\partial x_1}(x), \dots, \frac{\partial f}{\partial x_n}(x) \right) \in \R^n.
+\]
+\end{definition}
+
+\begin{definition}[Directional derivative]
+For a unit vector $v \in \R^n$, the \emph{directional derivative} of $f$ at $x$ in direction $v$ is
+\[
+D_v f(x) := \lim_{h \to 0} \frac{f(x + h v) - f(x)}{h}.
+\]
+\end{definition}
+
+\begin{definition}[Total / Fr\'echet derivative]
+$f$ is \emph{differentiable at} $x \in U$ if there exists a linear map $L : \R^n \to \R$ such that
+\[
+\lim_{h \to 0} \frac{\norm{f(x+h) - f(x) - L h}}{\norm{h}} = 0.
+\]
+If $L$ exists it is unique; we write $Df(x) := L$. Identifying linear maps $\R^n \to \R$ with row vectors via the inner product, $L h = \grad f(x) \cdot h$.
+\end{definition}
+
+\begin{remark}
+Existence of all partials at $x$ does \emph{not} imply differentiability, nor even continuity. A standard counterexample is $f(x,y) = xy/(x^2+y^2)$ on the punctured plane, extended by $f(0,0)=0$: both partials vanish at the origin, but along $y = x$ the function equals $1/2$, so it is discontinuous there.
+\end{remark}
+
+\section{From partials to the total derivative}
+
+\begin{proposition}[Continuous partials imply differentiability]\label{prop:c1}
+If $\partial f / \partial x_i$ exist in an open neighborhood of $x$ and are continuous at $x$, then $f$ is differentiable at $x$ with $Df(x) h = \grad f(x) \cdot h$.
+\end{proposition}
+
+\noindent A proof is in Rudin, Theorem~9.21. In ML we work almost exclusively with $C^1$ functions, so this proposition lets us identify differentiability with the gradient picture without further worry.
+
+\section{The chain rule}
+
+The central result of this node is the multivariate chain rule along a curve.
+
+\begin{theorem}[Multivariate chain rule, scalar codomain]\label{thm:chain}
+Let $U \subset \R^n$ be open, $f : U \to \R$ differentiable at $a \in U$, and $\gamma : I \to U$ a curve on an open interval $I \subset \R$ with $\gamma(t_0) = a$ and $\gamma$ differentiable at $t_0$. Then $f \circ \gamma : I \to \R$ is differentiable at $t_0$ and
+\[
+(f \circ \gamma)'(t_0) \;=\; \grad f(a) \cdot \gamma'(t_0) \;=\; \sum_{i=1}^{n} \frac{\partial f}{\partial x_i}(a) \, \gamma_i'(t_0).
+\]
+\end{theorem}
+
+\begin{proof}
+Set $L := Df(a)$, identified with $\grad f(a) \in \R^n$ via $L w = \grad f(a) \cdot w$. Differentiability of $f$ at $a$ means: for every $\varepsilon > 0$ there is $\delta > 0$ such that
+\begin{equation}\label{eq:diffF}
+\norm{w} < \delta \;\Longrightarrow\; \bigl| f(a + w) - f(a) - L w \bigr| \le \varepsilon \norm{w}.
+\end{equation}
+Equivalently, there is a function $\varphi : \R^n \to \R$ with $\varphi(w) \to 0$ as $w \to 0$ and
+\begin{equation}\label{eq:diffF2}
+f(a + w) - f(a) = L w + \varphi(w) \norm{w}, \qquad \varphi(0) := 0.
+\end{equation}
+
+Differentiability of $\gamma$ at $t_0$ similarly gives: there is a function $\psi : I - t_0 \to \R^n$ with $\psi(s) \to 0$ as $s \to 0$ and
+\begin{equation}\label{eq:diffGamma}
+\gamma(t_0 + s) - \gamma(t_0) = s \, \gamma'(t_0) + s \, \psi(s), \qquad \psi(0) := 0.
+\end{equation}
+
+Set $w(s) := \gamma(t_0 + s) - a$. By~\eqref{eq:diffGamma}, $w(s) = s(\gamma'(t_0) + \psi(s))$, so
+\begin{equation}\label{eq:wbound}
+\norm{w(s)} \le |s| \bigl( \norm{\gamma'(t_0)} + \norm{\psi(s)} \bigr).
+\end{equation}
+Pick $s$ small enough that $\gamma(t_0 + s) \in U$ and $\norm{w(s)} < \delta$ (possible since $\gamma$ is continuous at $t_0$). Substituting $w = w(s)$ into~\eqref{eq:diffF2}:
+\[
+f(\gamma(t_0+s)) - f(a) = L w(s) + \varphi(w(s)) \norm{w(s)}.
+\]
+By linearity of $L$ and~\eqref{eq:diffGamma},
+\[
+L w(s) = L\bigl( s \gamma'(t_0) + s \psi(s) \bigr) = s \, L \gamma'(t_0) + s \, L \psi(s).
+\]
+Therefore
+\begin{equation}\label{eq:combine}
+\frac{f(\gamma(t_0+s)) - f(\gamma(t_0))}{s} = L \gamma'(t_0) + L \psi(s) + \varphi(w(s)) \cdot \frac{\norm{w(s)}}{s}.
+\end{equation}
+
+We send $s \to 0$ term by term. The first term $L \gamma'(t_0) = \grad f(a) \cdot \gamma'(t_0)$ is the target. For the second, $L$ is continuous (every linear map on $\R^n$ is), and $\psi(s) \to 0$, so $L \psi(s) \to 0$. For the third, $w(s) \to 0$ by~\eqref{eq:wbound}, so $\varphi(w(s)) \to 0$, while $|\norm{w(s)}/s|$ is bounded above by $\norm{\gamma'(t_0)} + \norm{\psi(s)}$, which stays bounded near $s = 0$; hence the product tends to $0$.
+
+Combining, the limit of the left-hand side of~\eqref{eq:combine} exists and equals $\grad f(a) \cdot \gamma'(t_0)$. That limit is by definition $(f \circ \gamma)'(t_0)$, completing the proof.
+\end{proof}
+
+\begin{remark}[The directional-derivative corollary]
+Take $\gamma(t) = x + t v$ with $v \in \R^n$ a unit vector. Then $\gamma'(0) = v$, and Theorem~\ref{thm:chain} specializes to
+\[
+D_v f(x) = (f \circ \gamma)'(0) = \grad f(x) \cdot v.
+\]
+This identity is the basis of the Cauchy--Schwarz argument that the gradient points in the direction of steepest ascent: $D_v f(x) \le \norm{\grad f(x)}$ with equality at $v = \grad f(x)/\norm{\grad f(x)}$.
+\end{remark}
+
+\section{Worked example}
+
+Let $f(x,y) = x^2 y + \sin(xy)$. Computing partials by holding the other variable fixed:
+\[
+\frac{\partial f}{\partial x} = 2xy + y\cos(xy), \qquad \frac{\partial f}{\partial y} = x^2 + x\cos(xy).
+\]
+At $(1,2)$: $\partial_x f = 4 + 2\cos 2$, $\partial_y f = 1 + \cos 2$. So $\grad f(1,2) = (4 + 2\cos 2,\; 1 + \cos 2)$. For $v = (1,1)/\sqrt 2$,
+\[
+D_v f(1,2) = \frac{(4 + 2\cos 2) + (1 + \cos 2)}{\sqrt 2} = \frac{5 + 3\cos 2}{\sqrt 2}.
+\]
+The companion script \texttt{code.py} confirms these values numerically.
+
 \end{document}

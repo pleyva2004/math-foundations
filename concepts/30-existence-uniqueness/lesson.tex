@@ -1,5 +1,169 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+
+\title{Existence and Uniqueness for ODEs:\\ The Picard-Lindel\"of Theorem}
+\author{Math Foundations --- Node 30}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Setting}
+
+Let $D \subset \R \times \R^n$ be an open set, $(t_0, y_0) \in D$, and
+$f : D \to \R^n$ a continuous function. We study the initial value problem
+(IVP)
+\begin{equation}
+  \label{eq:ivp}
+  y'(t) = f(t, y(t)), \qquad y(t_0) = y_0.
+\end{equation}
+A \emph{solution} is a differentiable curve $y : I \to \R^n$ on an open
+interval $I \ni t_0$ satisfying \eqref{eq:ivp} pointwise.
+
+\section{Lipschitz continuity and Picard iteration}
+
+\begin{definition}[Lipschitz in $y$]
+  A function $f : D \to \R^n$ is \emph{Lipschitz continuous in $y$} on
+  $D$ if there is $L \ge 0$ such that
+  \[
+    \| f(t, y_1) - f(t, y_2) \| \le L \, \| y_1 - y_2 \|
+    \qquad \forall (t, y_1), (t, y_2) \in D.
+  \]
+  The smallest such $L$ is the \emph{Lipschitz constant} of $f$.
+\end{definition}
+
+\begin{remark}
+  If $f$ is $C^1$ on $D$, then $\partial f / \partial y$ being bounded by
+  $L$ on $D$ (in operator norm) implies $f$ is Lipschitz in $y$ with
+  constant $L$. This is the most common way Lipschitz hypotheses arise
+  in practice.
+\end{remark}
+
+\begin{definition}[Picard iteration]
+  Given the IVP \eqref{eq:ivp}, define the sequence of functions
+  $\{y_k\}_{k \ge 0}$ by
+  \[
+    y_0(t) \equiv y_0, \qquad
+    y_{k+1}(t) \,=\, y_0 + \int_{t_0}^t f\bigl(s, y_k(s)\bigr)\, ds.
+  \]
+  These are the \emph{Picard iterates} of the IVP.
+\end{definition}
+
+A continuous function $y$ solves \eqref{eq:ivp} if and only if it is a
+fixed point of the integral operator
+$T[y](t) = y_0 + \int_{t_0}^t f(s, y(s))\, ds$. So existence and uniqueness
+become a fixed-point problem for $T$.
+
+\section{The Picard-Lindel\"of theorem}
+
+\begin{theorem}[Picard-Lindel\"of]
+  \label{thm:pl}
+  Let $a, b > 0$ and let
+  \[
+    R = \{ (t, y) \in \R \times \R^n : |t - t_0| \le a, \; \|y - y_0\| \le b \}.
+  \]
+  Suppose $f$ is continuous on $R$ with $\|f(t, y)\| \le M$ for all
+  $(t,y) \in R$, and Lipschitz in $y$ on $R$ with constant $L$. Set
+  \[
+    \alpha = \min\!\left(a, \, \tfrac{b}{M}\right).
+  \]
+  Then the IVP \eqref{eq:ivp} has a unique solution
+  $y : [t_0 - \alpha, \, t_0 + \alpha] \to \R^n$, and the Picard iterates
+  $y_k$ converge to it uniformly on that interval.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+  Set $I = [t_0 - \alpha, t_0 + \alpha]$ and let
+  \[
+    X = \{ y \in C(I, \R^n) : \|y(t) - y_0\| \le b \text{ for all } t \in I \}.
+  \]
+  Equip $C(I, \R^n)$ with the sup norm $\|y\|_\infty = \sup_{t \in I}\|y(t)\|$.
+  Then $X$ is a closed subset of a Banach space, hence complete. Define
+  $T : X \to C(I, \R^n)$ by
+  \[
+    T[y](t) = y_0 + \int_{t_0}^t f\bigl(s, y(s)\bigr)\, ds.
+  \]
+
+  \textbf{Step 1 ($T$ maps $X$ into $X$).} For $y \in X$ and $t \in I$,
+  \[
+    \|T[y](t) - y_0\| \le \int_{t_0}^t \|f(s, y(s))\|\, ds
+    \le M |t - t_0| \le M\alpha \le b.
+  \]
+  Hence $T[y] \in X$.
+
+  \textbf{Step 2 (Contraction in a weighted norm).} On $C(I, \R^n)$ define
+  the equivalent norm
+  $\|y\|_w = \sup_{t \in I} e^{-2L|t - t_0|}\, \|y(t)\|.$
+  Then for $y_1, y_2 \in X$ and $t \ge t_0$ in $I$,
+  \begin{align*}
+    \|T[y_1](t) - T[y_2](t)\|
+      &\le \int_{t_0}^t \|f(s, y_1(s)) - f(s, y_2(s))\| \, ds \\
+      &\le L \int_{t_0}^t \|y_1(s) - y_2(s)\| \, ds \\
+      &\le L \int_{t_0}^t e^{2L(s-t_0)}\, ds \cdot \|y_1 - y_2\|_w \\
+      &= \tfrac{1}{2}\, \bigl(e^{2L(t-t_0)} - 1\bigr)\, \|y_1 - y_2\|_w.
+  \end{align*}
+  Multiplying by $e^{-2L(t-t_0)}$ and taking sup over $t$ (the $t < t_0$
+  case is symmetric) yields
+  \[
+    \|T[y_1] - T[y_2]\|_w \le \tfrac{1}{2}\, \|y_1 - y_2\|_w.
+  \]
+  Thus $T$ is a strict contraction on $(X, \|\cdot\|_w)$ with contraction
+  factor $1/2$.
+
+  \textbf{Step 3 (Banach fixed point).} By the Banach contraction mapping
+  theorem, $T$ has a unique fixed point $y^\ast \in X$. By construction
+  $y^\ast$ is continuous and satisfies the integral equation; since $f$
+  is continuous, $y^\ast$ is in fact $C^1$ and solves
+  \eqref{eq:ivp} pointwise on $I$. Uniqueness in $X$ follows from the
+  contraction property; any solution must lie in $X$ (by Step~1 applied
+  to it), so uniqueness is global on $I$.
+
+  Finally, the Picard iterates are exactly the sequence $T^k[y_0]$ produced
+  by the contraction mapping theorem, and so converge uniformly on $I$
+  to $y^\ast$.
+\end{proof}
+
+\section{What goes wrong without Lipschitz}
+
+\begin{example}[Non-uniqueness]
+  Consider $y' = y^{2/3}$, $y(0) = 0$. Here $f(t, y) = y^{2/3}$ fails to
+  be Lipschitz at $y = 0$ since $\partial_y f = \tfrac{2}{3} y^{-1/3}$
+  blows up. The IVP admits the two distinct solutions
+  $y \equiv 0$ and $y(t) = (t/3)^3$, as well as a one-parameter family
+  $y_\tau$ that equals $0$ for $t \le \tau$ and $((t - \tau)/3)^3$ for
+  $t > \tau$.
+\end{example}
+
+\section{Connection to flow-based generative models}
+
+Modern generative models (flow matching, ELF, neural ODEs) define
+\[
+  \dot x(t) = v_\theta(t, x(t))
+\]
+where $v_\theta$ is a neural network. On any compact set $K$, neural
+networks built from smooth activations are $C^1$ and hence Lipschitz in
+$x$ with a finite constant $L_K$. Theorem~\ref{thm:pl} therefore
+guarantees a unique sample trajectory for each starting point $x_0$, and
+hence a well-defined flow $\phi_t$ on $K$. Smooth dependence on initial
+conditions further makes $\phi_t$ a diffeomorphism --- a property used
+implicitly throughout the literature.
+
 \end{document}

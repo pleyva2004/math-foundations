@@ -1,5 +1,139 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{It\^o Calculus}
+\author{math-foundations / concept 34}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Setting}
+
+Fix a filtered probability space $(\Omega, \mathcal{F}, (\mathcal{F}_t)_{t\geq 0}, \mathbb{P})$
+satisfying the usual conditions and supporting a standard Brownian motion $W = (W_t)_{t\geq 0}$
+adapted to $(\mathcal{F}_t)$. Sample paths of $W$ are almost surely continuous and nowhere
+differentiable, with unbounded total variation on every compact interval.
+
+\begin{definition}[Quadratic variation]
+For a stochastic process $X = (X_t)$ and a partition $\Pi = \{0 = t_0 < t_1 < \cdots < t_n = t\}$
+write $\|\Pi\| = \max_i (t_i - t_{i-1})$. The \emph{quadratic variation} of $X$ on $[0,t]$ is
+\[
+  [X]_t \;:=\; \lim_{\|\Pi\|\to 0} \sum_{i=1}^n \bigl(X_{t_i} - X_{t_{i-1}}\bigr)^2,
+\]
+provided the limit exists in probability. For Brownian motion, $[W]_t = t$ a.s.
+\end{definition}
+
+\begin{definition}[It\^o integral]
+Let $H = (H_t)$ be a progressively measurable process with $\mathbb{E}\int_0^T H_s^2\,ds < \infty$.
+The \emph{It\^o integral} of $H$ against $W$ is the $L^2$-limit
+\[
+  \int_0^t H_s\,dW_s \;:=\; \lim_{\|\Pi\|\to 0} \sum_{i=1}^n H_{t_{i-1}}\bigl(W_{t_i} - W_{t_{i-1}}\bigr).
+\]
+Evaluation at the \emph{left endpoint} $t_{i-1}$ is essential: it makes $t \mapsto \int_0^t H\,dW$
+a continuous square-integrable martingale, with It\^o isometry
+$\mathbb{E}\bigl[(\int_0^t H\,dW)^2\bigr] = \mathbb{E}\int_0^t H_s^2\,ds$.
+\end{definition}
+
+\begin{definition}[It\^o process]
+A process $X$ is an \emph{It\^o process} if
+\[
+  X_t = X_0 + \int_0^t b_s\,ds + \int_0^t \sigma_s\,dW_s,
+\]
+for adapted $b, \sigma$ with $\int_0^T |b_s|\,ds < \infty$ and $\int_0^T \sigma_s^2\,ds < \infty$ a.s.
+We write this symbolically as $dX_t = b_t\,dt + \sigma_t\,dW_t$.
+\end{definition}
+
+\section{It\^o's Lemma}
+
+\begin{theorem}[It\^o's lemma, 1D]
+\label{thm:ito}
+Let $X_t = X_0 + \int_0^t b_s\,ds + \int_0^t \sigma_s\,dW_s$ be an It\^o process and let
+$f \in C^2(\mathbb{R})$. Then $f(X_t)$ is again an It\^o process and
+\[
+  df(X_t) \;=\; f'(X_t)\,dX_t + \tfrac{1}{2}\,f''(X_t)\,\sigma_t^2\,dt.
+\]
+Equivalently, in integral form,
+\[
+  f(X_t) - f(X_0) \;=\; \int_0^t f'(X_s)\,b_s\,ds + \int_0^t f'(X_s)\,\sigma_s\,dW_s
+  + \tfrac{1}{2}\int_0^t f''(X_s)\,\sigma_s^2\,ds.
+\]
+\end{theorem}
+
+\begin{proof}[Proof sketch via second-order Taylor expansion and $(dW_t)^2 = dt$]
+Fix a partition $\Pi = \{0 = t_0 < \cdots < t_n = t\}$ and write $\Delta_i X = X_{t_i} - X_{t_{i-1}}$,
+$\Delta_i t = t_i - t_{i-1}$, $\Delta_i W = W_{t_i} - W_{t_{i-1}}$. By telescoping and a
+second-order Taylor expansion of $f$ around $X_{t_{i-1}}$,
+\begin{align*}
+f(X_t) - f(X_0)
+ &= \sum_{i=1}^n \Bigl[ f(X_{t_i}) - f(X_{t_{i-1}}) \Bigr] \\
+ &= \sum_i f'(X_{t_{i-1}})\,\Delta_i X
+   + \tfrac{1}{2}\sum_i f''(X_{t_{i-1}})\,(\Delta_i X)^2 + R_\Pi,
+\end{align*}
+where $R_\Pi$ collects the higher-order Taylor remainder, controlled by the modulus of continuity
+of $f''$ on a compact set containing the path of $X$.
+
+\smallskip\noindent\textbf{First-order term.}
+Since $\Delta_i X = \int_{t_{i-1}}^{t_i} b_s\,ds + \int_{t_{i-1}}^{t_i} \sigma_s\,dW_s$,
+the sum $\sum_i f'(X_{t_{i-1}})\,\Delta_i X$ converges in $L^2$ to
+\[
+\int_0^t f'(X_s)\,b_s\,ds + \int_0^t f'(X_s)\,\sigma_s\,dW_s,
+\]
+by definition of the It\^o integral and dominated convergence; the left-endpoint evaluation
+$f'(X_{t_{i-1}})$ is exactly what the It\^o construction requires.
+
+\smallskip\noindent\textbf{Second-order term --- the key identity $(dW_t)^2 = dt$.}
+Expand
+\[
+(\Delta_i X)^2 = b_{t_{i-1}}^2 (\Delta_i t)^2 + 2 b_{t_{i-1}}\sigma_{t_{i-1}}(\Delta_i t)(\Delta_i W)
+  + \sigma_{t_{i-1}}^2 (\Delta_i W)^2 + o(\Delta_i t)\text{-corrections}.
+\]
+The $(\Delta_i t)^2$ contributions sum to $O(\|\Pi\| \cdot t) \to 0$. The cross-terms
+$(\Delta_i t)(\Delta_i W)$ have $L^2$-norm $O(\Delta_i t^{3/2})$, summing to $O(\|\Pi\|^{1/2}) \to 0$.
+The surviving piece is
+\[
+  \sum_i f''(X_{t_{i-1}})\,\sigma_{t_{i-1}}^2\,(\Delta_i W)^2.
+\]
+Because $\mathbb{E}[(\Delta_i W)^2] = \Delta_i t$ and $\mathrm{Var}[(\Delta_i W)^2] = 2(\Delta_i t)^2$,
+a direct $L^2$ computation shows that $(\Delta_i W)^2$ may be replaced by $\Delta_i t$ in the limit:
+\[
+  \sum_i f''(X_{t_{i-1}})\,\sigma_{t_{i-1}}^2 (\Delta_i W)^2
+  \;\xrightarrow[\|\Pi\|\to 0]{L^2}\;
+  \int_0^t f''(X_s)\,\sigma_s^2\,ds.
+\]
+This is precisely the heuristic identity $(dW_t)^2 = dt$ made rigorous, and it is an instance of
+the quadratic variation $[W]_t = t$.
+
+\smallskip\noindent\textbf{Remainder.}
+$R_\Pi \to 0$ in probability because $f''$ is continuous and the path of $X$ is bounded on $[0,t]$
+almost surely. Collecting the surviving pieces yields the formula stated.
+\end{proof}
+
+\begin{remark}[Why the left endpoint?]
+The proof shows the limit of $\sum H_{t_{i-1}}\Delta_i W$ depends on the choice of evaluation
+point. Replacing $H_{t_{i-1}}$ with the midpoint $H_{(t_{i-1}+t_i)/2}$ gives the
+\emph{Stratonovich} integral, which obeys the classical chain rule
+$df(X_t) = f'(X_t) \circ dX_t$ but is not a martingale. The right-endpoint choice peeks at the
+future and produces a different, anticipating object. It\^o's left-endpoint choice gives a
+martingale, at the cost of the second-order correction term in It\^o's lemma.
+\end{remark}
+
+\begin{remark}[Canonical example]
+With $f(x) = x^2$ and $X_t = W_t$, It\^o's lemma yields
+\[
+d(W_t^2) = 2W_t\,dW_t + dt \quad\Longrightarrow\quad
+\int_0^t W_s\,dW_s = \tfrac{1}{2}(W_t^2 - t).
+\]
+The classical guess $\tfrac{1}{2}W_t^2$ is off by exactly the It\^o correction $-t/2$.
+\end{remark}
+
 \end{document}

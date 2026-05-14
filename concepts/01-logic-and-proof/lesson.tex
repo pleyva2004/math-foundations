@@ -1,5 +1,178 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb, amsthm, mathtools, hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+
+\title{Logic and Proof}
+\author{math-foundations / 01-logic-and-proof}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\iffalse
+This lesson covers propositional logic, predicate logic, truth tables, and the
+four classical proof strategies, with a full inductive proof of the closed form
+for the first $n$ positive integers.
+\fi
+
+\section*{Introduction}
+
+A \emph{proposition} is a declarative sentence with a definite truth value in
+$\{\text{True}, \text{False}\}$. A \emph{proof} is a finite chain of
+propositions, each justified by an axiom or a prior theorem under valid rules
+of inference. Every theoretical claim in mathematics --- and every formal
+guarantee in a machine-learning paper --- ultimately reduces to such a chain.
+The goal of this lesson is to make the vocabulary precise and to drill the four
+basic proof strategies.
+
+\section*{Definitions}
+
+\begin{definition}[Proposition]
+A \emph{proposition} is a statement that is either true or false (but not
+both). Variables $p, q, r$ range over propositions.
+\end{definition}
+
+\begin{definition}[Logical connectives]
+For propositions $p, q$ we define:
+\begin{align*}
+\neg p &: \text{``not } p\text{''}, \quad \text{true iff } p \text{ is false}; \\
+p \land q &: \text{``}p \text{ and } q\text{''}, \quad \text{true iff both are true}; \\
+p \lor q &: \text{``}p \text{ or } q\text{''}, \quad \text{true iff at least one is true}; \\
+p \Rightarrow q &: \text{``if } p \text{ then } q\text{''}, \quad \text{false iff } p \text{ true and } q \text{ false}; \\
+p \Leftrightarrow q &: \text{``}p \text{ iff } q\text{''}, \quad \text{true iff } p \text{ and } q \text{ have the same value}.
+\end{align*}
+\end{definition}
+
+\begin{definition}[Tautology]
+A compound proposition is a \emph{tautology} if it is true under every
+assignment of truth values to its atomic variables.
+\end{definition}
+
+\begin{definition}[Predicate, quantifiers]
+A \emph{predicate} $P(x)$ on a domain $D$ is a statement whose truth value
+depends on $x \in D$. The \emph{universal quantifier} $\forall x \in D,\, P(x)$
+asserts $P$ holds for every $x$; the \emph{existential quantifier}
+$\exists x \in D,\, P(x)$ asserts $P$ holds for at least one $x$.
+\end{definition}
+
+\section*{Properties and Theorems}
+
+\begin{proposition}[Contrapositive equivalence]
+For all propositions $p, q$, $(p \Rightarrow q) \Leftrightarrow (\neg q \Rightarrow \neg p)$.
+\end{proposition}
+
+\begin{proposition}[De Morgan]
+$\neg(p \land q) \equiv (\neg p) \lor (\neg q)$ and
+$\neg(p \lor q) \equiv (\neg p) \land (\neg q)$. For quantifiers,
+$\neg \forall x\, P(x) \equiv \exists x\, \neg P(x)$ and
+$\neg \exists x\, P(x) \equiv \forall x\, \neg P(x)$.
+\end{proposition}
+
+\begin{theorem}[Principle of Mathematical Induction]
+\label{thm:induction}
+Let $P(n)$ be a predicate on $\mathbb{N} = \{1, 2, 3, \dots\}$. Suppose
+\begin{enumerate}
+  \item (Base case) $P(1)$ is true, and
+  \item (Inductive step) for every $k \in \mathbb{N}$, $P(k) \Rightarrow P(k+1)$.
+\end{enumerate}
+Then $P(n)$ is true for every $n \in \mathbb{N}$.
+\end{theorem}
+
+\section*{Worked Examples}
+
+\subsection*{Direct proof}
+
+\begin{proposition}
+If $n$ is an even integer, then $n^2$ is even.
+\end{proposition}
+\begin{proof}
+By hypothesis $n = 2k$ for some $k \in \mathbb{Z}$. Then
+$n^2 = (2k)^2 = 4k^2 = 2(2k^2)$, which is twice an integer, hence even.
+\end{proof}
+
+\subsection*{Contrapositive}
+
+\begin{proposition}
+If $n^2$ is an even integer, then $n$ is even.
+\end{proposition}
+\begin{proof}
+We prove the contrapositive: if $n$ is odd, then $n^2$ is odd. Write
+$n = 2k+1$. Then $n^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1$, which is odd.
+\end{proof}
+
+\subsection*{Contradiction}
+
+\begin{proposition}
+$\sqrt{2}$ is irrational.
+\end{proposition}
+\begin{proof}
+Suppose for contradiction $\sqrt{2} = a/b$ with $a, b \in \mathbb{Z}$, $b \neq 0$,
+$\gcd(a,b) = 1$. Then $a^2 = 2b^2$, so $a^2$ is even, so $a$ is even
+(contrapositive lemma above). Write $a = 2c$. Then $4c^2 = 2b^2$, so
+$b^2 = 2c^2$, so $b$ is even. But then $\gcd(a,b) \geq 2$, contradicting
+$\gcd(a,b) = 1$.
+\end{proof}
+
+\subsection*{Induction}
+
+\begin{theorem}[Closed form for the first $n$ positive integers]
+For every $n \geq 1$,
+\[
+\sum_{k=1}^{n} k \;=\; \frac{n(n+1)}{2}.
+\]
+\end{theorem}
+\begin{proof}
+We argue by induction on $n$, applying Theorem~\ref{thm:induction}.
+
+\emph{Base case.} For $n = 1$ the left-hand side is $\sum_{k=1}^1 k = 1$ and
+the right-hand side is $1 \cdot 2 / 2 = 1$. Both equal $1$.
+
+\emph{Inductive step.} Fix $m \geq 1$ and assume the inductive hypothesis
+\[
+\sum_{k=1}^{m} k = \frac{m(m+1)}{2}. \tag{IH}
+\]
+We must show the statement for $n = m+1$. Compute
+\begin{align*}
+\sum_{k=1}^{m+1} k
+  &= \left( \sum_{k=1}^{m} k \right) + (m+1) \\
+  &\stackrel{(\text{IH})}{=} \frac{m(m+1)}{2} + (m+1) \\
+  &= (m+1) \left( \frac{m}{2} + 1 \right) \\
+  &= (m+1) \cdot \frac{m+2}{2} \\
+  &= \frac{(m+1)\big((m+1)+1\big)}{2},
+\end{align*}
+which is the claim for $n = m+1$.
+
+By Theorem~\ref{thm:induction}, the identity holds for every $n \geq 1$.
+\end{proof}
+
+\section*{Connection to ML}
+
+Every formal guarantee in a machine-learning paper is a quantified proposition:
+a convergence rate is $\forall \epsilon > 0,\, \exists N,\, \forall n \geq N,\,
+\|\theta_n - \theta^*\| < \epsilon$; a generalisation bound is $\forall \delta,
+\Pr[\,\text{risk gap} \leq f(\delta)\,] \geq 1 - \delta$. Identifying the
+proof strategy --- direct construction, contrapositive, contradiction, or
+induction (often on network depth or training step) --- is the first step in
+critiquing the paper. For example, a Lipschitz bound for a deep network is
+classically proved by induction on the layer index, with the inductive
+hypothesis that the partial network up to layer $k$ has Lipschitz constant
+$\prod_{i \leq k} L_i$.
+
+\section*{Exercises}
+
+\begin{enumerate}
+  \item (Direct.) Prove that the sum of two odd integers is even.
+  \item (Contradiction.) Prove that there is no largest prime. \emph{Hint:} if
+        $p_1, \dots, p_n$ were all the primes, consider $N = p_1 \cdots p_n + 1$.
+  \item (Induction.) Prove that $\displaystyle \sum_{k=1}^n k^2 = \frac{n(n+1)(2n+1)}{6}$
+        for every $n \geq 1$.
+  \item (Truth tables.) Verify by truth table that
+        $(p \Rightarrow q) \Leftrightarrow (\neg q \Rightarrow \neg p)$
+        is a tautology.
+\end{enumerate}
+
 \end{document}

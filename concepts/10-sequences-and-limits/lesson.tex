@@ -1,5 +1,162 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Sequences and Limits}
+\author{math-foundations / concept 10}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Setting}
+
+Throughout, $(X, d)$ denotes a metric space (concept 09). A
+\emph{sequence} in $X$ is a function $x : \mathbb{N} \to X$,
+written $(x_n)_{n \in \mathbb{N}}$ or simply $(x_n)$. We
+study what it means for such a sequence to settle down toward
+a point of $X$, both with and without naming the limit in
+advance.
+
+\section{Convergence}
+
+\begin{definition}[convergence]
+A sequence $(x_n)$ in $X$ \emph{converges} to $L \in X$ if
+\[
+\forall \epsilon > 0,\ \exists N \in \mathbb{N},\
+\forall n \ge N,\ d(x_n, L) < \epsilon.
+\]
+We write $x_n \to L$ as $n \to \infty$, or
+$\lim_{n \to \infty} x_n = L$.
+\end{definition}
+
+\begin{remark}
+The integer $N$ is allowed to depend on $\epsilon$. The
+content of the definition is: \emph{however small a tolerance
+$\epsilon$ you demand, the tail of the sequence eventually
+sits inside the open ball of radius $\epsilon$ around $L$,
+and stays there.}
+\end{remark}
+
+\begin{proposition}[uniqueness of limit]
+If $x_n \to L$ and $x_n \to L'$ in $(X, d)$, then $L = L'$.
+\end{proposition}
+
+\begin{proof}
+Suppose $L \ne L'$ and let $\epsilon = d(L, L')/3 > 0$. Choose
+$N_1$ with $d(x_n, L) < \epsilon$ for $n \ge N_1$ and $N_2$
+with $d(x_n, L') < \epsilon$ for $n \ge N_2$. For
+$n \ge \max(N_1, N_2)$ the triangle inequality gives
+$d(L, L') \le d(L, x_n) + d(x_n, L') < 2\epsilon =
+\tfrac{2}{3} d(L, L')$, a contradiction.
+\end{proof}
+
+\section{The Cauchy property and completeness}
+
+\begin{definition}[Cauchy sequence]
+A sequence $(x_n)$ in $X$ is \emph{Cauchy} if
+\[
+\forall \epsilon > 0,\ \exists N \in \mathbb{N},\
+\forall m, n \ge N,\ d(x_m, x_n) < \epsilon.
+\]
+\end{definition}
+
+The Cauchy condition speaks only of the sequence's internal
+behaviour: the terms eventually cluster within any tolerance,
+without naming a target.
+
+\begin{definition}[completeness]
+A metric space $(X, d)$ is \emph{complete} if every Cauchy
+sequence in $X$ converges to a point of $X$.
+\end{definition}
+
+\begin{example}
+$\mathbb{R}$ with the usual metric is complete; this is one
+of the defining features of the real line. By contrast,
+$\mathbb{Q}$ is not complete: the sequence of decimal
+truncations of $\sqrt{2}$ is Cauchy in $\mathbb{Q}$ but has
+no rational limit.
+\end{example}
+
+\section{Convergent sequences are Cauchy}
+
+The central theorem of this lesson runs in one direction
+unconditionally: convergence always implies the Cauchy
+property. The converse requires completeness.
+
+\begin{theorem}[every convergent sequence is Cauchy]
+\label{thm:conv-implies-cauchy}
+Let $(X, d)$ be a metric space and let $(x_n)$ be a sequence
+in $X$. If $(x_n)$ converges, then $(x_n)$ is Cauchy.
+\end{theorem}
+
+\begin{proof}
+Suppose $x_n \to L$ for some $L \in X$. Fix $\epsilon > 0$.
+We must produce $N \in \mathbb{N}$ such that
+$d(x_m, x_n) < \epsilon$ whenever $m, n \ge N$.
+
+Apply the definition of convergence with tolerance
+$\epsilon/2 > 0$: there exists $N \in \mathbb{N}$ such that
+\[
+n \ge N \quad \Longrightarrow \quad d(x_n, L) < \frac{\epsilon}{2}.
+\]
+Now let $m, n \ge N$. By the triangle inequality
+(from the metric axioms),
+\[
+d(x_m, x_n) \le d(x_m, L) + d(L, x_n)
+< \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.
+\]
+Since $\epsilon > 0$ was arbitrary, the sequence $(x_n)$
+satisfies the Cauchy criterion.
+\end{proof}
+
+\begin{remark}
+The $\epsilon/2$ split is the canonical move: we have two
+distances to control ($d(x_m, L)$ and $d(L, x_n)$), each can
+be made $< \epsilon/2$, and the triangle inequality combines
+them into a bound of $\epsilon$. The same trick appears in
+proofs that continuous functions preserve Cauchy sequences,
+that uniform limits of continuous functions are continuous,
+and that completions exist.
+\end{remark}
+
+\section{Bolzano--Weierstrass}
+
+\begin{theorem}[Bolzano--Weierstrass]
+Every bounded sequence in $\mathbb{R}$ has a convergent
+subsequence.
+\end{theorem}
+
+This is the prototypical compactness statement: boundedness
+plus closedness in $\mathbb{R}^d$ implies that every sequence
+has a convergent subsequence, with the limit lying in the
+set. The notion of \emph{sequential compactness} (concept 11
+and beyond) is the abstract generalisation.
+
+\section{Why the Cauchy criterion is useful}
+
+In applied work --- and especially in numerical analysis and
+machine learning --- we often cannot exhibit a limit in
+closed form, but we can monitor distances between successive
+iterates. Theorem~\ref{thm:conv-implies-cauchy} together with
+completeness of $\mathbb{R}^d$ tells us that
+\emph{shrinking pairwise distances suffice}: if the iterates
+of an optimisation algorithm satisfy
+$\|x_m - x_n\| \to 0$ as $m, n \to \infty$, then they
+converge to a point of $\mathbb{R}^d$, regardless of whether
+we can name that point. This is the foundation of every
+fixed-point convergence proof, including Picard--Lindel\"of
+(concept 30) and the construction of strong solutions of
+SDEs (concept 33).
+
 \end{document}

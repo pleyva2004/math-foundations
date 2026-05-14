@@ -1,5 +1,126 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\title{Conditional Probability}
+\author{math-foundations / 20-conditional-probability}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Setup}
+Throughout, let $(\Omega, \mathcal{F}, P)$ be a probability space. We use
+$A, B, \ldots$ for elements of $\mathcal{F}$ (``events'').
+
+\section{Definitions}
+
+\begin{definition}[Conditional probability]
+Let $B \in \mathcal{F}$ with $P(B) > 0$. For any $A \in \mathcal{F}$, the
+\emph{conditional probability of $A$ given $B$} is
+\[
+P(A \mid B) \;:=\; \frac{P(A \cap B)}{P(B)}.
+\]
+\end{definition}
+
+\begin{proposition}[$P(\cdot \mid B)$ is a probability measure]
+Fix $B$ with $P(B) > 0$. The set function $Q : \mathcal{F} \to [0,1]$ given
+by $Q(A) = P(A \mid B)$ is a probability measure on $(\Omega, \mathcal{F})$.
+\end{proposition}
+
+\begin{proof}
+Non-negativity: $P(A \cap B) \ge 0$ and $P(B) > 0$, so $Q(A) \ge 0$.
+Normalization: $Q(\Omega) = P(\Omega \cap B)/P(B) = P(B)/P(B) = 1$.
+Countable additivity: if $\{A_n\}$ are pairwise disjoint, then so are
+$\{A_n \cap B\}$, so
+\[
+Q\!\left(\bigcup_n A_n\right) = \frac{P\!\left(\bigcup_n (A_n \cap B)\right)}{P(B)}
+= \frac{\sum_n P(A_n \cap B)}{P(B)} = \sum_n Q(A_n). \qedhere
+\]
+\end{proof}
+
+\begin{definition}[Independence]
+Events $A, B$ are \emph{independent} iff $P(A \cap B) = P(A) P(B)$.
+Equivalently, when $P(B) > 0$, iff $P(A \mid B) = P(A)$.
+\end{definition}
+
+\section{Total Probability and Bayes}
+
+\begin{lemma}[Law of total probability]
+Let $\{B_i\}_{i=1}^n$ be a finite measurable partition of $\Omega$ with
+$P(B_i) > 0$ for all $i$. For any $A \in \mathcal{F}$,
+\[
+P(A) = \sum_{i=1}^n P(A \mid B_i)\, P(B_i).
+\]
+\end{lemma}
+
+\begin{proof}
+Since $\{B_i\}$ partitions $\Omega$, the sets $\{A \cap B_i\}$ partition $A$.
+By finite additivity of $P$ and the definition of conditional probability,
+\[
+P(A) = \sum_i P(A \cap B_i) = \sum_i P(A \mid B_i) P(B_i). \qedhere
+\]
+\end{proof}
+
+\begin{theorem}[Bayes]
+Let $A, B \in \mathcal{F}$ with $P(A) > 0$ and $P(B) > 0$. Then
+\[
+P(A \mid B) \;=\; \frac{P(B \mid A)\, P(A)}{P(B)}.
+\]
+Moreover, if $\{A_i\}_{i=1}^n$ is a measurable partition of $\Omega$ with
+each $P(A_i) > 0$, then for any $j$,
+\[
+P(A_j \mid B) \;=\; \frac{P(B \mid A_j) P(A_j)}{\sum_{i=1}^n P(B \mid A_i) P(A_i)}.
+\]
+\end{theorem}
+
+\begin{proof}
+By definition,
+\[
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}, \qquad
+P(B \mid A) = \frac{P(A \cap B)}{P(A)}.
+\]
+The second identity yields $P(A \cap B) = P(B \mid A)\, P(A)$. Substituting
+into the first gives
+\[
+P(A \mid B) = \frac{P(B \mid A)\, P(A)}{P(B)},
+\]
+which is the first claim. For the second, apply the law of total probability
+with the partition $\{A_i\}$ to expand $P(B) = \sum_i P(B \mid A_i) P(A_i)$
+in the denominator. \qedhere
+\end{proof}
+
+\section{Chain rule}
+
+\begin{proposition}[Multiplication / chain rule]
+Let $A_1, \ldots, A_n \in \mathcal{F}$ with $P(A_1 \cap \cdots \cap A_{n-1}) > 0$.
+Then
+\[
+P(A_1 \cap \cdots \cap A_n) \;=\; P(A_1)\, \prod_{k=2}^{n} P(A_k \mid A_1 \cap \cdots \cap A_{k-1}).
+\]
+\end{proposition}
+
+\begin{proof}
+Induct on $n$. The base $n = 2$ is the definition rearranged:
+$P(A_1 \cap A_2) = P(A_2 \mid A_1) P(A_1)$. For the inductive step, apply
+the base case to $A_1 \cap \cdots \cap A_{n-1}$ and $A_n$. \qedhere
+\end{proof}
+
+\section{Example}
+\begin{example}[Monty Hall]
+Three doors; a car uniformly hidden behind one. The contestant picks door 1;
+the host (knowing the layout) opens a goat door from $\{2, 3\}$, breaking
+ties uniformly. Conditional on the host opening door 3, Bayes gives
+$P(\text{car at 2} \mid \text{open 3}) = 2/3$. Switching is optimal.
+\end{example}
+
 \end{document}

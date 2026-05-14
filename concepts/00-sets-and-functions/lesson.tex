@@ -1,5 +1,152 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb, amsthm, mathtools, hyperref}
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{example}{Example}
+\newtheorem{remark}{Remark}
+
+\title{Sets and Functions}
+\author{Math Foundations: Concept 00}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section*{Introduction}
+
+Modern mathematics is built on two primitive notions: \emph{sets} (unordered collections of distinct objects) and \emph{functions} (deterministic assignments from one set to another). We adopt the naive viewpoint of Halmos: a set is given by specifying its elements, and two sets are equal iff they have the same elements. This is enough for all of analysis, algebra, and probability as practiced in machine-learning research; the axiomatic refinements of Zermelo--Fraenkel set theory are reserved for foundational worries that do not bear on day-to-day mathematical work.
+
+The aim of this lesson is to give precise definitions, prove one nontrivial theorem in full (Cantor's diagonal argument), and connect the framework to concepts that appear later in the learning map --- in particular, probability measures, which are functions from a $\sigma$-algebra (a subset of the powerset) into the unit interval $[0, 1]$.
+
+\iffalse
+Comment: the lesson is intentionally short on prose and heavy on definitions and one fully proved theorem.
+\fi
+
+\section*{Definitions}
+
+\begin{definition}[Set, element, subset]
+A \emph{set} $A$ is a collection of distinct objects, called its \emph{elements}. We write $x \in A$ to mean $x$ is an element of $A$, and $x \notin A$ otherwise. We say $A$ is a \emph{subset} of $B$, written $A \subseteq B$, iff every element of $A$ is an element of $B$:
+\[
+A \subseteq B \iff \forall x \, (x \in A \implies x \in B).
+\]
+Two sets are equal iff $A \subseteq B$ and $B \subseteq A$.
+\end{definition}
+
+\begin{definition}[Power set]
+The \emph{power set} of $A$, denoted $\mathcal{P}(A)$, is the set of all subsets of $A$:
+\[
+\mathcal{P}(A) = \{ S : S \subseteq A \}.
+\]
+\end{definition}
+
+\begin{definition}[Cartesian product]
+The \emph{Cartesian product} of sets $A$ and $B$ is
+\[
+A \times B = \{ (a, b) : a \in A, \, b \in B \},
+\]
+where $(a, b)$ denotes the ordered pair; formally $(a, b) = \{\{a\}, \{a, b\}\}$ (Kuratowski's definition).
+\end{definition}
+
+\begin{definition}[Function]
+A \emph{function} from $A$ to $B$, written $f : A \to B$, is a subset $f \subseteq A \times B$ such that for every $a \in A$ there exists a unique $b \in B$ with $(a, b) \in f$. We write this unique $b$ as $f(a)$ and call $A$ the \emph{domain}, $B$ the \emph{codomain}, and
+\[
+f(A) = \{ f(a) : a \in A \} \subseteq B
+\]
+the \emph{image} of $f$.
+\end{definition}
+
+\begin{definition}[Injection, surjection, bijection]
+Let $f : A \to B$.
+\begin{itemize}
+  \item $f$ is \emph{injective} (one-to-one) iff $f(a_1) = f(a_2) \implies a_1 = a_2$.
+  \item $f$ is \emph{surjective} (onto) iff for every $b \in B$ there is $a \in A$ with $f(a) = b$, i.e.\ $f(A) = B$.
+  \item $f$ is \emph{bijective} iff it is both injective and surjective.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Composition]
+Given $f : A \to B$ and $g : B \to C$, their \emph{composition} $g \circ f : A \to C$ is defined by $(g \circ f)(a) = g(f(a))$.
+\end{definition}
+
+\section*{Properties and a Theorem}
+
+\begin{proposition}[Composition preserves type]
+\label{prop:composition}
+Let $f : A \to B$ and $g : B \to C$.
+\begin{enumerate}
+  \item If $f$ and $g$ are injective, so is $g \circ f$.
+  \item If $f$ and $g$ are surjective, so is $g \circ f$.
+  \item If $f$ and $g$ are bijective, so is $g \circ f$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) Suppose $(g \circ f)(a_1) = (g \circ f)(a_2)$, i.e.\ $g(f(a_1)) = g(f(a_2))$. By injectivity of $g$, $f(a_1) = f(a_2)$; by injectivity of $f$, $a_1 = a_2$.
+(2) Let $c \in C$. By surjectivity of $g$, there is $b \in B$ with $g(b) = c$. By surjectivity of $f$, there is $a \in A$ with $f(a) = b$. Then $(g \circ f)(a) = g(b) = c$.
+(3) Immediate from (1) and (2).
+\end{proof}
+
+\begin{theorem}[Cantor]
+\label{thm:cantor}
+For every set $A$, there is no surjection $A \to \mathcal{P}(A)$. Consequently $|\mathcal{P}(A)| > |A|$.
+\end{theorem}
+
+\begin{proof}
+Let $f : A \to \mathcal{P}(A)$ be any function. We will exhibit an element of $\mathcal{P}(A)$ that is not in the image of $f$; this proves $f$ is not surjective.
+
+Define
+\[
+D = \{ a \in A : a \notin f(a) \}.
+\]
+Note that $D \subseteq A$, so $D \in \mathcal{P}(A)$. We claim $D$ is not in the image of $f$. Suppose for contradiction that $D = f(a_0)$ for some $a_0 \in A$. Consider whether $a_0 \in D$.
+
+\smallskip
+\noindent\emph{Case 1:} $a_0 \in D$. By definition of $D$, this means $a_0 \notin f(a_0) = D$, a contradiction.
+
+\smallskip
+\noindent\emph{Case 2:} $a_0 \notin D$. By definition of $D$, the failure of $a_0 \in D$ means it is not the case that $a_0 \notin f(a_0)$; i.e.\ $a_0 \in f(a_0) = D$, again a contradiction.
+
+\smallskip
+Either case yields a contradiction, so no such $a_0$ exists. Hence $D \notin f(A)$ and $f$ is not surjective. Since the map $a \mapsto \{a\}$ is an injection $A \to \mathcal{P}(A)$, we have $|A| \le |\mathcal{P}(A)|$; combining with the absence of a surjection $A \to \mathcal{P}(A)$ yields $|\mathcal{P}(A)| > |A|$.
+\end{proof}
+
+\begin{remark}
+Cantor's theorem is the seed of every undecidability and uncountability result in mathematics. The diagonal element $D$ is the prototype of the diagonal arguments used to prove the halting problem is undecidable and to show that $\mathbb{R}$ is uncountable.
+\end{remark}
+
+\begin{proposition}[Finite power set]
+If $|A| = n$ is finite, then $|\mathcal{P}(A)| = 2^n$.
+\end{proposition}
+
+\begin{proof}
+List the elements of $A$ as $a_1, \dots, a_n$. Each subset $S \subseteq A$ corresponds bijectively to a binary string of length $n$: the $i$-th bit is $1$ iff $a_i \in S$. There are exactly $2^n$ such binary strings.
+\end{proof}
+
+\section*{Worked Examples}
+
+\begin{example}[A non-injective surjection]
+Let $A = \{1, 2, 3\}$, $B = \{x, y\}$, and define $f(1) = x$, $f(2) = y$, $f(3) = x$. The image is $\{x, y\} = B$, so $f$ is surjective. But $f(1) = f(3)$ with $1 \ne 3$, so $f$ is not injective. (By pigeonhole, no function from a $3$-element set to a $2$-element set can be injective.)
+\end{example}
+
+\begin{example}[An injection that is not a surjection]
+Let $f : \mathbb{N} \to \mathbb{N}$, $f(n) = 2n$. Then $f(n_1) = f(n_2) \implies 2n_1 = 2n_2 \implies n_1 = n_2$, so $f$ is injective. But $1 \notin f(\mathbb{N})$, so $f$ is not surjective.
+\end{example}
+
+\section*{Connection to Machine Learning}
+
+Every probabilistic claim in an ML paper is a statement about a function. Formally, a probability space is a triple $(\Omega, \mathcal{F}, P)$ where $\Omega$ is a set, $\mathcal{F} \subseteq \mathcal{P}(\Omega)$ is a $\sigma$-algebra, and $P : \mathcal{F} \to [0, 1]$ is a function satisfying countable additivity. Cantor's theorem already tells us why measure theory is unavoidable on uncountable $\Omega$: we cannot assign probabilities to \emph{all} subsets of $\mathbb{R}$ consistently, so we restrict to a $\sigma$-algebra strictly smaller than $\mathcal{P}(\mathbb{R})$.
+
+A neural network with parameters $\theta \in \mathbb{R}^p$ is a function $f_\theta : \mathbb{R}^d \to \mathbb{R}^k$. A loss function is a map $\ell : \mathbb{R}^k \times \mathcal{Y} \to \mathbb{R}_{\ge 0}$. Training data is an element of $\mathcal{P}(\mathcal{X} \times \mathcal{Y})$. Every object you will manipulate is a set or a function.
+
+\section*{Exercises}
+
+\begin{enumerate}
+  \item List all elements of $\mathcal{P}(\{a, b, c\})$.
+  \item Prove that the function $f : \mathbb{Z} \to \mathbb{Z}$, $f(n) = 2n + 1$, is injective but not surjective.
+  \item Prove that for any set $A$, there is a bijection between $\mathcal{P}(A)$ and the set of all functions $A \to \{0, 1\}$. (Hint: send $S \subseteq A$ to its characteristic function $\chi_S$.)
+  \item Prove Proposition~\ref{prop:composition} part (3) directly, without appealing to parts (1) and (2).
+\end{enumerate}
+
 \end{document}

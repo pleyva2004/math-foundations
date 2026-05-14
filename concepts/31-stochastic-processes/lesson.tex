@@ -1,5 +1,97 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+
+\title{Stochastic Processes}
+\author{math-foundations / concept 31}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Definitions}
+
+\begin{definition}[Stochastic process]
+Let $(\Omega, \mathcal{F}, P)$ be a probability space and $(S, \mathcal{S})$ a
+measurable state space. A \emph{stochastic process} indexed by a set $T$
+(typically $T = \mathbb{N}$ or $T = [0, \infty)$) is a collection of
+random variables
+\[
+  X = \{ X_t : t \in T \}, \qquad X_t : \Omega \to S \text{ measurable.}
+\]
+For each fixed $\omega \in \Omega$, the function $t \mapsto X_t(\omega)$ is
+called a \emph{sample path}.
+\end{definition}
+
+\begin{definition}[Markov property]
+A stochastic process $\{X_n\}_{n \in \mathbb{N}}$ has the
+\emph{Markov property} (with respect to its natural filtration) if for every
+$n \in \mathbb{N}$ and every measurable set $A \subseteq S$,
+\[
+  P\bigl(X_{n+1} \in A \,\bigm|\, X_0, X_1, \dots, X_n\bigr)
+  \;=\; P\bigl(X_{n+1} \in A \,\bigm|\, X_n\bigr).
+\]
+Equivalently, given the present $X_n$, the future $X_{n+1}$ is independent
+of the past $(X_0, \dots, X_{n-1})$.
+\end{definition}
+
+\begin{definition}[Martingale]
+Let $\{\mathcal{F}_n\}_{n \in \mathbb{N}}$ be a filtration on
+$(\Omega, \mathcal{F}, P)$. A process $\{X_n\}$ is a \emph{martingale}
+with respect to $\{\mathcal{F}_n\}$ if
+\begin{enumerate}
+  \item $X_n$ is $\mathcal{F}_n$-measurable for every $n$ (adaptedness);
+  \item $E[|X_n|] < \infty$ for every $n$ (integrability);
+  \item $E[X_{n+1} \mid \mathcal{F}_n] = X_n$ almost surely (fair-game
+    property).
+\end{enumerate}
+\end{definition}
+
+\section{Simple Random Walk}
+
+\begin{theorem}
+The simple random walk $S_n = X_1 + \cdots + X_n$ with iid
+$X_i \in \{-1, +1\}$ each with probability $1/2$ satisfies $E[S_n] = 0$
+and $\mathrm{Var}(S_n) = n$.
+\end{theorem}
+
+\begin{proof}
+Each summand $X_i$ takes values $\pm 1$ with equal probability, so
+\[
+  E[X_i] \;=\; (+1) \cdot \tfrac{1}{2} + (-1) \cdot \tfrac{1}{2} \;=\; 0,
+\]
+and
+\[
+  E[X_i^2] \;=\; (+1)^2 \cdot \tfrac{1}{2} + (-1)^2 \cdot \tfrac{1}{2} \;=\; 1.
+\]
+Hence $\mathrm{Var}(X_i) = E[X_i^2] - (E[X_i])^2 = 1 - 0 = 1$.
+
+By linearity of expectation,
+\[
+  E[S_n] \;=\; E\!\left[ \sum_{i=1}^{n} X_i \right]
+         \;=\; \sum_{i=1}^{n} E[X_i] \;=\; \sum_{i=1}^{n} 0 \;=\; 0.
+\]
+
+Because the $X_i$ are independent, all cross-covariances vanish:
+$\mathrm{Cov}(X_i, X_j) = 0$ for $i \neq j$. The
+variance-of-a-sum identity therefore reduces to a sum of variances:
+\[
+  \mathrm{Var}(S_n)
+  \;=\; \mathrm{Var}\!\left( \sum_{i=1}^{n} X_i \right)
+  \;=\; \sum_{i=1}^{n} \mathrm{Var}(X_i)
+        + 2 \sum_{i < j} \mathrm{Cov}(X_i, X_j)
+  \;=\; \sum_{i=1}^{n} 1 + 0
+  \;=\; n.
+\]
+This proves $E[S_n] = 0$ and $\mathrm{Var}(S_n) = n$.
+\end{proof}
+
+\paragraph{Remark.} The standard deviation of $S_n$ grows like $\sqrt{n}$,
+which is the diffusive scaling underlying Brownian motion (concept 32)
+and the noise schedule of diffusion-based generative models.
+
 \end{document}

@@ -1,5 +1,161 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Derivatives (Univariate): A Rigorous Introduction}
+\author{Math Foundations Map --- Node 12}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Motivation}
+
+Given a function $f : I \to \mathbb{R}$ on an open interval $I$ and a point
+$c \in I$, we wish to assign a number $f'(c)$ that captures the
+\emph{instantaneous rate of change} of $f$ at $c$. Geometrically, this number
+is the slope of the line that best approximates the graph of $f$ in an
+arbitrarily small neighbourhood of $(c, f(c))$. Algebraically, it is the limit
+of the slopes of secant lines through $(c, f(c))$ as the second point
+collapses onto $(c, f(c))$.
+
+\section{Definitions}
+
+\begin{definition}[Derivative at a point]
+Let $f : I \to \mathbb{R}$ where $I \subseteq \mathbb{R}$ is an open interval,
+and let $c \in I$. We say $f$ is \textbf{differentiable at $c$} if the limit
+\[
+f'(c) \;:=\; \lim_{h \to 0} \frac{f(c+h) - f(c)}{h}
+\]
+exists in $\mathbb{R}$. The value $f'(c)$ is called the \textbf{derivative}
+of $f$ at $c$. An equivalent formulation, obtained by substituting $x = c + h$, is
+\[
+f'(c) \;=\; \lim_{x \to c} \frac{f(x) - f(c)}{x - c}.
+\]
+\end{definition}
+
+\begin{definition}[Differentiability on an interval]
+$f$ is \textbf{differentiable on $I$} if $f'(c)$ exists for every $c \in I$.
+In this case the assignment $c \mapsto f'(c)$ defines a function
+$f' : I \to \mathbb{R}$, called the \textbf{derivative function}.
+\end{definition}
+
+\begin{definition}[Local linear approximation]
+$f$ is differentiable at $c$ with derivative $m$ if and only if there exists
+a function $\varepsilon$ defined on a neighbourhood of $0$ with
+$\lim_{h \to 0} \varepsilon(h) = 0$ and
+\[
+f(c + h) \;=\; f(c) + m \cdot h + h \cdot \varepsilon(h).
+\]
+\end{definition}
+
+\section{Differentiability implies continuity}
+
+The first nontrivial fact about differentiation is that it strengthens
+continuity. We isolate this as the main theorem of the lesson.
+
+\begin{theorem}[Differentiable implies continuous]
+\label{thm:diff-implies-cts}
+If $f : I \to \mathbb{R}$ is differentiable at $c \in I$, then $f$ is
+continuous at $c$.
+\end{theorem}
+
+\begin{proof}
+We must show $\lim_{x \to c} f(x) = f(c)$, equivalently
+$\lim_{x \to c} (f(x) - f(c)) = 0$. For $x \in I$ with $x \neq c$, we use the
+algebraic identity
+\begin{equation}
+\label{eq:factorization}
+f(x) - f(c) \;=\; \frac{f(x) - f(c)}{x - c} \cdot (x - c).
+\end{equation}
+By the definition of $f'(c)$,
+\[
+\lim_{x \to c} \frac{f(x) - f(c)}{x - c} \;=\; f'(c) \;\in\; \mathbb{R}.
+\]
+Also, trivially,
+\[
+\lim_{x \to c} (x - c) \;=\; 0.
+\]
+The product rule for limits (which holds whenever both factors have finite
+limits) applied to \eqref{eq:factorization} yields
+\[
+\lim_{x \to c} \bigl(f(x) - f(c)\bigr)
+\;=\; \left( \lim_{x \to c} \frac{f(x) - f(c)}{x - c} \right)
+      \cdot \left( \lim_{x \to c} (x - c) \right)
+\;=\; f'(c) \cdot 0 \;=\; 0.
+\]
+Therefore $\lim_{x \to c} f(x) = f(c)$, i.e.\ $f$ is continuous at $c$.
+\end{proof}
+
+\begin{remark}
+The converse is false. The function $f(x) = |x|$ is continuous at $0$ but the
+two one-sided limits of the difference quotient are $+1$ and $-1$, so $f'(0)$
+does not exist.
+\end{remark}
+
+\section{Differentiation rules}
+
+\begin{proposition}[Algebraic rules]
+Let $f, g$ be differentiable at $c$, and let $\alpha \in \mathbb{R}$. Then:
+\begin{enumerate}
+\item $(\alpha f)'(c) = \alpha f'(c)$;
+\item $(f + g)'(c) = f'(c) + g'(c)$;
+\item $(f g)'(c) = f'(c) g(c) + f(c) g'(c)$;
+\item if $g(c) \neq 0$,
+$\displaystyle (f/g)'(c) = \frac{f'(c) g(c) - f(c) g'(c)}{g(c)^2}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}[Chain rule]
+If $g$ is differentiable at $c$ and $f$ is differentiable at $g(c)$, then
+$f \circ g$ is differentiable at $c$ and
+$(f \circ g)'(c) = f'(g(c)) \cdot g'(c)$.
+\end{proposition}
+
+\section{The Mean Value Theorem}
+
+\begin{theorem}[Rolle]
+If $f : [a, b] \to \mathbb{R}$ is continuous on $[a, b]$, differentiable on
+$(a, b)$, and $f(a) = f(b)$, then there exists $\xi \in (a, b)$ with
+$f'(\xi) = 0$.
+\end{theorem}
+
+\begin{theorem}[Mean Value Theorem]
+If $f : [a, b] \to \mathbb{R}$ is continuous on $[a, b]$ and differentiable on
+$(a, b)$, then there exists $\xi \in (a, b)$ with
+\[
+f'(\xi) \;=\; \frac{f(b) - f(a)}{b - a}.
+\]
+\end{theorem}
+
+The MVT is the bridge between local information ($f'$) and global behaviour
+($f(b) - f(a)$). Consequences include: monotonicity criteria, $L^\infty$
+bounds on increments, Taylor's theorem with Lagrange remainder, and the
+uniqueness of antiderivatives up to additive constants.
+
+\section{Example: $\frac{d}{dx} x^2$ from first principles}
+
+\begin{example}
+For $f(x) = x^2$ and $c \in \mathbb{R}$,
+\[
+\frac{f(c+h) - f(c)}{h}
+= \frac{(c+h)^2 - c^2}{h}
+= \frac{2ch + h^2}{h}
+= 2c + h
+\;\xrightarrow{h \to 0}\; 2c.
+\]
+Hence $f'(c) = 2c$, i.e.\ $\tfrac{d}{dx} x^2 = 2x$.
+\end{example}
+
 \end{document}

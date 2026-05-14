@@ -1,5 +1,164 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rank}{rank}
+
+\title{Linear Maps and Matrices}
+\author{math-foundations / 06-linear-maps}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{From Vector Spaces to Maps Between Them}
+
+Vector spaces are the stage; linear maps are the actors. A linear map is the
+minimal kind of function between two vector spaces that respects both
+operations the spaces carry. Once we agree to study only such maps, an
+enormous amount of structure becomes available: composition of maps becomes
+matrix multiplication, invertibility becomes a determinant condition, and the
+problem of solving a linear system becomes the problem of inverting (or
+generalised-inverting) a linear map.
+
+Throughout this lesson $\mathbb{F}$ denotes a field (think $\mathbb{R}$ or
+$\mathbb{C}$), and all vector spaces are over $\mathbb{F}$.
+
+\begin{definition}[Linear map]
+Let $V, W$ be vector spaces over $\mathbb{F}$. A function $T \colon V \to W$
+is a \emph{linear map} (or \emph{linear transformation}) if for all
+$u, v \in V$ and $\alpha \in \mathbb{F}$,
+\[
+T(u + v) = T(u) + T(v), \qquad T(\alpha v) = \alpha\, T(v).
+\]
+Equivalently, $T(\alpha u + \beta v) = \alpha T(u) + \beta T(v)$ for all
+$\alpha, \beta \in \mathbb{F}$ and $u, v \in V$. The set of linear maps
+$V \to W$ is denoted $\mathcal{L}(V, W)$; it is itself a vector space under
+pointwise operations.
+\end{definition}
+
+\begin{definition}[Kernel and image]
+For a linear map $T \colon V \to W$, the \emph{kernel} (or \emph{null
+space}) is
+\[
+\ker T := \{ v \in V : T(v) = 0_W \},
+\]
+and the \emph{image} (or \emph{range}) is
+\[
+\im T := \{ T(v) : v \in V \} \subseteq W.
+\]
+Both are subspaces (of $V$ and $W$ respectively). When $V$ is
+finite-dimensional, $\rank T := \dim \im T$ and the \emph{nullity} is
+$\dim \ker T$.
+\end{definition}
+
+\begin{definition}[Matrix representation]
+Suppose $V$ has ordered basis $\mathcal{B} = (v_1, \dots, v_n)$ and $W$ has
+ordered basis $\mathcal{C} = (w_1, \dots, w_m)$. For each $j$, write
+\[
+T(v_j) = \sum_{i=1}^m a_{ij}\, w_i,
+\]
+which is possible and uniquely so because $\mathcal{C}$ is a basis. The
+matrix $[T]_{\mathcal{B}}^{\mathcal{C}} := (a_{ij}) \in \mathbb{F}^{m\times n}$
+is the \emph{matrix of $T$ relative to $\mathcal{B}$ and $\mathcal{C}$}.
+Writing $[v]_{\mathcal{B}}$ for the coordinate column of $v$ in $\mathcal{B}$,
+the defining identity is
+\[
+[T(v)]_{\mathcal{C}} = [T]_{\mathcal{B}}^{\mathcal{C}} \, [v]_{\mathcal{B}}.
+\]
+\end{definition}
+
+\section{Worked Example}
+
+\begin{example}[Rotation in the plane]
+Let $T = R_\theta \colon \mathbb{R}^2 \to \mathbb{R}^2$ rotate vectors
+counter-clockwise by $\theta$. In the standard basis $e_1, e_2$,
+$T(e_1) = (\cos\theta, \sin\theta)$ and $T(e_2) = (-\sin\theta, \cos\theta)$,
+so
+\[
+[R_\theta] = \begin{pmatrix} \cos\theta & -\sin\theta \\
+\sin\theta & \cos\theta \end{pmatrix}.
+\]
+Then $\ker R_\theta = \{0\}$, $\im R_\theta = \mathbb{R}^2$, and the identity
+$[R_\alpha][R_\beta] = [R_{\alpha+\beta}]$ recovers the sine and cosine
+addition formulas.
+\end{example}
+
+\section{The Rank--Nullity Theorem}
+
+\begin{theorem}[Rank--Nullity]\label{thm:rank-nullity}
+Let $V$ be a finite-dimensional vector space over $\mathbb{F}$ and
+$T \colon V \to W$ a linear map. Then
+\[
+\dim \ker T + \dim \im T = \dim V.
+\]
+\end{theorem}
+
+\begin{proof}
+Set $n := \dim V$. Since $\ker T$ is a subspace of the finite-dimensional
+space $V$, it is finite-dimensional. Pick a basis $u_1, \dots, u_k$ of
+$\ker T$, where $k = \dim \ker T$. By the basis-extension theorem (a
+standard consequence of the existence of bases), we can extend this list to
+a basis
+\[
+u_1, \dots, u_k, v_1, \dots, v_r
+\]
+of $V$, with $k + r = n$. We claim $T(v_1), \dots, T(v_r)$ is a basis of
+$\im T$.
+
+\emph{Spanning.} Let $w \in \im T$, so $w = T(v)$ for some $v \in V$.
+Expand $v = \sum_{i=1}^k \alpha_i u_i + \sum_{j=1}^r \beta_j v_j$. Applying
+$T$ and using $T(u_i) = 0$ gives $w = \sum_j \beta_j T(v_j)$, so the
+$T(v_j)$ span $\im T$.
+
+\emph{Linear independence.} Suppose
+$\sum_{j=1}^r \gamma_j T(v_j) = 0$. By linearity,
+$T\!\left( \sum_j \gamma_j v_j \right) = 0$, so
+$\sum_j \gamma_j v_j \in \ker T$. Hence there exist
+$\delta_1, \dots, \delta_k$ with
+$\sum_j \gamma_j v_j = \sum_i \delta_i u_i$, i.e.
+$\sum_j \gamma_j v_j - \sum_i \delta_i u_i = 0$. Since
+$u_1, \dots, u_k, v_1, \dots, v_r$ is a basis, all coefficients vanish; in
+particular every $\gamma_j = 0$.
+
+Therefore $\dim \im T = r$, and
+$\dim \ker T + \dim \im T = k + r = n = \dim V$.
+\end{proof}
+
+\begin{proposition}[Composition equals matrix product]
+Let $S \colon U \to V$ and $T \colon V \to W$ be linear, with chosen bases.
+Then $T \circ S$ is linear and
+$[T \circ S] = [T] \, [S]$, where the right-hand side is the usual matrix
+product.
+\end{proposition}
+
+\begin{proof}[Sketch]
+Linearity of $T \circ S$ is immediate. Apply both sides to a basis vector of
+$U$ and expand using the defining identity
+$[T(v)]_{\mathcal{C}} = [T]\,[v]_{\mathcal{B}}$ twice; the matrix-product
+formula falls out of the double summation $\sum_k a_{ik} b_{kj}$.
+\end{proof}
+
+\section{Consequences for Machine Learning}
+
+The map an attention head computes, $x \mapsto W_O\,(\text{value mix})$, is
+a linear map on the residual stream. A rank-$r$ LoRA update $W_O + BA$ with
+$A \in \mathbb{R}^{r \times d}$, $B \in \mathbb{R}^{d \times r}$ has update
+rank at most $r$; by Theorem~\ref{thm:rank-nullity} applied to $BA$, the
+nullity is at least $d - r$. Hence LoRA can only perturb the layer along
+an $r$-dimensional subspace of feature directions, the structural fact that
+makes it both parameter-efficient and a strong implicit regulariser.
+
 \end{document}

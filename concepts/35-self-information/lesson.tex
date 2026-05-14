@@ -1,5 +1,160 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Self-Information (Surprisal)}
+\author{math-foundations / 35-self-information}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Motivation}
+
+Information theory begins with a deceptively simple question: how much
+\emph{information} does the occurrence of a single event convey? Intuition
+gives three desiderata.
+\begin{itemize}
+  \item A certain event ($p = 1$) conveys no information.
+  \item Rarer events convey more information than common ones.
+  \item Two independent events convey, jointly, the sum of their individual
+        informations.
+\end{itemize}
+Shannon (1948) showed that these three properties, together with continuity,
+single out a one-parameter family of functions: $I(p) = -c \log p$. The
+constant $c > 0$ merely chooses units; up to that choice, $-\log p$ is the
+\emph{unique} measure of surprisal.
+
+\section{Definitions}
+
+\begin{definition}[Self-information / surprisal]
+Let $X$ be a discrete random variable with probability mass function $p$
+on a countable alphabet $\mathcal{X}$, and let $x \in \mathcal{X}$ satisfy
+$p(x) > 0$. The \emph{self-information} of the outcome $x$ is
+\[
+  I(x) \;=\; -\log p(x).
+\]
+The base of the logarithm fixes the units of $I$:
+\[
+  \log_2 \;\Rightarrow\; \text{bits}, \qquad
+  \ln    \;\Rightarrow\; \text{nats}, \qquad
+  \log_{10} \;\Rightarrow\; \text{hartleys.}
+\]
+\end{definition}
+
+\begin{definition}[Self-information of an event]
+For an event $A$ with $\Pr(A) > 0$, define
+$I(A) = -\log \Pr(A)$. When $A = \{X = x\}$ this recovers the previous
+definition.
+\end{definition}
+
+\begin{remark}
+Self-information is a function of $p$, not of $x$ in any geometric sense;
+two outcomes with the same probability carry the same surprisal regardless
+of their identity.
+\end{remark}
+
+\section{Additivity for independent events}
+
+\begin{theorem}[Additivity]\label{thm:additivity}
+Let $A$ and $B$ be independent events with probabilities $p_A, p_B \in (0,1]$.
+Then
+\[
+  I(A \cap B) \;=\; I(A) + I(B).
+\]
+\end{theorem}
+
+\begin{proof}
+By the definition of independence,
+\[
+  \Pr(A \cap B) = p_A \, p_B.
+\]
+Applying the definition of self-information,
+\[
+  I(A \cap B) = -\log \Pr(A \cap B) = -\log(p_A p_B).
+\]
+Using the homomorphism property of the logarithm, $\log(xy) = \log x + \log y$
+for $x, y > 0$, we obtain
+\[
+  -\log(p_A p_B) = -\log p_A - \log p_B = I(A) + I(B). \qedhere
+\]
+\end{proof}
+
+\begin{remark}
+Independence is essential. If $B = A$, then $A \cap B = A$ and
+$I(A \cap B) = I(A) \neq 2 I(A)$ in general. The correct
+generalisation to dependent events introduces \emph{conditional}
+self-information $I(B \mid A) = -\log \Pr(B \mid A)$, yielding the chain
+rule $I(A \cap B) = I(A) + I(B \mid A)$.
+\end{remark}
+
+\section{Uniqueness of \texorpdfstring{$-\log p$}{-log p}}
+
+The additivity property is, in fact, almost sufficient to characterise
+surprisal.
+
+\begin{theorem}[Shannon uniqueness, abridged]\label{thm:uniqueness}
+Let $f : (0, 1] \to \mathbb{R}_{\ge 0}$ be continuous, strictly decreasing,
+and satisfy
+\[
+  f(pq) = f(p) + f(q) \qquad \text{for all } p, q \in (0,1].
+\]
+Then there exists a constant $c > 0$ such that $f(p) = -c \log p$.
+\end{theorem}
+
+\begin{proof}[Sketch]
+Set $g(t) = f(e^{-t})$ for $t \in [0, \infty)$. The functional equation
+becomes
+\[
+  g(s + t) = f(e^{-(s+t)}) = f(e^{-s} e^{-t})
+           = f(e^{-s}) + f(e^{-t}) = g(s) + g(t),
+\]
+i.e. $g$ is additive on $[0, \infty)$. Together with continuity, Cauchy's
+functional equation gives $g(t) = c t$ for some constant $c$. Strict
+monotonicity of $f$ forces $c > 0$. Translating back,
+$f(p) = g(-\log p) = -c \log p$.
+\end{proof}
+
+\section{Worked example}
+
+\begin{example}[Biased coin]
+Let $X \in \{H, T\}$ with $\Pr(X = H) = 0.9$, $\Pr(X = T) = 0.1$. Working
+in bits:
+\[
+  I(H) = -\log_2(0.9) \approx 0.152, \qquad
+  I(T) = -\log_2(0.1) \approx 3.322.
+\]
+The expected self-information is
+\[
+  \mathbb{E}[I(X)] = 0.9 \cdot 0.152 + 0.1 \cdot 3.322 \approx 0.469 \text{ bits},
+\]
+the Shannon entropy of $X$, which is strictly less than the maximum of $1$ bit
+achieved by a fair coin.
+\end{example}
+
+\section{Connection to machine learning}
+
+For a language model $q(x_t \mid x_{<t})$, the per-token cross-entropy
+loss
+\[
+  \mathcal{L}_t = -\log q(x_t \mid x_{<t})
+\]
+is precisely the self-information that the model assigns to the observed
+token. Minimising average loss is therefore minimising mean surprisal under
+the model. Perplexity, $\exp(\overline{\mathcal{L}})$, is the
+exponentiated mean surprisal --- the geometric-mean inverse-probability
+per token.
+
 \end{document}

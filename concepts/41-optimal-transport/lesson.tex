@@ -1,5 +1,135 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\title{Optimal Transport and the Wasserstein Distance}
+\author{math-foundations \textbullet{} concept 41}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section*{Setting}
+
+Let $(\mathcal{X}, d)$ be a Polish metric space (e.g.\ $\mathbb{R}^n$ with the Euclidean
+metric) and let $\mathcal{P}_p(\mathcal{X})$ denote the set of Borel probability
+measures on $\mathcal{X}$ with finite $p$-th moment, for some $p \geq 1$.
+
+\begin{definition}[Coupling / transport plan]
+Given $\mu, \nu \in \mathcal{P}_p(\mathcal{X})$, a \emph{coupling} of $\mu$ and $\nu$
+is a Borel probability measure $\pi$ on $\mathcal{X} \times \mathcal{X}$ whose marginals
+are $\mu$ and $\nu$:
+\[
+\pi(A \times \mathcal{X}) = \mu(A), \qquad \pi(\mathcal{X} \times B) = \nu(B).
+\]
+We write $\pi \in \Pi(\mu, \nu)$.  The set $\Pi(\mu, \nu)$ is always non-empty
+(contains $\mu \otimes \nu$) and weak-$*$ compact.
+\end{definition}
+
+\begin{definition}[Wasserstein-$p$ distance, Kantorovich formulation]
+\[
+W_p(\mu, \nu) \;=\; \left( \inf_{\pi \in \Pi(\mu, \nu)}
+   \int_{\mathcal{X} \times \mathcal{X}} d(x,y)^p \, d\pi(x,y) \right)^{1/p}.
+\]
+By weak-$*$ compactness of $\Pi(\mu, \nu)$ and lower semi-continuity of the cost,
+the infimum is attained.
+\end{definition}
+
+\begin{definition}[Monge formulation]
+A \emph{transport map} $T : \mathcal{X} \to \mathcal{X}$ pushes $\mu$ forward to $\nu$
+if $T_\#\mu = \nu$, i.e.\ $\nu(B) = \mu(T^{-1}(B))$ for every Borel $B$.  The Monge
+problem is
+\[
+\inf_{T_\#\mu = \nu} \int_{\mathcal{X}} d(x, T(x))^p \, d\mu(x).
+\]
+Every map $T$ induces a (deterministic) coupling $(\mathrm{id}, T)_\# \mu$, so the
+Monge value is always $\geq$ the Kantorovich value.  Under regularity
+(e.g.\ $\mu$ absolutely continuous on $\mathbb{R}^n$, $p > 1$), Brenier's theorem
+gives equality and a unique optimal map.
+\end{definition}
+
+\section*{The 1D case: a closed-form theorem}
+
+In one dimension everything collapses to ordering quantiles.  Recall that for a
+probability measure $\mu$ on $\mathbb{R}$ with c.d.f.\ $F_\mu(x) = \mu((-\infty, x])$,
+the \emph{quantile function} is
+\[
+F_\mu^{-1}(u) \;=\; \inf\{ x \in \mathbb{R} \;:\; F_\mu(x) \geq u \}, \qquad u \in (0,1).
+\]
+If $U \sim \mathrm{Unif}(0,1)$ then $F_\mu^{-1}(U) \sim \mu$.
+
+\begin{theorem}[1D Wasserstein closed form]
+\label{thm:1d}
+Let $\mu, \nu \in \mathcal{P}_p(\mathbb{R})$ with $p \geq 1$.  Then
+\[
+W_p(\mu, \nu)^p \;=\; \int_0^1 \left| F_\mu^{-1}(u) - F_\nu^{-1}(u) \right|^p \, du.
+\]
+Moreover the infimum is attained by the \emph{monotone coupling}
+$\pi^* = (F_\mu^{-1}, F_\nu^{-1})_\# \mathrm{Leb}_{(0,1)}$.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+\textbf{Upper bound.}  The map $u \mapsto (F_\mu^{-1}(u), F_\nu^{-1}(u))$ from
+$(0,1)$ to $\mathbb{R}^2$ pushes Lebesgue measure on $(0,1)$ to a probability $\pi^*$ on
+$\mathbb{R}^2$.  Its first marginal is the law of $F_\mu^{-1}(U) = \mu$, and similarly
+for $\nu$, so $\pi^* \in \Pi(\mu, \nu)$.  Hence
+\[
+W_p(\mu, \nu)^p \;\leq\; \int_{\mathbb{R}^2} |x-y|^p \, d\pi^*(x,y)
+                  \;=\; \int_0^1 |F_\mu^{-1}(u) - F_\nu^{-1}(u)|^p \, du.
+\]
+
+\textbf{Lower bound (the key step).}  The cost $c(x,y) = |x-y|^p$ for $p \geq 1$
+satisfies the \emph{Monge condition} (a.k.a.\ submodularity):
+for all $x < x'$ and $y < y'$,
+\[
+c(x, y) + c(x', y') \;\leq\; c(x, y') + c(x', y).
+\]
+(For $p = 1$ this is immediate: both sides equal $|x - y'| + |x' - y|$ in the
+``crossing'' configuration but $(x'-x) + (y'-y)$ vanishes when one rearranges; the
+general case follows from convexity of $t \mapsto |t|^p$.)
+
+Now let $\pi$ be any coupling and consider any pair of points
+$(x, y), (x', y') \in \mathrm{supp}(\pi)$ with $x < x'$ and $y > y'$.  The Monge
+condition says we can ``uncross'' this pair: replace mass $\varepsilon > 0$ on these
+two pairs with mass $\varepsilon$ on $(x, y')$ and $(x', y)$ instead, without changing
+either marginal, and the total cost can only decrease.  An exchange/measurable-
+selection argument (a swapping/cyclical-monotonicity lemma; see Villani Ch.~5)
+shows that any coupling can be made \emph{monotone} (i.e.\ supported on a non-
+decreasing set) without increasing cost.  But the only monotone coupling with the
+prescribed marginals is $\pi^*$.  Hence $\pi^*$ is optimal, proving the lower
+bound.
+\end{proof}
+
+\begin{remark}
+The theorem yields the trivial empirical-distribution algorithm: to estimate
+$W_p$ between samples $x_1, \ldots, x_n$ and $y_1, \ldots, y_n$, sort each list
+and compute $\bigl( \tfrac{1}{n} \sum_i |x_{(i)} - y_{(i)}|^p \bigr)^{1/p}$.
+\end{remark}
+
+\section*{Examples}
+
+\textbf{Two point masses.}  $W_p(\delta_a, \delta_b) = |a - b|$ for every $p$.
+
+\smallskip
+
+\textbf{Translated Gaussians.}  $\mu = \mathcal{N}(0, 1), \nu = \mathcal{N}(m, 1)$:
+$W_p(\mu, \nu) = |m|$.  Compare with $D_{\mathrm{KL}}(\mu \,\|\, \nu) = m^2/2$.
+
+\section*{Pointers}
+
+The Kantorovich--Rubinstein duality
+$W_1(\mu, \nu) = \sup_{\|f\|_{\mathrm{Lip}} \leq 1} \int f \, d(\mu - \nu)$ is the
+gateway to Wasserstein GANs.  Brenier's theorem identifies the optimal transport
+map for $p = 2$ on $\mathbb{R}^n$ as the gradient of a convex function.  See Villani's
+\emph{Optimal Transport: Old and New} and Peyr\'e--Cuturi's
+\emph{Computational Optimal Transport}.
+
 \end{document}

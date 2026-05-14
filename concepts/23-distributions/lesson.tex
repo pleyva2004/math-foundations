@@ -1,5 +1,110 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\title{Probability Distributions: CDF, PMF, PDF}
+\author{Math Foundations --- Node 23}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Setup}
+
+Throughout, $(\Omega, \mathcal{F}, P)$ is a probability space and $X : \Omega \to \mathbb{R}$ is a real-valued random variable, i.e.\ a measurable map with respect to the Borel $\sigma$-algebra $\mathcal{B}(\mathbb{R})$. The \emph{distribution} (or \emph{law}) of $X$ is the pushforward measure $\mu_X(A) := P(X \in A)$ on $\mathcal{B}(\mathbb{R})$.
+
+\section{Cumulative Distribution Function}
+
+\begin{definition}[CDF]
+The \emph{cumulative distribution function} of $X$ is
+\[
+F_X(x) := P(X \le x) = \mu_X((-\infty, x]), \qquad x \in \mathbb{R}.
+\]
+\end{definition}
+
+\begin{theorem}[Properties of the CDF]\label{thm:cdf}
+The CDF $F_X$ of any real-valued random variable $X$ satisfies:
+\begin{enumerate}
+    \item[\textup{(i)}] \textbf{Non-decreasing:} $x \le y \implies F_X(x) \le F_X(y)$.
+    \item[\textup{(ii)}] \textbf{Right-continuous:} $\lim_{y \downarrow x} F_X(y) = F_X(x)$ for every $x \in \mathbb{R}$.
+    \item[\textup{(iii)}] \textbf{Limits:} $\displaystyle \lim_{x \to -\infty} F_X(x) = 0$ and $\displaystyle \lim_{x \to +\infty} F_X(x) = 1$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\emph{(i) Monotonicity.} If $x \le y$, then $\{X \le x\} \subseteq \{X \le y\}$, so by monotonicity of the probability measure,
+\[
+F_X(x) = P(X \le x) \le P(X \le y) = F_X(y).
+\]
+
+\emph{(ii) Right-continuity.} Fix $x \in \mathbb{R}$ and let $(y_n)_{n \ge 1}$ be any sequence with $y_n \downarrow x$. Define $A_n := \{X \le y_n\}$. Since $y_n$ is decreasing, $A_1 \supseteq A_2 \supseteq \cdots$, and
+\[
+\bigcap_{n=1}^\infty A_n = \bigcap_{n=1}^\infty \{X \le y_n\} = \{X \le x\},
+\]
+because $y_n \to x$ from above implies $X(\omega) \le y_n$ for all $n$ iff $X(\omega) \le \inf_n y_n = x$. The sets $A_n$ have finite measure (bounded by $1$), so continuity from above of $P$ (a consequence of countable additivity) gives
+\[
+\lim_{n \to \infty} P(A_n) = P\!\Big( \bigcap_{n=1}^\infty A_n \Big) = P(X \le x) = F_X(x).
+\]
+Hence $\lim_{n \to \infty} F_X(y_n) = F_X(x)$. Since this holds for every such sequence, $F_X$ is right-continuous at $x$.
+
+\emph{(iii) Limits at $\pm \infty$.} Take any sequence $x_n \uparrow +\infty$ and let $B_n := \{X \le x_n\}$. Then $B_1 \subseteq B_2 \subseteq \cdots$ and
+\[
+\bigcup_{n=1}^\infty B_n = \{X < +\infty\} = \Omega,
+\]
+since $X$ is real-valued. By continuity from below of $P$ (again, countable additivity),
+\[
+\lim_{n \to \infty} F_X(x_n) = \lim_{n \to \infty} P(B_n) = P(\Omega) = 1.
+\]
+Similarly, take $x_n \downarrow -\infty$ and $C_n := \{X \le x_n\}$. Then $C_1 \supseteq C_2 \supseteq \cdots$ and
+\[
+\bigcap_{n=1}^\infty C_n = \{X = -\infty\} = \emptyset,
+\]
+so by continuity from above,
+\[
+\lim_{n \to \infty} F_X(x_n) = P(\emptyset) = 0.
+\]
+
+This proves all three properties.
+\end{proof}
+
+\begin{remark}
+The converse also holds: every function $F : \mathbb{R} \to [0,1]$ satisfying (i)--(iii) is the CDF of some random variable. (Construction: take $\Omega = (0,1)$ with Lebesgue measure and define $X(u) = \inf\{x : F(x) \ge u\}$, the generalized inverse. This is the inverse-CDF sampling method.)
+\end{remark}
+
+\section{Probability Mass Function (Discrete Case)}
+
+\begin{definition}[PMF]
+A random variable $X$ is \emph{discrete} if there exists a countable set $S \subset \mathbb{R}$ with $P(X \in S) = 1$. Its \emph{probability mass function} is
+\[
+p_X(k) := P(X = k), \qquad k \in S.
+\]
+\end{definition}
+
+It satisfies $p_X(k) \ge 0$ and $\sum_{k \in S} p_X(k) = 1$, and the CDF is the running sum
+\[
+F_X(x) = \sum_{k \in S,\, k \le x} p_X(k).
+\]
+The CDF of a discrete RV is a step function with jumps of size $p_X(k)$ at each $k \in S$.
+
+\section{Probability Density Function (Continuous Case)}
+
+\begin{definition}[PDF]
+A random variable $X$ is \emph{absolutely continuous} if there exists a measurable function $f_X : \mathbb{R} \to [0, \infty)$ such that
+\[
+F_X(x) = \int_{-\infty}^{x} f_X(t) \, dt \quad \text{for all } x \in \mathbb{R}.
+\]
+Such an $f_X$ is called a \emph{probability density function} of $X$ and satisfies $\int_{\mathbb{R}} f_X = 1$. It is unique up to a Lebesgue-null set, and where $F_X$ is differentiable, $f_X(x) = F_X'(x)$.
+\end{definition}
+
+For absolutely continuous $X$ and any $a < b$,
+\[
+P(a < X \le b) = F_X(b) - F_X(a) = \int_a^b f_X(t)\, dt.
+\]
+In particular $P(X = x) = 0$ for every single point $x$, so $f_X(x)$ is a \emph{density}, not a probability --- it can exceed $1$ (e.g.\ $\mathrm{Uniform}(0, 0.5)$ has $f_X = 2$ on $[0, 0.5]$).
+
 \end{document}

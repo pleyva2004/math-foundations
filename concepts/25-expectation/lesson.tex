@@ -1,5 +1,121 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+
+\title{Expectation}
+\author{math-foundations / 25-expectation}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Definitions}
+
+\begin{definition}[Expectation, discrete]
+Let $X$ be a discrete random variable on a probability space
+$(\Omega, \mathcal{F}, P)$ taking values $\{k_i\}_{i \ge 1} \subset \mathbb{R}$
+with probability mass function $p_X(k) = P(X = k)$. If
+$\sum_{i} |k_i|\, p_X(k_i) < \infty$, the \emph{expectation} of $X$ is
+\[
+E[X] \;=\; \sum_{i} k_i\, p_X(k_i).
+\]
+\end{definition}
+
+\begin{definition}[Expectation, continuous]
+Let $X$ be a continuous random variable with probability density function
+$f_X$. If $\int_{-\infty}^{\infty} |x|\, f_X(x)\, dx < \infty$, then
+\[
+E[X] \;=\; \int_{-\infty}^{\infty} x\, f_X(x)\, dx.
+\]
+\end{definition}
+
+\begin{definition}[Expectation, Lebesgue]
+For an integrable measurable $X : \Omega \to \mathbb{R}$,
+\[
+E[X] \;=\; \int_{\Omega} X(\omega)\, dP(\omega).
+\]
+This is constructed first for simple functions, extended to non-negative
+measurable functions via monotone approximation, and to signed functions
+via $X = X^+ - X^-$.
+\end{definition}
+
+\section{Linearity of Expectation}
+
+\begin{theorem}[Linearity of Expectation]
+\label{thm:linearity}
+Let $X$ and $Y$ be random variables on a common probability space with
+$E[|X|] < \infty$ and $E[|Y|] < \infty$, and let $a, b \in \mathbb{R}$. Then
+\[
+E[aX + bY] \;=\; a\,E[X] + b\,E[Y].
+\]
+Linearity holds whether or not $X$ and $Y$ are independent.
+\end{theorem}
+
+\begin{proof}[Proof (discrete case)]
+Assume $X$ and $Y$ are discrete random variables with joint pmf
+$p_{X,Y}(x, y) = P(X = x, Y = y)$, and that
+$\sum_{x,y} |x|\, p_{X,Y}(x,y) < \infty$ and likewise for $Y$. Let
+$Z = aX + bY$.
+
+By LOTUS applied to the joint pmf,
+\begin{align*}
+E[Z] \;=\; E[aX + bY]
+     &= \sum_{x} \sum_{y} (a x + b y)\, p_{X,Y}(x, y) \\
+     &= a \sum_{x} \sum_{y} x\, p_{X,Y}(x, y)
+        \;+\; b \sum_{x} \sum_{y} y\, p_{X,Y}(x, y).
+\end{align*}
+Absolute convergence (from the integrability assumptions) permits us to
+rearrange the double sum and apply Fubini for series. Marginalising the
+joint pmf gives $\sum_{y} p_{X,Y}(x, y) = p_X(x)$ and
+$\sum_{x} p_{X,Y}(x, y) = p_Y(y)$, so
+\begin{align*}
+E[Z] &= a \sum_{x} x \left( \sum_{y} p_{X,Y}(x, y) \right)
+       + b \sum_{y} y \left( \sum_{x} p_{X,Y}(x, y) \right) \\
+     &= a \sum_{x} x\, p_X(x) + b \sum_{y} y\, p_Y(y) \\
+     &= a\, E[X] + b\, E[Y].
+\end{align*}
+No use of independence was required: the joint pmf $p_{X,Y}$ carries any
+dependence structure, and it factors out of each single-variable sum only
+through its marginals.
+\end{proof}
+
+\begin{proposition}[Jensen's inequality]
+Let $\phi : \mathbb{R} \to \mathbb{R}$ be convex and let $X$ be an integrable
+random variable with $E[|\phi(X)|] < \infty$. Then
+\[
+\phi\!\big(E[X]\big) \;\le\; E\!\big[\phi(X)\big].
+\]
+\end{proposition}
+
+\begin{proposition}[LOTUS]
+For measurable $g : \mathbb{R} \to \mathbb{R}$ such that $g(X)$ is integrable,
+\[
+E[g(X)] \;=\; \int_{\mathbb{R}} g(x)\, f_X(x)\, dx
+\quad \text{(continuous)},
+\qquad
+E[g(X)] \;=\; \sum_{k} g(k)\, p_X(k)
+\quad \text{(discrete)}.
+\]
+\end{proposition}
+
+\section{Examples}
+
+\paragraph{Bernoulli.} If $X \sim \mathrm{Bernoulli}(p)$, then
+$E[X] = 1 \cdot p + 0 \cdot (1-p) = p$.
+
+\paragraph{Uniform $[a,b]$.} If $X \sim \mathrm{Uniform}[a,b]$, then
+\[
+E[X] = \int_a^b \frac{x}{b-a}\, dx = \frac{a+b}{2}.
+\]
+
+\paragraph{Binomial.} If $X \sim \mathrm{Binomial}(n, p)$, write
+$X = \sum_{i=1}^{n} X_i$ with $X_i \sim \mathrm{Bernoulli}(p)$ iid. By
+Theorem~\ref{thm:linearity}, $E[X] = \sum_{i=1}^{n} E[X_i] = np$.
+
 \end{document}

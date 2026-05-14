@@ -1,5 +1,126 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+
+\title{Information Geometry: The Fisher Metric}
+\author{math-foundations / concept 40}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Setting}
+
+Let $\{p_\theta : \theta \in \Theta\}$ be a smoothly parameterized family of
+probability densities on a measurable space $\mathcal{X}$, with
+$\Theta \subseteq \mathbb{R}^d$ open. We assume sufficient regularity to
+interchange differentiation in $\theta$ with integration in $x$, and that
+$\log p_\theta(x)$ is twice continuously differentiable in $\theta$ for almost
+every $x$. Define the \emph{score} $s_\theta(x) := \nabla_\theta \log p_\theta(x)$.
+
+\begin{definition}[Fisher information matrix]
+The Fisher information matrix at $\theta$ is the $d \times d$ matrix
+\[
+F(\theta)
+  \;=\; \mathbb{E}_{X \sim p_\theta}\!\left[s_\theta(X)\, s_\theta(X)^\top\right]
+  \;=\; -\,\mathbb{E}_{X \sim p_\theta}\!\left[\nabla_\theta^{\,2} \log p_\theta(X)\right].
+\]
+The two expressions agree under the regularity assumptions above.
+\end{definition}
+
+\begin{definition}[Statistical manifold]
+A \emph{statistical manifold} is a pair $(\Theta, F)$ where $\Theta$ is a
+smooth manifold parameterizing $\{p_\theta\}$ and $F$ is the Fisher information
+matrix viewed as a Riemannian metric tensor: for $u, v \in T_\theta \Theta$,
+$\langle u, v \rangle_\theta := u^\top F(\theta) v$.
+\end{definition}
+
+\begin{definition}[Natural gradient]
+Given a smooth loss $L : \Theta \to \mathbb{R}$, the \emph{natural gradient} is
+\[
+\widetilde{\nabla} L(\theta) \;=\; F(\theta)^{-1} \nabla L(\theta),
+\]
+defined wherever $F(\theta)$ is positive definite. It is the steepest-descent
+direction under the Fisher metric.
+\end{definition}
+
+\section{The score has mean zero}
+
+\begin{lemma}\label{lem:score-mean}
+$\mathbb{E}_{X \sim p_\theta}[s_\theta(X)] = 0.$
+\end{lemma}
+
+\begin{proof}
+Since $\int p_\theta(x)\, dx = 1$ for every $\theta$, differentiating in $\theta$
+and exchanging derivative and integral,
+\[
+0 \;=\; \nabla_\theta \!\int p_\theta(x)\, dx
+  \;=\; \int \nabla_\theta p_\theta(x)\, dx
+  \;=\; \int \frac{\nabla_\theta p_\theta(x)}{p_\theta(x)}\, p_\theta(x)\, dx
+  \;=\; \mathbb{E}_{p_\theta}[s_\theta(X)]. \qedhere
+\]
+\end{proof}
+
+\section{Fisher is the local KL metric}
+
+\begin{theorem}\label{thm:fisher-kl}
+The second-order Taylor expansion of
+$\epsilon \mapsto D_{\mathrm{KL}}(p_\theta \,\|\, p_{\theta + \epsilon})$ near
+$\epsilon = 0$ is
+\[
+D_{\mathrm{KL}}\!\left(p_\theta \,\|\, p_{\theta + \epsilon}\right)
+   \;=\; \tfrac{1}{2}\, \epsilon^\top F(\theta)\, \epsilon
+   \;+\; O\!\left(\|\epsilon\|^3\right).
+\]
+\end{theorem}
+
+\begin{proof}
+Define $\Phi(\epsilon) := D_{\mathrm{KL}}(p_\theta \,\|\, p_{\theta + \epsilon})
+  = \mathbb{E}_{X \sim p_\theta}\!\left[\log p_\theta(X) - \log p_{\theta+\epsilon}(X)\right].$
+Set $\ell(\epsilon, x) := \log p_{\theta + \epsilon}(x)$, so
+$\Phi(\epsilon) = \mathbb{E}_{p_\theta}[\ell(0, X) - \ell(\epsilon, X)]$.
+
+Taylor-expand $\ell(\epsilon, x)$ in $\epsilon$ at $0$ to second order, with
+remainder $R(\epsilon, x) = O(\|\epsilon\|^3)$ uniformly on compact sets under
+our smoothness hypotheses:
+\[
+\ell(\epsilon, x)
+  \;=\; \ell(0, x)
+  + \epsilon^\top \nabla_\epsilon \ell(0,x)
+  + \tfrac{1}{2}\, \epsilon^\top \nabla_\epsilon^{\,2} \ell(0, x)\, \epsilon
+  + R(\epsilon, x).
+\]
+Note $\nabla_\epsilon \ell(0,x) = s_\theta(x)$ and
+$\nabla_\epsilon^{\,2} \ell(0,x) = \nabla_\theta^{\,2} \log p_\theta(x)$.
+Substituting,
+\[
+\ell(0,x) - \ell(\epsilon, x)
+  \;=\; -\,\epsilon^\top s_\theta(x)
+  - \tfrac{1}{2}\, \epsilon^\top \nabla_\theta^{\,2} \log p_\theta(x)\, \epsilon
+  - R(\epsilon, x).
+\]
+Take expectation under $p_\theta$. By Lemma~\ref{lem:score-mean},
+$\mathbb{E}_{p_\theta}[\epsilon^\top s_\theta(X)] = \epsilon^\top \mathbb{E}_{p_\theta}[s_\theta(X)] = 0$,
+so the linear term vanishes. By the Hessian form of Fisher,
+$-\mathbb{E}_{p_\theta}[\nabla_\theta^{\,2} \log p_\theta(X)] = F(\theta)$, so
+\[
+\Phi(\epsilon)
+  \;=\; 0 \;+\; \tfrac{1}{2}\, \epsilon^\top F(\theta)\, \epsilon
+  \;-\; \mathbb{E}_{p_\theta}[R(\epsilon, X)]
+  \;=\; \tfrac{1}{2}\, \epsilon^\top F(\theta)\, \epsilon \;+\; O\!\left(\|\epsilon\|^3\right). \qedhere
+\]
+\end{proof}
+
+\paragraph{Consequence.} The Hessian of $\epsilon \mapsto
+D_{\mathrm{KL}}(p_\theta \| p_{\theta+\epsilon})$ at $\epsilon = 0$ is
+$F(\theta)$. The Fisher information is therefore the unique tensor that
+captures the local quadratic behaviour of KL divergence — justifying its role
+as the natural Riemannian metric on the statistical manifold and as the
+preconditioner in natural-gradient descent.
+
 \end{document}

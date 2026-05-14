@@ -1,5 +1,94 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\title{Ordinary Differential Equations}
+\author{math-foundations / 29-ode}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Definitions}
+
+\begin{definition}[Ordinary differential equation]
+Let $U \subseteq \mathbb{R} \times \mathbb{R}^n$ be open and let $f : U \to \mathbb{R}^n$ be
+continuous. A \emph{first-order ordinary differential equation} (ODE) on $U$ is the equation
+\[
+y'(t) = f(t, y(t)),
+\]
+where $y : I \to \mathbb{R}^n$ is an unknown differentiable function defined on an interval
+$I \subseteq \mathbb{R}$ with $\{(t, y(t)) : t \in I\} \subseteq U$. The function $f$ is called the
+\emph{vector field} of the equation.
+\end{definition}
+
+\begin{definition}[Initial value problem]
+Given $(t_0, y_0) \in U$, the \emph{initial value problem} (IVP) is the pair
+\[
+y'(t) = f(t, y(t)), \qquad y(t_0) = y_0.
+\]
+A \emph{solution} is a differentiable map $y : I \to \mathbb{R}^n$ with $t_0 \in I$ satisfying both
+equations.
+\end{definition}
+
+\section{The canonical example}
+
+\begin{theorem}[Solution of $y' = -y$, $y(0) = 1$]
+\label{thm:exp-decay}
+Let $f(t, y) = -y$. The unique solution $y : \mathbb{R} \to \mathbb{R}$ of the IVP
+\[
+y'(t) = -y(t), \qquad y(0) = 1
+\]
+is
+\[
+y(t) = e^{-t}.
+\]
+\end{theorem}
+
+\begin{proof}
+\textbf{Existence (direct substitution).} Define $y(t) := e^{-t}$. Then $y$ is differentiable on
+$\mathbb{R}$ with
+\[
+y'(t) = \frac{d}{dt} e^{-t} = -e^{-t} = -y(t),
+\]
+so $y$ satisfies the ODE. Moreover $y(0) = e^0 = 1$, so the initial condition holds. Hence $y(t) = e^{-t}$
+is a solution.
+
+\textbf{Uniqueness.} Suppose $\tilde y : \mathbb{R} \to \mathbb{R}$ is any solution. Define
+$g(t) := e^{t} \tilde y(t)$. Then $g$ is differentiable with
+\[
+g'(t) = e^{t} \tilde y(t) + e^{t} \tilde y'(t)
+     = e^{t} \tilde y(t) + e^{t} (-\tilde y(t)) = 0.
+\]
+So $g$ is constant on $\mathbb{R}$. Evaluating at $t = 0$: $g(0) = e^{0} \tilde y(0) = 1$. Thus
+$e^{t} \tilde y(t) \equiv 1$, i.e. $\tilde y(t) = e^{-t}$ for all $t \in \mathbb{R}$.
+
+The two parts together prove existence and uniqueness, so $y(t) = e^{-t}$ is the unique solution.
+\end{proof}
+
+\begin{lemma}[Picard--Lindelöf, scalar version]
+If $f : \mathbb{R} \times \mathbb{R} \to \mathbb{R}$ is continuous and Lipschitz in its second argument,
+then the IVP $y'(t) = f(t, y(t))$, $y(t_0) = y_0$ has a unique solution on a neighborhood of $t_0$.
+\end{lemma}
+
+The vector field $f(t, y) = -y$ is globally Lipschitz with constant $1$, so Picard--Lindelöf
+applies and gives an independent proof of uniqueness in Theorem~\ref{thm:exp-decay}.
+
+\section{Remark}
+
+The solution operator $y_0 \mapsto e^{-t} y_0$ is the prototype of a \emph{linear semigroup}: it is
+the one-parameter family $\{\Phi_t\}_{t \ge 0}$ with $\Phi_t = e^{-t}$, $\Phi_0 = \mathrm{id}$,
+$\Phi_{s+t} = \Phi_s \Phi_t$. Generalizing this construction to operator-valued $A$ yields
+$e^{tA}$ and the entire theory of constant-coefficient linear ODEs, which underlies the analysis
+of stability of equilibria in dynamical systems and learned vector fields in flow-matching
+generative models.
+
 \end{document}

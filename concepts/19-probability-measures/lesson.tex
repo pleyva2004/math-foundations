@@ -1,5 +1,140 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\Om}{\Omega}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+\title{Probability Measures}
+\author{Math Foundations -- Node 19}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Setting}
+
+Throughout, $\Om$ is a non-empty set (the \emph{sample space}) and
+$\F \subseteq 2^{\Om}$ is a $\sigma$-algebra on $\Om$ in the sense of node 18:
+$\Om \in \F$, $\F$ is closed under complements, and $\F$ is closed under
+countable unions. Elements of $\F$ are called \emph{events}.
+
+\section{Definitions}
+
+\begin{definition}[Probability measure]
+A \emph{probability measure} on $(\Om, \F)$ is a set function $P : \F \to [0,1]$
+satisfying the three \emph{Kolmogorov axioms}:
+\begin{enumerate}
+    \item[\textnormal{(K1)}] \emph{Non-negativity:} $P(A) \geq 0$ for every $A \in \F$.
+    \item[\textnormal{(K2)}] \emph{Normalisation:} $P(\Om) = 1$.
+    \item[\textnormal{(K3)}] \emph{Countable additivity ($\sigma$-additivity):} for every sequence
+    $\{A_n\}_{n \geq 1} \subseteq \F$ of pairwise disjoint events,
+    \[
+        P\!\left( \bigcup_{n=1}^{\infty} A_n \right)
+        \;=\; \sum_{n=1}^{\infty} P(A_n).
+    \]
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Probability space]
+A \emph{probability space} is a triple $(\Om, \F, P)$ where $\Om$ is a sample space,
+$\F$ is a $\sigma$-algebra on $\Om$, and $P$ is a probability measure on $(\Om, \F)$.
+\end{definition}
+
+\begin{remark}
+From (K1)--(K3) one immediately obtains $P(\emptyset) = 0$ (take all $A_n = \emptyset$ in (K3);
+the sum $\sum P(\emptyset)$ converges only if each term vanishes) and finite additivity
+$P(A \sqcup B) = P(A) + P(B)$ by padding with empty sets.
+\end{remark}
+
+\section{The inclusion--exclusion identity}
+
+\begin{theorem}[Inclusion--exclusion, two-set form]\label{thm:incl-excl}
+Let $(\Om, \F, P)$ be a probability space. For every $A, B \in \F$,
+\[
+    P(A \cup B) \;=\; P(A) + P(B) - P(A \cap B).
+\]
+\end{theorem}
+
+\begin{proof}
+We decompose $A \cup B$ and $B$ into disjoint pieces and apply finite additivity,
+which follows from (K3) as noted above.
+
+\smallskip
+\textbf{Step 1: $A \cup B = A \sqcup (B \setminus A)$ disjointly.}
+Every $\omega \in A \cup B$ is in $A$ or in $B \setminus A := B \cap A^c$, and these
+two sets are disjoint by construction. Both lie in $\F$: $A \in \F$ by hypothesis,
+and $B \setminus A = B \cap A^c \in \F$ since $\F$ is closed under complements and
+finite intersections. By finite additivity,
+\begin{equation}\label{eq:step1}
+    P(A \cup B) \;=\; P(A) + P(B \setminus A).
+\end{equation}
+
+\smallskip
+\textbf{Step 2: $B = (B \cap A) \sqcup (B \setminus A)$ disjointly.}
+Every $\omega \in B$ either lies in $A$ (hence in $B \cap A$) or does not (hence in
+$B \setminus A$), and these two sets are disjoint. Both lie in $\F$ for the same
+reasons as in Step~1. By finite additivity,
+\[
+    P(B) \;=\; P(B \cap A) + P(B \setminus A),
+\]
+and rearranging gives
+\begin{equation}\label{eq:step2}
+    P(B \setminus A) \;=\; P(B) - P(A \cap B).
+\end{equation}
+(Note $P(B \cap A) = P(A \cap B)$ since intersection is commutative.)
+
+\smallskip
+\textbf{Step 3: combine.} Substituting~\eqref{eq:step2} into~\eqref{eq:step1},
+\[
+    P(A \cup B) \;=\; P(A) + \bigl( P(B) - P(A \cap B) \bigr)
+                \;=\; P(A) + P(B) - P(A \cap B). \qedhere
+\]
+\end{proof}
+
+\begin{remark}
+The general $n$-set inclusion--exclusion formula
+\[
+    P\!\left( \bigcup_{i=1}^{n} A_i \right)
+    \;=\; \sum_{k=1}^{n} (-1)^{k+1} \!\!\!
+            \sum_{1 \leq i_1 < \cdots < i_k \leq n} \!\!\! P(A_{i_1} \cap \cdots \cap A_{i_k})
+\]
+follows by induction on $n$, with Theorem~\ref{thm:incl-excl} as the base case.
+\end{remark}
+
+\section{An immediate corollary}
+
+\begin{proposition}[Boole's inequality]
+For every countable collection $\{A_n\}_{n \geq 1} \subseteq \F$,
+\[
+    P\!\left( \bigcup_{n=1}^{\infty} A_n \right) \;\leq\; \sum_{n=1}^{\infty} P(A_n).
+\]
+\end{proposition}
+
+\begin{proof}
+Set $B_1 = A_1$ and $B_n = A_n \setminus \bigcup_{k < n} A_k$ for $n \geq 2$.
+The $B_n$ lie in $\F$, are pairwise disjoint, and satisfy
+$\bigcup_n B_n = \bigcup_n A_n$ with $B_n \subseteq A_n$. By (K3) and monotonicity
+(itself a one-line consequence of Theorem~\ref{thm:incl-excl} applied with $B \supseteq A$),
+\[
+    P\!\left( \bigcup_n A_n \right) = \sum_n P(B_n) \leq \sum_n P(A_n). \qedhere
+\]
+\end{proof}
+
 \end{document}

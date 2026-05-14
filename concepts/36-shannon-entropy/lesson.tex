@@ -1,5 +1,150 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\title{Shannon Entropy}
+\author{math-foundations / concept 36}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Motivation}
+Self-information $I(x) = -\log p(x)$ measures the surprise of a single outcome.
+Shannon entropy is the \emph{expected} self-information: the average surprise we feel
+when drawing from $p$ repeatedly. Equivalently, it is the optimal expected length
+(in bits, nats, hartleys, depending on the log base) of a prefix-free code for the
+random variable.
+
+\section{Definitions}
+
+\begin{definition}[Shannon entropy, discrete]
+Let $X$ be a discrete random variable on a countable alphabet $\mathcal{X}$ with
+probability mass function $p$. The \emph{Shannon entropy} of $X$ is
+\[
+H(X) \;=\; \mathbb{E}\!\left[-\log p(X)\right] \;=\; -\sum_{x \in \mathcal{X}} p(x) \log p(x),
+\]
+with the convention $0 \log 0 = 0$ (justified by
+$\lim_{p \to 0^+} p \log p = 0$).
+\end{definition}
+
+\begin{definition}[Differential entropy, continuous]
+Let $X$ be a continuous random variable with density $f$. The \emph{differential entropy}
+of $X$ is
+\[
+h(X) \;=\; -\int_{\mathbb{R}} f(x) \log f(x) \, dx,
+\]
+whenever the integral exists. Unlike discrete entropy, $h(X)$ may be negative and is
+not invariant under change of variables.
+\end{definition}
+
+The base of the logarithm fixes the units: $\log_2 \Rightarrow$ bits;
+$\ln \Rightarrow$ nats; $\log_{10} \Rightarrow$ hartleys. We use $\log$ to denote a
+generic base unless specified.
+
+\section{Basic properties}
+
+\begin{lemma}[Non-negativity]
+For any discrete random variable $X$, $H(X) \ge 0$, with equality if and only if $X$ is
+deterministic (i.e., some outcome has probability $1$).
+\end{lemma}
+
+\begin{proof}
+Each summand $-p(x) \log p(x)$ is non-negative because $0 \le p(x) \le 1$ implies
+$\log p(x) \le 0$. Equality in the sum requires every term to vanish, which forces
+$p(x) \in \{0, 1\}$ for all $x$.
+\end{proof}
+
+\section{Maximum-entropy theorem}
+
+The following result is the central inequality of this lesson.
+
+\begin{theorem}[Uniform maximises entropy]
+\label{thm:max-entropy}
+Let $X$ be a discrete random variable on a finite alphabet $\mathcal{X}$ with
+$|\mathcal{X}| = n$. Then
+\[
+H(X) \;\le\; \log n,
+\]
+with equality if and only if $X$ is uniform on $\mathcal{X}$ (i.e.,
+$p(x) = 1/n$ for every $x \in \mathcal{X}$).
+\end{theorem}
+
+\begin{proof}
+We use Jensen's inequality applied to the strictly concave function $\log$.
+Let $\mathcal{X}^+ = \{x \in \mathcal{X} : p(x) > 0\}$ denote the support of $p$,
+and write $m = |\mathcal{X}^+| \le n$. By definition,
+\[
+H(X) \;=\; -\sum_{x \in \mathcal{X}^+} p(x) \log p(x)
+       \;=\; \sum_{x \in \mathcal{X}^+} p(x) \log \frac{1}{p(x)}.
+\]
+View the right-hand side as the expectation
+$\mathbb{E}\!\left[\log \tfrac{1}{p(X)}\right]$, where the expectation is taken under $p$.
+Since $\log$ is concave, Jensen's inequality gives
+\[
+\mathbb{E}\!\left[\log \tfrac{1}{p(X)}\right]
+   \;\le\; \log\!\left(\mathbb{E}\!\left[\tfrac{1}{p(X)}\right]\right).
+\]
+Compute the inner expectation:
+\[
+\mathbb{E}\!\left[\tfrac{1}{p(X)}\right]
+   \;=\; \sum_{x \in \mathcal{X}^+} p(x) \cdot \tfrac{1}{p(x)}
+   \;=\; \sum_{x \in \mathcal{X}^+} 1
+   \;=\; m.
+\]
+Therefore
+\[
+H(X) \;\le\; \log m \;\le\; \log n,
+\]
+where the second inequality uses $m \le n$ and monotonicity of $\log$.
+
+For the equality condition: $\log$ is \emph{strictly} concave, so Jensen's inequality
+is strict unless $1/p(X)$ is constant on the support, which means $p(x) = 1/m$ for all
+$x \in \mathcal{X}^+$. Combined with $m \le n$, equality $H(X) = \log n$ requires $m = n$
+and $p$ uniform on $\mathcal{X}$. Conversely, if $p$ is uniform on $\mathcal{X}$, then
+$H(X) = -\sum_{x} (1/n) \log(1/n) = \log n$.
+\end{proof}
+
+\begin{corollary}
+For any discrete random variable on $n$ outcomes, $0 \le H(X) \le \log n$. The lower
+bound is achieved by deterministic $X$, and the upper bound by uniform $X$.
+\end{corollary}
+
+\section{Joint entropy and subadditivity}
+
+\begin{definition}[Joint entropy]
+For discrete random variables $X, Y$ with joint pmf $p(x, y)$,
+\[
+H(X, Y) \;=\; -\sum_{x, y} p(x, y) \log p(x, y).
+\]
+\end{definition}
+
+\begin{theorem}[Subadditivity]
+$H(X, Y) \le H(X) + H(Y)$, with equality iff $X$ and $Y$ are independent.
+\end{theorem}
+
+The proof uses non-negativity of KL divergence applied to the joint vs.\ product of
+marginals; we defer it to the cross-entropy / KL lesson.
+
+\section{Bernoulli entropy as a worked example}
+
+\begin{example}[Binary entropy function]
+For $X \sim \mathrm{Bernoulli}(p)$,
+\[
+H(p) \;=\; -p \log_2 p - (1-p) \log_2 (1-p).
+\]
+Differentiating, $H'(p) = \log_2\!\big(\tfrac{1-p}{p}\big)$, which vanishes at $p = 1/2$,
+giving $H(1/2) = 1$ bit. By Theorem~\ref{thm:max-entropy} this is the global maximum, as
+$\log_2 2 = 1$.
+\end{example}
+
 \end{document}

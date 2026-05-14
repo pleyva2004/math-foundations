@@ -1,5 +1,129 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\title{Integration (Riemann)}
+\author{math-foundations concept 15}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Motivation}
+The Riemann integral assigns to a bounded function $f : [a,b] \to \mathbb{R}$ a single
+number $\int_a^b f$ that represents the signed area between the graph of $f$ and the
+$x$-axis. The construction is purely metric: chop $[a,b]$ into finitely many subintervals,
+approximate $f$ on each subinterval by its supremum (over\-estimate) and infimum
+(under\-estimate), and demand that the two estimates converge as the chopping becomes
+finer.
+
+\section{Partitions and Darboux Sums}
+
+\begin{definition}[Partition]
+A \emph{partition} of $[a,b]$ is a finite ordered set
+$P = \{x_0, x_1, \dots, x_n\}$ with
+\[ a = x_0 < x_1 < \cdots < x_n = b. \]
+Set $\Delta x_i = x_i - x_{i-1}$ and define the \emph{mesh} $\|P\| = \max_i \Delta x_i$.
+A partition $P'$ \emph{refines} $P$ if $P \subseteq P'$.
+\end{definition}
+
+\begin{definition}[Upper and lower sums]
+Let $f : [a,b] \to \mathbb{R}$ be bounded. For a partition $P$ as above, set
+\[ M_i = \sup_{x \in [x_{i-1}, x_i]} f(x), \qquad m_i = \inf_{x \in [x_{i-1}, x_i]} f(x). \]
+The \emph{upper Darboux sum} and \emph{lower Darboux sum} are
+\[ U(f, P) = \sum_{i=1}^{n} M_i\, \Delta x_i, \qquad L(f, P) = \sum_{i=1}^{n} m_i\, \Delta x_i. \]
+\end{definition}
+
+\begin{lemma}\label{lem:refine}
+If $P'$ refines $P$, then $L(f, P) \le L(f, P') \le U(f, P') \le U(f, P)$.
+Consequently $L(f, P_1) \le U(f, P_2)$ for any two partitions $P_1, P_2$.
+\end{lemma}
+
+\begin{definition}[Darboux integrability]
+Define the \emph{upper} and \emph{lower integrals}
+\[ \overline{\int_a^b} f = \inf_P U(f, P), \qquad \underline{\int_a^b} f = \sup_P L(f, P). \]
+We say $f$ is \emph{Riemann (Darboux) integrable} on $[a,b]$ if the two coincide; the
+common value is denoted $\int_a^b f(x)\,dx$.
+\end{definition}
+
+\begin{proposition}[Cauchy criterion]\label{prop:cauchy}
+A bounded $f$ is integrable on $[a,b]$ iff for every $\varepsilon > 0$ there exists a
+partition $P$ with $U(f, P) - L(f, P) < \varepsilon$.
+\end{proposition}
+
+\begin{proof}
+($\Rightarrow$) Suppose $\overline{\int} f = \underline{\int} f =: I$. By the
+definitions of $\inf$ and $\sup$, pick $P_1, P_2$ with $U(f, P_1) < I + \varepsilon/2$
+and $L(f, P_2) > I - \varepsilon/2$. The common refinement $P = P_1 \cup P_2$ satisfies
+$U(f, P) \le U(f, P_1)$ and $L(f, P) \ge L(f, P_2)$, so $U(f,P) - L(f,P) < \varepsilon$.
+
+($\Leftarrow$) For every $\varepsilon$ we have
+$0 \le \overline{\int} f - \underline{\int} f \le U(f, P) - L(f, P) < \varepsilon$.
+Hence the difference is $0$.
+\end{proof}
+
+\section{Continuity Implies Integrability}
+
+\begin{theorem}\label{thm:main}
+Every continuous function $f : [a, b] \to \mathbb{R}$ is Riemann integrable.
+\end{theorem}
+
+\begin{proof}
+Because $[a,b]$ is compact, $f$ is bounded and uniformly continuous (Heine--Cantor).
+Fix $\varepsilon > 0$. By uniform continuity, choose $\delta > 0$ such that
+\[ x, y \in [a,b], \; |x - y| < \delta \implies |f(x) - f(y)| < \frac{\varepsilon}{b - a}. \]
+Take any partition $P = \{x_0, \dots, x_n\}$ with mesh $\|P\| < \delta$.
+
+On each subinterval $[x_{i-1}, x_i]$, the function $f$ attains its sup $M_i$ and inf
+$m_i$ (continuous on a compact set), say at points $\xi_i, \eta_i \in [x_{i-1}, x_i]$.
+Since $|\xi_i - \eta_i| \le \Delta x_i < \delta$,
+\[ M_i - m_i = f(\xi_i) - f(\eta_i) < \frac{\varepsilon}{b - a}. \]
+
+Summing over $i$,
+\[ U(f, P) - L(f, P)
+   = \sum_{i=1}^{n} (M_i - m_i)\, \Delta x_i
+   < \frac{\varepsilon}{b - a} \sum_{i=1}^{n} \Delta x_i
+   = \frac{\varepsilon}{b - a} \cdot (b - a)
+   = \varepsilon. \]
+
+By Proposition~\ref{prop:cauchy}, $f$ is integrable.
+\end{proof}
+
+\section{The Fundamental Theorem of Calculus}
+
+\begin{theorem}[FTC, Part 1]
+Let $f : [a, b] \to \mathbb{R}$ be continuous, and define $F : [a, b] \to \mathbb{R}$ by
+$F(x) = \int_a^x f(t)\,dt$. Then $F$ is differentiable on $(a, b)$ and $F'(x) = f(x)$.
+\end{theorem}
+
+\begin{proof}[Sketch]
+For $h \neq 0$,
+$\frac{F(x+h) - F(x)}{h} = \frac{1}{h} \int_x^{x+h} f(t)\,dt$.
+Bound the integrand by $f(x) \pm \varepsilon$ using continuity of $f$ at $x$, and let
+$h \to 0$.
+\end{proof}
+
+\begin{theorem}[FTC, Part 2]
+If $f$ is continuous on $[a,b]$ and $G$ is any antiderivative of $f$, then
+$\int_a^b f(t)\,dt = G(b) - G(a)$.
+\end{theorem}
+
+\begin{proof}[Sketch]
+Both $F$ from Part 1 and $G$ are antiderivatives of $f$, so they differ by a constant:
+$G(x) = F(x) + C$. Then $G(b) - G(a) = F(b) - F(a) = \int_a^b f - 0$.
+\end{proof}
+
+\section{Worked Example}
+For $f(x) = x^2$ on $[0,1]$ with equal partition $x_i = i/n$,
+\[ U(f, P_n) = \sum_{i=1}^{n} \frac{i^2}{n^2}\cdot\frac{1}{n}
+              = \frac{(n+1)(2n+1)}{6n^2} \xrightarrow[n\to\infty]{} \frac{1}{3}. \]
+By FTC2 the antiderivative $x^3/3$ also yields $1/3 - 0 = 1/3$.
+
 \end{document}

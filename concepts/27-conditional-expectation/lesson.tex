@@ -1,5 +1,107 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\title{Conditional Expectation}
+\author{math-foundations / node 27}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Setup}
+
+Throughout, $(\Omega, \mathcal{F}, P)$ is a probability space and all random variables (RVs) are real-valued unless otherwise stated. We write $L^p = L^p(\Omega, \mathcal{F}, P)$ for the usual Lebesgue spaces, and for a sub-$\sigma$-algebra $\mathcal{G} \subseteq \mathcal{F}$ we write $L^p(\mathcal{G})$ for the closed subspace of $\mathcal{G}$-measurable representatives.
+
+\section{Conditional expectation given a random variable}
+
+Let $X, Y$ be RVs with joint density $f_{X,Y}$ (the discrete case is analogous, replacing densities by PMFs and integrals by sums). Whenever $f_Y(y) > 0$, define the \emph{conditional density of $X$ given $Y = y$} by
+\[
+f_{X \mid Y}(x \mid y) \;=\; \frac{f_{X,Y}(x, y)}{f_Y(y)}.
+\]
+
+\begin{definition}[Conditional expectation given $Y = y$]
+For each $y$ with $f_Y(y) > 0$,
+\[
+E[X \mid Y = y] \;=\; \int_{\mathbb{R}} x \, f_{X \mid Y}(x \mid y)\, dx,
+\]
+assuming the integral is well-defined. The map $g : y \mapsto E[X \mid Y = y]$ is a Borel function; the random variable
+\[
+E[X \mid Y] \;:=\; g(Y)
+\]
+is called the \emph{conditional expectation of $X$ given $Y$}.
+\end{definition}
+
+\section{Conditional expectation given a $\sigma$-algebra}
+
+\begin{definition}[Conditional expectation given $\mathcal{G}$]
+Let $X \in L^1$ and $\mathcal{G} \subseteq \mathcal{F}$ a sub-$\sigma$-algebra. A random variable $Z$ is a \emph{version} of $E[X \mid \mathcal{G}]$ if
+\begin{enumerate}
+  \item[(i)] $Z$ is $\mathcal{G}$-measurable;
+  \item[(ii)] $\displaystyle \int_A Z \, dP = \int_A X \, dP$ for every $A \in \mathcal{G}$.
+\end{enumerate}
+\end{definition}
+
+Existence and a.s.-uniqueness of $Z$ follow from the Radon--Nikodym theorem applied to the signed measure $\nu(A) := \int_A X \, dP$ on $\mathcal{G}$, which is absolutely continuous with respect to the restriction $P|_{\mathcal{G}}$. The earlier definition is recovered by taking $\mathcal{G} = \sigma(Y)$: by the Doob--Dynkin lemma, every $\sigma(Y)$-measurable RV is of the form $g(Y)$, and one checks that $g(y) = E[X \mid Y = y]$ satisfies (i)--(ii).
+
+\section{The tower property}
+
+\begin{theorem}[Tower property]
+Let $X \in L^1$ and let $\mathcal{H} \subseteq \mathcal{G} \subseteq \mathcal{F}$ be sub-$\sigma$-algebras. Then almost surely
+\[
+E\bigl[\,E[X \mid \mathcal{G}] \,\bigm|\, \mathcal{H}\,\bigr] \;=\; E[X \mid \mathcal{H}].
+\]
+In particular, taking $\mathcal{H} = \{\emptyset, \Omega\}$ gives the unconditional identity
+\[
+E\bigl[\,E[X \mid \mathcal{G}]\,\bigr] \;=\; E[X].
+\]
+\end{theorem}
+
+\begin{proof}
+Write $Z := E[X \mid \mathcal{G}]$ and let $W$ be any version of $E[Z \mid \mathcal{H}]$; we show $W$ is also a version of $E[X \mid \mathcal{H}]$.
+
+\emph{(i) $\mathcal{H}$-measurability.} By the defining property of $E[Z \mid \mathcal{H}]$, the RV $W$ is $\mathcal{H}$-measurable.
+
+\emph{(ii) Defining integral identity.} Fix any $A \in \mathcal{H}$. Because $\mathcal{H} \subseteq \mathcal{G}$, we have $A \in \mathcal{G}$ as well. By the definition of $W = E[Z \mid \mathcal{H}]$,
+\[
+\int_A W \, dP \;=\; \int_A Z \, dP. \tag{$\ast$}
+\]
+By the definition of $Z = E[X \mid \mathcal{G}]$, applied to the set $A \in \mathcal{G}$,
+\[
+\int_A Z \, dP \;=\; \int_A X \, dP. \tag{$\ast\ast$}
+\]
+Chaining $(\ast)$ and $(\ast\ast)$ gives
+\[
+\int_A W \, dP \;=\; \int_A X \, dP \qquad \text{for every } A \in \mathcal{H}.
+\]
+Combined with (i), this is precisely the defining property of $E[X \mid \mathcal{H}]$. By a.s.-uniqueness of conditional expectations, $W = E[X \mid \mathcal{H}]$ a.s.
+
+The unconditional form is the special case $\mathcal{H} = \{\emptyset, \Omega\}$, for which $E[\,\cdot \mid \mathcal{H}]$ collapses to the ordinary expectation.
+\end{proof}
+
+\begin{proposition}[$L^2$ projection]
+If $X \in L^2$, then $E[X \mid \mathcal{G}]$ is the orthogonal projection of $X$ onto $L^2(\mathcal{G})$. Equivalently,
+\[
+E[X \mid \mathcal{G}] \;=\; \arg\min_{Z \in L^2(\mathcal{G})} E\!\left[(X - Z)^2\right].
+\]
+\end{proposition}
+
+\begin{example}[Sum of two dice]
+Let $Y$ and $W$ be independent and uniform on $\{1, \dots, 6\}$, and let $X = Y + W$. Then for $y \in \{1, \dots, 6\}$,
+\[
+E[X \mid Y = y] \;=\; y + E[W] \;=\; y + 3.5,
+\]
+so $E[X \mid Y] = Y + 3.5$. The tower property gives
+\[
+E[E[X \mid Y]] \;=\; E[Y] + 3.5 \;=\; 3.5 + 3.5 \;=\; 7 \;=\; E[X]. \qed
+\]
+\end{example}
+
 \end{document}

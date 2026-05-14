@@ -1,5 +1,103 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Random Variables}
+\author{math-foundations / node 22}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Setting}
+
+Fix a probability space $(\Omega, \mathcal{F}, P)$ and write $\mathcal{B}(\mathbb{R})$ for the Borel
+$\sigma$-algebra of $\mathbb{R}$ (the smallest $\sigma$-algebra containing the open intervals).
+
+\begin{definition}[Random variable]
+A function $X : \Omega \to \mathbb{R}$ is a \emph{random variable} if
+\[
+   X^{-1}(B) := \{\omega \in \Omega : X(\omega) \in B\} \;\in\; \mathcal{F}
+   \qquad \text{for every } B \in \mathcal{B}(\mathbb{R}).
+\]
+\end{definition}
+
+\begin{remark}
+Equivalently, $X$ is a random variable iff $\{X \le x\} \in \mathcal{F}$ for every $x \in \mathbb{R}$.
+This follows because $\{(-\infty, x] : x \in \mathbb{R}\}$ generates $\mathcal{B}(\mathbb{R})$ and
+$X^{-1}$ commutes with countable unions, intersections, and complements.
+\end{remark}
+
+\begin{definition}[Distribution function]
+The \emph{cumulative distribution function} (CDF) of a random variable $X$ is
+\[
+   F_X : \mathbb{R} \to [0,1], \qquad F_X(x) := P(X \le x) = P\big(X^{-1}((-\infty, x])\big).
+\]
+The function $F_X$ is non-decreasing, right-continuous, with $F_X(-\infty)=0$ and $F_X(+\infty)=1$.
+\end{definition}
+
+\section{Algebra of random variables}
+
+We now prove that the sum of two random variables is again a random variable. This is the
+\emph{prototype} for showing that products, maxima, minima, and limits of random variables
+remain random variables.
+
+\begin{lemma}[Pre-image of an open set]\label{lem:open}
+Let $X : \Omega \to \mathbb{R}$ satisfy $\{X \le x\} \in \mathcal{F}$ for all $x \in \mathbb{R}$.
+Then for every open set $U \subseteq \mathbb{R}$, $X^{-1}(U) \in \mathcal{F}$.
+\end{lemma}
+
+\begin{proof}
+Every open subset of $\mathbb{R}$ is a countable union of open intervals. For an interval $(a,b)$,
+\[
+   X^{-1}((a,b)) = \{X < b\} \cap \{X > a\} = \Big(\bigcup_{n=1}^\infty \{X \le b - 1/n\}\Big) \cap \{X \le a\}^c,
+\]
+which is a countable Boolean combination of sets in $\mathcal{F}$, hence in $\mathcal{F}$. Taking
+countable unions preserves this.
+\end{proof}
+
+\begin{theorem}[Sum of random variables is a random variable]
+If $X, Y : \Omega \to \mathbb{R}$ are random variables, then $Z := X + Y$ is a random variable.
+\end{theorem}
+
+\begin{proof}
+By the remark, it suffices to show $\{Z \le c\} \in \mathcal{F}$ for every $c \in \mathbb{R}$.
+Equivalently, since $\{Z \le c\} = \{Z < c\}^c \cup \{Z = c\}$ and complements stay in
+$\mathcal{F}$, we instead exhibit $\{Z < c\}$ as a measurable set --- this is the cleaner form
+and uses Lemma~\ref{lem:open} indirectly.
+
+Observe that $X(\omega) + Y(\omega) < c$ holds iff there exists a rational $q$ with
+\[
+   X(\omega) < q \quad \text{and} \quad Y(\omega) < c - q.
+\]
+($\Rightarrow$): If $X(\omega) + Y(\omega) < c$, set $\varepsilon = c - X(\omega) - Y(\omega) > 0$;
+by density of $\mathbb{Q}$ in $\mathbb{R}$, pick $q \in \mathbb{Q}$ with
+$X(\omega) < q < X(\omega) + \varepsilon/2$. Then $q < X(\omega) + \varepsilon/2$ gives
+$c - q > c - X(\omega) - \varepsilon/2 = Y(\omega) + \varepsilon/2 > Y(\omega)$.
+($\Leftarrow$): If $X(\omega) < q$ and $Y(\omega) < c - q$, add the inequalities.
+
+Hence
+\[
+   \{Z < c\} \;=\; \bigcup_{q \in \mathbb{Q}} \Big( \{X < q\} \cap \{Y < c - q\} \Big).
+\]
+The collection $\mathbb{Q}$ is countable. Each $\{X < q\} = X^{-1}((-\infty, q))$ and each
+$\{Y < c-q\} = Y^{-1}((-\infty, c-q))$ is the pre-image of an open set, hence in $\mathcal{F}$
+by Lemma~\ref{lem:open}. A countable union of intersections of $\mathcal{F}$-sets is in
+$\mathcal{F}$, so $\{Z < c\} \in \mathcal{F}$. Finally
+$\{Z \le c\} = \bigcap_{n=1}^\infty \{Z < c + 1/n\} \in \mathcal{F}$, proving the theorem.
+\end{proof}
+
+\begin{remark}
+The same density-of-rationals trick proves $XY, \max(X,Y), \min(X,Y)$ are random variables.
+Iterating gives that every polynomial in finitely many random variables is a random variable,
+and combining with Theorem~3 of the README extends the result to limits.
+\end{remark}
+
 \end{document}

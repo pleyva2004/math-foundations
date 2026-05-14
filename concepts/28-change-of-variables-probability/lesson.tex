@@ -1,5 +1,120 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+
+\title{Change of Variables in Probability}
+\author{Math Foundations \textendash{} Concept 28}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Setup}
+
+Let $X$ be a continuous random variable taking values in an open set $U \subseteq \mathbb{R}^n$
+with probability density function (PDF) $f_X : U \to [0,\infty)$. Let $g : U \to V$
+be a transformation; we wish to find the density of $Y = g(X)$.
+
+\begin{definition}[Diffeomorphism]
+A map $g : U \to V$ between open subsets of $\mathbb{R}^n$ is a $C^1$ \emph{diffeomorphism}
+if $g$ is a bijection, $g \in C^1(U)$, and $g^{-1} \in C^1(V)$. Equivalently, $g$ is $C^1$
+and its Jacobian matrix $J_g(x) = (\partial g_i/\partial x_j)_{ij}$ is invertible for every $x \in U$.
+\end{definition}
+
+\begin{definition}[Push-forward density]
+If $X$ has density $f_X$ and $Y = g(X)$ has a density, we call that density the
+\emph{push-forward} of $f_X$ along $g$ and denote it $f_Y = g_\# f_X$.
+\end{definition}
+
+\section{Main results}
+
+\begin{theorem}[1D change of variables]
+\label{thm:1d}
+Let $X$ be a continuous random variable with density $f_X$ on an open interval
+$(a,b) \subseteq \mathbb{R}$. Let $g : (a,b) \to (c,d)$ be a $C^1$ function with
+$g'(x) \neq 0$ for all $x \in (a,b)$. Then $g$ is strictly monotone, hence bijective,
+and $Y = g(X)$ has density
+\[
+f_Y(y) \;=\; \frac{f_X\!\bigl(g^{-1}(y)\bigr)}{\bigl|g'\!\bigl(g^{-1}(y)\bigr)\bigr|},
+\qquad y \in (c,d).
+\]
+\end{theorem}
+
+\begin{proof}
+Because $g'$ is continuous and never zero on the connected interval $(a,b)$, either
+$g' > 0$ everywhere or $g' < 0$ everywhere. We treat the two monotone cases via the
+cumulative distribution function (CDF) approach.
+
+\medskip
+\noindent\textbf{Case 1: $g$ strictly increasing.}
+Then $g : (a,b) \to (c,d)$ is a bijection with $C^1$ inverse $g^{-1} : (c,d) \to (a,b)$,
+and for any $y \in (c,d)$,
+\[
+F_Y(y) \;=\; P(Y \le y) \;=\; P\bigl(g(X) \le y\bigr) \;=\; P\bigl(X \le g^{-1}(y)\bigr) \;=\; F_X\!\bigl(g^{-1}(y)\bigr).
+\]
+Differentiating in $y$ (chain rule; $F_X$ is differentiable with $F_X' = f_X$, and
+$g^{-1}$ is differentiable with $(g^{-1})'(y) = 1/g'(g^{-1}(y))$ by the inverse function
+theorem),
+\[
+f_Y(y) \;=\; F_Y'(y) \;=\; f_X\!\bigl(g^{-1}(y)\bigr)\,\bigl(g^{-1}\bigr)'(y)
+\;=\; \frac{f_X\!\bigl(g^{-1}(y)\bigr)}{g'\!\bigl(g^{-1}(y)\bigr)}.
+\]
+Since $g' > 0$, we have $|g'| = g'$, so this equals the claimed formula.
+
+\medskip
+\noindent\textbf{Case 2: $g$ strictly decreasing.}
+Then for $y \in (c,d)$,
+\[
+F_Y(y) \;=\; P\bigl(g(X) \le y\bigr) \;=\; P\bigl(X \ge g^{-1}(y)\bigr) \;=\; 1 - F_X\!\bigl(g^{-1}(y)\bigr).
+\]
+Differentiating,
+\[
+f_Y(y) \;=\; -\, f_X\!\bigl(g^{-1}(y)\bigr)\,\bigl(g^{-1}\bigr)'(y)
+\;=\; -\, \frac{f_X\!\bigl(g^{-1}(y)\bigr)}{g'\!\bigl(g^{-1}(y)\bigr)}.
+\]
+Since $g' < 0$, $-1/g' = 1/|g'|$, recovering the claimed formula.
+
+\medskip
+In both cases,
+$f_Y(y) = f_X(g^{-1}(y)) / |g'(g^{-1}(y))|$, completing the proof. \qedhere
+\end{proof}
+
+\begin{theorem}[Multivariate change of variables]
+\label{thm:multi}
+Let $X$ be a continuous random vector on an open set $U \subseteq \mathbb{R}^n$ with
+density $f_X$, and let $g : U \to V$ be a $C^1$ diffeomorphism onto an open set
+$V \subseteq \mathbb{R}^n$. Then $Y = g(X)$ has density
+\[
+f_Y(y) \;=\; f_X\!\bigl(g^{-1}(y)\bigr) \cdot \bigl|\det J_{g^{-1}}(y)\bigr|
+\;=\; \frac{f_X(x)}{\bigl|\det J_g(x)\bigr|}\bigg|_{x = g^{-1}(y)},
+\qquad y \in V.
+\]
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+For any Borel set $B \subseteq V$, using $g^{-1}(B) \subseteq U$ and the multivariate
+substitution theorem from analysis,
+\[
+P(Y \in B) = P(X \in g^{-1}(B)) = \int_{g^{-1}(B)} f_X(x)\, dx
+= \int_B f_X(g^{-1}(y))\,|\det J_{g^{-1}}(y)|\,dy.
+\]
+Because $B$ was arbitrary, the integrand is the density of $Y$.
+\end{proof}
+
+\section{Canonical example}
+
+Let $X \sim \mathrm{Uniform}[0,1]$ and $Y = -\log X$. Then $g(x) = -\log x$ is
+$C^1$ on $(0,1)$ with $g'(x) = -1/x$, $|g'(x)| = 1/x$, and $g^{-1}(y) = e^{-y}$.
+By Theorem~\ref{thm:1d},
+\[
+f_Y(y) \;=\; \frac{1}{1/e^{-y}} \;=\; e^{-y}, \qquad y > 0,
+\]
+i.e.\ $Y \sim \mathrm{Exp}(1)$. This identity underlies inverse-CDF sampling.
+
 \end{document}

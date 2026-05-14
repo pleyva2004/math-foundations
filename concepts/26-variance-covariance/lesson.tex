@@ -1,5 +1,136 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Cor}{Cor}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+
+\title{Variance and Covariance}
+\author{math-foundations / 26-variance-covariance}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Setup}
+
+Throughout this lesson, fix a probability space $(\Omega, \mathcal{F}, P)$ and let
+$L^2(P) = \{X : \Omega \to \R \mid \E[X^2] < \infty\}$ denote the Hilbert space of
+square-integrable random variables. All random variables below are assumed to
+lie in $L^2(P)$, which guarantees the existence of the moments $\E[X]$, $\E[X^2]$,
+and (by Cauchy--Schwarz) $\E[XY]$ for $X, Y \in L^2(P)$.
+
+\section{Definitions}
+
+\begin{definition}[Variance]
+The \emph{variance} of $X \in L^2(P)$ is
+\[
+\Var(X) \;\coloneqq\; \E\!\left[(X - \E[X])^2\right].
+\]
+By expanding the square and applying linearity of expectation,
+\[
+\Var(X) = \E[X^2] - (\E[X])^2.
+\]
+The \emph{standard deviation} is $\sigma_X = \sqrt{\Var(X)}$.
+\end{definition}
+
+\begin{definition}[Covariance]
+The \emph{covariance} of $X, Y \in L^2(P)$ is
+\[
+\Cov(X, Y) \;\coloneqq\; \E\!\left[(X - \E[X])(Y - \E[Y])\right]
+           \;=\; \E[XY] - \E[X]\,\E[Y].
+\]
+Note $\Cov(X, X) = \Var(X)$.
+\end{definition}
+
+\begin{definition}[Correlation]
+If $\sigma_X, \sigma_Y > 0$, the \emph{(Pearson) correlation coefficient} of $X$ and $Y$ is
+\[
+\rho_{X, Y} \;\coloneqq\; \frac{\Cov(X, Y)}{\sigma_X \, \sigma_Y}.
+\]
+By Cauchy--Schwarz applied to the centered variables, $\rho_{X, Y} \in [-1, 1]$.
+\end{definition}
+
+\section{Elementary properties}
+
+\begin{lemma}[Bilinearity and symmetry of covariance]
+For $a, b, c \in \R$ and $X, Y, Z \in L^2(P)$:
+\begin{enumerate}
+\item $\Cov(X, Y) = \Cov(Y, X)$.
+\item $\Cov(aX + b, Y) = a\,\Cov(X, Y)$.
+\item $\Cov(X + Z, Y) = \Cov(X, Y) + \Cov(Z, Y)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{corollary}[Affine scaling of variance]
+For $a, b \in \R$, $\Var(aX + b) = a^2 \, \Var(X)$.
+\end{corollary}
+
+\section{Variance of a sum (main theorem)}
+
+\begin{theorem}[Variance of a sum]
+\label{thm:var-sum}
+For $X, Y \in L^2(P)$,
+\[
+\Var(X + Y) \;=\; \Var(X) \;+\; \Var(Y) \;+\; 2\,\Cov(X, Y).
+\]
+\end{theorem}
+
+\begin{proof}
+Let $\mu_X = \E[X]$ and $\mu_Y = \E[Y]$. By linearity of expectation,
+$\E[X + Y] = \mu_X + \mu_Y$. Applying the definition of variance to $X + Y$,
+\begin{align*}
+\Var(X + Y)
+  &= \E\!\left[\,\big((X + Y) - \E[X + Y]\big)^2\,\right] \\
+  &= \E\!\left[\,\big((X - \mu_X) + (Y - \mu_Y)\big)^2\,\right] \\
+  &= \E\!\left[\,(X - \mu_X)^2 + 2(X - \mu_X)(Y - \mu_Y) + (Y - \mu_Y)^2\,\right].
+\end{align*}
+By linearity of expectation,
+\begin{align*}
+\Var(X + Y)
+  &= \E\!\left[(X - \mu_X)^2\right]
+   + 2\,\E\!\left[(X - \mu_X)(Y - \mu_Y)\right]
+   + \E\!\left[(Y - \mu_Y)^2\right] \\
+  &= \Var(X) + 2\,\Cov(X, Y) + \Var(Y),
+\end{align*}
+where the last equality uses the definitions of variance and covariance.
+\end{proof}
+
+\begin{corollary}[$n$-term version]
+For $X_1, \dots, X_n \in L^2(P)$,
+\[
+\Var\!\left(\sum_{i=1}^n X_i\right)
+  = \sum_{i=1}^n \Var(X_i) + 2\!\!\sum_{1 \le i < j \le n}\!\! \Cov(X_i, X_j).
+\]
+In particular, if the $X_i$ are pairwise uncorrelated, then
+$\Var(\sum X_i) = \sum \Var(X_i)$.
+\end{corollary}
+
+\begin{remark}
+Independence of $X$ and $Y$ implies $\E[XY] = \E[X]\E[Y]$, hence
+$\Cov(X, Y) = 0$. The converse is false: take $X \sim \text{Uniform}(\{-1, 0, 1\})$
+and $Y = X^2$; then $\Cov(X, Y) = 0$ but $Y$ is a deterministic function of $X$.
+\end{remark}
+
+\section{Worked example}
+
+\paragraph{Bernoulli.} Let $X \sim \mathrm{Bernoulli}(p)$. Then $\E[X] = p$,
+$\E[X^2] = p$, so
+\[
+\Var(X) = p - p^2 = p(1 - p).
+\]
+The variance is maximized at $p = 1/2$.
+
 \end{document}

@@ -1,5 +1,192 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\title{Norms and Metrics}
+\author{math-foundations / concept 09}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Introduction}
+
+A vector space gives us addition and scalar multiplication, but no notion
+of \emph{length} or \emph{distance}. The moment we want to talk about
+convergence of an iterative algorithm, continuity of a loss function, or
+generalisation bounds on a hypothesis class, we need to measure how close
+two vectors are. \emph{Norms} and \emph{metrics} provide exactly this
+quantitative geometry.
+
+The two notions are tightly related: every norm on a vector space induces
+a metric in a canonical way. The converse fails, and the failure is
+instructive --- it shows that metrics are strictly more general than
+norms, and that some legitimate measures of distance (e.g.\ the discrete
+metric, or the Kullback--Leibler divergence after suitable repair) cannot
+be derived from any notion of vector length.
+
+\section{Definitions}
+
+Throughout, let $\mathbb{F}$ denote $\mathbb{R}$ or $\mathbb{C}$, and let
+$V$ be a vector space over $\mathbb{F}$.
+
+\begin{definition}[Norm]
+A function $\|\cdot\| \colon V \to \mathbb{R}$ is a \emph{norm} if for
+every $x,y \in V$ and every scalar $\alpha \in \mathbb{F}$,
+\begin{enumerate}
+  \item (Positive definiteness) $\|x\| \ge 0$, and
+        $\|x\| = 0 \iff x = 0$.
+  \item (Absolute homogeneity) $\|\alpha x\| = |\alpha|\,\|x\|$.
+  \item (Triangle inequality) $\|x + y\| \le \|x\| + \|y\|$.
+\end{enumerate}
+The pair $(V, \|\cdot\|)$ is called a \emph{normed vector space}.
+\end{definition}
+
+\begin{definition}[Metric]
+Let $X$ be a set. A function $d \colon X \times X \to \mathbb{R}$ is a
+\emph{metric} (or \emph{distance function}) if for every $x,y,z \in X$,
+\begin{enumerate}
+  \item (Non-negativity) $d(x,y) \ge 0$.
+  \item (Identity of indiscernibles) $d(x,y) = 0 \iff x = y$.
+  \item (Symmetry) $d(x,y) = d(y,x)$.
+  \item (Triangle inequality) $d(x,z) \le d(x,y) + d(y,z)$.
+\end{enumerate}
+The pair $(X, d)$ is called a \emph{metric space}.
+\end{definition}
+
+\begin{definition}[Induced metric]
+Let $(V, \|\cdot\|)$ be a normed vector space. The \emph{metric induced
+by} $\|\cdot\|$ is
+\[
+  d(x,y) := \|x - y\|, \qquad x,y \in V.
+\]
+\end{definition}
+
+\begin{example}[$\ell^p$ norms on $\mathbb{R}^n$]
+For $1 \le p < \infty$ and $x = (x_1,\dots,x_n) \in \mathbb{R}^n$, define
+\[
+  \|x\|_p := \left( \sum_{i=1}^n |x_i|^p \right)^{1/p},
+  \qquad
+  \|x\|_\infty := \max_{1 \le i \le n} |x_i|.
+\]
+Each $\|\cdot\|_p$ is a norm. The triangle inequality for $p \ge 1$ is the
+\emph{Minkowski inequality}.
+\end{example}
+
+\section{Main theorem}
+
+\begin{theorem}[Norms induce metrics]
+\label{thm:norm-induces-metric}
+Let $(V, \|\cdot\|)$ be a normed vector space. Then the function
+\[
+  d \colon V \times V \to \mathbb{R}, \qquad d(x,y) := \|x - y\|,
+\]
+is a metric on $V$.
+\end{theorem}
+
+\begin{proof}
+We verify the four axioms of a metric.
+
+\smallskip
+\noindent\emph{(1) Non-negativity.}
+By positive definiteness of the norm,
+$d(x,y) = \|x - y\| \ge 0$ for all $x,y \in V$.
+
+\smallskip
+\noindent\emph{(2) Identity of indiscernibles.}
+We use positive definiteness again:
+\[
+  d(x,y) = 0
+  \iff \|x - y\| = 0
+  \iff x - y = 0
+  \iff x = y.
+\]
+
+\smallskip
+\noindent\emph{(3) Symmetry.}
+By absolute homogeneity with $\alpha = -1$,
+\[
+  d(x,y)
+  = \|x - y\|
+  = \bigl\|(-1)\,(y - x)\bigr\|
+  = |-1|\,\|y - x\|
+  = \|y - x\|
+  = d(y,x).
+\]
+
+\smallskip
+\noindent\emph{(4) Triangle inequality.}
+For any $x,y,z \in V$, write $x - z = (x - y) + (y - z)$. The triangle
+inequality for the norm gives
+\[
+  d(x,z)
+  = \|x - z\|
+  = \bigl\|(x - y) + (y - z)\bigr\|
+  \le \|x - y\| + \|y - z\|
+  = d(x,y) + d(y,z).
+\]
+
+All four axioms hold, so $d$ is a metric on $V$.
+\end{proof}
+
+\section{A metric that is not norm-induced}
+
+\begin{proposition}[Discrete metric]
+\label{prop:discrete}
+Let $V$ be a nonzero vector space and define
+\[
+  d(x,y) =
+  \begin{cases}
+    0 & \text{if } x = y, \\
+    1 & \text{if } x \ne y.
+  \end{cases}
+\]
+Then $d$ is a metric on $V$, but there is no norm $\|\cdot\|$ on $V$
+such that $d(x,y) = \|x - y\|$ for all $x,y$.
+\end{proposition}
+
+\begin{proof}
+That $d$ is a metric is a direct check of the four axioms.
+
+Suppose for contradiction that $d(x,y) = \|x - y\|$ for some norm
+$\|\cdot\|$. Pick any $x \ne 0$. By homogeneity,
+\[
+  \|2x\| = 2\,\|x\|.
+\]
+On the other hand, $2x \ne 0$ and $x \ne 0$, so
+\[
+  \|2x\| = d(2x, 0) = 1 \qquad \text{and} \qquad
+  \|x\|  = d(x, 0)  = 1.
+\]
+Combining the displays gives $1 = 2$, a contradiction.
+Hence $d$ does not come from any norm.
+\end{proof}
+
+\section{Why this matters}
+
+Once a metric is fixed, the entire machinery of analysis is unlocked:
+open and closed sets, continuity, convergence, Cauchy sequences,
+completeness, compactness, Lipschitz constants. In machine learning, the
+choice of norm is rarely innocent: $\ell^1$ regularisation produces
+sparse solutions, $\ell^2$ regularisation shrinks coefficients
+isotropically, and the spectral (operator) norm controls how much a
+neural-network layer can amplify inputs. The Wasserstein distance is a
+genuine metric on probability distributions and underlies optimal
+transport; the Kullback--Leibler divergence is \emph{not} symmetric and
+\emph{not} a metric, even though it is often informally called a
+``distance''.
+
 \end{document}

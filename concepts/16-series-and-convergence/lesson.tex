@@ -1,5 +1,142 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\title{Series and Convergence}
+\author{math-foundations concept 16}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Series as limits of partial sums}
+
+Given a real sequence $(a_n)_{n \ge 0}$, the symbol $\sum_{n=0}^{\infty} a_n$
+denotes the formal infinite sum. Its value, when defined, is the limit of the
+sequence of partial sums.
+
+\begin{definition}[Series and partial sums]
+The \emph{$n$-th partial sum} of $(a_n)$ is
+\[
+  s_n \;=\; \sum_{k=0}^{n} a_k.
+\]
+The \emph{series} $\sum_{n=0}^{\infty} a_n$ is the symbolic object associated
+with $(a_n)$; we say it \emph{converges to $S \in \mathbb{R}$} iff $s_n \to S$
+as $n \to \infty$, and write $\sum_{n=0}^{\infty} a_n = S$. Otherwise the
+series \emph{diverges}.
+\end{definition}
+
+\begin{definition}[Absolute and conditional convergence]
+The series $\sum a_n$ \emph{converges absolutely} iff the series of
+non-negative terms $\sum |a_n|$ converges. If $\sum a_n$ converges but
+$\sum |a_n|$ diverges, the convergence is \emph{conditional}.
+\end{definition}
+
+It is a standard fact that absolute convergence implies convergence: the
+partial sums of $\sum a_n$ form a Cauchy sequence, dominated by the Cauchy
+tails of $\sum |a_n|$. The converse fails, as witnessed by
+$\sum (-1)^{n+1}/n = \ln 2$ paired with the divergent harmonic series.
+
+\begin{example}[Geometric series]
+For $r \in \mathbb{R}$ with $|r| < 1$, $\sum_{n=0}^{\infty} r^n = \frac{1}{1-r}$.
+Indeed $s_n = (1 - r^{n+1})/(1 - r) \to 1/(1-r)$ as $r^{n+1} \to 0$.
+This is the workhorse comparator for the ratio test below.
+\end{example}
+
+\section{The ratio test}
+
+The ratio test reduces convergence of $\sum a_n$ to comparison with a
+geometric series.
+
+\begin{theorem}[Ratio test]
+\label{thm:ratio}
+Let $(a_n)$ be a sequence of nonzero real numbers and suppose
+\[
+  L \;=\; \lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right|
+\]
+exists in $[0, +\infty]$. Then:
+\begin{enumerate}
+  \item if $L < 1$, the series $\sum_{n=0}^{\infty} a_n$ converges absolutely;
+  \item if $L > 1$ (including $L = +\infty$), the series diverges;
+  \item if $L = 1$, the test is inconclusive.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+We treat the three cases.
+
+\textbf{Case $L < 1$.} Choose $r$ with $L < r < 1$. Since
+$|a_{n+1}/a_n| \to L < r$, there exists $N \in \mathbb{N}$ such that
+\[
+  \left| \frac{a_{n+1}}{a_n} \right| \;<\; r \qquad \text{for all } n \ge N.
+\]
+Multiplying these inequalities for $n = N, N+1, \dots, N + k - 1$ gives
+\[
+  |a_{N+k}| \;<\; r^k\,|a_N| \qquad \text{for every } k \ge 0.
+\]
+Therefore, for all $n \ge N$,
+\[
+  \sum_{m=N}^{n} |a_m|
+  \;\le\;
+  |a_N| \sum_{k=0}^{n-N} r^k
+  \;\le\;
+  \frac{|a_N|}{1 - r}.
+\]
+The partial sums of the non-negative series $\sum |a_m|$ are bounded above,
+hence converge (a monotone bounded sequence has a limit). Adding back the
+finitely many terms for $m < N$ shows $\sum |a_n| < \infty$, so $\sum a_n$
+converges absolutely.
+
+\textbf{Case $L > 1$.} Choose $r$ with $1 < r < L$ (or $r > 1$ arbitrary if
+$L = +\infty$). There exists $N$ such that
+$|a_{n+1}/a_n| > r$ for all $n \ge N$, hence $|a_{N+k}| > r^k |a_N|$. Since
+$r > 1$, $|a_n| \to \infty$, so $a_n \not\to 0$ and the series diverges by
+the term test.
+
+\textbf{Case $L = 1$.} The series $\sum 1/n$ has $L = 1$ and diverges, while
+$\sum 1/n^2$ has $L = 1$ and converges. No conclusion can be drawn from $L$
+alone.
+\end{proof}
+
+\begin{example}[Exponential series]
+For every $x \in \mathbb{R}$, setting $a_n = x^n / n!$ gives
+\[
+  \left| \frac{a_{n+1}}{a_n} \right|
+  \;=\;
+  \frac{|x|}{n+1}
+  \;\longrightarrow\;
+  0.
+\]
+Thus $L = 0 < 1$, and Theorem~\ref{thm:ratio} yields absolute convergence of
+$\sum_{n=0}^{\infty} x^n / n! = e^x$ for every real $x$. The same argument
+works for $x \in \mathbb{C}$ and, with $|x|$ replaced by $\|A\|$, for any
+square matrix $A$.
+\end{example}
+
+\section{Power series}
+
+A \emph{power series} centred at $x_0$ is a series of the form
+$\sum_{n=0}^{\infty} c_n (x - x_0)^n$. Its set of convergence is an interval
+(possibly a single point or all of $\mathbb{R}$) of \emph{radius of
+convergence}
+\[
+  R \;=\; \frac{1}{\limsup_{n \to \infty} |c_n|^{1/n}}
+  \qquad \text{(Cauchy--Hadamard).}
+\]
+Inside $|x - x_0| < R$ the series converges absolutely; outside it diverges;
+behaviour at the endpoints requires a separate test.
+
+This perspective is the bridge from analysis to ML: every smooth activation
+function, the matrix exponential, and the leading-order expansion of the
+KL divergence are all instances of power-series approximation.
+
 \end{document}

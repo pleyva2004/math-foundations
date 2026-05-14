@@ -1,5 +1,110 @@
-% Placeholder. To be replaced by subagent fleet (v1.7).
-\documentclass{article}
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+
+\DeclareMathOperator{\KL}{D_{\mathrm{KL}}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+
+\title{Mutual Information}
+\author{math-foundations / concept 39}
+\date{}
+
 \begin{document}
-TBD
+\maketitle
+
+\section{Setting}
+
+Let $X$ and $Y$ be random variables on a common probability space, taking values in
+finite (or countable) alphabets $\mathcal{X}$ and $\mathcal{Y}$. Write $p(x, y)$ for
+the joint probability mass function and $p(x), p(y)$ for the marginals. All
+logarithms are natural unless otherwise stated; replace $\log$ with $\log_2$ to
+work in bits.
+
+\section{Definitions}
+
+\begin{definition}[Mutual information, KL form]
+The \emph{mutual information} of $X$ and $Y$ is
+\[
+  I(X; Y) \;:=\; \KL\!\bigl(p(x, y) \,\Vert\, p(x)\, p(y)\bigr)
+              \;=\; \sum_{x \in \mathcal{X}} \sum_{y \in \mathcal{Y}}
+                    p(x, y) \log \frac{p(x, y)}{p(x)\, p(y)},
+\]
+with the conventions $0 \log 0 = 0$ and $0 \log (0/0) = 0$.
+\end{definition}
+
+\begin{definition}[Entropic form]
+Equivalently,
+\[
+  I(X; Y) \;=\; H(X) - H(X \mid Y) \;=\; H(Y) - H(Y \mid X) \;=\; H(X) + H(Y) - H(X, Y),
+\]
+where $H(X) = -\sum_x p(x) \log p(x)$ and
+$H(X \mid Y) = -\sum_{x, y} p(x, y) \log p(x \mid y)$.
+\end{definition}
+
+\section{Main theorem}
+
+\begin{theorem}[Nonnegativity of mutual information]
+\label{thm:mi-nonneg}
+For all random variables $X, Y$,
+\[
+  I(X; Y) \;\ge\; 0,
+\]
+with equality if and only if $X$ and $Y$ are independent.
+\end{theorem}
+
+\begin{proof}
+By definition, $I(X; Y) = \KL(p_{XY} \,\Vert\, p_X p_Y)$, where $p_{XY}(x, y) = p(x, y)$
+and $(p_X p_Y)(x, y) = p(x) p(y)$. Both functions are probability mass
+functions on $\mathcal{X} \times \mathcal{Y}$: the first by construction, and
+the second because
+$\sum_{x, y} p(x) p(y) = \bigl(\sum_x p(x)\bigr)\bigl(\sum_y p(y)\bigr) = 1$.
+
+From the KL-divergence node (concept 38, Gibbs' inequality), for any two pmfs
+$p, q$ on a common alphabet $\mathcal{Z}$,
+\begin{equation}
+  \KL(p \,\Vert\, q) \;=\; \sum_z p(z) \log \frac{p(z)}{q(z)} \;\ge\; 0, \label{eq:gibbs}
+\end{equation}
+with equality if and only if $p(z) = q(z)$ for every $z$ with $p(z) > 0$ (equivalently,
+$p = q$ as measures). Applying~\eqref{eq:gibbs} with $\mathcal{Z} = \mathcal{X} \times \mathcal{Y}$,
+$p = p_{XY}$, and $q = p_X p_Y$ gives $I(X; Y) \ge 0$ at once.
+
+For the equality condition: by Gibbs, $I(X; Y) = 0$ iff $p(x, y) = p(x) p(y)$ for
+every pair $(x, y) \in \mathcal{X} \times \mathcal{Y}$ — which is precisely
+the definition of independence of $X$ and $Y$ (concept 21).
+\end{proof}
+
+\begin{corollary}[Symmetry]
+$I(X; Y) = I(Y; X)$.
+\end{corollary}
+
+\begin{proof}
+The KL form is manifestly symmetric: swapping the summation indices leaves both
+$p(x, y)$ and $p(x) p(y)$ invariant. Equivalently, $H(X) + H(Y) - H(X, Y)$
+is symmetric in $X$ and $Y$.
+\end{proof}
+
+\section{Worked example: binary symmetric channel}
+
+Let $X \sim \mathrm{Bernoulli}(1/2)$ and $Y = X \oplus N$, with
+$N \sim \mathrm{Bernoulli}(\varepsilon)$ independent of $X$, $\varepsilon \in [0, 1]$.
+Then $Y \sim \mathrm{Bernoulli}(1/2)$, so $H(X) = H(Y) = \log 2$, and
+$H(Y \mid X) = H_2(\varepsilon) := -\varepsilon \log \varepsilon - (1 - \varepsilon) \log(1 - \varepsilon)$.
+Therefore
+\[
+  I(X; Y) \;=\; \log 2 - H_2(\varepsilon).
+\]
+At $\varepsilon \in \{0, 1\}$ the channel is deterministic and $I = \log 2$;
+at $\varepsilon = 1/2$ the channel is pure noise and $I = 0$ — consistent with
+Theorem~\ref{thm:mi-nonneg}, since $\varepsilon = 1/2$ makes $X \perp Y$.
+
 \end{document}

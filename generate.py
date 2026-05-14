@@ -85,13 +85,24 @@ _(See below.)_
 
 
 def write_preserving_marker(path: Path, new_header: str):
-    """Write the header portion; preserve any existing content below MARKER."""
-    if path.exists() and MARKER in path.read_text():
-        existing = path.read_text()
+    """Write the header portion; preserve any existing content below MARKER.
+
+    SAFETY: If the file exists and is non-trivial (>200 chars) but lacks the
+    MARKER, do NOT overwrite — the user/subagent has authored substantive
+    content without the marker contract. Re-running this script must never
+    destroy hand-written work.
+    """
+    if not path.exists():
+        path.write_text(new_header)
+        return
+    existing = path.read_text()
+    if MARKER in existing:
         below = existing.split(MARKER, 1)[1]
         path.write_text(new_header.split(MARKER, 1)[0] + MARKER + below)
-    else:
+    elif len(existing) <= 200:
+        # Empty / placeholder; safe to seed.
         path.write_text(new_header)
+    # else: substantive content without marker — leave it alone.
 
 
 def mermaid_graph() -> str:
