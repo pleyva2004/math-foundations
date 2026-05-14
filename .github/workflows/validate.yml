@@ -7,54 +7,161 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  validate:
+  structure:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: Validate manifest JSON
         run: python -c "import json; json.load(open('manifest.json'))"
 
-      - name: Verify concept files exist for every manifest entry
+      - name: Verify concept folders and four artifacts each
         run: |
           python <<'PY'
           import json, os, sys
           m = json.load(open('manifest.json'))
           missing = []
           for c in m['concepts']:
-              for kind in ('concepts', 'code'):
-                  ext = '.md' if kind == 'concepts' else '.py'
-                  p = f"{kind}/{c['id']}-{c['slug']}{ext}"
+              folder = f"concepts/{c['id']}-{c['slug']}"
+              if not os.path.isdir(folder):
+                  missing.append(folder)
+                  continue
+              for fname in ('README.md', 'lesson.tex', 'code.py', 'notebook.ipynb'):
+                  p = f"{folder}/{fname}"
                   if not os.path.exists(p):
                       missing.append(p)
           if missing:
               print("MISSING:")
               for p in missing: print(" ", p)
               sys.exit(1)
-          print(f"OK: {len(m['concepts'])} concepts, all .md and .py present")
+          print(f"OK: {len(m['concepts'])} concept folders × 4 artifacts present")
           PY
 
-      - name: Parse every .py
-        run: |
-          set -e
-          for f in code/*.py; do
-            python -c "import ast; ast.parse(open('$f').read())"
-          done
-          echo "All .py parse OK"
-
-      - name: Regenerate from manifest and verify no diff
+      - name: Generator is idempotent
         run: |
           python generate.py
           if [ -n "$(git diff --stat)" ]; then
-            echo "Files drifted from manifest:"
+            echo "generate.py drifted:"
             git diff --stat
             exit 1
+          fi
+
+  bodies:
+    runs-on: ubuntu-latest
+    needs: structure
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install numpy (for code demos)
+        run: pip install numpy
+
+      - name: Run validate_bodies.py
+        run: python validate_bodies.py
+
+  render-pdfs:
+    runs-on: ubuntu-latest
+    needs: bodies
+    strategy:
+      fail-fast: false
+      matrix:
+        concept_id:
+          - "00-sets-and-functions"
+          - "01-logic-and-proof"
+          - "02-counting"
+          - "03-relations-and-orderings"
+          - "04-groups-rings-fields"
+          - "05-vector-spaces"
+          - "06-linear-maps"
+          - "07-eigenvalues"
+          - "08-inner-product-spaces"
+          - "09-norms-and-metrics"
+          - "10-sequences-and-limits"
+          - "11-continuity"
+          - "12-derivatives"
+          - "13-multivariate-calculus"
+          - "14-gradient-jacobian"
+          - "15-integration"
+          - "16-series-and-convergence"
+          - "17-sample-spaces"
+          - "18-sigma-algebras"
+          - "19-probability-measures"
+          - "20-conditional-probability"
+          - "21-independence"
+          - "22-random-variables"
+          - "23-distributions"
+          - "24-pdf"
+          - "25-expectation"
+          - "26-variance-covariance"
+          - "27-conditional-expectation"
+          - "28-change-of-variables-probability"
+          - "29-ode"
+          - "30-existence-uniqueness"
+          - "31-stochastic-processes"
+          - "32-brownian-motion"
+          - "33-sde"
+          - "34-ito-calculus"
+          - "35-self-information"
+          - "36-shannon-entropy"
+          - "37-cross-entropy"
+          - "38-kl-divergence"
+          - "39-mutual-information"
+          - "40-information-geometry"
+          - "41-optimal-transport"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compile lesson.tex
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: lesson.tex
+          working_directory: concepts/${{ matrix.concept_id }}
+          latexmk_use_xelatex: false
+          args: -pdf -interaction=nonstopmode -halt-on-error
+
+      - name: Upload lesson.pdf
+        uses: actions/upload-artifact@v4
+        with:
+          name: lesson-${{ matrix.concept_id }}
+          path: concepts/${{ matrix.concept_id }}/lesson.pdf
+
+  commit-pdfs:
+    runs-on: ubuntu-latest
+    needs: render-pdfs
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download all PDFs
+        uses: actions/download-artifact@v4
+        with:
+          path: /tmp/pdfs
+
+      - name: Move PDFs into concept folders
+        run: |
+          for d in /tmp/pdfs/lesson-*/; do
+            name=$(basename "$d" | sed 's/^lesson-//')
+            mv "$d/lesson.pdf" "concepts/$name/lesson.pdf"
+          done
+
+      - name: Commit and push PDFs
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add concepts/*/lesson.pdf
+          if git diff --cached --quiet; then
+            echo "No PDF changes to commit"
+          else
+            git commit -m "render: compile lesson.pdf for all concepts [skip ci]"
+            git push
           fi

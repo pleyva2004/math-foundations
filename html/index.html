@@ -105,7 +105,7 @@
       document.getElementById("detail-level").textContent = `Level: ${d.level}`;
       document.getElementById("detail-summary").textContent = d.summary;
       const link = document.getElementById("detail-link");
-      const url = `${REPO_BLOB}/concepts/${d.id}-${d.slug}.md`;
+      const url = `${REPO_BLOB}/concepts/${d.id}-${d.slug}/README.md`;
       link.innerHTML = `<a href="${url}" target="_blank">Open concept page →</a>`;
     }
   </script>

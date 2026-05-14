@@ -2,10 +2,13 @@
 
 > A canonical mathematical foundations graph used as the shared substrate for the [`study-paper`](https://github.com/pleyva2004/claude-skill-study-paper) Claude Code skill's per-study learning maps.
 
-Every concept here has three aligned representations:
-1. A Markdown concept page (`concepts/<NN>-<slug>.md`) with plain-English intro, formal LaTeX definition, and exercises.
-2. A runnable Python demonstration (`code/<NN>-<slug>.py`) — CPU, <30 s, finite/discrete witness for abstract concepts.
-3. A node in the graph below, clickable from GitHub's browse view, navigable in three formats: mermaid (this README), Jupyter ([`notebook/foundations.ipynb`](notebook/foundations.ipynb)), and HTML force graph ([`html/index.html`](html/index.html)).
+Each concept lives in `concepts/<NN>-<slug>/` and ships **four artifacts**:
+1. `README.md` — plain-English intro + LaTeX math + cross-links (GitHub-renderable).
+2. `lesson.tex` — standalone-compilable formal LaTeX exposition; CI renders to `lesson.pdf`.
+3. `code.py` — runnable demonstration (<30 s on CPU; finite/discrete witness for abstract concepts).
+4. `notebook.ipynb` — interactive Jupyter form, runnable cell-by-cell in Colab.
+
+Plus three interactive aggregate views: mermaid (this README), notebook ([`notebook/foundations.ipynb`](notebook/foundations.ipynb), an index), and HTML force graph ([`html/index.html`](html/index.html)).
 
 ## Pick your entry point
 
@@ -173,57 +176,57 @@ graph TD
   class 39 advanced;
   class 40 frontier;
   class 41 frontier;
-  click 00 "concepts/00-sets-and-functions.md" "Sets and Functions"
-  click 01 "concepts/01-logic-and-proof.md" "Logic and Proof"
-  click 02 "concepts/02-counting.md" "Counting and Combinatorics"
-  click 03 "concepts/03-relations-and-orderings.md" "Relations and Orderings"
-  click 04 "concepts/04-groups-rings-fields.md" "Groups, Rings, Fields"
-  click 05 "concepts/05-vector-spaces.md" "Vector Spaces"
-  click 06 "concepts/06-linear-maps.md" "Linear Maps and Matrices"
-  click 07 "concepts/07-eigenvalues.md" "Eigenvalues and Eigenvectors"
-  click 08 "concepts/08-inner-product-spaces.md" "Inner Product Spaces"
-  click 09 "concepts/09-norms-and-metrics.md" "Norms and Metrics"
-  click 10 "concepts/10-sequences-and-limits.md" "Sequences and Limits"
-  click 11 "concepts/11-continuity.md" "Continuity"
-  click 12 "concepts/12-derivatives.md" "Derivatives (Univariate)"
-  click 13 "concepts/13-multivariate-calculus.md" "Multivariate Calculus"
-  click 14 "concepts/14-gradient-jacobian.md" "Gradient and Jacobian"
-  click 15 "concepts/15-integration.md" "Integration (Riemann)"
-  click 16 "concepts/16-series-and-convergence.md" "Series and Convergence"
-  click 17 "concepts/17-sample-spaces.md" "Sample Spaces"
-  click 18 "concepts/18-sigma-algebras.md" "Events and Sigma-Algebras"
-  click 19 "concepts/19-probability-measures.md" "Probability Measures"
-  click 20 "concepts/20-conditional-probability.md" "Conditional Probability"
-  click 21 "concepts/21-independence.md" "Independence"
-  click 22 "concepts/22-random-variables.md" "Random Variables"
-  click 23 "concepts/23-distributions.md" "Probability Distributions"
-  click 24 "concepts/24-pdf.md" "Probability Density Functions"
-  click 25 "concepts/25-expectation.md" "Expectation"
-  click 26 "concepts/26-variance-covariance.md" "Variance and Covariance"
-  click 27 "concepts/27-conditional-expectation.md" "Conditional Expectation"
-  click 28 "concepts/28-change-of-variables-probability.md" "Change of Variables (Probability)"
-  click 29 "concepts/29-ode.md" "Ordinary Differential Equations"
-  click 30 "concepts/30-existence-uniqueness.md" "Existence and Uniqueness (Picard-Lindelöf)"
-  click 31 "concepts/31-stochastic-processes.md" "Stochastic Processes"
-  click 32 "concepts/32-brownian-motion.md" "Brownian Motion / Wiener Process"
-  click 33 "concepts/33-sde.md" "Stochastic Differential Equations"
-  click 34 "concepts/34-ito-calculus.md" "Itô Calculus"
-  click 35 "concepts/35-self-information.md" "Self-Information (Surprisal)"
-  click 36 "concepts/36-shannon-entropy.md" "Shannon Entropy"
-  click 37 "concepts/37-cross-entropy.md" "Cross-Entropy"
-  click 38 "concepts/38-kl-divergence.md" "KL Divergence"
-  click 39 "concepts/39-mutual-information.md" "Mutual Information"
-  click 40 "concepts/40-information-geometry.md" "Information Geometry (Fisher Metric)"
-  click 41 "concepts/41-optimal-transport.md" "Optimal Transport (Wasserstein)"
+  click 00 "concepts/00-sets-and-functions/README.md" "Sets and Functions"
+  click 01 "concepts/01-logic-and-proof/README.md" "Logic and Proof"
+  click 02 "concepts/02-counting/README.md" "Counting and Combinatorics"
+  click 03 "concepts/03-relations-and-orderings/README.md" "Relations and Orderings"
+  click 04 "concepts/04-groups-rings-fields/README.md" "Groups, Rings, Fields"
+  click 05 "concepts/05-vector-spaces/README.md" "Vector Spaces"
+  click 06 "concepts/06-linear-maps/README.md" "Linear Maps and Matrices"
+  click 07 "concepts/07-eigenvalues/README.md" "Eigenvalues and Eigenvectors"
+  click 08 "concepts/08-inner-product-spaces/README.md" "Inner Product Spaces"
+  click 09 "concepts/09-norms-and-metrics/README.md" "Norms and Metrics"
+  click 10 "concepts/10-sequences-and-limits/README.md" "Sequences and Limits"
+  click 11 "concepts/11-continuity/README.md" "Continuity"
+  click 12 "concepts/12-derivatives/README.md" "Derivatives (Univariate)"
+  click 13 "concepts/13-multivariate-calculus/README.md" "Multivariate Calculus"
+  click 14 "concepts/14-gradient-jacobian/README.md" "Gradient and Jacobian"
+  click 15 "concepts/15-integration/README.md" "Integration (Riemann)"
+  click 16 "concepts/16-series-and-convergence/README.md" "Series and Convergence"
+  click 17 "concepts/17-sample-spaces/README.md" "Sample Spaces"
+  click 18 "concepts/18-sigma-algebras/README.md" "Events and Sigma-Algebras"
+  click 19 "concepts/19-probability-measures/README.md" "Probability Measures"
+  click 20 "concepts/20-conditional-probability/README.md" "Conditional Probability"
+  click 21 "concepts/21-independence/README.md" "Independence"
+  click 22 "concepts/22-random-variables/README.md" "Random Variables"
+  click 23 "concepts/23-distributions/README.md" "Probability Distributions"
+  click 24 "concepts/24-pdf/README.md" "Probability Density Functions"
+  click 25 "concepts/25-expectation/README.md" "Expectation"
+  click 26 "concepts/26-variance-covariance/README.md" "Variance and Covariance"
+  click 27 "concepts/27-conditional-expectation/README.md" "Conditional Expectation"
+  click 28 "concepts/28-change-of-variables-probability/README.md" "Change of Variables (Probability)"
+  click 29 "concepts/29-ode/README.md" "Ordinary Differential Equations"
+  click 30 "concepts/30-existence-uniqueness/README.md" "Existence and Uniqueness (Picard-Lindelöf)"
+  click 31 "concepts/31-stochastic-processes/README.md" "Stochastic Processes"
+  click 32 "concepts/32-brownian-motion/README.md" "Brownian Motion / Wiener Process"
+  click 33 "concepts/33-sde/README.md" "Stochastic Differential Equations"
+  click 34 "concepts/34-ito-calculus/README.md" "Itô Calculus"
+  click 35 "concepts/35-self-information/README.md" "Self-Information (Surprisal)"
+  click 36 "concepts/36-shannon-entropy/README.md" "Shannon Entropy"
+  click 37 "concepts/37-cross-entropy/README.md" "Cross-Entropy"
+  click 38 "concepts/38-kl-divergence/README.md" "KL Divergence"
+  click 39 "concepts/39-mutual-information/README.md" "Mutual Information"
+  click 40 "concepts/40-information-geometry/README.md" "Information Geometry (Fisher Metric)"
+  click 41 "concepts/41-optimal-transport/README.md" "Optimal Transport (Wasserstein)"
 ```
 
 ## Status
 
-This is **v0.1** — the framework is complete, manifest covers 42 concepts, every concept has a skeleton concept page and runnable .py shell. Hand-written content lives below the `do not edit` marker in each concept file. Filling in detail proceeds level-by-level.
+This is **v0.1** of the framework with v1.7 folder layout. All 42 concepts have folders + skeleton headers. The subagent fleet (v1.7 Part 2) fills the bodies.
 
 ## How the graph evolves
 
-When the [`study-paper`](https://github.com/pleyva2004/claude-skill-study-paper) skill encounters a paper whose math deep dive defines a concept not yet in this graph, Stage 7 of the skill proposes adding it to this repo as a new node. The skill is the primary growth driver; this repo is the durable shared substrate.
+When the [`study-paper`](https://github.com/pleyva2004/claude-skill-study-paper) skill encounters a paper whose math deep dive defines a concept not yet in this graph, Stage 7 of the skill adds it here. This repo is the durable shared substrate.
 
 ## License
 

@@ -6,7 +6,8 @@
       "title": "Sets and Functions",
       "level": "novice",
       "summary": "The two foundational objects: collections and rules that map elements between them.",
-      "color": "#a8e6cf"
+      "color": "#a8e6cf",
+      "url": "concepts/00-sets-and-functions/README.md"
     },
     {
       "id": "01",
@@ -14,7 +15,8 @@
       "title": "Logic and Proof",
       "level": "novice",
       "summary": "Propositional and predicate logic, truth tables, the basic proof strategies (direct, contrapositive, contradiction, induction).",
-      "color": "#a8e6cf"
+      "color": "#a8e6cf",
+      "url": "concepts/01-logic-and-proof/README.md"
     },
     {
       "id": "02",
@@ -22,7 +24,8 @@
       "title": "Counting and Combinatorics",
       "level": "novice",
       "summary": "Counting principles: permutations, combinations, the pigeonhole principle, inclusion-exclusion.",
-      "color": "#a8e6cf"
+      "color": "#a8e6cf",
+      "url": "concepts/02-counting/README.md"
     },
     {
       "id": "03",
@@ -30,7 +33,8 @@
       "title": "Relations and Orderings",
       "level": "novice",
       "summary": "Equivalence relations, partial and total orders, equivalence classes.",
-      "color": "#a8e6cf"
+      "color": "#a8e6cf",
+      "url": "concepts/03-relations-and-orderings/README.md"
     },
     {
       "id": "04",
@@ -38,7 +42,8 @@
       "title": "Groups, Rings, Fields",
       "level": "intermediate",
       "summary": "Abstract algebraic structures with binary operations satisfying axioms.",
-      "color": "#dcedc1"
+      "color": "#dcedc1",
+      "url": "concepts/04-groups-rings-fields/README.md"
     },
     {
       "id": "05",
@@ -46,7 +51,8 @@
       "title": "Vector Spaces",
       "level": "intermediate",
       "summary": "Sets closed under linear combinations over a field; the universal object of linear algebra.",
-      "color": "#dcedc1"
+      "color": "#dcedc1",
+      "url": "concepts/05-vector-spaces/README.md"
     },
     {
       "id": "06",
@@ -54,7 +60,8 @@
       "title": "Linear Maps and Matrices",
       "level": "intermediate",
       "summary": "Structure-preserving functions between vector spaces; the matrix representation.",
-      "color": "#dcedc1"
+      "color": "#dcedc1",
+      "url": "concepts/06-linear-maps/README.md"
     },
     {
       "id": "07",
@@ -62,7 +69,8 @@
       "title": "Eigenvalues and Eigenvectors",
       "level": "intermediate",
       "summary": "Directions preserved by a linear map up to scaling; the building blocks of spectral analysis.",
-      "color": "#dcedc1"
+      "color": "#dcedc1",
+      "url": "concepts/07-eigenvalues/README.md"
     },
     {
       "id": "08",
@@ -70,7 +78,8 @@
       "title": "Inner Product Spaces",
       "level": "intermediate",
       "summary": "Vector spaces equipped with a notion of angle and length via an inner product.",
-      "color": "#dcedc1"
+      "color": "#dcedc1",
+      "url": "concepts/08-inner-product-spaces/README.md"
     },
     {
       "id": "09",
@@ -78,7 +87,8 @@
       "title": "Norms and Metrics",
       "level": "intermediate",
       "summary": "Generalised notions of distance; the foundation of analysis on vector spaces.",
-      "color": "#dcedc1"
+      "color": "#dcedc1",
+      "url": "concepts/09-norms-and-metrics/README.md"
     },
     {
       "id": "10",
@@ -86,7 +96,8 @@
       "title": "Sequences and Limits",
       "level": "advanced",
       "summary": "Convergence of sequences; the epsilon-N definition; Cauchy sequences and completeness.",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/10-sequences-and-limits/README.md"
     },
     {
       "id": "11",
@@ -94,7 +105,8 @@
       "title": "Continuity",
       "level": "advanced",
       "summary": "The epsilon-delta definition; continuity as preservation of limits; uniform vs pointwise continuity.",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/11-continuity/README.md"
     },
     {
       "id": "12",
@@ -102,7 +114,8 @@
       "title": "Derivatives (Univariate)",
       "level": "advanced",
       "summary": "The local linear approximation; the limit of a difference quotient; differentiation rules.",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/12-derivatives/README.md"
     },
     {
       "id": "13",
@@ -110,7 +123,8 @@
       "title": "Multivariate Calculus",
       "level": "advanced",
       "summary": "Partial derivatives; the chain rule in multiple variables; directional derivatives.",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/13-multivariate-calculus/README.md"
     },
     {
       "id": "14",
@@ -118,7 +132,8 @@
       "title": "Gradient and Jacobian",
       "level": "advanced",
       "summary": "The gradient as the vector of partial derivatives; the Jacobian as the matrix of partial derivatives of a vector-valued function.",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/14-gradient-jacobian/README.md"
     },
     {
       "id": "15",
@@ -126,7 +141,8 @@
       "title": "Integration (Riemann)",
       "level": "advanced",
       "summary": "The Riemann integral as a limit of step-function approximations; the fundamental theorem of calculus.",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/15-integration/README.md"
     },
     {
       "id": "16",
@@ -134,7 +150,8 @@
       "title": "Series and Convergence",
       "level": "advanced",
       "summary": "Convergence of infinite sums; absolute vs conditional; power series and Taylor expansions.",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/16-series-and-convergence/README.md"
     },
     {
       "id": "17",
@@ -142,7 +159,8 @@
       "title": "Sample Spaces",
       "level": "advanced",
       "summary": "The set of all possible outcomes of an experiment; the starting point of probability.",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/17-sample-spaces/README.md"
     },
     {
       "id": "18",
@@ -150,7 +168,8 @@
       "title": "Events and Sigma-Algebras",
       "level": "graduate",
       "summary": "A sigma-algebra is a collection of subsets closed under complement and countable union; the rigorous basis for which events can be assigned probabilities.",
-      "color": "#ffaaa5"
+      "color": "#ffaaa5",
+      "url": "concepts/18-sigma-algebras/README.md"
     },
     {
       "id": "19",
@@ -158,7 +177,8 @@
       "title": "Probability Measures",
       "level": "graduate",
       "summary": "A function from a sigma-algebra to [0,1] satisfying countable additivity and P(Omega) = 1.",
-      "color": "#ffaaa5"
+      "color": "#ffaaa5",
+      "url": "concepts/19-probability-measures/README.md"
     },
     {
       "id": "20",
@@ -166,7 +186,8 @@
       "title": "Conditional Probability",
       "level": "advanced",
       "summary": "P(A | B) = P(A and B) / P(B); the update rule for new information.",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/20-conditional-probability/README.md"
     },
     {
       "id": "21",
@@ -174,7 +195,8 @@
       "title": "Independence",
       "level": "advanced",
       "summary": "P(A and B) = P(A) P(B); events that do not influence each other.",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/21-independence/README.md"
     },
     {
       "id": "22",
@@ -182,7 +204,8 @@
       "title": "Random Variables",
       "level": "advanced",
       "summary": "Measurable functions from the sample space to the real line; the bridge from sets-of-outcomes to numerical values.",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/22-random-variables/README.md"
     },
     {
       "id": "23",
@@ -190,7 +213,8 @@
       "title": "Probability Distributions",
       "level": "advanced",
       "summary": "The full description of a random variable: its cumulative distribution function, its discrete probability mass function, or its continuous probability density function.",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/23-distributions/README.md"
     },
     {
       "id": "24",
@@ -198,7 +222,8 @@
       "title": "Probability Density Functions",
       "level": "advanced",
       "summary": "A non-negative integrable function whose integral over a set gives the probability that a continuous random variable lands in that set.",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/24-pdf/README.md"
     },
     {
       "id": "25",
@@ -206,7 +231,8 @@
       "title": "Expectation",
       "level": "advanced",
       "summary": "The weighted average of a random variable's values, weighted by their probability; the integral of the random variable against its distribution.",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/25-expectation/README.md"
     },
     {
       "id": "26",
@@ -214,7 +240,8 @@
       "title": "Variance and Covariance",
       "level": "advanced",
       "summary": "Second-order moments measuring spread (variance) and linear association (covariance).",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/26-variance-covariance/README.md"
     },
     {
       "id": "27",
@@ -222,7 +249,8 @@
       "title": "Conditional Expectation",
       "level": "graduate",
       "summary": "The expected value of a random variable given the value of another (or given a sub-sigma-algebra); the foundation of regression and martingale theory.",
-      "color": "#ffaaa5"
+      "color": "#ffaaa5",
+      "url": "concepts/27-conditional-expectation/README.md"
     },
     {
       "id": "28",
@@ -230,7 +258,8 @@
       "title": "Change of Variables (Probability)",
       "level": "advanced",
       "summary": "How densities transform under invertible smooth maps; the Jacobian determinant appears as the volume-correction factor.",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/28-change-of-variables-probability/README.md"
     },
     {
       "id": "29",
@@ -238,7 +267,8 @@
       "title": "Ordinary Differential Equations",
       "level": "advanced",
       "summary": "Equations relating a function to its derivatives; the basic objects of dynamical systems.",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/29-ode/README.md"
     },
     {
       "id": "30",
@@ -246,7 +276,8 @@
       "title": "Existence and Uniqueness (Picard-Lindel\u00f6f)",
       "level": "graduate",
       "summary": "Sufficient conditions (Lipschitz) under which an ODE has a unique solution; the foundation of well-posed dynamical systems.",
-      "color": "#ffaaa5"
+      "color": "#ffaaa5",
+      "url": "concepts/30-existence-uniqueness/README.md"
     },
     {
       "id": "31",
@@ -254,7 +285,8 @@
       "title": "Stochastic Processes",
       "level": "graduate",
       "summary": "Indexed families of random variables; the time-evolution of randomness.",
-      "color": "#ffaaa5"
+      "color": "#ffaaa5",
+      "url": "concepts/31-stochastic-processes/README.md"
     },
     {
       "id": "32",
@@ -262,7 +294,8 @@
       "title": "Brownian Motion / Wiener Process",
       "level": "graduate",
       "summary": "The canonical continuous-time stochastic process with independent Gaussian increments; the building block of stochastic calculus.",
-      "color": "#ffaaa5"
+      "color": "#ffaaa5",
+      "url": "concepts/32-brownian-motion/README.md"
     },
     {
       "id": "33",
@@ -270,7 +303,8 @@
       "title": "Stochastic Differential Equations",
       "level": "graduate",
       "summary": "Differential equations driven by Brownian motion; the continuous-time analogue of random walks.",
-      "color": "#ffaaa5"
+      "color": "#ffaaa5",
+      "url": "concepts/33-sde/README.md"
     },
     {
       "id": "34",
@@ -278,7 +312,8 @@
       "title": "It\u00f4 Calculus",
       "level": "frontier",
       "summary": "The calculus of stochastic integrals where the integrator is non-smooth (Brownian); It\u00f4's lemma replaces the chain rule.",
-      "color": "#ff8b94"
+      "color": "#ff8b94",
+      "url": "concepts/34-ito-calculus/README.md"
     },
     {
       "id": "35",
@@ -286,7 +321,8 @@
       "title": "Self-Information (Surprisal)",
       "level": "advanced",
       "summary": "I(x) = -log p(x); the surprise associated with observing an outcome under a probability distribution.",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/35-self-information/README.md"
     },
     {
       "id": "36",
@@ -294,7 +330,8 @@
       "title": "Shannon Entropy",
       "level": "advanced",
       "summary": "H(X) = E[-log p(X)]; the average information content of a random variable; measures uncertainty.",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/36-shannon-entropy/README.md"
     },
     {
       "id": "37",
@@ -302,7 +339,8 @@
       "title": "Cross-Entropy",
       "level": "advanced",
       "summary": "H(p, q) = -E_p[log q]; the average code-length when using distribution q to encode samples drawn from p.",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/37-cross-entropy/README.md"
     },
     {
       "id": "38",
@@ -310,7 +348,8 @@
       "title": "KL Divergence",
       "level": "advanced",
       "summary": "D_KL(p || q) = E_p[log p - log q]; the relative entropy / information gain in moving from q to p. Non-symmetric, non-metric.",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/38-kl-divergence/README.md"
     },
     {
       "id": "39",
@@ -318,7 +357,8 @@
       "title": "Mutual Information",
       "level": "advanced",
       "summary": "I(X; Y) = D_KL(p(x,y) || p(x) p(y)); the reduction in uncertainty about X from observing Y.",
-      "color": "#ffd3b6"
+      "color": "#ffd3b6",
+      "url": "concepts/39-mutual-information/README.md"
     },
     {
       "id": "40",
@@ -326,7 +366,8 @@
       "title": "Information Geometry (Fisher Metric)",
       "level": "frontier",
       "summary": "Treats probability distributions as points on a Riemannian manifold; the Fisher information matrix as the natural metric tensor.",
-      "color": "#ff8b94"
+      "color": "#ff8b94",
+      "url": "concepts/40-information-geometry/README.md"
     },
     {
       "id": "41",
@@ -334,7 +375,8 @@
       "title": "Optimal Transport (Wasserstein)",
       "level": "frontier",
       "summary": "Wasserstein distance W_p(mu, nu) = inf over couplings of E[|X - Y|^p]^(1/p); the cost of optimally moving one distribution to another. Provides a meaningful metric on distributions even when they have disjoint supports.",
-      "color": "#ff8b94"
+      "color": "#ff8b94",
+      "url": "concepts/41-optimal-transport/README.md"
     }
   ],
   "links": [
