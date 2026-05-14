@@ -160,6 +160,20 @@ def top_readme() -> str:
 
 *Click the image above → opens the live SVG where each node is a working link to its concept folder.*
 
+## 📖 Notation glossary
+
+Every distinct mathematical symbol used across the {len(CONCEPTS)} concept lessons is indexed in a single auto-generated glossary — the canonical "what does this symbol mean and where does it first appear?" lookup:
+
+- 📑 **Markdown (browse on GitHub):** [`NOTATION.md`](NOTATION.md)
+- 📄 **PDF cheatsheet (CI-compiled):** [`notation.pdf`](notation.pdf) — source: [`notation.tex`](notation.tex)
+- 🧩 **Single source of truth (machine-readable):** [`notation.json`](notation.json)
+
+Regenerate after editing `notation.json`:
+
+```bash
+python generate_notation.py
+```
+
 ## Each concept ships four artifacts
 
 Every concept lives in `concepts/<NN>-<slug>/`:
@@ -189,9 +203,10 @@ When the [`study-paper`](https://github.com/pleyva2004/claude-skill-study-paper)
 ## Regenerating views from `manifest.json`
 
 ```bash
-python generate.py        # refresh README, html/data.json, aggregate notebook
-python generate_svg.py    # refresh html/graph.svg
-python validate_bodies.py # quality-gate the 42 concept folders
+python generate.py            # refresh README, html/data.json, aggregate notebook
+python generate_svg.py        # refresh html/graph.svg
+python generate_notation.py   # refresh NOTATION.md and notation.tex from notation.json
+python validate_bodies.py     # quality-gate the 42 concept folders
 ```
 
 ## License

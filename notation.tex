@@ -1,0 +1,396 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=2cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{longtable,booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\usepackage{microtype}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\renewcommand{\arraystretch}{1.25}
+
+\title{Math Foundations --- Notation Glossary}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\noindent
+This is the canonical notation glossary for the
+\href{https://github.com/pleyva2004/math-foundations}{math-foundations} repository.
+Every symbol used across the \textbf{42 concept lessons} is listed below, grouped by category,
+with how to read it aloud, a plain-English meaning, and a link to the concept folder where it
+first appears. Auto-generated from \texttt{notation.json}; do not edit by hand.
+
+
+\section*{Logic}
+\begin{longtable}{@{} >{$}c<{$} l p{6.5cm} l @{}}
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endfirsthead
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\forall & for all & Universal quantifier. 'For every x in S, the property P(x) holds.' Used to make claims about every element of a set. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/01-logic-and-proof}{01-logic-and-proof} \\
+\exists & there exists & Existential quantifier. 'There is at least one x in S such that P(x) holds.' & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/01-logic-and-proof}{01-logic-and-proof} \\
+\exists! & there exists a unique & Existence and uniqueness: there is exactly one element with the stated property. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/01-logic-and-proof}{01-logic-and-proof} \\
+\neg & not & Logical negation. $\neg$P is true iff P is false. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/01-logic-and-proof}{01-logic-and-proof} \\
+\wedge & and & Logical conjunction. P $\wedge$ Q is true iff both P and Q are true. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/01-logic-and-proof}{01-logic-and-proof} \\
+\vee & or & Logical disjunction (inclusive). P $\vee$ Q is true iff at least one of P, Q is true. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/01-logic-and-proof}{01-logic-and-proof} \\
+\Rightarrow & implies & Material implication. P $\Rightarrow$ Q means whenever P holds, Q holds. Vacuously true when P is false. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/01-logic-and-proof}{01-logic-and-proof} \\
+\Leftrightarrow & if and only if & Logical equivalence. P $\Leftrightarrow$ Q means P and Q have the same truth value. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/01-logic-and-proof}{01-logic-and-proof} \\
+\therefore & therefore & Marks a conclusion that follows from previously stated premises. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/01-logic-and-proof}{01-logic-and-proof} \\
+\because & because & Marks a reason or premise supporting a conclusion. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/01-logic-and-proof}{01-logic-and-proof} \\
+\vdash & proves & Syntactic entailment. $\Gamma$ $\vdash$ $\varphi$ means $\varphi$ is derivable from premises $\Gamma$ in a formal proof system. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/01-logic-and-proof}{01-logic-and-proof} \\
+\vDash & models / entails & Semantic entailment. $\Gamma$ $\vDash$ $\varphi$ means every model of $\Gamma$ is a model of $\varphi$. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/01-logic-and-proof}{01-logic-and-proof} \\
+\square & QED / end of proof & Marks the end of a proof. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/01-logic-and-proof}{01-logic-and-proof} \\
+\end{longtable}
+
+\section*{Sets}
+\begin{longtable}{@{} >{$}c<{$} l p{6.5cm} l @{}}
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endfirsthead
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\in & is an element of / in & Set membership. x $\in$ S means x is an element of the set S. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\notin & is not an element of & Negated set membership. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\subset & is a (proper) subset of & A $\subset$ B means every element of A is in B (often used for proper subsets). & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\subseteq & is a subset of (or equal) & A $\subseteq$ B means every element of A is in B; equality allowed. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\supseteq & is a superset of (or equal) & A $\supseteq$ B is the reverse of B $\subseteq$ A. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\supset & is a (proper) superset of & Reverse of $\subset$. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\cup & union & A $\cup$ B is the set of elements in A or B (or both). & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\cap & intersection & A $\cap$ B is the set of elements in both A and B. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\bigcup & union over & Indexed union over a collection of sets. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/18-sigma-algebras}{18-sigma-algebras} \\
+\bigcap & intersection over & Indexed intersection over a collection of sets. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/18-sigma-algebras}{18-sigma-algebras} \\
+\emptyset & empty set & The unique set with no elements. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\setminus & set minus / without & A $\setminus$ B is the set of elements in A but not in B. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+A^c & complement of A & The set of elements (in some ambient universe) not in A. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/18-sigma-algebras}{18-sigma-algebras} \\
+\times & Cartesian product & A $\times$ B is the set of ordered pairs (a, b) with a $\in$ A, b $\in$ B. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+|S| & cardinality / size of & Number of elements of a (finite) set S; more generally, its cardinal. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/02-counting}{02-counting} \\
+\mathcal{P}(S) & power set of & The set of all subsets of S. |$\mathcal{P}$(S)| = 2\textasciicircum{}\{|S|\} for finite S. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/02-counting}{02-counting} \\
+\{x : P(x)\} & the set of x such that P(x) & Set-builder notation: the set of all x satisfying property P. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\binom{n}{k} & n choose k & Number of k-element subsets of an n-element set. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/02-counting}{02-counting} \\
+\end{longtable}
+
+\section*{Functions}
+\begin{longtable}{@{} >{$}c<{$} l p{6.5cm} l @{}}
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endfirsthead
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+f : A \to B & f from A to B & A function f with domain A and codomain B; for every a $\in$ A there is a unique f(a) $\in$ B. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\mapsto & maps to & Specifies the action of a function on an element. x $\mapsto$ f(x). & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\circ & composed with & Function composition: (g $\circ$ f)(x) = g(f(x)). & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+f^{-1} & f inverse & The inverse function (when bijective): f$^{-}$$^{1}$(f(x)) = x. Also denotes preimage of a set. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\mathrm{id}_A & identity on A & The function that sends every element of A to itself. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\mathrm{dom}(f) & domain of f & The set of inputs on which f is defined. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\mathrm{cod}(f) & codomain of f & The declared target set of f (not necessarily its image). & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\mathrm{im}(f) & image of f & The set of actual outputs of f: \{f(x) : x $\in$ dom(f)\}. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+f|_S & f restricted to S & The function f considered only on the smaller domain S $\subseteq$ dom(f). & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\end{longtable}
+
+\section*{Number systems}
+\begin{longtable}{@{} >{$}c<{$} l p{6.5cm} l @{}}
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endfirsthead
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\mathbb{N} & the natural numbers & Non-negative integers (0, 1, 2, \ldots{}) or positive integers, depending on convention. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\mathbb{Z} & the integers & All integers \ldots{}, -2, -1, 0, 1, 2, \ldots{}. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\mathbb{Q} & the rationals & Numbers expressible as p/q with p, q integers and q $\neq$ 0. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\mathbb{R} & the reals & The complete ordered field of real numbers. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\mathbb{C} & the complex numbers & Numbers a + bi with a, b $\in$ $\mathbb{R}$ and i$^{2}$ = -1. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/04-groups-rings-fields}{04-groups-rings-fields} \\
+\mathbb{R}^n & R to the n & n-dimensional real coordinate space; vectors of n real numbers. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/05-vector-spaces}{05-vector-spaces} \\
+\mathbb{R}_{+} & the positive reals & The set of non-negative (or strictly positive) real numbers. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/09-norms-and-metrics}{09-norms-and-metrics} \\
+\mathbb{F} & a field & An arbitrary field (typically $\mathbb{R}$ or $\mathbb{C}$); used as the scalar field of a vector space. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/04-groups-rings-fields}{04-groups-rings-fields} \\
+\end{longtable}
+
+\section*{Linear algebra}
+\begin{longtable}{@{} >{$}c<{$} l p{6.5cm} l @{}}
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endfirsthead
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\dim V & dimension of V & Cardinality of any basis of the vector space V. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/05-vector-spaces}{05-vector-spaces} \\
+\mathrm{rank}(A) & rank of A & Dimension of the image (column space) of a linear map / matrix. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/06-linear-maps}{06-linear-maps} \\
+\det A & determinant of A & Signed n-dimensional volume scaling factor of a square matrix; zero iff non-invertible. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/06-linear-maps}{06-linear-maps} \\
+\mathrm{tr}(A) & trace of A & Sum of diagonal entries of a square matrix; equals the sum of eigenvalues. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/07-eigenvalues}{07-eigenvalues} \\
+\langle u, v \rangle & inner product of u and v & A bilinear (or sesquilinear) form encoding angle and length; e.g. the dot product on $\mathbb{R}$$^{n}$. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/08-inner-product-spaces}{08-inner-product-spaces} \\
+\|x\| & norm of x & Length of a vector; satisfies positive-definiteness, scaling, and triangle inequality. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/09-norms-and-metrics}{09-norms-and-metrics} \\
+\otimes & tensor product & Tensor product of vector spaces or vectors; bilinear factorisation of multilinear maps. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/06-linear-maps}{06-linear-maps} \\
+\ker T & kernel of T & Set of vectors mapped to 0 by linear map T; a subspace of the domain. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/06-linear-maps}{06-linear-maps} \\
+\mathrm{im}\, T & image of T & Set of outputs of a linear map; a subspace of the codomain. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/06-linear-maps}{06-linear-maps} \\
+\mathrm{span}(S) & span of S & Set of all linear combinations of vectors in S; smallest subspace containing S. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/05-vector-spaces}{05-vector-spaces} \\
+T^{*} & T adjoint / T conjugate transpose & Adjoint of a linear map; on inner-product spaces $\langle$T u, v$\rangle$ = $\langle$u, T* v$\rangle$. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/08-inner-product-spaces}{08-inner-product-spaces} \\
+A^{\top} & A transpose & Matrix obtained by swapping rows and columns of A. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/06-linear-maps}{06-linear-maps} \\
+\lambda_i & lambda i / i-th eigenvalue & Scalar $\lambda$ such that T v = $\lambda$ v for some non-zero eigenvector v. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/07-eigenvalues}{07-eigenvalues} \\
+AB & A times B & Matrix product representing composition of the corresponding linear maps. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/06-linear-maps}{06-linear-maps} \\
+I_n & n-by-n identity & Square matrix with ones on the diagonal, zeros elsewhere. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/06-linear-maps}{06-linear-maps} \\
+\end{longtable}
+
+\section*{Analysis}
+\begin{longtable}{@{} >{$}c<{$} l p{6.5cm} l @{}}
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endfirsthead
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\lim_{n \to \infty} a_n & limit as n goes to infinity & The value a\_n approaches as n grows without bound. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/10-sequences-and-limits}{10-sequences-and-limits} \\
+\sup S & supremum of S & Least upper bound of S; the smallest number $\geq$ every element of S. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/10-sequences-and-limits}{10-sequences-and-limits} \\
+\inf S & infimum of S & Greatest lower bound of S; the largest number $\leq$ every element of S. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/10-sequences-and-limits}{10-sequences-and-limits} \\
+\max S & max of S & Largest element of S, when it exists. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/10-sequences-and-limits}{10-sequences-and-limits} \\
+\min S & min of S & Smallest element of S, when it exists. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/10-sequences-and-limits}{10-sequences-and-limits} \\
+\to & tends to / approaches & Convergence of a sequence or value: a\_n $\to$ L means a\_n approaches L. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/10-sequences-and-limits}{10-sequences-and-limits} \\
+\varepsilon & epsilon & Small positive tolerance used in the $\varepsilon$-$\delta$ / $\varepsilon$-N definitions of limit and continuity. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/10-sequences-and-limits}{10-sequences-and-limits} \\
+\delta & delta & Tolerance on inputs paired with $\varepsilon$ in the $\varepsilon$-$\delta$ definition of continuity. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/11-continuity}{11-continuity} \\
+\infty & infinity & An idealised unbounded quantity used in limits, sums, and integrals. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/10-sequences-and-limits}{10-sequences-and-limits} \\
+|x| & absolute value & Distance of a real number from 0; the canonical norm on $\mathbb{R}$. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/10-sequences-and-limits}{10-sequences-and-limits} \\
+d(x, y) & distance from x to y & A metric: non-negative, symmetric, satisfying the triangle inequality. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/09-norms-and-metrics}{09-norms-and-metrics} \\
+\end{longtable}
+
+\section*{Calculus}
+\begin{longtable}{@{} >{$}c<{$} l p{6.5cm} l @{}}
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endfirsthead
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\frac{d}{dx} & derivative with respect to x & Differentiation operator with respect to a single variable. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/12-derivatives}{12-derivatives} \\
+f'(x) & f prime of x & Derivative of a univariate function f at x. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/12-derivatives}{12-derivatives} \\
+\frac{\partial}{\partial x} & partial derivative with respect to x & Derivative of a multivariable function holding the other variables fixed. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/13-multivariate-calculus}{13-multivariate-calculus} \\
+\nabla & nabla / gradient & Gradient operator: $\nabla$f is the vector of partial derivatives of f. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/14-gradient-jacobian}{14-gradient-jacobian} \\
+J_f & Jacobian of f & Matrix of all first-order partial derivatives of a vector-valued function. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/14-gradient-jacobian}{14-gradient-jacobian} \\
+H_f & Hessian of f & Matrix of second partial derivatives of a scalar function f. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/14-gradient-jacobian}{14-gradient-jacobian} \\
+\int & integral & Riemann (or Lebesgue) integral; signed area / total accumulation. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/15-integration}{15-integration} \\
+\iint & double integral & Integral over a 2-dimensional region. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/15-integration}{15-integration} \\
+\sum & sum / sigma & Indexed summation operator. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/02-counting}{02-counting} \\
+\prod & product & Indexed product operator. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/02-counting}{02-counting} \\
+\end{longtable}
+
+\section*{Series and modes of convergence}
+\begin{longtable}{@{} >{$}c<{$} l p{6.5cm} l @{}}
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endfirsthead
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\xrightarrow{\text{a.s.}} & converges almost surely to & Almost-sure convergence: P(X\_n $\to$ X) = 1. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/31-stochastic-processes}{31-stochastic-processes} \\
+\xrightarrow{P} & converges in probability to & P(|X\_n $-$ X| > $\varepsilon$) $\to$ 0 for every $\varepsilon$ > 0. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/31-stochastic-processes}{31-stochastic-processes} \\
+\xrightarrow{d} & converges in distribution to & Convergence of CDFs at every continuity point of the limit. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/31-stochastic-processes}{31-stochastic-processes} \\
+\limsup_{n\to\infty} a_n & limit superior & Largest accumulation value of a sequence; inf over n of sup of the tail. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/16-series-and-convergence}{16-series-and-convergence} \\
+\liminf_{n\to\infty} a_n & limit inferior & Smallest accumulation value of a sequence; sup over n of inf of the tail. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/16-series-and-convergence}{16-series-and-convergence} \\
+\text{Cauchy} & Cauchy sequence & Sequence whose terms eventually get arbitrarily close to each other; characterises convergence in complete spaces. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/10-sequences-and-limits}{10-sequences-and-limits} \\
+\sum_{n=1}^{\infty} a_n & the series sum a\_n & Limit of partial sums S\_N = $\sum$\_\{n$\leq$N\} a\_n; converges if the limit exists. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/16-series-and-convergence}{16-series-and-convergence} \\
+\xrightarrow{L^2} & converges in mean-square / L\textasciicircum{}2 & $\mathbb{E}$[|X\_n $-$ X|$^{2}$] $\to$ 0. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/31-stochastic-processes}{31-stochastic-processes} \\
+\end{longtable}
+
+\section*{Probability}
+\begin{longtable}{@{} >{$}c<{$} l p{6.5cm} l @{}}
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endfirsthead
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+P(A) & probability of A & Probability of event A under a probability measure P. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/19-probability-measures}{19-probability-measures} \\
+P(A \mid B) & probability of A given B & Conditional probability of A given that B has occurred: P(A $\cap$ B)/P(B). & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/20-conditional-probability}{20-conditional-probability} \\
+\mathbb{E}[X] & expectation of X & Expected value (mean) of a random variable X under its distribution. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/25-expectation}{25-expectation} \\
+\mathbb{E}[X \mid Y] & conditional expectation of X given Y & Best (in L$^{2}$) prediction of X given the $\sigma$-algebra generated by Y. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/27-conditional-expectation}{27-conditional-expectation} \\
+\mathrm{Var}(X) & variance of X & $\mathbb{E}$[(X $-$ $\mathbb{E}$[X])$^{2}$]; spread of X around its mean. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/26-variance-covariance}{26-variance-covariance} \\
+\mathrm{Cov}(X, Y) & covariance of X and Y & $\mathbb{E}$[(X $-$ $\mathbb{E}$[X])(Y $-$ $\mathbb{E}$[Y])]; signed measure of linear association. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/26-variance-covariance}{26-variance-covariance} \\
+\sim & is distributed as & X \textasciitilde{} D means X has distribution D. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/23-distributions}{23-distributions} \\
+\text{i.i.d.} & independent and identically distributed & Random variables that are mutually independent and share the same distribution. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/21-independence}{21-independence} \\
+\perp\!\!\!\perp & is independent of & X $\perp\!\!\!\perp$ Y means X and Y are independent random variables / events. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/21-independence}{21-independence} \\
+\mathcal{F} & script F / sigma-algebra & A $\sigma$-algebra: collection of measurable subsets closed under complement and countable union. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/18-sigma-algebras}{18-sigma-algebras} \\
+\Omega & Omega / sample space & Sample space: set of all possible outcomes of an experiment. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/17-sample-spaces}{17-sample-spaces} \\
+\mathbf{1}_A & indicator of A & Function that is 1 on A and 0 elsewhere; bridges sets and integrals. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/25-expectation}{25-expectation} \\
+F_X(x) & CDF of X & Cumulative distribution function: F\_X(x) = P(X $\leq$ x). & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/23-distributions}{23-distributions} \\
+p_X(x) & density of X at x & Probability density function: P(X $\in$ A) = $\int$\_A p\_X(x) dx. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/24-pdf}{24-pdf} \\
+p(x) & probability mass function & p(x) = P(X = x) for a discrete random variable X. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/23-distributions}{23-distributions} \\
+\end{longtable}
+
+\section*{Distributions}
+\begin{longtable}{@{} >{$}c<{$} l p{6.5cm} l @{}}
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endfirsthead
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\mathrm{Bern}(p) & Bernoulli of p & Distribution of a 0/1 random variable with P(X=1) = p. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/23-distributions}{23-distributions} \\
+\mathrm{Bin}(n, p) & Binomial of n, p & Number of successes in n independent Bernoulli(p) trials. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/23-distributions}{23-distributions} \\
+\mathrm{Poi}(\lambda) & Poisson of lambda & Counts of rare events with rate $\lambda$; P(X=k) = e\textasciicircum{}\{-$\lambda$\} $\lambda$\textasciicircum{}k / k!. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/23-distributions}{23-distributions} \\
+U(a, b) & Uniform on [a, b] & Continuous distribution with constant density 1/(b-a) on [a, b]. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/24-pdf}{24-pdf} \\
+\mathrm{Exp}(\lambda) & Exponential of lambda & Memoryless waiting-time distribution with rate $\lambda$; density $\lambda$ e\textasciicircum{}\{-$\lambda$ x\}, x $\geq$ 0. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/24-pdf}{24-pdf} \\
+\mathcal{N}(\mu, \sigma^2) & normal of mu, sigma squared & Gaussian distribution with mean $\mu$ and variance $\sigma$$^{2}$. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/24-pdf}{24-pdf} \\
+\mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma}) & multivariate normal of mu, Sigma & Joint Gaussian on $\mathbb{R}$$^{n}$ with mean vector $\mu$ and covariance matrix $\Sigma$. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/26-variance-covariance}{26-variance-covariance} \\
+\mathrm{Cat}(\pi) & categorical of pi & Discrete distribution over k classes with probability vector $\pi$. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/23-distributions}{23-distributions} \\
+\mathrm{Beta}(\alpha, \beta) & Beta of alpha, beta & Continuous distribution on [0,1]; conjugate prior to the Bernoulli/Binomial. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/24-pdf}{24-pdf} \\
+\end{longtable}
+
+\section*{Information theory}
+\begin{longtable}{@{} >{$}c<{$} l p{6.5cm} l @{}}
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endfirsthead
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+H(X) & entropy of X & Shannon entropy: H(X) = -$\mathbb{E}$[log p(X)]; average uncertainty / information. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/36-shannon-entropy}{36-shannon-entropy} \\
+H(X \mid Y) & conditional entropy of X given Y & Average uncertainty in X after observing Y. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/36-shannon-entropy}{36-shannon-entropy} \\
+I(X; Y) & mutual information of X and Y & Reduction in uncertainty about X from observing Y; symmetric in X, Y. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/39-mutual-information}{39-mutual-information} \\
+D_{\mathrm{KL}}(p \,\|\, q) & KL divergence from q to p & Relative entropy: $\mathbb{E}$\_p[log p $-$ log q]; non-symmetric, non-negative. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/38-kl-divergence}{38-kl-divergence} \\
+H(p, q) & cross-entropy of p and q & $-$$\mathbb{E}$\_p[log q]; average code length using q on samples from p. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/37-cross-entropy}{37-cross-entropy} \\
+I(x) & self-information of x & Surprisal: I(x) = -log p(x); information content of a single outcome. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/35-self-information}{35-self-information} \\
+\log & log & Logarithm; in information theory typically natural (ln) or base 2 depending on units. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/35-self-information}{35-self-information} \\
+\ln & natural log & Logarithm base e. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/35-self-information}{35-self-information} \\
+\log_2 & log base 2 & Logarithm base 2; gives entropy in bits. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/36-shannon-entropy}{36-shannon-entropy} \\
+\end{longtable}
+
+\section*{Stochastic calculus}
+\begin{longtable}{@{} >{$}c<{$} l p{6.5cm} l @{}}
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endfirsthead
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+W_t & Brownian motion at time t & Standard Wiener process: continuous, W\_0 = 0, independent Gaussian increments. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/32-brownian-motion}{32-brownian-motion} \\
+dW_t & differential of Brownian motion & Infinitesimal Brownian increment; the driving noise of an SDE. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/33-sde}{33-sde} \\
+dX_t & differential of X at t & Infinitesimal change in a stochastic process; the LHS of an SDE in differential form. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/33-sde}{33-sde} \\
+{}[X]_t & quadratic variation of X at t & Limit of sums of squared increments; for Brownian motion, [W]\_t = t. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/34-ito-calculus}{34-ito-calculus} \\
+\langle X \rangle_t & predictable quadratic variation of X & Compensator: predictable process making X$^{2}$ $-$ $\langle$X$\rangle$ a martingale. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/34-ito-calculus}{34-ito-calculus} \\
+\mathcal{F}_t & filtration at time t & Increasing family of $\sigma$-algebras encoding information available up to time t. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/31-stochastic-processes}{31-stochastic-processes} \\
+\int_0^t \sigma_s\, dW_s & It\^{o} integral & Stochastic integral against Brownian motion, defined as an L$^{2}$ limit of left-Riemann sums. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/34-ito-calculus}{34-ito-calculus} \\
+df(X_t) = f'(X_t)\,dX_t + \tfrac{1}{2} f''(X_t)\, d[X]_t & It\^{o}'s lemma & Chain rule for It\^{o} processes: includes a second-order quadratic-variation correction. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/34-ito-calculus}{34-ito-calculus} \\
+\end{longtable}
+
+\section*{Optimisation}
+\begin{longtable}{@{} >{$}c<{$} l p{6.5cm} l @{}}
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endfirsthead
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\operatorname*{arg\,min}_{x \in \mathcal{X}} f(x) & argmin of f & Set of inputs at which f attains its minimum value over the search domain. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/14-gradient-jacobian}{14-gradient-jacobian} \\
+\operatorname*{arg\,max}_{x \in \mathcal{X}} f(x) & argmax of f & Set of inputs at which f attains its maximum value. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/14-gradient-jacobian}{14-gradient-jacobian} \\
+\nabla L & gradient of L & Gradient of a loss / objective function; direction of steepest ascent. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/14-gradient-jacobian}{14-gradient-jacobian} \\
+\eta & eta / learning rate & Step size in gradient-based optimisation. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/14-gradient-jacobian}{14-gradient-jacobian} \\
+\mathrm{softmax} & softmax & softmax(z)\_i = e\textasciicircum{}\{z\_i\} / $\Sigma$\_j e\textasciicircum{}\{z\_j\}; turns logits into a probability vector. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/37-cross-entropy}{37-cross-entropy} \\
+\mathcal{L} & Lagrangian & Lagrangian for a constrained optimisation; encodes objective plus multiplier $\times$ constraints. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/14-gradient-jacobian}{14-gradient-jacobian} \\
+\leftarrow & is updated to & Assignment / update step (as in iterative algorithms). & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/14-gradient-jacobian}{14-gradient-jacobian} \\
+\end{longtable}
+
+\section*{Information geometry and optimal transport}
+\begin{longtable}{@{} >{$}c<{$} l p{6.5cm} l @{}}
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endfirsthead
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+W_p(\mu, \nu) & p-Wasserstein distance between mu and nu & Optimal-transport distance: inf over couplings (X,Y) of ($\mathbb{E}$[d(X,Y)\textasciicircum{}p])\textasciicircum{}\{1/p\}. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/41-optimal-transport}{41-optimal-transport} \\
+F(\theta) & Fisher information at theta & Riemannian metric on a parametric statistical model; F($\theta$)\_\{ij\} = $\mathbb{E}$[($\partial$\_i log p)($\partial$\_j log p)]. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/40-information-geometry}{40-information-geometry} \\
+B_{\mathrm{KL}}(p, \varepsilon) & KL ball of radius epsilon around p & Set of distributions q with D\_KL(p $\|$ q) $\leq$ $\varepsilon$; trust region in info-geometric methods. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/40-information-geometry}{40-information-geometry} \\
+\tilde{\nabla} L(\theta) & natural gradient of L & Fisher-preconditioned gradient: F($\theta$)\textasciicircum{}\{-1\} $\nabla$L($\theta$); steepest descent in KL geometry. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/40-information-geometry}{40-information-geometry} \\
+\Gamma(\mu, \nu) & couplings of mu and nu & Set of joint distributions with marginals $\mu$ and $\nu$; the feasible set in optimal transport. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/41-optimal-transport}{41-optimal-transport} \\
+\end{longtable}
+
+\section*{Meta-notation}
+\begin{longtable}{@{} >{$}c<{$} l p{6.5cm} l @{}}
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endfirsthead
+\toprule
+\textnormal{Symbol} & Read aloud as & Meaning & First seen in \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+:= & is defined as & Introduces a definition: the LHS is defined to equal the RHS. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\equiv & is equivalent / equals by definition & Identity by definition; or logical equivalence between formulas. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/01-logic-and-proof}{01-logic-and-proof} \\
+\approx & is approximately equal to & Approximate equality; used informally and in numerical statements. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/12-derivatives}{12-derivatives} \\
+\propto & is proportional to & Equality up to a positive multiplicative constant; common in Bayesian posteriors. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/20-conditional-probability}{20-conditional-probability} \\
+O(g(n)) & big O of g & Asymptotic upper bound: f = O(g) iff |f(n)| $\leq$ C |g(n)| for large n. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/10-sequences-and-limits}{10-sequences-and-limits} \\
+o(g(n)) & little o of g & f = o(g) iff f(n)/g(n) $\to$ 0; strictly negligible compared to g. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/12-derivatives}{12-derivatives} \\
+\Theta(g(n)) & Theta of g & Tight asymptotic bound: f = $\Theta$(g) iff f = O(g) and g = O(f). & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/10-sequences-and-limits}{10-sequences-and-limits} \\
+\Omega(g(n)) & big Omega of g & Asymptotic lower bound: f = $\Omega$(g) iff |f(n)| $\geq$ c |g(n)| for large n. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/10-sequences-and-limits}{10-sequences-and-limits} \\
+\cong & is isomorphic to / congruent to & Structural equivalence (groups, vector spaces, \ldots{}) or geometric congruence. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/04-groups-rings-fields}{04-groups-rings-fields} \\
+\neq & is not equal to & Negated equality. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\leq & less than or equal to & Non-strict inequality. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\geq & greater than or equal to & Non-strict inequality. & \href{https://github.com/pleyva2004/math-foundations/tree/main/concepts/00-sets-and-functions}{00-sets-and-functions} \\
+\end{longtable}
+
+\end{document}
