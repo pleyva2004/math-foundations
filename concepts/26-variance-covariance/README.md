@@ -8,6 +8,29 @@
 ## Plain-English intro
 Second-order moments measuring spread (variance) and linear association (covariance).
 
+## 📖 Symbols you'll see in this lesson
+
+_(Auto-filtered subset of the [foundations glossary](../../NOTATION.md). 16 symbols.)_
+
+| Symbol | Read aloud as | Plain-English meaning |
+|--------|---------------|------------------------|
+| $\in$ | "is an element of / in" | Set membership. x ∈ S means x is an element of the set S. |
+| $\mathbb{R}$ | "the reals" | The complete ordered field of real numbers. |
+| $\det A$ | "determinant of A" | Signed n-dimensional volume scaling factor of a square matrix; zero iff non-invertible. |
+| $\mathrm{tr}(A)$ | "trace of A" | Sum of diagonal entries of a square matrix; equals the sum of eigenvalues. |
+| $\inf S$ | "infimum of S" | Greatest lower bound of S; the largest number ≤ every element of S. |
+| $\max S$ | "max of S" | Largest element of S, when it exists. |
+| $\min S$ | "min of S" | Smallest element of S, when it exists. |
+| $\to$ | "tends to / approaches" | Convergence of a sequence or value: a_n → L means a_n approaches L. |
+| $\infty$ | "infinity" | An idealised unbounded quantity used in limits, sums, and integrals. |
+| $\sum$ | "sum / sigma" | Indexed summation operator. |
+| $\text{Cauchy}$ | "Cauchy sequence" | Sequence whose terms eventually get arbitrarily close to each other; characterises convergence in complete spaces. |
+| $\mathrm{Var}(X)$ | "variance of X" | 𝔼[(X − 𝔼[X])²]; spread of X around its mean. |
+| $\mathrm{Cov}(X, Y)$ | "covariance of X and Y" | 𝔼[(X − 𝔼[X])(Y − 𝔼[Y])]; signed measure of linear association. |
+| $\sim$ | "is distributed as" | X ~ D means X has distribution D. |
+| $\mathcal{F}$ | "script F / sigma-algebra" | A σ-algebra: collection of measurable subsets closed under complement and countable union. |
+| $\Omega$ | "Omega / sample space" | Sample space: set of all possible outcomes of an experiment. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

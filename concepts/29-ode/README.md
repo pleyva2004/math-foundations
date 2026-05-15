@@ -8,6 +8,25 @@
 ## Plain-English intro
 Equations relating a function to its derivatives; the basic objects of dynamical systems.
 
+## 📖 Symbols you'll see in this lesson
+
+_(Auto-filtered subset of the [foundations glossary](../../NOTATION.md). 12 symbols.)_
+
+| Symbol | Read aloud as | Plain-English meaning |
+|--------|---------------|------------------------|
+| $\in$ | "is an element of / in" | Set membership. x ∈ S means x is an element of the set S. |
+| $\subset$ | "is a (proper) subset of" | A ⊂ B means every element of A is in B (often used for proper subsets). |
+| $\subseteq$ | "is a subset of (or equal)" | A ⊆ B means every element of A is in B; equality allowed. |
+| $\times$ | "Cartesian product" | A × B is the set of ordered pairs (a, b) with a ∈ A, b ∈ B. |
+| $\mapsto$ | "maps to" | Specifies the action of a function on an element. x ↦ f(x). |
+| $\mathbb{R}$ | "the reals" | The complete ordered field of real numbers. |
+| $\mathbb{R}^n$ | "R to the n" | n-dimensional real coordinate space; vectors of n real numbers. |
+| $\mathrm{tr}(A)$ | "trace of A" | Sum of diagonal entries of a square matrix; equals the sum of eigenvalues. |
+| $\to$ | "tends to / approaches" | Convergence of a sequence or value: a_n → L means a_n approaches L. |
+| $\sim$ | "is distributed as" | X ~ D means X has distribution D. |
+| := | "is defined as" | Introduces a definition: the LHS is defined to equal the RHS. |
+| $\equiv$ | "is equivalent / equals by definition" | Identity by definition; or logical equivalence between formulas. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

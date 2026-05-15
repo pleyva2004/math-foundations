@@ -8,6 +8,28 @@
 ## Plain-English intro
 Sufficient conditions (Lipschitz) under which an ODE has a unique solution; the foundation of well-posed dynamical systems.
 
+## 📖 Symbols you'll see in this lesson
+
+_(Auto-filtered subset of the [foundations glossary](../../NOTATION.md). 15 symbols.)_
+
+| Symbol | Read aloud as | Plain-English meaning |
+|--------|---------------|------------------------|
+| $\forall$ | "for all" | Universal quantifier. 'For every x in S, the property P(x) holds.' Used to make claims about every element of a set. |
+| $\in$ | "is an element of / in" | Set membership. x ∈ S means x is an element of the set S. |
+| $\subset$ | "is a (proper) subset of" | A ⊂ B means every element of A is in B (often used for proper subsets). |
+| $\times$ | "Cartesian product" | A × B is the set of ordered pairs (a, b) with a ∈ A, b ∈ B. |
+| $\mathbb{N}$ | "the natural numbers" | Non-negative integers (0, 1, 2, …) or positive integers, depending on convention. |
+| $\mathbb{R}$ | "the reals" | The complete ordered field of real numbers. |
+| $\mathrm{tr}(A)$ | "trace of A" | Sum of diagonal entries of a square matrix; equals the sum of eigenvalues. |
+| $\sup S$ | "supremum of S" | Least upper bound of S; the smallest number ≥ every element of S. |
+| $\inf S$ | "infimum of S" | Greatest lower bound of S; the largest number ≤ every element of S. |
+| $\min S$ | "min of S" | Smallest element of S, when it exists. |
+| $\to$ | "tends to / approaches" | Convergence of a sequence or value: a_n → L means a_n approaches L. |
+| $\infty$ | "infinity" | An idealised unbounded quantity used in limits, sums, and integrals. |
+| $\int$ | "integral" | Riemann (or Lebesgue) integral; signed area / total accumulation. |
+| $\sim$ | "is distributed as" | X ~ D means X has distribution D. |
+| $\equiv$ | "is equivalent / equals by definition" | Identity by definition; or logical equivalence between formulas. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

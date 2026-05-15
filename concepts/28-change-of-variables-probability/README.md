@@ -8,6 +8,29 @@
 ## Plain-English intro
 How densities transform under invertible smooth maps; the Jacobian determinant appears as the volume-correction factor.
 
+## 📖 Symbols you'll see in this lesson
+
+_(Auto-filtered subset of the [foundations glossary](../../NOTATION.md). 16 symbols.)_
+
+| Symbol | Read aloud as | Plain-English meaning |
+|--------|---------------|------------------------|
+| $\in$ | "is an element of / in" | Set membership. x ∈ S means x is an element of the set S. |
+| $\subset$ | "is a (proper) subset of" | A ⊂ B means every element of A is in B (often used for proper subsets). |
+| $\subseteq$ | "is a subset of (or equal)" | A ⊆ B means every element of A is in B; equality allowed. |
+| $\mathbb{R}$ | "the reals" | The complete ordered field of real numbers. |
+| $\mathbb{R}^n$ | "R to the n" | n-dimensional real coordinate space; vectors of n real numbers. |
+| $\det A$ | "determinant of A" | Signed n-dimensional volume scaling factor of a square matrix; zero iff non-invertible. |
+| $\mathrm{tr}(A)$ | "trace of A" | Sum of diagonal entries of a square matrix; equals the sum of eigenvalues. |
+| $\inf S$ | "infimum of S" | Greatest lower bound of S; the largest number ≤ every element of S. |
+| $\to$ | "tends to / approaches" | Convergence of a sequence or value: a_n → L means a_n approaches L. |
+| $\infty$ | "infinity" | An idealised unbounded quantity used in limits, sums, and integrals. |
+| $\int$ | "integral" | Riemann (or Lebesgue) integral; signed area / total accumulation. |
+| $\mathrm{Var}(X)$ | "variance of X" | 𝔼[(X − 𝔼[X])²]; spread of X around its mean. |
+| $\sim$ | "is distributed as" | X ~ D means X has distribution D. |
+| F_X(x) | "CDF of X" | Cumulative distribution function: F_X(x) = P(X ≤ x). |
+| $\log$ | "log" | Logarithm; in information theory typically natural (ln) or base 2 depending on units. |
+| $\neq$ | "is not equal to" | Negated equality. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

@@ -8,6 +8,32 @@
 ## Plain-English intro
 I(x) = -log p(x); the surprise associated with observing an outcome under a probability distribution.
 
+## 📖 Symbols you'll see in this lesson
+
+_(Auto-filtered subset of the [foundations glossary](../../NOTATION.md). 19 symbols.)_
+
+| Symbol | Read aloud as | Plain-English meaning |
+|--------|---------------|------------------------|
+| $\Rightarrow$ | "implies" | Material implication. P ⇒ Q means whenever P holds, Q holds. Vacuously true when P is false. |
+| $\in$ | "is an element of / in" | Set membership. x ∈ S means x is an element of the set S. |
+| $\cap$ | "intersection" | A ∩ B is the set of elements in both A and B. |
+| $\mathbb{R}$ | "the reals" | The complete ordered field of real numbers. |
+| $\mathrm{tr}(A)$ | "trace of A" | Sum of diagonal entries of a square matrix; equals the sum of eigenvalues. |
+| $\inf S$ | "infimum of S" | Greatest lower bound of S; the largest number ≤ every element of S. |
+| $\max S$ | "max of S" | Largest element of S, when it exists. |
+| $\min S$ | "min of S" | Smallest element of S, when it exists. |
+| $\to$ | "tends to / approaches" | Convergence of a sequence or value: a_n → L means a_n approaches L. |
+| $\infty$ | "infinity" | An idealised unbounded quantity used in limits, sums, and integrals. |
+| $\text{Cauchy}$ | "Cauchy sequence" | Sequence whose terms eventually get arbitrarily close to each other; characterises convergence in complete spaces. |
+| p(x) | "probability mass function" | p(x) = P(X = x) for a discrete random variable X. |
+| I(x) | "self-information of x" | Surprisal: I(x) = -log p(x); information content of a single outcome. |
+| $\log$ | "log" | Logarithm; in information theory typically natural (ln) or base 2 depending on units. |
+| $\ln$ | "natural log" | Logarithm base e. |
+| $\log_2$ | "log base 2" | Logarithm base 2; gives entropy in bits. |
+| $\mathcal{L}$ | "Lagrangian" | Lagrangian for a constrained optimisation; encodes objective plus multiplier × constraints. |
+| $\approx$ | "is approximately equal to" | Approximate equality; used informally and in numerical statements. |
+| $\neq$ | "is not equal to" | Negated equality. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

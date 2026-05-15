@@ -8,6 +8,37 @@
 ## Plain-English intro
 The calculus of stochastic integrals where the integrator is non-smooth (Brownian); Itô's lemma replaces the chain rule.
 
+## 📖 Symbols you'll see in this lesson
+
+_(Auto-filtered subset of the [foundations glossary](../../NOTATION.md). 24 symbols.)_
+
+| Symbol | Read aloud as | Plain-English meaning |
+|--------|---------------|------------------------|
+| $\in$ | "is an element of / in" | Set membership. x ∈ S means x is an element of the set S. |
+| $\mapsto$ | "maps to" | Specifies the action of a function on an element. x ↦ f(x). |
+| $\circ$ | "composed with" | Function composition: (g ∘ f)(x) = g(f(x)). |
+| $\mathbb{R}$ | "the reals" | The complete ordered field of real numbers. |
+| $\mathrm{tr}(A)$ | "trace of A" | Sum of diagonal entries of a square matrix; equals the sum of eigenvalues. |
+| $\lim_{n \to \infty} a_n$ | "limit as n goes to infinity" | The value a_n approaches as n grows without bound. |
+| $\sup S$ | "supremum of S" | Least upper bound of S; the smallest number ≥ every element of S. |
+| $\inf S$ | "infimum of S" | Greatest lower bound of S; the largest number ≤ every element of S. |
+| $\max S$ | "max of S" | Largest element of S, when it exists. |
+| $\min S$ | "min of S" | Smallest element of S, when it exists. |
+| $\to$ | "tends to / approaches" | Convergence of a sequence or value: a_n → L means a_n approaches L. |
+| $\infty$ | "infinity" | An idealised unbounded quantity used in limits, sums, and integrals. |
+| $\int$ | "integral" | Riemann (or Lebesgue) integral; signed area / total accumulation. |
+| $\sum$ | "sum / sigma" | Indexed summation operator. |
+| $\mathrm{Var}(X)$ | "variance of X" | 𝔼[(X − 𝔼[X])²]; spread of X around its mean. |
+| $\mathcal{F}$ | "script F / sigma-algebra" | A σ-algebra: collection of measurable subsets closed under complement and countable union. |
+| $\Omega$ | "Omega / sample space" | Sample space: set of all possible outcomes of an experiment. |
+| W_t | "Brownian motion at time t" | Standard Wiener process: continuous, W_0 = 0, independent Gaussian increments. |
+| dW_t | "differential of Brownian motion" | Infinitesimal Brownian increment; the driving noise of an SDE. |
+| dX_t | "differential of X at t" | Infinitesimal change in a stochastic process; the LHS of an SDE in differential form. |
+| [X]_t | "quadratic variation of X at t" | Limit of sums of squared increments; for Brownian motion, [W]_t = t. |
+| $\mathcal{F}_t$ | "filtration at time t" | Increasing family of σ-algebras encoding information available up to time t. |
+| := | "is defined as" | Introduces a definition: the LHS is defined to equal the RHS. |
+| $\geq$ | "greater than or equal to" | Non-strict inequality. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

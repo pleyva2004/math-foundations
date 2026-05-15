@@ -8,6 +8,32 @@
 ## Plain-English intro
 The canonical continuous-time stochastic process with independent Gaussian increments; the building block of stochastic calculus.
 
+## 📖 Symbols you'll see in this lesson
+
+_(Auto-filtered subset of the [foundations glossary](../../NOTATION.md). 19 symbols.)_
+
+| Symbol | Read aloud as | Plain-English meaning |
+|--------|---------------|------------------------|
+| $\in$ | "is an element of / in" | Set membership. x ∈ S means x is an element of the set S. |
+| $\mapsto$ | "maps to" | Specifies the action of a function on an element. x ↦ f(x). |
+| $\mathbb{N}$ | "the natural numbers" | Non-negative integers (0, 1, 2, …) or positive integers, depending on convention. |
+| $\mathbb{R}$ | "the reals" | The complete ordered field of real numbers. |
+| $\dim V$ | "dimension of V" | Cardinality of any basis of the vector space V. |
+| $\det A$ | "determinant of A" | Signed n-dimensional volume scaling factor of a square matrix; zero iff non-invertible. |
+| $\mathrm{tr}(A)$ | "trace of A" | Sum of diagonal entries of a square matrix; equals the sum of eigenvalues. |
+| $\ker T$ | "kernel of T" | Set of vectors mapped to 0 by linear map T; a subspace of the domain. |
+| $\min S$ | "min of S" | Smallest element of S, when it exists. |
+| $\int$ | "integral" | Riemann (or Lebesgue) integral; signed area / total accumulation. |
+| $\mathrm{Var}(X)$ | "variance of X" | 𝔼[(X − 𝔼[X])²]; spread of X around its mean. |
+| $\mathrm{Cov}(X, Y)$ | "covariance of X and Y" | 𝔼[(X − 𝔼[X])(Y − 𝔼[Y])]; signed measure of linear association. |
+| $\sim$ | "is distributed as" | X ~ D means X has distribution D. |
+| $\mathcal{F}$ | "script F / sigma-algebra" | A σ-algebra: collection of measurable subsets closed under complement and countable union. |
+| $\Omega$ | "Omega / sample space" | Sample space: set of all possible outcomes of an experiment. |
+| W_t | "Brownian motion at time t" | Standard Wiener process: continuous, W_0 = 0, independent Gaussian increments. |
+| := | "is defined as" | Introduces a definition: the LHS is defined to equal the RHS. |
+| $\leq$ | "less than or equal to" | Non-strict inequality. |
+| $\geq$ | "greater than or equal to" | Non-strict inequality. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

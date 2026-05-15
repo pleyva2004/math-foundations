@@ -8,6 +8,33 @@
 ## Plain-English intro
 H(X) = E[-log p(X)]; the average information content of a random variable; measures uncertainty.
 
+## 📖 Symbols you'll see in this lesson
+
+_(Auto-filtered subset of the [foundations glossary](../../NOTATION.md). 20 symbols.)_
+
+| Symbol | Read aloud as | Plain-English meaning |
+|--------|---------------|------------------------|
+| $\Rightarrow$ | "implies" | Material implication. P ⇒ Q means whenever P holds, Q holds. Vacuously true when P is false. |
+| $\in$ | "is an element of / in" | Set membership. x ∈ S means x is an element of the set S. |
+| $\mathbb{R}$ | "the reals" | The complete ordered field of real numbers. |
+| $\det A$ | "determinant of A" | Signed n-dimensional volume scaling factor of a square matrix; zero iff non-invertible. |
+| $\mathrm{tr}(A)$ | "trace of A" | Sum of diagonal entries of a square matrix; equals the sum of eigenvalues. |
+| $\lim_{n \to \infty} a_n$ | "limit as n goes to infinity" | The value a_n approaches as n grows without bound. |
+| $\sup S$ | "supremum of S" | Least upper bound of S; the smallest number ≥ every element of S. |
+| $\inf S$ | "infimum of S" | Greatest lower bound of S; the largest number ≤ every element of S. |
+| $\max S$ | "max of S" | Largest element of S, when it exists. |
+| $\min S$ | "min of S" | Smallest element of S, when it exists. |
+| $\to$ | "tends to / approaches" | Convergence of a sequence or value: a_n → L means a_n approaches L. |
+| $\int$ | "integral" | Riemann (or Lebesgue) integral; signed area / total accumulation. |
+| $\sum$ | "sum / sigma" | Indexed summation operator. |
+| $\sim$ | "is distributed as" | X ~ D means X has distribution D. |
+| p(x) | "probability mass function" | p(x) = P(X = x) for a discrete random variable X. |
+| H(X) | "entropy of X" | Shannon entropy: H(X) = -𝔼[log p(X)]; average uncertainty / information. |
+| I(x) | "self-information of x" | Surprisal: I(x) = -log p(x); information content of a single outcome. |
+| $\log$ | "log" | Logarithm; in information theory typically natural (ln) or base 2 depending on units. |
+| $\ln$ | "natural log" | Logarithm base e. |
+| $\log_2$ | "log base 2" | Logarithm base 2; gives entropy in bits. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

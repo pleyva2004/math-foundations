@@ -8,6 +8,32 @@
 ## Plain-English intro
 D_KL(p || q) = E_p[log p - log q]; the relative entropy / information gain in moving from q to p. Non-symmetric, non-metric.
 
+## 📖 Symbols you'll see in this lesson
+
+_(Auto-filtered subset of the [foundations glossary](../../NOTATION.md). 19 symbols.)_
+
+| Symbol | Read aloud as | Plain-English meaning |
+|--------|---------------|------------------------|
+| $\in$ | "is an element of / in" | Set membership. x ∈ S means x is an element of the set S. |
+| $\subset$ | "is a (proper) subset of" | A ⊂ B means every element of A is in B (often used for proper subsets). |
+| $\subseteq$ | "is a subset of (or equal)" | A ⊆ B means every element of A is in B; equality allowed. |
+| $\mathbb{R}$ | "the reals" | The complete ordered field of real numbers. |
+| $\mathrm{tr}(A)$ | "trace of A" | Sum of diagonal entries of a square matrix; equals the sum of eigenvalues. |
+| $\sup S$ | "supremum of S" | Least upper bound of S; the smallest number ≥ every element of S. |
+| $\inf S$ | "infimum of S" | Greatest lower bound of S; the largest number ≤ every element of S. |
+| $\max S$ | "max of S" | Largest element of S, when it exists. |
+| $\min S$ | "min of S" | Smallest element of S, when it exists. |
+| $\infty$ | "infinity" | An idealised unbounded quantity used in limits, sums, and integrals. |
+| $\int$ | "integral" | Riemann (or Lebesgue) integral; signed area / total accumulation. |
+| $\sum$ | "sum / sigma" | Indexed summation operator. |
+| $\sim$ | "is distributed as" | X ~ D means X has distribution D. |
+| $\mathcal{F}$ | "script F / sigma-algebra" | A σ-algebra: collection of measurable subsets closed under complement and countable union. |
+| p(x) | "probability mass function" | p(x) = P(X = x) for a discrete random variable X. |
+| D_{\mathrm{KL}}(p \,\|\, q) | "KL divergence from q to p" | Relative entropy: 𝔼_p[log p − log q]; non-symmetric, non-negative. |
+| H(p, q) | "cross-entropy of p and q" | −𝔼_p[log q]; average code length using q on samples from p. |
+| $\log$ | "log" | Logarithm; in information theory typically natural (ln) or base 2 depending on units. |
+| $\equiv$ | "is equivalent / equals by definition" | Identity by definition; or logical equivalence between formulas. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

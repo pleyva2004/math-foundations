@@ -8,6 +8,29 @@
 ## Plain-English intro
 Indexed families of random variables; the time-evolution of randomness.
 
+## 📖 Symbols you'll see in this lesson
+
+_(Auto-filtered subset of the [foundations glossary](../../NOTATION.md). 16 symbols.)_
+
+| Symbol | Read aloud as | Plain-English meaning |
+|--------|---------------|------------------------|
+| $\in$ | "is an element of / in" | Set membership. x ∈ S means x is an element of the set S. |
+| $\subset$ | "is a (proper) subset of" | A ⊂ B means every element of A is in B (often used for proper subsets). |
+| $\subseteq$ | "is a subset of (or equal)" | A ⊆ B means every element of A is in B; equality allowed. |
+| $\mapsto$ | "maps to" | Specifies the action of a function on an element. x ↦ f(x). |
+| $\mathbb{N}$ | "the natural numbers" | Non-negative integers (0, 1, 2, …) or positive integers, depending on convention. |
+| $\mathrm{tr}(A)$ | "trace of A" | Sum of diagonal entries of a square matrix; equals the sum of eigenvalues. |
+| $\inf S$ | "infimum of S" | Greatest lower bound of S; the largest number ≤ every element of S. |
+| $\to$ | "tends to / approaches" | Convergence of a sequence or value: a_n → L means a_n approaches L. |
+| $\infty$ | "infinity" | An idealised unbounded quantity used in limits, sums, and integrals. |
+| $\sum$ | "sum / sigma" | Indexed summation operator. |
+| $\mathrm{Var}(X)$ | "variance of X" | 𝔼[(X − 𝔼[X])²]; spread of X around its mean. |
+| $\mathrm{Cov}(X, Y)$ | "covariance of X and Y" | 𝔼[(X − 𝔼[X])(Y − 𝔼[Y])]; signed measure of linear association. |
+| $\text{i.i.d.}$ | "independent and identically distributed" | Random variables that are mutually independent and share the same distribution. |
+| $\mathcal{F}$ | "script F / sigma-algebra" | A σ-algebra: collection of measurable subsets closed under complement and countable union. |
+| $\Omega$ | "Omega / sample space" | Sample space: set of all possible outcomes of an experiment. |
+| $\neq$ | "is not equal to" | Negated equality. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

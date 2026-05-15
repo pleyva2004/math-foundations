@@ -8,6 +8,35 @@
 ## Plain-English intro
 Wasserstein distance W_p(mu, nu) = inf over couplings of E[|X - Y|^p]^(1/p); the cost of optimally moving one distribution to another. Provides a meaningful metric on distributions even when they have disjoint supports.
 
+## 📖 Symbols you'll see in this lesson
+
+_(Auto-filtered subset of the [foundations glossary](../../NOTATION.md). 22 symbols.)_
+
+| Symbol | Read aloud as | Plain-English meaning |
+|--------|---------------|------------------------|
+| $\in$ | "is an element of / in" | Set membership. x ∈ S means x is an element of the set S. |
+| $\times$ | "Cartesian product" | A × B is the set of ordered pairs (a, b) with a ∈ A, b ∈ B. |
+| $\mapsto$ | "maps to" | Specifies the action of a function on an element. x ↦ f(x). |
+| $\mathbb{R}$ | "the reals" | The complete ordered field of real numbers. |
+| $\mathbb{R}^n$ | "R to the n" | n-dimensional real coordinate space; vectors of n real numbers. |
+| $\dim V$ | "dimension of V" | Cardinality of any basis of the vector space V. |
+| $\det A$ | "determinant of A" | Signed n-dimensional volume scaling factor of a square matrix; zero iff non-invertible. |
+| $\mathrm{tr}(A)$ | "trace of A" | Sum of diagonal entries of a square matrix; equals the sum of eigenvalues. |
+| $\otimes$ | "tensor product" | Tensor product of vector spaces or vectors; bilinear factorisation of multilinear maps. |
+| $\sup S$ | "supremum of S" | Least upper bound of S; the smallest number ≥ every element of S. |
+| $\inf S$ | "infimum of S" | Greatest lower bound of S; the largest number ≤ every element of S. |
+| $\min S$ | "min of S" | Smallest element of S, when it exists. |
+| $\to$ | "tends to / approaches" | Convergence of a sequence or value: a_n → L means a_n approaches L. |
+| $\varepsilon$ | "epsilon" | Small positive tolerance used in the ε-δ / ε-N definitions of limit and continuity. |
+| $\delta$ | "delta" | Tolerance on inputs paired with ε in the ε-δ definition of continuity. |
+| $\infty$ | "infinity" | An idealised unbounded quantity used in limits, sums, and integrals. |
+| $\int$ | "integral" | Riemann (or Lebesgue) integral; signed area / total accumulation. |
+| $\sum$ | "sum / sigma" | Indexed summation operator. |
+| $\sim$ | "is distributed as" | X ~ D means X has distribution D. |
+| W_p(\mu, \nu) | "p-Wasserstein distance between mu and nu" | Optimal-transport distance: inf over couplings (X,Y) of (𝔼[d(X,Y)^p])^{1/p}. |
+| $\leq$ | "less than or equal to" | Non-strict inequality. |
+| $\geq$ | "greater than or equal to" | Non-strict inequality. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

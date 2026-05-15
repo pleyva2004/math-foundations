@@ -8,6 +8,26 @@
 ## Plain-English intro
 The expected value of a random variable given the value of another (or given a sub-sigma-algebra); the foundation of regression and martingale theory.
 
+## 📖 Symbols you'll see in this lesson
+
+_(Auto-filtered subset of the [foundations glossary](../../NOTATION.md). 13 symbols.)_
+
+| Symbol | Read aloud as | Plain-English meaning |
+|--------|---------------|------------------------|
+| $\in$ | "is an element of / in" | Set membership. x ∈ S means x is an element of the set S. |
+| $\subset$ | "is a (proper) subset of" | A ⊂ B means every element of A is in B (often used for proper subsets). |
+| $\subseteq$ | "is a subset of (or equal)" | A ⊆ B means every element of A is in B; equality allowed. |
+| $\emptyset$ | "empty set" | The unique set with no elements. |
+| $\mapsto$ | "maps to" | Specifies the action of a function on an element. x ↦ f(x). |
+| $\mathbb{R}$ | "the reals" | The complete ordered field of real numbers. |
+| $\mathrm{tr}(A)$ | "trace of A" | Sum of diagonal entries of a square matrix; equals the sum of eigenvalues. |
+| $\min S$ | "min of S" | Smallest element of S, when it exists. |
+| $\int$ | "integral" | Riemann (or Lebesgue) integral; signed area / total accumulation. |
+| $\mathcal{F}$ | "script F / sigma-algebra" | A σ-algebra: collection of measurable subsets closed under complement and countable union. |
+| $\Omega$ | "Omega / sample space" | Sample space: set of all possible outcomes of an experiment. |
+| $\log$ | "log" | Logarithm; in information theory typically natural (ln) or base 2 depending on units. |
+| := | "is defined as" | Introduces a definition: the LHS is defined to equal the RHS. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

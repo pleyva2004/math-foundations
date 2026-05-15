@@ -8,6 +8,36 @@
 ## Plain-English intro
 Differential equations driven by Brownian motion; the continuous-time analogue of random walks.
 
+## 📖 Symbols you'll see in this lesson
+
+_(Auto-filtered subset of the [foundations glossary](../../NOTATION.md). 23 symbols.)_
+
+| Symbol | Read aloud as | Plain-English meaning |
+|--------|---------------|------------------------|
+| $\in$ | "is an element of / in" | Set membership. x ∈ S means x is an element of the set S. |
+| $\times$ | "Cartesian product" | A × B is the set of ordered pairs (a, b) with a ∈ A, b ∈ B. |
+| $\mathbb{N}$ | "the natural numbers" | Non-negative integers (0, 1, 2, …) or positive integers, depending on convention. |
+| $\mathbb{R}$ | "the reals" | The complete ordered field of real numbers. |
+| $\dim V$ | "dimension of V" | Cardinality of any basis of the vector space V. |
+| $\det A$ | "determinant of A" | Signed n-dimensional volume scaling factor of a square matrix; zero iff non-invertible. |
+| $\mathrm{tr}(A)$ | "trace of A" | Sum of diagonal entries of a square matrix; equals the sum of eigenvalues. |
+| $\sup S$ | "supremum of S" | Least upper bound of S; the smallest number ≥ every element of S. |
+| $\inf S$ | "infimum of S" | Greatest lower bound of S; the largest number ≤ every element of S. |
+| $\min S$ | "min of S" | Smallest element of S, when it exists. |
+| $\to$ | "tends to / approaches" | Convergence of a sequence or value: a_n → L means a_n approaches L. |
+| $\infty$ | "infinity" | An idealised unbounded quantity used in limits, sums, and integrals. |
+| $\int$ | "integral" | Riemann (or Lebesgue) integral; signed area / total accumulation. |
+| $\mathrm{Var}(X)$ | "variance of X" | 𝔼[(X − 𝔼[X])²]; spread of X around its mean. |
+| $\sim$ | "is distributed as" | X ~ D means X has distribution D. |
+| $\text{i.i.d.}$ | "independent and identically distributed" | Random variables that are mutually independent and share the same distribution. |
+| $\mathcal{F}$ | "script F / sigma-algebra" | A σ-algebra: collection of measurable subsets closed under complement and countable union. |
+| $\Omega$ | "Omega / sample space" | Sample space: set of all possible outcomes of an experiment. |
+| W_t | "Brownian motion at time t" | Standard Wiener process: continuous, W_0 = 0, independent Gaussian increments. |
+| dW_t | "differential of Brownian motion" | Infinitesimal Brownian increment; the driving noise of an SDE. |
+| dX_t | "differential of X at t" | Infinitesimal change in a stochastic process; the LHS of an SDE in differential form. |
+| $\mathcal{F}_t$ | "filtration at time t" | Increasing family of σ-algebras encoding information available up to time t. |
+| := | "is defined as" | Introduces a definition: the LHS is defined to equal the RHS. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

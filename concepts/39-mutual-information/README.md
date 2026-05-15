@@ -8,6 +8,30 @@
 ## Plain-English intro
 I(X; Y) = D_KL(p(x,y) || p(x) p(y)); the reduction in uncertainty about X from observing Y.
 
+## 📖 Symbols you'll see in this lesson
+
+_(Auto-filtered subset of the [foundations glossary](../../NOTATION.md). 17 symbols.)_
+
+| Symbol | Read aloud as | Plain-English meaning |
+|--------|---------------|------------------------|
+| $\in$ | "is an element of / in" | Set membership. x ∈ S means x is an element of the set S. |
+| $\times$ | "Cartesian product" | A × B is the set of ordered pairs (a, b) with a ∈ A, b ∈ B. |
+| $\det A$ | "determinant of A" | Signed n-dimensional volume scaling factor of a square matrix; zero iff non-invertible. |
+| $\mathrm{tr}(A)$ | "trace of A" | Sum of diagonal entries of a square matrix; equals the sum of eigenvalues. |
+| $\inf S$ | "infimum of S" | Greatest lower bound of S; the largest number ≤ every element of S. |
+| $\min S$ | "min of S" | Smallest element of S, when it exists. |
+| $\varepsilon$ | "epsilon" | Small positive tolerance used in the ε-δ / ε-N definitions of limit and continuity. |
+| $\sum$ | "sum / sigma" | Indexed summation operator. |
+| $\sim$ | "is distributed as" | X ~ D means X has distribution D. |
+| p_X(x) | "density of X at x" | Probability density function: P(X ∈ A) = ∫_A p_X(x) dx. |
+| p(x) | "probability mass function" | p(x) = P(X = x) for a discrete random variable X. |
+| H(X) | "entropy of X" | Shannon entropy: H(X) = -𝔼[log p(X)]; average uncertainty / information. |
+| H(X \mid Y) | "conditional entropy of X given Y" | Average uncertainty in X after observing Y. |
+| I(X; Y) | "mutual information of X and Y" | Reduction in uncertainty about X from observing Y; symmetric in X, Y. |
+| $\log$ | "log" | Logarithm; in information theory typically natural (ln) or base 2 depending on units. |
+| $\log_2$ | "log base 2" | Logarithm base 2; gives entropy in bits. |
+| := | "is defined as" | Introduces a definition: the LHS is defined to equal the RHS. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

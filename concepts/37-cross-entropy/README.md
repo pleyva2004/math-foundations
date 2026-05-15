@@ -8,6 +8,29 @@
 ## Plain-English intro
 H(p, q) = -E_p[log q]; the average code-length when using distribution q to encode samples drawn from p.
 
+## 📖 Symbols you'll see in this lesson
+
+_(Auto-filtered subset of the [foundations glossary](../../NOTATION.md). 16 symbols.)_
+
+| Symbol | Read aloud as | Plain-English meaning |
+|--------|---------------|------------------------|
+| $\in$ | "is an element of / in" | Set membership. x ∈ S means x is an element of the set S. |
+| $\mathbb{R}$ | "the reals" | The complete ordered field of real numbers. |
+| $\mathrm{tr}(A)$ | "trace of A" | Sum of diagonal entries of a square matrix; equals the sum of eigenvalues. |
+| $\sup S$ | "supremum of S" | Least upper bound of S; the smallest number ≥ every element of S. |
+| $\inf S$ | "infimum of S" | Greatest lower bound of S; the largest number ≤ every element of S. |
+| $\min S$ | "min of S" | Smallest element of S, when it exists. |
+| $\infty$ | "infinity" | An idealised unbounded quantity used in limits, sums, and integrals. |
+| $\int$ | "integral" | Riemann (or Lebesgue) integral; signed area / total accumulation. |
+| $\sum$ | "sum / sigma" | Indexed summation operator. |
+| $\sim$ | "is distributed as" | X ~ D means X has distribution D. |
+| p(x) | "probability mass function" | p(x) = P(X = x) for a discrete random variable X. |
+| H(p, q) | "cross-entropy of p and q" | −𝔼_p[log q]; average code length using q on samples from p. |
+| $\log$ | "log" | Logarithm; in information theory typically natural (ln) or base 2 depending on units. |
+| $\ln$ | "natural log" | Logarithm base e. |
+| $\log_2$ | "log base 2" | Logarithm base 2; gives entropy in bits. |
+| $\approx$ | "is approximately equal to" | Approximate equality; used informally and in numerical statements. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

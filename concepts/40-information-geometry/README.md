@@ -8,6 +8,31 @@
 ## Plain-English intro
 Treats probability distributions as points on a Riemannian manifold; the Fisher information matrix as the natural metric tensor.
 
+## 📖 Symbols you'll see in this lesson
+
+_(Auto-filtered subset of the [foundations glossary](../../NOTATION.md). 18 symbols.)_
+
+| Symbol | Read aloud as | Plain-English meaning |
+|--------|---------------|------------------------|
+| $\in$ | "is an element of / in" | Set membership. x ∈ S means x is an element of the set S. |
+| $\subset$ | "is a (proper) subset of" | A ⊂ B means every element of A is in B (often used for proper subsets). |
+| $\subseteq$ | "is a subset of (or equal)" | A ⊆ B means every element of A is in B; equality allowed. |
+| $\times$ | "Cartesian product" | A × B is the set of ordered pairs (a, b) with a ∈ A, b ∈ B. |
+| $\mapsto$ | "maps to" | Specifies the action of a function on an element. x ↦ f(x). |
+| $\mathbb{R}$ | "the reals" | The complete ordered field of real numbers. |
+| $\det A$ | "determinant of A" | Signed n-dimensional volume scaling factor of a square matrix; zero iff non-invertible. |
+| $\mathrm{tr}(A)$ | "trace of A" | Sum of diagonal entries of a square matrix; equals the sum of eigenvalues. |
+| $\langle u, v \rangle$ | "inner product of u and v" | A bilinear (or sesquilinear) form encoding angle and length; e.g. the dot product on ℝⁿ. |
+| $\inf S$ | "infimum of S" | Greatest lower bound of S; the largest number ≤ every element of S. |
+| $\to$ | "tends to / approaches" | Convergence of a sequence or value: a_n → L means a_n approaches L. |
+| $\nabla$ | "nabla / gradient" | Gradient operator: ∇f is the vector of partial derivatives of f. |
+| $\int$ | "integral" | Riemann (or Lebesgue) integral; signed area / total accumulation. |
+| $\sim$ | "is distributed as" | X ~ D means X has distribution D. |
+| $\log$ | "log" | Logarithm; in information theory typically natural (ln) or base 2 depending on units. |
+| $\nabla L$ | "gradient of L" | Gradient of a loss / objective function; direction of steepest ascent. |
+| F(\theta) | "Fisher information at theta" | Riemannian metric on a parametric statistical model; F(θ)_{ij} = 𝔼[(∂_i log p)(∂_j log p)]. |
+| := | "is defined as" | Introduces a definition: the LHS is defined to equal the RHS. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}
