@@ -24,6 +24,15 @@ The aim of this lesson is to give precise definitions, prove one nontrivial theo
 Comment: the lesson is intentionally short on prose and heavy on definitions and one fully proved theorem.
 \fi
 
+\subsection*{First, an example}
+
+Before the formal machinery, here is a concrete instance to anchor intuition. Take the three-element set $A = \{1, 2, 3\}$. Its \emph{power set} --- the set of all subsets --- is
+\[
+\mathcal{P}(\{1, 2, 3\}) = \bigl\{\, \emptyset,\ \{1\},\ \{2\},\ \{3\},\ \{1,2\},\ \{1,3\},\ \{2,3\},\ \{1,2,3\} \,\bigr\},
+\]
+\emph{Read aloud:} ``The power set of the set containing 1, 2, 3 equals the collection of: the empty set, each singleton, each pair, and the whole set --- eight subsets in all.''
+which has exactly $2^3 = 8$ elements. Now exhibit a concrete \emph{bijection} between $\mathcal{P}(\{1,2,3\})$ and the set $\{0,1\}^3$ of binary strings of length $3$: send each subset $S$ to the string whose $i$-th bit is $1$ iff $i \in S$. For example, $\{1,3\} \leftrightarrow 101$ and $\emptyset \leftrightarrow 000$. Every subset gets a unique binary string, and every binary string comes from a unique subset. This single picture --- subsets as bit-strings --- is the seed of the formal definitions of \emph{set}, \emph{power set}, \emph{function}, and \emph{bijection} that follow.
+
 \section*{Definitions}
 
 \begin{definition}[Set, element, subset]
@@ -31,6 +40,7 @@ A \emph{set} $A$ is a collection of distinct objects, called its \emph{elements}
 \[
 A \subseteq B \iff \forall x \, (x \in A \implies x \in B).
 \]
+\emph{Read aloud:} ``A is a subset of B if and only if, for every x, if x is in A then x is in B.''
 Two sets are equal iff $A \subseteq B$ and $B \subseteq A$.
 \end{definition}
 
@@ -39,6 +49,7 @@ The \emph{power set} of $A$, denoted $\mathcal{P}(A)$, is the set of all subsets
 \[
 \mathcal{P}(A) = \{ S : S \subseteq A \}.
 \]
+\emph{Read aloud:} ``The power set of A equals the set of all S such that S is a subset of A.''
 \end{definition}
 
 \begin{definition}[Cartesian product]
@@ -46,6 +57,7 @@ The \emph{Cartesian product} of sets $A$ and $B$ is
 \[
 A \times B = \{ (a, b) : a \in A, \, b \in B \},
 \]
+\emph{Read aloud:} ``A cross B equals the set of ordered pairs (a, b) such that a is in A and b is in B.''
 where $(a, b)$ denotes the ordered pair; formally $(a, b) = \{\{a\}, \{a, b\}\}$ (Kuratowski's definition).
 \end{definition}
 
@@ -54,6 +66,7 @@ A \emph{function} from $A$ to $B$, written $f : A \to B$, is a subset $f \subset
 \[
 f(A) = \{ f(a) : a \in A \} \subseteq B
 \]
+\emph{Read aloud:} ``f of A equals the set of all f of a, for a in A, and this set is a subset of B.''
 the \emph{image} of $f$.
 \end{definition}
 
@@ -100,6 +113,7 @@ Define
 \[
 D = \{ a \in A : a \notin f(a) \}.
 \]
+\emph{Read aloud:} ``D equals the set of all a in A such that a is not an element of f of a.''
 Note that $D \subseteq A$, so $D \in \mathcal{P}(A)$. We claim $D$ is not in the image of $f$. Suppose for contradiction that $D = f(a_0)$ for some $a_0 \in A$. Consider whether $a_0 \in D$.
 
 \smallskip

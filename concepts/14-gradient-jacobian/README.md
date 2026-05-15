@@ -8,6 +8,26 @@
 ## Plain-English intro
 The gradient as the vector of partial derivatives; the Jacobian as the matrix of partial derivatives of a vector-valued function.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read as |
+| --- | --- | --- |
+| ∈ | `\in` | is an element of / in |
+| ⊆ | `\subseteq` | is a subset of (or equal) |
+| × | `\times` | Cartesian product |
+| ∘ | `\circ` | composed with |
+| ℝ | `\mathbb{R}` | the reals |
+| ℝⁿ | `\mathbb{R}^n` | R to the n |
+| det | `\det` | determinant |
+| ⟨·,·⟩ | `\langle u, v \rangle` | inner product of u and v |
+| ‖·‖ | `\|x\|` | norm of x |
+| Aᵀ | `A^{\top}` | A transpose |
+| lim | `\lim` | limit |
+| → | `\to` | tends to / approaches |
+| ∂/∂x | `\frac{\partial}{\partial x}` | partial derivative with respect to x |
+| ∇ | `\nabla` | nabla / gradient |
+| ≠ | `\neq` | is not equal to |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

@@ -8,6 +8,23 @@
 ## Plain-English intro
 P(A and B) = P(A) P(B); events that do not influence each other.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read aloud |
+|---|---|---|
+| Ω | `\Omega` | Omega / sample space |
+| ℱ | `\mathcal{F}` | script F / sigma-algebra |
+| ∈ | `\in` | is an element of / in |
+| ⊂ | `\subset` | is a (proper) subset of |
+| ⊆ | `\subseteq` | is a subset of (or equal) |
+| ∩ | `\cap` | intersection |
+| ⋂ | `\bigcap` | intersection over |
+| Aᶜ | `A^c` | complement of A |
+| ∏ | `\prod` | product |
+| P(·) | `P(A)` | probability of A |
+| P(A \| B) | `P(A \mid B)` | probability of A given B |
+| ≠ | `\neq` | is not equal to |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

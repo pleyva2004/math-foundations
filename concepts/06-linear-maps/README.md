@@ -8,6 +8,27 @@
 ## Plain-English intro
 Structure-preserving functions between vector spaces; the matrix representation.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read aloud | Meaning |
+|---|---|---|---|
+| ∈ | `\in` | "is an element of" / "in" | Membership: `x ∈ S` means x belongs to set S. |
+| ⊂ | `\subset` | "is a (proper) subset of" | Proper subset relation. |
+| ⊆ | `\subseteq` | "is a subset of (or equal)" | Subset, possibly equal. |
+| × | `\times` | "Cartesian product" | Set product or scalar product symbol. |
+| ↦ | `\mapsto` | "maps to" | Defines where a function sends an element. |
+| ∘ | `\circ` | "composed with" | Function composition: `(T ∘ S)(x) = T(S(x))`. |
+| ℝ | `\mathbb{R}` | "the reals" | The field of real numbers. |
+| ℂ | `\mathbb{C}` | "the complex numbers" | The field of complex numbers. |
+| 𝔽 | `\mathbb{F}` | "a field" | A generic field (e.g. ℝ or ℂ). |
+| dim | `\dim V` | "dimension of V" | Number of vectors in a basis of V. |
+| ker | `\ker T` | "kernel of T" | Set of inputs sent to zero by T. |
+| → | `\to` | "tends to / approaches" | Used in `T : V → W` to denote a function from V to W. |
+| δ | `\delta` | "delta" | A scalar coefficient (small change / index symbol). |
+| ∑ | `\sum` | "sum / sigma" | Summation over an index. |
+| ℒ | `\mathcal{L}` | "script L" | Here: the space `ℒ(V, W)` of linear maps from V to W. |
+| := | `:=` | "is defined as" | Definitional equality (left side defined to equal right). |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

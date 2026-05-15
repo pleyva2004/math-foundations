@@ -24,29 +24,43 @@
 A \emph{binary relation} on a set $A$ is a subset $R \subseteq A \times A$.
 We write $a \mathrel{R} b$ as shorthand for $(a,b) \in R$.
 
+\subsection*{First, an example}
+Before any abstract axioms, look at congruence mod $3$ on $A = \{0,1,2,3,4,5,6,7,8\}$. Declare $x \equiv y \pmod 3$ when $3 \mid (x-y)$. The equivalence classes are exactly the three residue buckets:
+\begin{itemize}[leftmargin=2em]
+  \item $[0] = \{0, 3, 6\}$
+  \item $[1] = \{1, 4, 7\}$
+  \item $[2] = \{2, 5, 8\}$
+\end{itemize}
+Notice three features: every element of $A$ lands in exactly one bucket (covering + disjoint $\Rightarrow$ a \emph{partition}); the buckets are determined by the relation, not chosen by hand; and the relation $\equiv \pmod 3$ is reflexive ($x - x = 0$), symmetric ($3 \mid (x-y) \Leftrightarrow 3 \mid (y-x)$), and transitive. The abstract definitions below distil exactly these three properties.
+
 \begin{definition}[Reflexivity]
 A relation $R$ on $A$ is \emph{reflexive} if
 \[ \forall a \in A,\quad a \mathrel{R} a. \]
+\emph{Read aloud:} ``for all $a$ in $A$, $a$ is related to $a$.''
 \end{definition}
 
 \begin{definition}[Symmetry]
 A relation $R$ on $A$ is \emph{symmetric} if
 \[ \forall a, b \in A,\quad a \mathrel{R} b \implies b \mathrel{R} a. \]
+\emph{Read aloud:} ``for all $a$ and $b$ in $A$, if $a$ is related to $b$ then $b$ is related to $a$.''
 \end{definition}
 
 \begin{definition}[Transitivity]
 A relation $R$ on $A$ is \emph{transitive} if
 \[ \forall a, b, c \in A,\quad (a \mathrel{R} b \wedge b \mathrel{R} c) \implies a \mathrel{R} c. \]
+\emph{Read aloud:} ``for all $a$, $b$, $c$ in $A$, if $a$ is related to $b$ and $b$ is related to $c$, then $a$ is related to $c$.''
 \end{definition}
 
 \begin{definition}[Antisymmetry]
 A relation $R$ on $A$ is \emph{antisymmetric} if
 \[ \forall a, b \in A,\quad (a \mathrel{R} b \wedge b \mathrel{R} a) \implies a = b. \]
+\emph{Read aloud:} ``for all $a$ and $b$ in $A$, if $a$ is related to $b$ and $b$ is related to $a$, then $a$ equals $b$.''
 \end{definition}
 
 \begin{definition}[Equivalence relation]
 A relation $\sim$ on $A$ is an \emph{equivalence relation} if it is reflexive, symmetric, and transitive. For each $a \in A$ the \emph{equivalence class} of $a$ is
 \[ [a] \;=\; \{ x \in A : a \sim x \}, \]
+\emph{Read aloud:} ``the class of $a$ equals the set of all $x$ in $A$ such that $a$ is equivalent to $x$.''
 and the \emph{quotient set} is $A/{\sim} = \{ [a] : a \in A \}$.
 \end{definition}
 
@@ -83,6 +97,7 @@ Let $A$ be a set. There is a bijection between the set of equivalence relations 
 \qquad
 \Psi(\mathcal{P}) \;=\; \{ (a, b) \in A \times A : \exists B \in \mathcal{P},\ a, b \in B \}.
 \]
+\emph{Read aloud:} ``Phi of $\sim$ is the set of equivalence classes $[a]$ for $a$ in $A$; Psi of $\mathcal{P}$ is the set of pairs $(a,b)$ in $A \times A$ such that there exists a block $B$ in $\mathcal{P}$ containing both $a$ and $b$.''
 \end{theorem}
 
 \begin{proof}
@@ -108,6 +123,7 @@ a \,\Psi(\mathcal{P})\, b
 \iff c \sim a \wedge c \sim b
 \iff a \sim b,
 \]
+\emph{Read aloud:} ``$a$ is $\Psi(\mathcal{P})$-related to $b$ iff there exists a class $[c]$ in $\mathcal{P}$ containing both $a$ and $b$, iff $c$ is equivalent to $a$ and $c$ is equivalent to $b$, iff $a$ is equivalent to $b$.''
 using symmetry and transitivity for the last equivalence. So $\Psi(\Phi(\sim)) = \sim$.
 
 The two maps are mutually inverse, hence bijective.

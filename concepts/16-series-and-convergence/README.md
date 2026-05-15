@@ -8,6 +8,24 @@
 ## Plain-English intro
 Convergence of infinite sums; absolute vs conditional; power series and Taylor expansions.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read aloud as | Meaning |
+|---|---|---|---|
+| $\in$ | `\in` | "is an element of / in" | Membership in a set |
+| $\mathbb{N}$ | `\mathbb{N}` | "the natural numbers" | $\{0, 1, 2, \dots\}$ (or $\{1, 2, \dots\}$) |
+| $\mathbb{R}$ | `\mathbb{R}` | "the reals" | The real number line |
+| $\mathbb{C}$ | `\mathbb{C}` | "the complex numbers" | Numbers $a + bi$ |
+| $\lim_{n\to\infty} a_n$ | `\lim_{n\to\infty} a_n` | "limit as n goes to infinity" | Long-run value of a sequence |
+| $\to$ | `\to` | "tends to / approaches" | Convergence arrow |
+| $\infty$ | `\infty` | "infinity" | Unbounded growth |
+| $\lvert x \rvert$ | `|x|` | "absolute value of x" | Distance from zero |
+| $\sum$ | `\sum` | "sum / sigma" | Summation operator |
+| $\sum_{n=1}^{\infty} a_n$ | `\sum_{n=1}^{\infty} a_n` | "the series sum a-n from n equals one to infinity" | Infinite series |
+| $\limsup_{n\to\infty} a_n$ | `\limsup_{n\to\infty} a_n` | "limit superior of a-n" | Largest accumulation value |
+| Cauchy | `\text{Cauchy}` | "Cauchy sequence" | Terms get arbitrarily close to each other |
+| $\ln$ | `\ln` | "natural log" | Logarithm base $e$ |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

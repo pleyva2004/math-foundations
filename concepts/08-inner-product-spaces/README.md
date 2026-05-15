@@ -8,6 +8,22 @@
 ## Plain-English intro
 Vector spaces equipped with a notion of angle and length via an inner product.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read as | Meaning |
+|---|---|---|---|
+| ⟨·,·⟩ | `\langle u, v \rangle` | inner product of u and v | A bilinear (or sesquilinear) form encoding angle and length; e.g. the dot product on ℝⁿ. |
+| ‖·‖ | `\|x\|` | norm of x | Length of a vector; satisfies positive-definiteness, scaling, and triangle inequality. |
+| ℝ | `\mathbb{R}` | the reals | The complete ordered field of real numbers. |
+| ℂ | `\mathbb{C}` | the complex numbers | Numbers a + bi with a, b ∈ ℝ and i² = -1. |
+| 𝔽 | `\mathbb{F}` | a field | An arbitrary field (typically ℝ or ℂ); used as the scalar field of a vector space. |
+| × | `\times` | Cartesian product | A × B is the set of ordered pairs (a, b) with a ∈ A, b ∈ B. |
+| ∈ | `\in` | is an element of / in | Set membership. x ∈ S means x is an element of the set S. |
+| → | `\to` | tends to / approaches | Convergence of a sequence or value: a_n → L means a_n approaches L. |
+| ∑ | `\sum` | sum / sigma | Indexed summation operator. |
+| ∫ | `\int` | integral | Riemann (or Lebesgue) integral; signed area / total accumulation. |
+| ≠ | `\neq` | is not equal to | Negated equality. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

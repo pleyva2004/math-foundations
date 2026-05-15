@@ -29,6 +29,33 @@ guarantee in a machine-learning paper --- ultimately reduces to such a chain.
 The goal of this lesson is to make the vocabulary precise and to drill the four
 basic proof strategies.
 
+\subsection*{First, an example}
+
+Before any formal apparatus, look at one truth table and one short proof.
+
+\emph{Truth table for $p \Rightarrow q$.} The implication ``if $p$ then $q$''
+is false only in the single case where the hypothesis $p$ is true and the
+conclusion $q$ is false:
+\begin{center}
+\begin{tabular}{cc|c}
+$p$ & $q$ & $p \Rightarrow q$ \\ \hline
+T & T & T \\
+T & F & F \\
+F & T & T \\
+F & F & T \\
+\end{tabular}
+\end{center}
+
+\emph{Three-step direct proof: the sum of two even integers is even.}
+\begin{enumerate}
+  \item Let $m = 2a$ and $n = 2b$ for some integers $a, b$ (definition of even).
+  \item Then $m + n = 2a + 2b = 2(a+b)$ (factor).
+  \item Since $a+b$ is an integer, $m+n$ is twice an integer, hence even.
+\end{enumerate}
+That is the entire skeleton of a direct proof: unfold the hypothesis, do
+algebra, recognise the conclusion. The rest of this lesson formalises the
+vocabulary and adds three more strategies.
+
 \section*{Definitions}
 
 \begin{definition}[Proposition]
@@ -45,6 +72,10 @@ p \lor q &: \text{``}p \text{ or } q\text{''}, \quad \text{true iff at least one
 p \Rightarrow q &: \text{``if } p \text{ then } q\text{''}, \quad \text{false iff } p \text{ true and } q \text{ false}; \\
 p \Leftrightarrow q &: \text{``}p \text{ iff } q\text{''}, \quad \text{true iff } p \text{ and } q \text{ have the same value}.
 \end{align*}
+\emph{Read aloud:} ``not $p$'' is true exactly when $p$ is false; ``$p$ and $q$''
+needs both true; ``$p$ or $q$'' needs at least one true; ``$p$ implies $q$''
+fails only when $p$ is true and $q$ is false; ``$p$ iff $q$'' holds when
+$p$ and $q$ share the same truth value.
 \end{definition}
 
 \begin{definition}[Tautology]
@@ -124,6 +155,8 @@ For every $n \geq 1$,
 \[
 \sum_{k=1}^{n} k \;=\; \frac{n(n+1)}{2}.
 \]
+\emph{Read aloud:} ``the sum, as $k$ runs from $1$ to $n$, of $k$, equals
+$n$ times $n$ plus one, all over two.''
 \end{theorem}
 \begin{proof}
 We argue by induction on $n$, applying Theorem~\ref{thm:induction}.
@@ -135,6 +168,8 @@ the right-hand side is $1 \cdot 2 / 2 = 1$. Both equal $1$.
 \[
 \sum_{k=1}^{m} k = \frac{m(m+1)}{2}. \tag{IH}
 \]
+\emph{Read aloud:} ``the sum, as $k$ runs from $1$ to $m$, of $k$, equals
+$m$ times $m$ plus one, over two --- this is the inductive hypothesis.''
 We must show the statement for $n = m+1$. Compute
 \begin{align*}
 \sum_{k=1}^{m+1} k
@@ -144,6 +179,9 @@ We must show the statement for $n = m+1$. Compute
   &= (m+1) \cdot \frac{m+2}{2} \\
   &= \frac{(m+1)\big((m+1)+1\big)}{2},
 \end{align*}
+\emph{Read aloud:} ``the sum from $k=1$ to $m+1$ equals the sum from $k=1$ to
+$m$ plus the new term $(m+1)$; substitute the inductive hypothesis; factor out
+$(m+1)$; simplify; recognise the closed form at $n = m+1$.''
 which is the claim for $n = m+1$.
 
 By Theorem~\ref{thm:induction}, the identity holds for every $n \geq 1$.

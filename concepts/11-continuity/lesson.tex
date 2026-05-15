@@ -15,6 +15,20 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+
+Before the abstract definition, here is the smallest non-trivial calculation:
+$f(x) = 2x + 1$ is continuous at $x = 3$.
+
+\noindent Note that $f(3) = 7$. Fix $\epsilon > 0$ and choose $\delta = \epsilon / 2$.
+Then whenever $|x - 3| < \delta$,
+\[
+  |f(x) - 7| = |(2x + 1) - 7| = |2x - 6| = 2\,|x - 3| < 2\delta = \epsilon.
+\]
+\emph{Read aloud:} the absolute value of $f(x)$ minus seven equals the absolute value of two $x$ minus six, which equals two times the absolute value of $x$ minus three, which is less than two delta, which equals epsilon.
+
+So $|x - 3| < \delta \Rightarrow |f(x) - 7| < \epsilon$, and $f$ is continuous at $3$. The rest of this lesson generalises this template.
+
 \section{Definitions}
 
 Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces. We routinely specialise
@@ -26,6 +40,8 @@ $\epsilon > 0$ there exists $\delta > 0$ such that
 \[
   d_X(x, c) < \delta \implies d_Y(f(x), f(c)) < \epsilon.
 \]
+\emph{Read aloud:} whenever the distance from $x$ to $c$ is less than delta, the distance from $f(x)$ to $f(c)$ is less than epsilon.
+
 $f$ is \emph{continuous on $X$} if it is continuous at every point.
 \end{definition}
 
@@ -35,6 +51,8 @@ exists $\delta > 0$ such that for all $x, y \in X$,
 \[
   d_X(x, y) < \delta \implies d_Y(f(x), f(y)) < \epsilon.
 \]
+\emph{Read aloud:} for every pair $x, y$, whenever their distance is less than delta, the distance between $f(x)$ and $f(y)$ is less than epsilon.
+
 The single $\delta$ must serve every pair of points; the quantifier order
 distinguishes this from pointwise continuity.
 \end{definition}
@@ -44,12 +62,15 @@ $f$ is \emph{Lipschitz with constant $L \geq 0$} if
 \[
   d_Y(f(x), f(y)) \leq L\, d_X(x, y) \quad \text{for all } x, y \in X.
 \]
+\emph{Read aloud:} the distance from $f(x)$ to $f(y)$ is at most $L$ times the distance from $x$ to $y$, for all $x$ and $y$ in $X$.
 \end{definition}
 
 The trivial chain of implications holds:
 \[
   \text{Lipschitz} \implies \text{uniformly continuous} \implies \text{continuous}.
 \]
+\emph{Read aloud:} Lipschitz implies uniformly continuous, which implies continuous.
+
 None of the converses hold: $\sqrt{x}$ on $[0,1]$ is uniformly continuous but
 not Lipschitz; $x^2$ on $\mathbb{R}$ is continuous but not uniformly continuous.
 
@@ -72,6 +93,8 @@ such that
 \[
   d_X(x, c) < \delta \implies d_Y(f(x), f(c)) < \epsilon. \tag{$\star$}
 \]
+\emph{Read aloud:} whenever the distance from $x$ to $c$ is less than delta, the distance from $f(x)$ to $f(c)$ is less than epsilon; call this implication star.
+
 Since $x_n \to c$, there exists $N \in \mathbb{N}$ with $d_X(x_n, c) < \delta$
 for all $n \geq N$. For such $n$, ($\star$) gives
 $d_Y(f(x_n), f(c)) < \epsilon$. Hence $f(x_n) \to f(c)$, establishing (B).
@@ -87,6 +110,8 @@ Specialise to $\delta = 1/n$ for each $n \in \mathbb{N}$: pick $x_n \in X$ with
 \[
   d_X(x_n, c) < \tfrac{1}{n} \quad \text{and} \quad d_Y(f(x_n), f(c)) \geq \epsilon_0.
 \]
+\emph{Read aloud:} the distance from $x_n$ to $c$ is less than one over $n$, and the distance from $f(x_n)$ to $f(c)$ is at least epsilon-naught.
+
 The first inequality forces $x_n \to c$. The second forces
 $f(x_n) \not\to f(c)$ (otherwise the distances would eventually be smaller
 than $\epsilon_0$). This violates (B), establishing the contrapositive and
@@ -123,6 +148,8 @@ Fix $\epsilon > 0$. For $|x - 2| < 1$ we have $|x + 2| < 5$, so
 \[
   |x^2 - 4| = |x - 2|\,|x + 2| < 5\,|x - 2|.
 \]
+\emph{Read aloud:} the absolute value of $x$-squared minus four equals the absolute value of $x$ minus two times the absolute value of $x$ plus two, which is less than five times the absolute value of $x$ minus two.
+
 Choose $\delta = \min(1, \epsilon/5)$. Then
 $|x - 2| < \delta \Rightarrow |x^2 - 4| < \epsilon$, verifying
 Definition~\ref{def:cont}.

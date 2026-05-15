@@ -8,6 +8,28 @@
 ## Plain-English intro
 A function from a sigma-algebra to [0,1] satisfying countable additivity and P(Omega) = 1.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | Read aloud | Meaning |
+|---|---|---|
+| $\Omega$ | "Omega" / sample space | Set of all possible outcomes of the experiment. |
+| $\mathcal{F}$ | "script F" / sigma-algebra | Collection of measurable subsets of $\Omega$ closed under complement and countable union. |
+| $P(A)$ | "probability of A" | Probability of event $A$ under measure $P$. |
+| $\in$ | "is an element of" | $\omega \in \Omega$ means $\omega$ is an outcome. |
+| $\subseteq$ | "is a subset of (or equal)" | $A \subseteq B$ means every element of $A$ lies in $B$. |
+| $\cup$ | "union" | $A \cup B$ — outcomes in $A$ or $B$ (or both). |
+| $\bigcup$ | "union over" | Indexed union, e.g. $\bigcup_{n=1}^{\infty} A_n$. |
+| $\cap$ | "intersection" | $A \cap B$ — outcomes in both $A$ and $B$. |
+| $\setminus$ | "set minus" | $A \setminus B$ — elements of $A$ not in $B$. |
+| $A^c$ | "complement of A" | Outcomes in $\Omega$ but not in $A$. |
+| $\emptyset$ | "empty set" | The unique set with no elements; $P(\emptyset) = 0$. |
+| $\sum$ | "sum" / sigma | Indexed summation, e.g. $\sum_{n=1}^{\infty} P(A_n)$. |
+| $\infty$ | "infinity" | Upper limit symbol in countable sums and unions. |
+| $\to$ | "tends to" / "to" | Direction of a function: $P : \mathcal{F} \to [0,1]$. |
+| $\leq$ | "less than or equal to" | Non-strict inequality. |
+| $\geq$ | "greater than or equal to" | Non-strict inequality. |
+| $:=$ | "is defined as" | Introduces a definition. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

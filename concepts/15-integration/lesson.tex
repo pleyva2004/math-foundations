@@ -16,6 +16,19 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+Before the abstract Darboux machinery, here is the punchline on a concrete case.
+Take $f(x) = x^2$ on $[0,1]$. Slice $[0,1]$ into $n=4$ equal subintervals of width
+$\Delta x = 1/4$ and form the right-endpoint Riemann sum
+\[ R_4 = \sum_{i=1}^{4} \left(\tfrac{i}{4}\right)^2 \cdot \tfrac{1}{4}
+       = \tfrac{1}{4}\!\left(\tfrac{1}{16} + \tfrac{4}{16} + \tfrac{9}{16} + \tfrac{16}{16}\right)
+       = \tfrac{30}{64} = 0.46875. \]
+\emph{Read aloud:} R-sub-4 equals the sum from i equals 1 to 4 of i-over-4 squared, times one-quarter; this works out to thirty over sixty-four, about 0.469.
+Refining to $n=100$ gives $\approx 0.3383$; the limit is $\int_0^1 x^2\,dx = \tfrac{1}{3}$,
+which the antiderivative $F(x) = x^3/3$ recovers instantly: $F(1) - F(0) = 1/3$.
+Everything below explains \emph{why} that limit exists and \emph{why} the antiderivative
+shortcut works.
+
 \section{Motivation}
 The Riemann integral assigns to a bounded function $f : [a,b] \to \mathbb{R}$ a single
 number $\int_a^b f$ that represents the signed area between the graph of $f$ and the
@@ -30,6 +43,7 @@ finer.
 A \emph{partition} of $[a,b]$ is a finite ordered set
 $P = \{x_0, x_1, \dots, x_n\}$ with
 \[ a = x_0 < x_1 < \cdots < x_n = b. \]
+\emph{Read aloud:} a equals x-zero, less than x-one, less than dot-dot-dot, less than x-n, equals b.
 Set $\Delta x_i = x_i - x_{i-1}$ and define the \emph{mesh} $\|P\| = \max_i \Delta x_i$.
 A partition $P'$ \emph{refines} $P$ if $P \subseteq P'$.
 \end{definition}
@@ -37,8 +51,10 @@ A partition $P'$ \emph{refines} $P$ if $P \subseteq P'$.
 \begin{definition}[Upper and lower sums]
 Let $f : [a,b] \to \mathbb{R}$ be bounded. For a partition $P$ as above, set
 \[ M_i = \sup_{x \in [x_{i-1}, x_i]} f(x), \qquad m_i = \inf_{x \in [x_{i-1}, x_i]} f(x). \]
+\emph{Read aloud:} big-M-sub-i is the supremum of f of x for x in the i-th subinterval; little-m-sub-i is the infimum on the same subinterval.
 The \emph{upper Darboux sum} and \emph{lower Darboux sum} are
 \[ U(f, P) = \sum_{i=1}^{n} M_i\, \Delta x_i, \qquad L(f, P) = \sum_{i=1}^{n} m_i\, \Delta x_i. \]
+\emph{Read aloud:} U of f comma P equals the sum from i equals 1 to n of big-M-sub-i times delta-x-sub-i; L of f comma P is the analogous sum with little-m-sub-i.
 \end{definition}
 
 \begin{lemma}\label{lem:refine}
@@ -49,6 +65,7 @@ Consequently $L(f, P_1) \le U(f, P_2)$ for any two partitions $P_1, P_2$.
 \begin{definition}[Darboux integrability]
 Define the \emph{upper} and \emph{lower integrals}
 \[ \overline{\int_a^b} f = \inf_P U(f, P), \qquad \underline{\int_a^b} f = \sup_P L(f, P). \]
+\emph{Read aloud:} upper integral from a to b of f equals the infimum over partitions P of U of f, P; lower integral equals the supremum over P of L of f, P.
 We say $f$ is \emph{Riemann (Darboux) integrable} on $[a,b]$ if the two coincide; the
 common value is denoted $\int_a^b f(x)\,dx$.
 \end{definition}
@@ -79,12 +96,14 @@ Every continuous function $f : [a, b] \to \mathbb{R}$ is Riemann integrable.
 Because $[a,b]$ is compact, $f$ is bounded and uniformly continuous (Heine--Cantor).
 Fix $\varepsilon > 0$. By uniform continuity, choose $\delta > 0$ such that
 \[ x, y \in [a,b], \; |x - y| < \delta \implies |f(x) - f(y)| < \frac{\varepsilon}{b - a}. \]
+\emph{Read aloud:} for all x, y in the closed interval a to b, if the absolute value of x minus y is less than delta, then the absolute value of f of x minus f of y is less than epsilon over b minus a.
 Take any partition $P = \{x_0, \dots, x_n\}$ with mesh $\|P\| < \delta$.
 
 On each subinterval $[x_{i-1}, x_i]$, the function $f$ attains its sup $M_i$ and inf
 $m_i$ (continuous on a compact set), say at points $\xi_i, \eta_i \in [x_{i-1}, x_i]$.
 Since $|\xi_i - \eta_i| \le \Delta x_i < \delta$,
 \[ M_i - m_i = f(\xi_i) - f(\eta_i) < \frac{\varepsilon}{b - a}. \]
+\emph{Read aloud:} big-M-sub-i minus little-m-sub-i equals f of xi-sub-i minus f of eta-sub-i, which is less than epsilon over b minus a.
 
 Summing over $i$,
 \[ U(f, P) - L(f, P)
@@ -92,6 +111,7 @@ Summing over $i$,
    < \frac{\varepsilon}{b - a} \sum_{i=1}^{n} \Delta x_i
    = \frac{\varepsilon}{b - a} \cdot (b - a)
    = \varepsilon. \]
+\emph{Read aloud:} U of f, P minus L of f, P equals the sum from i equals 1 to n of M-sub-i minus m-sub-i, times delta-x-sub-i, which is less than epsilon over b minus a, times the total length b minus a, equals epsilon.
 
 By Proposition~\ref{prop:cauchy}, $f$ is integrable.
 \end{proof}
@@ -124,6 +144,7 @@ $G(x) = F(x) + C$. Then $G(b) - G(a) = F(b) - F(a) = \int_a^b f - 0$.
 For $f(x) = x^2$ on $[0,1]$ with equal partition $x_i = i/n$,
 \[ U(f, P_n) = \sum_{i=1}^{n} \frac{i^2}{n^2}\cdot\frac{1}{n}
               = \frac{(n+1)(2n+1)}{6n^2} \xrightarrow[n\to\infty]{} \frac{1}{3}. \]
+\emph{Read aloud:} U of f, P-sub-n equals the sum from i equals 1 to n of i-squared over n-squared, times one over n; this simplifies to (n plus 1)(2n plus 1) over 6 n-squared, which tends to one-third as n goes to infinity.
 By FTC2 the antiderivative $x^3/3$ also yields $1/3 - 0 = 1/3$.
 
 \end{document}

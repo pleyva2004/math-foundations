@@ -8,6 +8,24 @@
 ## Plain-English intro
 Sets closed under linear combinations over a field; the universal object of linear algebra.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read as | Meaning |
+|---|---|---|---|
+| ∈ | `\in` | is an element of | Set membership. x ∈ S means x is an element of the set S. |
+| ⊆ | `\subseteq` | is a subset of (or equal) | A ⊆ B means every element of A is in B; equality allowed. |
+| × | `\times` | Cartesian product | A × B is the set of ordered pairs (a, b) with a ∈ A, b ∈ B. |
+| f: A → B | `\to` | from A to B | Maps an element/space to another; here used for operations and codomains. |
+| ℝ | `\mathbb{R}` | the reals | The complete ordered field of real numbers. |
+| ℂ | `\mathbb{C}` | the complex numbers | Numbers a + bi with a, b ∈ ℝ and i² = −1. |
+| ℝⁿ | `\mathbb{R}^n` | R to the n | n-dimensional real coordinate space; vectors of n real numbers. |
+| 𝔽 | `\mathbb{F}` | a field | An arbitrary field (typically ℝ or ℂ); the scalar field of a vector space. |
+| dim V | `\dim V` | dimension of V | Cardinality of any basis of the vector space V. |
+| span(S) | `\mathrm{span}(S)` | span of S | Set of all linear combinations of vectors in S; smallest subspace containing S. |
+| ∑ | `\sum` | sum / sigma | Indexed summation operator. |
+| ≤ | `\leq` | less than or equal to | Non-strict inequality. |
+| ≠ | `\neq` | is not equal to | Negated equality. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

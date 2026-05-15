@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title | default: site.title }}</title>
+  <meta name="description" content="{{ page.description | default: site.description }}">
+
+  <!-- Tooltip layer: vanilla CSS + JS, no CDN dependencies. -->
+  <link rel="stylesheet" href="{{ '/_includes/notation-tooltips.css' | relative_url }}">
+  <script defer src="{{ '/_includes/notation-tooltips.js' | relative_url }}"></script>
+
+  <style>
+    /* Lightweight in-page styling so we don't depend on a theme being available. */
+    :root {
+      --fg: #1f2328;
+      --muted: #57606a;
+      --bg: #ffffff;
+      --accent: #0969da;
+      --border: #d0d7de;
+      --code-bg: #f6f8fa;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
+                   Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+    .page {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    .page header.site-header {
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+    }
+    .page header.site-header a.site-title {
+      color: var(--fg);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .page header.site-header .site-tagline {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-left: 0.5rem;
+    }
+    h1, h2, h3, h4 { line-height: 1.25; margin-top: 1.6em; margin-bottom: 0.6em; }
+    h1 { font-size: 1.85rem; border-bottom: 1px solid var(--border); padding-bottom: 0.3em; }
+    h2 { font-size: 1.4rem; border-bottom: 1px solid var(--border); padding-bottom: 0.25em; }
+    a { color: var(--accent); }
+    code, pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+    }
+    code { background: var(--code-bg); padding: 0.1em 0.35em; border-radius: 4px; }
+    pre {
+      background: var(--code-bg);
+      padding: 0.85rem 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+    pre code { background: transparent; padding: 0; }
+    blockquote {
+      border-left: 3px solid var(--border);
+      color: var(--muted);
+      padding: 0.1rem 0.9rem;
+      margin: 1rem 0;
+    }
+    table { border-collapse: collapse; margin: 1rem 0; }
+    table th, table td { border: 1px solid var(--border); padding: 0.4rem 0.7rem; }
+    table th { background: var(--code-bg); }
+    footer.site-footer {
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+      padding-top: 1rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      <span class="site-tagline">{{ site.description }}</span>
+    </header>
+
+    <main>
+      {{ content }}
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        Hover any mathematical symbol to read its plain-English meaning.
+        Source: <a href="{{ '/notation.json' | relative_url }}">notation.json</a>.
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

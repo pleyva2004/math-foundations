@@ -8,6 +8,27 @@
 ## Plain-English intro
 Counting principles: permutations, combinations, the pigeonhole principle, inclusion-exclusion.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read as | Meaning |
+|---|---|---|---|
+| \|S\| | `|S|` | cardinality / size of | Number of elements of a (finite) set S; more generally, its cardinal. |
+| C(n,k) | `\binom{n}{k}` | n choose k | Number of k-element subsets of an n-element set. |
+| ∈ | `\in` | is an element of / in | Set membership. x ∈ S means x is an element of the set S. |
+| ⊆ | `\subseteq` | is a subset of (or equal) | A ⊆ B means every element of A is in B; equality allowed. |
+| ∪ | `\cup` | union | A ∪ B is the set of elements in A or B (or both). |
+| ⋃ | `\bigcup` | union over | Indexed union over a collection of sets. |
+| ⋂ | `\bigcap` | intersection over | Indexed intersection over a collection of sets. |
+| ∅ | `\emptyset` | empty set | The unique set with no elements. |
+| ∖ | `\setminus` | set minus / without | A ∖ B is the set of elements in A but not in B. |
+| → | `\to` | tends to / approaches | Convergence of a sequence or value; also used as the arrow in functions f : A → B. |
+| ℤ | `\mathbb{Z}` | the integers | All integers …, -2, -1, 0, 1, 2, …. |
+| ∑ | `\sum` | sum / sigma | Indexed summation operator. |
+| ∏ | `\prod` | product | Indexed product operator. |
+| ≠ | `\neq` | is not equal to | Negated equality. |
+| ≤ | `\leq` | less than or equal to | Non-strict inequality. |
+| ≥ | `\geq` | greater than or equal to | Non-strict inequality. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

@@ -40,6 +40,23 @@ be derived from any notion of vector length.
 
 \section{Definitions}
 
+\subsection*{First, an example}
+Before stating axioms, let us measure one concrete vector three different
+ways. Take $v = (3, -4, 12) \in \mathbb{R}^3$.
+The $\ell^1$ norm sums absolute entries:
+$\|v\|_1 = |3| + |-4| + |12| = 3 + 4 + 12 = 19$.
+The $\ell^2$ (Euclidean) norm takes the square root of the sum of squares:
+$\|v\|_2 = \sqrt{3^2 + (-4)^2 + 12^2} = \sqrt{9 + 16 + 144} = \sqrt{169} = 13$.
+The $\ell^\infty$ norm picks the largest absolute entry:
+$\|v\|_\infty = \max(3, 4, 12) = 12$.
+Now check the triangle inequality under $\ell^2$ on the pair
+$x = (3, 0, 0)$ and $y = (0, 4, 0)$: we have
+$\|x\|_2 = 3$, $\|y\|_2 = 4$, and $x + y = (3, 4, 0)$ so
+$\|x + y\|_2 = \sqrt{9 + 16} = 5 \le 3 + 4 = 7$. Good.
+The same vector therefore has length $19$, $13$, or $12$ depending on
+which norm we use --- a vivid reminder that ``length'' is a choice, not a
+given. The axioms below pin down exactly which choices are legitimate.
+
 Throughout, let $\mathbb{F}$ denote $\mathbb{R}$ or $\mathbb{C}$, and let
 $V$ be a vector space over $\mathbb{F}$.
 
@@ -82,6 +99,11 @@ For $1 \le p < \infty$ and $x = (x_1,\dots,x_n) \in \mathbb{R}^n$, define
   \qquad
   \|x\|_\infty := \max_{1 \le i \le n} |x_i|.
 \]
+\emph{Read aloud:} the $\ell^p$ norm of $x$ is defined as the $p$-th root
+of the sum from $i$ equals one to $n$ of the absolute value of $x$ sub
+$i$ raised to the $p$; and the $\ell$-infinity norm of $x$ is the
+maximum, over indices $i$ from one to $n$, of the absolute value of $x$
+sub $i$.
 Each $\|\cdot\|_p$ is a norm. The triangle inequality for $p \ge 1$ is the
 \emph{Minkowski inequality}.
 \end{example}
@@ -95,6 +117,9 @@ Let $(V, \|\cdot\|)$ be a normed vector space. Then the function
   d \colon V \times V \to \mathbb{R}, \qquad d(x,y) := \|x - y\|,
 \]
 is a metric on $V$.
+\emph{Read aloud:} $d$ is a function from the Cartesian product $V$
+cross $V$ into the real numbers, and $d$ of $x$ comma $y$ is defined as
+the norm of $x$ minus $y$.
 \end{theorem}
 
 \begin{proof}
@@ -114,6 +139,9 @@ We use positive definiteness again:
   \iff x - y = 0
   \iff x = y.
 \]
+\emph{Read aloud:} $d$ of $x$ comma $y$ equals zero if and only if the
+norm of $x$ minus $y$ equals zero, if and only if $x$ minus $y$ equals
+zero, if and only if $x$ equals $y$.
 
 \smallskip
 \noindent\emph{(3) Symmetry.}
@@ -126,6 +154,11 @@ By absolute homogeneity with $\alpha = -1$,
   = \|y - x\|
   = d(y,x).
 \]
+\emph{Read aloud:} $d$ of $x$ comma $y$ equals the norm of $x$ minus
+$y$, which equals the norm of negative one times the quantity $y$ minus
+$x$, which by absolute homogeneity equals the absolute value of negative
+one times the norm of $y$ minus $x$, which is just the norm of $y$ minus
+$x$, which is $d$ of $y$ comma $x$.
 
 \smallskip
 \noindent\emph{(4) Triangle inequality.}
@@ -138,6 +171,11 @@ inequality for the norm gives
   \le \|x - y\| + \|y - z\|
   = d(x,y) + d(y,z).
 \]
+\emph{Read aloud:} $d$ of $x$ comma $z$ equals the norm of $x$ minus
+$z$, which equals the norm of the sum $x$ minus $y$ plus $y$ minus $z$,
+which by the triangle inequality is at most the norm of $x$ minus $y$
+plus the norm of $y$ minus $z$, equal to $d$ of $x$ comma $y$ plus $d$
+of $y$ comma $z$.
 
 All four axioms hold, so $d$ is a metric on $V$.
 \end{proof}
@@ -154,6 +192,8 @@ Let $V$ be a nonzero vector space and define
     1 & \text{if } x \ne y.
   \end{cases}
 \]
+\emph{Read aloud:} $d$ of $x$ comma $y$ equals zero whenever $x$ equals
+$y$, and equals one whenever $x$ is not equal to $y$.
 Then $d$ is a metric on $V$, but there is no norm $\|\cdot\|$ on $V$
 such that $d(x,y) = \|x - y\|$ for all $x,y$.
 \end{proposition}
@@ -166,11 +206,15 @@ $\|\cdot\|$. Pick any $x \ne 0$. By homogeneity,
 \[
   \|2x\| = 2\,\|x\|.
 \]
+\emph{Read aloud:} the norm of two $x$ equals two times the norm of $x$.
 On the other hand, $2x \ne 0$ and $x \ne 0$, so
 \[
   \|2x\| = d(2x, 0) = 1 \qquad \text{and} \qquad
   \|x\|  = d(x, 0)  = 1.
 \]
+\emph{Read aloud:} the norm of two $x$ equals $d$ of two $x$ comma zero,
+which equals one; and the norm of $x$ equals $d$ of $x$ comma zero,
+which also equals one.
 Combining the displays gives $1 = 2$, a contradiction.
 Hence $d$ does not come from any norm.
 \end{proof}

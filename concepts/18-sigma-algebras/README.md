@@ -8,6 +8,23 @@
 ## Plain-English intro
 A sigma-algebra is a collection of subsets closed under complement and countable union; the rigorous basis for which events can be assigned probabilities.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read as | Meaning |
+|---|---|---|---|
+| Ω | `\Omega` | Omega / sample space | Sample space: set of all possible outcomes of an experiment. |
+| ℱ | `\mathcal{F}` | script F / sigma-algebra | A σ-algebra: collection of measurable subsets closed under complement and countable union. |
+| ∈ | `\in` | is an element of / in | Set membership. x ∈ S means x is an element of the set S. |
+| ⊆ | `\subseteq` | is a subset of (or equal) | A ⊆ B means every element of A is in B; equality allowed. |
+| ∖ | `\setminus` | set minus / without | A ∖ B is the set of elements in A but not in B. |
+| Aᶜ | `A^c` | complement of A | The set of elements (in some ambient universe) not in A. |
+| ⋃ | `\bigcup` | union over | Indexed union over a collection of sets. |
+| ⋂ | `\bigcap` | intersection over | Indexed intersection over a collection of sets. |
+| ∅ | `\emptyset` | empty set | The unique set with no elements. |
+| 𝒫(·) | `\mathcal{P}(S)` | power set of | The set of all subsets of S. \|𝒫(S)\| = 2^{\|S\|} for finite S. |
+| ℝ | `\mathbb{R}` | the reals | The complete ordered field of real numbers. |
+| := | `:=` | is defined as | Introduces a definition: the LHS is defined to equal the RHS. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

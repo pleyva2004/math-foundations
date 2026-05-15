@@ -20,6 +20,21 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+Before any definitions, let us compute a derivative by hand. Take
+$f(x) = x^2$ and ask: what is $f'(2)$? Working straight from the
+limit-of-the-difference-quotient idea,
+\[
+f'(2) \;=\; \lim_{h \to 0} \frac{(2+h)^2 - 4}{h}
+       \;=\; \lim_{h \to 0} \frac{4 + 4h + h^2 - 4}{h}
+       \;=\; \lim_{h \to 0} (4 + h)
+       \;=\; 4.
+\]
+\emph{Read aloud:} ``f-prime of two equals the limit as h goes to zero of two plus h, squared, minus four, over h; expanding gives four plus four h plus h-squared minus four, over h; the constants cancel and dividing by h leaves four plus h, whose limit as h tends to zero is four.''
+So the slope of $y = x^2$ at the point $(2, 4)$ is $4$. The rest of the
+lesson formalises what ``slope at a point'' means and what we are
+allowed to do with it.
+
 \section{Motivation}
 
 Given a function $f : I \to \mathbb{R}$ on an open interval $I$ and a point
@@ -38,11 +53,13 @@ and let $c \in I$. We say $f$ is \textbf{differentiable at $c$} if the limit
 \[
 f'(c) \;:=\; \lim_{h \to 0} \frac{f(c+h) - f(c)}{h}
 \]
+\emph{Read aloud:} ``f-prime of c is defined as the limit as h tends to zero of f of c plus h minus f of c, all over h.''
 exists in $\mathbb{R}$. The value $f'(c)$ is called the \textbf{derivative}
 of $f$ at $c$. An equivalent formulation, obtained by substituting $x = c + h$, is
 \[
 f'(c) \;=\; \lim_{x \to c} \frac{f(x) - f(c)}{x - c}.
 \]
+\emph{Read aloud:} ``f-prime of c equals the limit as x approaches c of f of x minus f of c, all over x minus c.''
 \end{definition}
 
 \begin{definition}[Differentiability on an interval]
@@ -58,6 +75,7 @@ $\lim_{h \to 0} \varepsilon(h) = 0$ and
 \[
 f(c + h) \;=\; f(c) + m \cdot h + h \cdot \varepsilon(h).
 \]
+\emph{Read aloud:} ``f of c plus h equals f of c, plus m times h, plus h times epsilon of h.''
 \end{definition}
 
 \section{Differentiability implies continuity}
@@ -79,14 +97,17 @@ algebraic identity
 \label{eq:factorization}
 f(x) - f(c) \;=\; \frac{f(x) - f(c)}{x - c} \cdot (x - c).
 \end{equation}
+\emph{Read aloud:} ``f of x minus f of c equals the difference quotient, f of x minus f of c over x minus c, times the quantity x minus c.''
 By the definition of $f'(c)$,
 \[
 \lim_{x \to c} \frac{f(x) - f(c)}{x - c} \;=\; f'(c) \;\in\; \mathbb{R}.
 \]
+\emph{Read aloud:} ``the limit as x approaches c of f of x minus f of c, all over x minus c, equals f-prime of c, which lies in the real numbers.''
 Also, trivially,
 \[
 \lim_{x \to c} (x - c) \;=\; 0.
 \]
+\emph{Read aloud:} ``the limit as x approaches c of x minus c equals zero.''
 The product rule for limits (which holds whenever both factors have finite
 limits) applied to \eqref{eq:factorization} yields
 \[
@@ -95,6 +116,7 @@ limits) applied to \eqref{eq:factorization} yields
       \cdot \left( \lim_{x \to c} (x - c) \right)
 \;=\; f'(c) \cdot 0 \;=\; 0.
 \]
+\emph{Read aloud:} ``the limit as x approaches c of f of x minus f of c equals the limit of the difference quotient times the limit of x minus c, which is f-prime of c times zero, which is zero.''
 Therefore $\lim_{x \to c} f(x) = f(c)$, i.e.\ $f$ is continuous at $c$.
 \end{proof}
 
@@ -137,6 +159,7 @@ $(a, b)$, then there exists $\xi \in (a, b)$ with
 \[
 f'(\xi) \;=\; \frac{f(b) - f(a)}{b - a}.
 \]
+\emph{Read aloud:} ``f-prime of xi equals f of b minus f of a, all over b minus a.''
 \end{theorem}
 
 The MVT is the bridge between local information ($f'$) and global behaviour
@@ -155,6 +178,7 @@ For $f(x) = x^2$ and $c \in \mathbb{R}$,
 = 2c + h
 \;\xrightarrow{h \to 0}\; 2c.
 \]
+\emph{Read aloud:} ``f of c plus h, minus f of c, all over h, equals the quantity c plus h squared minus c squared, over h; equals two c h plus h squared, over h; equals two c plus h, which tends to two c as h goes to zero.''
 Hence $f'(c) = 2c$, i.e.\ $\tfrac{d}{dx} x^2 = 2x$.
 \end{example}
 

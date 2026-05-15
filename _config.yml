@@ -1,0 +1,67 @@
+# Jekyll configuration for math-foundations GitHub Pages site.
+title: math-foundations
+description: Mathematical foundations graph for the study-paper skill
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax
+  syntax_highlighter: rouge
+
+theme: minima
+
+# Files and folders Jekyll should not copy into _site.
+exclude:
+  - validate_bodies.py
+  - generate.py
+  - generate_notation.py
+  - generate_svg.py
+  - notation.tex
+  - notation.pdf
+  - "*.aux"
+  - "*.log"
+  - "*.out"
+  - "*.fls"
+  - "*.fdb_latexmk"
+  - __pycache__/
+  - .venv/
+  - venv/
+  - .cache/
+  - .ipynb_checkpoints/
+  - notebook/
+
+# Make sure Jekyll keeps the _includes/ assets reachable as static files
+# (we reference notation-tooltips.{js,css} via {% include_relative %}-style URLs).
+include:
+  - _includes
+
+# Default front matter for all pages so authors don't have to add YAML headers
+# to every Markdown file in the repo.
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: default
+
+# GitHub Pages metadata
+plugins:
+  - jekyll-relative-links
+  - jekyll-optional-front-matter
+  - jekyll-readme-index
+  - jekyll-default-layout
+  - jekyll-titles-from-headings
+
+relative_links:
+  enabled: true
+  collections: true
+
+optional_front_matter:
+  remove_originals: true
+
+readme_index:
+  with_frontmatter: true

@@ -8,6 +8,22 @@
 ## Plain-English intro
 Abstract algebraic structures with binary operations satisfying axioms.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read as | Meaning |
+|---|---|---|---|
+| ∈ | `\in` | is an element of / in | Set membership. x ∈ S means x is an element of the set S. |
+| × | `\times` | Cartesian product | A × B is the set of ordered pairs (a, b) with a ∈ A, b ∈ B. |
+| f: A → B | `f : A \to B` | f from A to B | A function f with domain A and codomain B; for every a ∈ A there is a unique f(a) ∈ B. |
+| ↦ | `\mapsto` | maps to | Specifies the action of a function on an element. x ↦ f(x). |
+| f⁻¹ | `f^{-1}` | f inverse | The inverse function (when bijective): f⁻¹(f(x)) = x. Also denotes preimage of a set. |
+| ℤ | `\mathbb{Z}` | the integers | All integers …, -2, -1, 0, 1, 2, …. |
+| ℚ | `\mathbb{Q}` | the rationals | Numbers expressible as p/q with p, q integers and q ≠ 0. |
+| ℝ | `\mathbb{R}` | the reals | The complete ordered field of real numbers. |
+| ℂ | `\mathbb{C}` | the complex numbers | Numbers a + bi with a, b ∈ ℝ and i² = -1. |
+| → | `\to` | tends to / approaches | Convergence of a sequence or value: a_n → L means a_n approaches L. |
+| ≠ | `\neq` | is not equal to | Negated equality. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

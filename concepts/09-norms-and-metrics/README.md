@@ -8,6 +8,25 @@
 ## Plain-English intro
 Generalised notions of distance; the foundation of analysis on vector spaces.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read as | Plain-English meaning |
+|---|---|---|---|
+| 𝔽 | `\mathbb{F}` | a field | An arbitrary field (typically ℝ or ℂ); used as the scalar field of a vector space. |
+| ℝ | `\mathbb{R}` | the reals | The complete ordered field of real numbers. |
+| ℂ | `\mathbb{C}` | the complex numbers | Numbers a + bi with a, b ∈ ℝ and i² = -1. |
+| ‖·‖ | `\|x\|` | norm of x | Length of a vector; satisfies positive-definiteness, scaling, and triangle inequality. |
+| d(x, y) | `d(x, y)` | distance from x to y | A metric: non-negative, symmetric, satisfying the triangle inequality. |
+| ∈ | `\in` | is an element of / in | Set membership. x ∈ S means x is an element of the set S. |
+| → | `\to` | tends to / approaches | Convergence of a sequence or value: a_n → L means a_n approaches L. |
+| ∑ | `\sum` | sum / sigma | Indexed summation operator. |
+| max | `\max S` | max of S | Largest element of S, when it exists. |
+| ∞ | `\infty` | infinity | An idealised unbounded quantity used in limits, sums, and integrals. |
+| ⇔ | `\Leftrightarrow` | if and only if | Logical equivalence. P ⇔ Q means P and Q have the same truth value. |
+| ≤ | `\leq` | less than or equal to | Non-strict inequality. |
+| ≥ | `\geq` | greater than or equal to | Non-strict inequality. |
+| := | `:=` | is defined as | Introduces a definition: the LHS is defined to equal the RHS. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

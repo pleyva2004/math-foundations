@@ -23,6 +23,32 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+Before any abstract definition, here is a concrete linear map. Consider rotation
+of the plane $\mathbb{R}^2$ counter-clockwise by $90^\circ$. In the standard
+basis its matrix is
+\[
+R_{90} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}.
+\]
+\emph{Read aloud:} ``R-sub-ninety equals the two-by-two matrix with entries zero, minus one, one, zero.''
+Apply it to $(1, 0)^\top$:
+\[
+R_{90} \begin{pmatrix} 1 \\ 0 \end{pmatrix}
+= \begin{pmatrix} 0 \\ 1 \end{pmatrix}.
+\]
+\emph{Read aloud:} ``R-sub-ninety applied to the column vector one, zero equals the column vector zero, one.''
+The east-pointing unit vector becomes the north-pointing unit vector. To verify
+linearity on $(2, 3)$, note $(2,3) = 2(1,0) + 3(0,1)$, and
+\[
+R_{90}\begin{pmatrix} 2 \\ 3 \end{pmatrix}
+= 2 R_{90}\begin{pmatrix} 1 \\ 0 \end{pmatrix} + 3 R_{90}\begin{pmatrix} 0 \\ 1 \end{pmatrix}
+= 2\begin{pmatrix} 0 \\ 1 \end{pmatrix} + 3\begin{pmatrix} -1 \\ 0 \end{pmatrix}
+= \begin{pmatrix} -3 \\ 2 \end{pmatrix},
+\]
+\emph{Read aloud:} ``R-sub-ninety applied to two, three equals two times zero, one plus three times minus-one, zero, which equals minus-three, two.''
+matching the direct computation. That property---scalars and sums passing
+through the map---is what ``linear'' will mean.
+
 \section{From Vector Spaces to Maps Between Them}
 
 Vector spaces are the stage; linear maps are the actors. A linear map is the
@@ -43,6 +69,7 @@ $u, v \in V$ and $\alpha \in \mathbb{F}$,
 \[
 T(u + v) = T(u) + T(v), \qquad T(\alpha v) = \alpha\, T(v).
 \]
+\emph{Read aloud:} ``T of u plus v equals T of u plus T of v; and T of alpha times v equals alpha times T of v.''
 Equivalently, $T(\alpha u + \beta v) = \alpha T(u) + \beta T(v)$ for all
 $\alpha, \beta \in \mathbb{F}$ and $u, v \in V$. The set of linear maps
 $V \to W$ is denoted $\mathcal{L}(V, W)$; it is itself a vector space under
@@ -55,10 +82,12 @@ space}) is
 \[
 \ker T := \{ v \in V : T(v) = 0_W \},
 \]
+\emph{Read aloud:} ``Kernel of T is defined as the set of v in V such that T of v equals the zero vector of W.''
 and the \emph{image} (or \emph{range}) is
 \[
 \im T := \{ T(v) : v \in V \} \subseteq W.
 \]
+\emph{Read aloud:} ``Image of T is defined as the set of T of v for v in V, a subset of W.''
 Both are subspaces (of $V$ and $W$ respectively). When $V$ is
 finite-dimensional, $\rank T := \dim \im T$ and the \emph{nullity} is
 $\dim \ker T$.
@@ -70,6 +99,7 @@ ordered basis $\mathcal{C} = (w_1, \dots, w_m)$. For each $j$, write
 \[
 T(v_j) = \sum_{i=1}^m a_{ij}\, w_i,
 \]
+\emph{Read aloud:} ``T of v-sub-j equals the sum from i equals one to m of a-sub-i-j times w-sub-i.''
 which is possible and uniquely so because $\mathcal{C}$ is a basis. The
 matrix $[T]_{\mathcal{B}}^{\mathcal{C}} := (a_{ij}) \in \mathbb{F}^{m\times n}$
 is the \emph{matrix of $T$ relative to $\mathcal{B}$ and $\mathcal{C}$}.
@@ -78,6 +108,7 @@ the defining identity is
 \[
 [T(v)]_{\mathcal{C}} = [T]_{\mathcal{B}}^{\mathcal{C}} \, [v]_{\mathcal{B}}.
 \]
+\emph{Read aloud:} ``The coordinate vector of T of v in basis script-C equals the matrix of T from basis script-B to script-C, times the coordinate vector of v in basis script-B.''
 \end{definition}
 
 \section{Worked Example}
@@ -91,6 +122,7 @@ so
 [R_\theta] = \begin{pmatrix} \cos\theta & -\sin\theta \\
 \sin\theta & \cos\theta \end{pmatrix}.
 \]
+\emph{Read aloud:} ``The matrix of R-sub-theta equals the two-by-two matrix with entries cosine theta, minus sine theta, sine theta, cosine theta.''
 Then $\ker R_\theta = \{0\}$, $\im R_\theta = \mathbb{R}^2$, and the identity
 $[R_\alpha][R_\beta] = [R_{\alpha+\beta}]$ recovers the sine and cosine
 addition formulas.
@@ -104,6 +136,7 @@ $T \colon V \to W$ a linear map. Then
 \[
 \dim \ker T + \dim \im T = \dim V.
 \]
+\emph{Read aloud:} ``The dimension of the kernel of T plus the dimension of the image of T equals the dimension of V.''
 \end{theorem}
 
 \begin{proof}
@@ -115,6 +148,7 @@ a basis
 \[
 u_1, \dots, u_k, v_1, \dots, v_r
 \]
+\emph{Read aloud:} ``u-sub-one through u-sub-k, then v-sub-one through v-sub-r.''
 of $V$, with $k + r = n$. We claim $T(v_1), \dots, T(v_r)$ is a basis of
 $\im T$.
 

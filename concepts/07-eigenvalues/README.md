@@ -8,6 +8,20 @@
 ## Plain-English intro
 Directions preserved by a linear map up to scaling; the building blocks of spectral analysis.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read aloud | Meaning |
+|---|---|---|---|
+| ℝ | `\mathbb{R}` | the reals | the reals |
+| ℂ | `\mathbb{C}` | the complex numbers | the complex numbers |
+| 𝔽 | `\mathbb{F}` | a field | a field |
+| ∈ | `\in` | is an element of / in | is an element of / in |
+| × | `\times` | Cartesian product | Cartesian product |
+| → | `\to` | tends to / approaches | tends to / approaches |
+| ↦ | `\mapsto` | maps to | maps to |
+| ⇒ | `\Rightarrow` | implies | implies |
+| Aᵀ | `A^{\top}` | A transpose | A transpose |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

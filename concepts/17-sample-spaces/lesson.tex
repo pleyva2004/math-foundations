@@ -18,6 +18,22 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+
+Before any abstraction, picture a single roll of a fair six-sided die. The
+\emph{sample space} --- the set of every outcome that could occur --- is
+\[
+\Omega \;=\; \{1, 2, 3, 4, 5, 6\}.
+\]
+\emph{Read aloud:} Omega equals the set containing 1, 2, 3, 4, 5, and 6.
+The event ``the roll is even'' is the subset
+\[
+A \;=\; \{2, 4, 6\} \;\subseteq\; \Omega.
+\]
+\emph{Read aloud:} A equals the set containing 2, 4, and 6, which is a subset of Omega.
+Under the uniform probability measure, $P(A) = 3/6 = 1/2$. Everything that
+follows generalises this picture.
+
 \section*{1. Introduction}
 
 Probability theory begins with a single primitive: a set whose elements are
@@ -47,6 +63,7 @@ the family of all events is the power set
 \[
 2^{\Omega} \;=\; \{A : A \subseteq \Omega\}.
 \]
+\emph{Read aloud:} Two to the Omega equals the set of all A such that A is a subset of Omega.
 \end{definition}
 
 \begin{example}[Coin flip]
@@ -103,6 +120,7 @@ The two classes are disjoint and exhaust $2^{\Omega}$, so
 \[
 |2^{\Omega}| \;=\; 2^n + 2^n \;=\; 2 \cdot 2^n \;=\; 2^{n+1}.
 \]
+\emph{Read aloud:} The cardinality of two to the Omega equals two to the n plus two to the n, which equals two times two to the n, which equals two to the n plus one.
 This completes the induction.
 \end{proof}
 

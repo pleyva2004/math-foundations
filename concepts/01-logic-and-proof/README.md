@@ -8,6 +8,26 @@
 ## Plain-English intro
 Propositional and predicate logic, truth tables, the basic proof strategies (direct, contrapositive, contradiction, induction).
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | Read aloud as | Plain-English meaning |
+|--------|---------------|------------------------|
+| $\neg$ | "not" | Logical negation. $\neg P$ is true iff $P$ is false. |
+| $\Rightarrow$ | "implies" | Material implication. $P \Rightarrow Q$ means whenever $P$ holds, $Q$ holds. Vacuously true when $P$ is false. |
+| $\Leftrightarrow$ | "if and only if" | Logical equivalence. $P \Leftrightarrow Q$ means $P$ and $Q$ have the same truth value. |
+| $\in$ | "is an element of / in" | Set membership. $x \in S$ means $x$ is an element of the set $S$. |
+| $\forall$ | "for all" | Universal quantifier. "For every $x$ in $S$, the property $P(x)$ holds." |
+| $\exists$ | "there exists" | Existential quantifier. "There is at least one $x$ in $S$ such that $P(x)$ holds." |
+| $\equiv$ | "is equivalent / equals by definition" | Identity by definition; or logical equivalence between formulas. |
+| $\mathbb{N}$ | "the natural numbers" | Non-negative integers $(0, 1, 2, \dots)$ or positive integers, depending on convention. |
+| $\mathbb{Z}$ | "the integers" | All integers $\dots, -2, -1, 0, 1, 2, \dots$. |
+| $\neq$ | "is not equal to" | Negated equality. |
+| $\geq$ | "greater than or equal to" | Non-strict inequality. |
+| $\leq$ | "less than or equal to" | Non-strict inequality. |
+| $\sum$ | "sum / sigma" | Indexed summation operator. |
+| $\prod$ | "product" | Indexed product operator. |
+| $\delta$ | "delta" | Tolerance on inputs; paired with $\varepsilon$ in $\varepsilon$-$\delta$ definitions and probability bounds. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

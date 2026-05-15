@@ -14,6 +14,18 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+
+Before the abstract setup, two warm-up distributions you already know.
+
+\emph{Bernoulli$(0.3)$ (discrete).} A coin landing heads with probability $0.3$. Its PMF places mass on two points: $P(X = 1) = 0.3$ and $P(X = 0) = 0.7$. Total mass: $0.3 + 0.7 = 1$, as required.
+
+\emph{Uniform$(0,1)$ (continuous).} A point chosen ``at random'' in $[0,1]$. Its PDF is the constant $f(x) = 1$ on $[0,1]$ and $0$ elsewhere; the total area is $\int_0^1 1\, dx = 1$. Its CDF is the piecewise linear function
+\[ F_X(x) = 0 \text{ for } x < 0, \qquad F_X(x) = x \text{ for } 0 \le x \le 1, \qquad F_X(x) = 1 \text{ for } x > 1. \]
+\emph{Read aloud:} ``F sub X of x equals zero for x less than zero, equals x on the unit interval, and equals one for x greater than one.''
+
+These are the two flavors --- discrete (PMF) and absolutely continuous (PDF) --- unified by the CDF defined below.
+
 \section{Setup}
 
 Throughout, $(\Omega, \mathcal{F}, P)$ is a probability space and $X : \Omega \to \mathbb{R}$ is a real-valued random variable, i.e.\ a measurable map with respect to the Borel $\sigma$-algebra $\mathcal{B}(\mathbb{R})$. The \emph{distribution} (or \emph{law}) of $X$ is the pushforward measure $\mu_X(A) := P(X \in A)$ on $\mathcal{B}(\mathbb{R})$.
@@ -25,6 +37,7 @@ The \emph{cumulative distribution function} of $X$ is
 \[
 F_X(x) := P(X \le x) = \mu_X((-\infty, x]), \qquad x \in \mathbb{R}.
 \]
+\emph{Read aloud:} ``F sub X of x is defined as the probability that X is at most x, which equals mu sub X of the interval from minus infinity to x, for every real x.''
 \end{definition}
 
 \begin{theorem}[Properties of the CDF]\label{thm:cdf}
@@ -41,33 +54,40 @@ The CDF $F_X$ of any real-valued random variable $X$ satisfies:
 \[
 F_X(x) = P(X \le x) \le P(X \le y) = F_X(y).
 \]
+\emph{Read aloud:} ``F sub X of x equals the probability that X is at most x, which is at most the probability that X is at most y, which equals F sub X of y.''
 
 \emph{(ii) Right-continuity.} Fix $x \in \mathbb{R}$ and let $(y_n)_{n \ge 1}$ be any sequence with $y_n \downarrow x$. Define $A_n := \{X \le y_n\}$. Since $y_n$ is decreasing, $A_1 \supseteq A_2 \supseteq \cdots$, and
 \[
 \bigcap_{n=1}^\infty A_n = \bigcap_{n=1}^\infty \{X \le y_n\} = \{X \le x\},
 \]
+\emph{Read aloud:} ``the intersection over n from one to infinity of A sub n equals the intersection of the events X is at most y sub n, which equals the event X is at most x.''
 because $y_n \to x$ from above implies $X(\omega) \le y_n$ for all $n$ iff $X(\omega) \le \inf_n y_n = x$. The sets $A_n$ have finite measure (bounded by $1$), so continuity from above of $P$ (a consequence of countable additivity) gives
 \[
 \lim_{n \to \infty} P(A_n) = P\!\Big( \bigcap_{n=1}^\infty A_n \Big) = P(X \le x) = F_X(x).
 \]
+\emph{Read aloud:} ``the limit as n tends to infinity of P of A sub n equals P of the intersection of all A sub n, which equals the probability X is at most x, which equals F sub X of x.''
 Hence $\lim_{n \to \infty} F_X(y_n) = F_X(x)$. Since this holds for every such sequence, $F_X$ is right-continuous at $x$.
 
 \emph{(iii) Limits at $\pm \infty$.} Take any sequence $x_n \uparrow +\infty$ and let $B_n := \{X \le x_n\}$. Then $B_1 \subseteq B_2 \subseteq \cdots$ and
 \[
 \bigcup_{n=1}^\infty B_n = \{X < +\infty\} = \Omega,
 \]
+\emph{Read aloud:} ``the union over n from one to infinity of B sub n equals the event X is finite, which equals the whole sample space Omega.''
 since $X$ is real-valued. By continuity from below of $P$ (again, countable additivity),
 \[
 \lim_{n \to \infty} F_X(x_n) = \lim_{n \to \infty} P(B_n) = P(\Omega) = 1.
 \]
+\emph{Read aloud:} ``the limit as n tends to infinity of F sub X at x sub n equals the limit of P of B sub n, which equals P of Omega, which equals one.''
 Similarly, take $x_n \downarrow -\infty$ and $C_n := \{X \le x_n\}$. Then $C_1 \supseteq C_2 \supseteq \cdots$ and
 \[
 \bigcap_{n=1}^\infty C_n = \{X = -\infty\} = \emptyset,
 \]
+\emph{Read aloud:} ``the intersection over n from one to infinity of C sub n equals the event X equals minus infinity, which is the empty set.''
 so by continuity from above,
 \[
 \lim_{n \to \infty} F_X(x_n) = P(\emptyset) = 0.
 \]
+\emph{Read aloud:} ``the limit as n tends to infinity of F sub X at x sub n equals P of the empty set, which equals zero.''
 
 This proves all three properties.
 \end{proof}
@@ -83,12 +103,14 @@ A random variable $X$ is \emph{discrete} if there exists a countable set $S \sub
 \[
 p_X(k) := P(X = k), \qquad k \in S.
 \]
+\emph{Read aloud:} ``p sub X of k is defined as the probability that X equals k, for every k in the support set S.''
 \end{definition}
 
 It satisfies $p_X(k) \ge 0$ and $\sum_{k \in S} p_X(k) = 1$, and the CDF is the running sum
 \[
 F_X(x) = \sum_{k \in S,\, k \le x} p_X(k).
 \]
+\emph{Read aloud:} ``F sub X of x equals the sum, over all k in S with k at most x, of p sub X of k.''
 The CDF of a discrete RV is a step function with jumps of size $p_X(k)$ at each $k \in S$.
 
 \section{Probability Density Function (Continuous Case)}
@@ -98,6 +120,7 @@ A random variable $X$ is \emph{absolutely continuous} if there exists a measurab
 \[
 F_X(x) = \int_{-\infty}^{x} f_X(t) \, dt \quad \text{for all } x \in \mathbb{R}.
 \]
+\emph{Read aloud:} ``F sub X of x equals the integral from minus infinity to x of f sub X of t d t, for every real x.''
 Such an $f_X$ is called a \emph{probability density function} of $X$ and satisfies $\int_{\mathbb{R}} f_X = 1$. It is unique up to a Lebesgue-null set, and where $F_X$ is differentiable, $f_X(x) = F_X'(x)$.
 \end{definition}
 
@@ -105,6 +128,7 @@ For absolutely continuous $X$ and any $a < b$,
 \[
 P(a < X \le b) = F_X(b) - F_X(a) = \int_a^b f_X(t)\, dt.
 \]
+\emph{Read aloud:} ``the probability that X lies strictly above a and at most b equals F sub X of b minus F sub X of a, which equals the integral from a to b of f sub X of t d t.''
 In particular $P(X = x) = 0$ for every single point $x$, so $f_X(x)$ is a \emph{density}, not a probability --- it can exceed $1$ (e.g.\ $\mathrm{Uniform}(0, 0.5)$ has $f_X = 2$ on $[0, 0.5]$).
 
 \end{document}

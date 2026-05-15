@@ -20,6 +20,28 @@
 
 \section{Series as limits of partial sums}
 
+\subsection*{First, an example}
+Before any formalism, watch a series \emph{converge} numerically. Take the
+geometric series with ratio $1/2$:
+\[
+  \sum_{n=0}^{\infty} \left(\tfrac{1}{2}\right)^n
+  \;=\; 1 + \tfrac{1}{2} + \tfrac{1}{4} + \tfrac{1}{8} + \tfrac{1}{16} + \cdots
+  \;=\; 2.
+\]
+\emph{Read aloud:} ``the sum from $n$ equals zero to infinity of one-half to
+the $n$ equals two.'' The partial sums march visibly toward $2$:
+\[
+  s_0 = 1,\quad s_1 = 1.5,\quad s_2 = 1.75,\quad s_3 = 1.875,\quad s_4 = 1.9375,\ \ldots
+\]
+\emph{Read aloud:} ``$s$-zero equals one, $s$-one equals one point five,'' and
+so on. Each step halves the gap to the limit.
+
+Contrast this with the \emph{harmonic series} $\sum_{n=1}^{\infty} 1/n
+= 1 + 1/2 + 1/3 + 1/4 + \cdots$, whose terms also shrink to $0$, yet whose
+partial sums grow without bound: $s_n \sim \ln n \to \infty$. Vanishing terms
+are \emph{necessary} but not \emph{sufficient} for convergence. The rest of
+this lesson explains exactly which series fall on each side of that line.
+
 Given a real sequence $(a_n)_{n \ge 0}$, the symbol $\sum_{n=0}^{\infty} a_n$
 denotes the formal infinite sum. Its value, when defined, is the limit of the
 sequence of partial sums.
@@ -29,6 +51,8 @@ The \emph{$n$-th partial sum} of $(a_n)$ is
 \[
   s_n \;=\; \sum_{k=0}^{n} a_k.
 \]
+\emph{Read aloud:} ``$s$-sub-$n$ equals the sum from $k$ equals zero to $n$
+of $a$-sub-$k$.''
 The \emph{series} $\sum_{n=0}^{\infty} a_n$ is the symbolic object associated
 with $(a_n)$; we say it \emph{converges to $S \in \mathbb{R}$} iff $s_n \to S$
 as $n \to \infty$, and write $\sum_{n=0}^{\infty} a_n = S$. Otherwise the
@@ -63,6 +87,8 @@ Let $(a_n)$ be a sequence of nonzero real numbers and suppose
 \[
   L \;=\; \lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right|
 \]
+\emph{Read aloud:} ``$L$ equals the limit, as $n$ goes to infinity, of the
+absolute value of $a_{n+1}$ over $a_n$.''
 exists in $[0, +\infty]$. Then:
 \begin{enumerate}
   \item if $L < 1$, the series $\sum_{n=0}^{\infty} a_n$ converges absolutely;
@@ -79,10 +105,14 @@ $|a_{n+1}/a_n| \to L < r$, there exists $N \in \mathbb{N}$ such that
 \[
   \left| \frac{a_{n+1}}{a_n} \right| \;<\; r \qquad \text{for all } n \ge N.
 \]
+\emph{Read aloud:} ``the absolute value of $a_{n+1}$ over $a_n$ is less than
+$r$, for all $n$ greater than or equal to $N$.''
 Multiplying these inequalities for $n = N, N+1, \dots, N + k - 1$ gives
 \[
   |a_{N+k}| \;<\; r^k\,|a_N| \qquad \text{for every } k \ge 0.
 \]
+\emph{Read aloud:} ``the absolute value of $a_{N+k}$ is less than $r$ to the
+$k$ times the absolute value of $a_N$, for every $k$ at least zero.''
 Therefore, for all $n \ge N$,
 \[
   \sum_{m=N}^{n} |a_m|
@@ -91,6 +121,9 @@ Therefore, for all $n \ge N$,
   \;\le\;
   \frac{|a_N|}{1 - r}.
 \]
+\emph{Read aloud:} ``the sum from $m = N$ to $n$ of $|a_m|$ is at most
+$|a_N|$ times the sum from $k = 0$ to $n - N$ of $r^k$, which is at most
+$|a_N|$ over $1 - r$.''
 The partial sums of the non-negative series $\sum |a_m|$ are bounded above,
 hence converge (a monotone bounded sequence has a limit). Adding back the
 finitely many terms for $m < N$ shows $\sum |a_n| < \infty$, so $\sum a_n$
@@ -116,6 +149,8 @@ For every $x \in \mathbb{R}$, setting $a_n = x^n / n!$ gives
   \;\longrightarrow\;
   0.
 \]
+\emph{Read aloud:} ``the absolute value of $a_{n+1}$ over $a_n$ equals
+absolute-$x$ over $n + 1$, which tends to zero.''
 Thus $L = 0 < 1$, and Theorem~\ref{thm:ratio} yields absolute convergence of
 $\sum_{n=0}^{\infty} x^n / n! = e^x$ for every real $x$. The same argument
 works for $x \in \mathbb{C}$ and, with $|x|$ replaced by $\|A\|$, for any
@@ -132,6 +167,9 @@ convergence}
   R \;=\; \frac{1}{\limsup_{n \to \infty} |c_n|^{1/n}}
   \qquad \text{(Cauchy--Hadamard).}
 \]
+\emph{Read aloud:} ``$R$ equals one over the limit superior, as $n$ goes to
+infinity, of the $n$-th root of the absolute value of $c_n$ --- the
+Cauchy--Hadamard formula.''
 Inside $|x - x_0| < R$ the series converges absolutely; outside it diverges;
 behaviour at the endpoints requires a separate test.
 

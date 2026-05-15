@@ -17,6 +17,24 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+Consider the bowl-shaped scalar field $f(x, y) = x^2 + y^2$. Its partial
+derivatives are $\partial f/\partial x = 2x$ and $\partial f/\partial y = 2y$,
+so the gradient is the vector field
+\[
+\nabla f(x, y) = (2x,\, 2y).
+\]
+\emph{Read aloud:} ``nabla f at x, y equals the vector two-x, two-y.''
+
+At the point $(3, 4)$ this gives $\nabla f(3, 4) = (6, 8)$, a vector of
+length $\sqrt{6^2 + 8^2} = 10$ pointing radially outward from the origin.
+This is the direction of steepest ascent: moving an infinitesimal step
+along $(6, 8)$ increases $f$ faster than any other direction of equal
+length, and the rate of that increase is $10$. Negating it gives the
+direction of steepest descent\,---\,the move that gradient descent would
+take from $(3, 4)$. The rest of this lesson develops the gradient and its
+vector-valued cousin, the Jacobian, in full generality.
+
 \section{Setup and motivation}
 
 We work in finite-dimensional Euclidean space $\mathbb{R}^n$ with the standard
@@ -35,6 +53,8 @@ Let $U \subseteq \mathbb{R}^n$ be open and $f : U \to \mathbb{R}$. The
 \frac{\partial f}{\partial x_j}(x)
    = \lim_{h \to 0} \frac{f(x + h e_j) - f(x)}{h},
 \]
+\emph{Read aloud:} ``partial f by partial x-j at x equals the limit, as h tends to zero, of f of x plus h times e-j minus f of x, all divided by h.''
+
 where $e_j$ is the $j$th standard basis vector, when this limit exists.
 \end{definition}
 
@@ -45,6 +65,8 @@ The \emph{gradient} of $f$ at $x$ is the column vector
 \nabla f(x) \;=\; \Bigl( \tfrac{\partial f}{\partial x_1}(x),\, \ldots,\,
 \tfrac{\partial f}{\partial x_n}(x) \Bigr)^{\!\top} \in \mathbb{R}^n.
 \]
+\emph{Read aloud:} ``nabla f at x equals the column vector of partial f by partial x-1 through partial f by partial x-n, transposed, an element of R-to-the-n.''
+
 Equivalently, $\nabla f(x)$ is the unique vector such that
 $D_v f(x) = \langle \nabla f(x), v\rangle$ for every $v \in \mathbb{R}^n$,
 where $D_v f(x) = \lim_{t\to 0}\bigl(f(x + tv) - f(x)\bigr)/t$ is the
@@ -63,6 +85,8 @@ J_F(x) \;=\; \begin{pmatrix}
 \end{pmatrix},
 \qquad [J_F(x)]_{ij} = \frac{\partial F_i}{\partial x_j}(x).
 \]
+\emph{Read aloud:} ``the i-j entry of the Jacobian J-F at x is partial F-i by partial x-j.''
+
 $J_F(x)$ is the matrix of the total derivative
 $dF_x : \mathbb{R}^n \to \mathbb{R}^m$ in standard bases.
 \end{definition}
@@ -82,6 +106,7 @@ If $f$ is differentiable at $x$, then for every $v \in \mathbb{R}^n$,
 \[
 D_v f(x) = \langle \nabla f(x), v\rangle.
 \]
+\emph{Read aloud:} ``the directional derivative D-v of f at x equals the inner product of nabla f at x with v.''
 \end{lemma}
 \begin{proof}[Sketch]
 Differentiability at $x$ means $f(x + h) = f(x) + \langle \nabla f(x), h\rangle + r(h)$
@@ -98,6 +123,8 @@ $D_v f(x)$ attains its maximum at
 \[
 v^\star = \frac{\nabla f(x)}{\|\nabla f(x)\|},
 \]
+\emph{Read aloud:} ``v-star equals nabla f at x divided by the norm of nabla f at x.''
+
 and the maximum value is $\|\nabla f(x)\|$.
 \end{theorem}
 
@@ -107,12 +134,16 @@ The Cauchy--Schwarz inequality states that for any $u, v \in \mathbb{R}^n$,
 \[
 |\langle u, v\rangle| \;\le\; \|u\|\,\|v\|,
 \]
+\emph{Read aloud:} ``the absolute value of the inner product of u and v is at most the norm of u times the norm of v.''
+
 with equality iff $u$ and $v$ are linearly dependent. Applying this with
 $u = \nabla f(x)$ and a unit vector $v$,
 \[
 D_v f(x) = \langle \nabla f(x), v\rangle \;\le\; \|\nabla f(x)\|\,\|v\|
         = \|\nabla f(x)\|.
 \]
+\emph{Read aloud:} ``D-v f at x equals the inner product of nabla f at x with v, which is at most the norm of nabla f at x times the norm of v, equal to the norm of nabla f at x.''
+
 Equality holds iff $v$ is a positive scalar multiple of $\nabla f(x)$;
 since $\|v\| = 1$ and $\nabla f(x) \neq 0$, the unique maximizer is
 $v^\star = \nabla f(x)/\|\nabla f(x)\|$. Substituting back gives
@@ -136,6 +167,8 @@ Then $H = F \circ G$ is differentiable at $x$ and
 \[
 J_H(x) \;=\; J_F(G(x)) \cdot J_G(x),
 \]
+\emph{Read aloud:} ``the Jacobian of H at x equals the Jacobian of F at G of x, times the Jacobian of G at x.''
+
 an $m \times p$ matrix obtained as the product of an $m \times n$ matrix
 and an $n \times p$ matrix.
 \end{theorem}
@@ -156,6 +189,8 @@ J_F(x, y) = \begin{pmatrix} 2x & -1 \\ y e^{xy} & x e^{xy} \end{pmatrix},
 J_F(1, 0) = \begin{pmatrix} 2 & -1 \\ 0 & 1 \end{pmatrix},
 \quad \det J_F(1, 0) = 2.
 \]
+\emph{Read aloud:} ``J-F at x, y is the two-by-two matrix with rows two-x, minus one and y-e-to-the-x-y, x-e-to-the-x-y; at one-zero this becomes two, minus one, zero, one, with determinant two.''
+
 By the inverse function theorem, $F$ is a local diffeomorphism near $(1, 0)$,
 locally doubling area.
 

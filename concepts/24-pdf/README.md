@@ -8,6 +8,25 @@
 ## Plain-English intro
 A non-negative integrable function whose integral over a set gives the probability that a continuous random variable lands in that set.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read aloud | Meaning |
+|---|---|---|---|
+| ℝ | `\mathbb{R}` | the reals | The complete ordered field of real numbers. |
+| ∈ | `\in` | is an element of / in | Set membership. x ∈ S means x is an element of the set S. |
+| ⊆ | `\subseteq` | is a subset of (or equal) | A ⊆ B means every element of A is in B; equality allowed. |
+| ∞ | `\infty` | infinity | An idealised unbounded quantity used in limits, sums, and integrals. |
+| ∫ | `\int` | integral | Riemann (or Lebesgue) integral; signed area / total accumulation. |
+| ∬ | `\iint` | double integral | Integral over a 2-dimensional region. |
+| ℱ | `\mathcal{F}` | script F / sigma-algebra | A σ-algebra: collection of measurable subsets closed under complement and countable union. |
+| Ω | `\Omega` | Omega / sample space | Sample space: set of all possible outcomes of an experiment. |
+| P(·) | `P(A)` | probability of A | Probability of event A under a probability measure P. |
+| F_X | `F_X(x)` | CDF of X | Cumulative distribution function: F_X(x) = P(X ≤ x). |
+| p_X | `p_X(x)` | density of X at x | Probability density function: P(X ∈ A) = ∫_A p_X(x) dx. |
+| 𝒩(μ, σ²) | `\mathcal{N}(\mu, \sigma^2)` | normal of mu, sigma squared | Gaussian distribution with mean μ and variance σ². |
+| := | `:=` | is defined as | Introduces a definition: the LHS is defined to equal the RHS. |
+| ≤ | `\leq` | less than or equal to | Non-strict inequality. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

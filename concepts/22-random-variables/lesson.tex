@@ -16,6 +16,22 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+
+Before the abstract definition, picture a single fair die roll. Take the
+sample space $\Omega = \{1, 2, 3, 4, 5, 6\}$, with $\mathcal{F}$ the power
+set and $P$ the uniform measure. Define two functions on $\Omega$:
+\[
+   X(\omega) = \omega, \qquad
+   Y(\omega) = \begin{cases} 1 & \text{if } \omega \text{ is even}, \\ 0 & \text{otherwise}. \end{cases}
+\]
+\emph{Read aloud:} ``X of omega equals omega; Y of omega equals one if omega is even, zero otherwise.''
+Here $X$ takes values in $\{1, \dots, 6\}$ (the number shown), while $Y$
+takes values in $\{0, 1\}$ (an \emph{indicator} of the event ``even''). The
+event ``$X = 4$'' is the singleton $\{4\} \subset \Omega$, which lies in
+$\mathcal{F}$ --- so $X$ qualifies as a random variable. Keep this picture
+in mind as we generalize below.
+
 \section{Setting}
 
 Fix a probability space $(\Omega, \mathcal{F}, P)$ and write $\mathcal{B}(\mathbb{R})$ for the Borel
@@ -27,6 +43,7 @@ A function $X : \Omega \to \mathbb{R}$ is a \emph{random variable} if
    X^{-1}(B) := \{\omega \in \Omega : X(\omega) \in B\} \;\in\; \mathcal{F}
    \qquad \text{for every } B \in \mathcal{B}(\mathbb{R}).
 \]
+\emph{Read aloud:} ``the pre-image of B under X --- that is, the set of omega in Omega with X of omega in B --- is an element of script F, for every Borel set B in R.''
 \end{definition}
 
 \begin{remark}
@@ -40,6 +57,7 @@ The \emph{cumulative distribution function} (CDF) of a random variable $X$ is
 \[
    F_X : \mathbb{R} \to [0,1], \qquad F_X(x) := P(X \le x) = P\big(X^{-1}((-\infty, x])\big).
 \]
+\emph{Read aloud:} ``F sub X maps R to the unit interval; F sub X of x is defined as the probability that X is at most x, equivalently the P-measure of the pre-image of negative-infinity to x under X.''
 The function $F_X$ is non-decreasing, right-continuous, with $F_X(-\infty)=0$ and $F_X(+\infty)=1$.
 \end{definition}
 
@@ -59,6 +77,7 @@ Every open subset of $\mathbb{R}$ is a countable union of open intervals. For an
 \[
    X^{-1}((a,b)) = \{X < b\} \cap \{X > a\} = \Big(\bigcup_{n=1}^\infty \{X \le b - 1/n\}\Big) \cap \{X \le a\}^c,
 \]
+\emph{Read aloud:} ``the pre-image of the open interval (a, b) under X equals the intersection of X-less-than-b and X-greater-than-a, which equals the countable union over n of X-at-most-b-minus-one-over-n, intersected with the complement of X-at-most-a.''
 which is a countable Boolean combination of sets in $\mathcal{F}$, hence in $\mathcal{F}$. Taking
 countable unions preserves this.
 \end{proof}
@@ -77,6 +96,7 @@ Observe that $X(\omega) + Y(\omega) < c$ holds iff there exists a rational $q$ w
 \[
    X(\omega) < q \quad \text{and} \quad Y(\omega) < c - q.
 \]
+\emph{Read aloud:} ``X of omega is less than q, and Y of omega is less than c minus q.''
 ($\Rightarrow$): If $X(\omega) + Y(\omega) < c$, set $\varepsilon = c - X(\omega) - Y(\omega) > 0$;
 by density of $\mathbb{Q}$ in $\mathbb{R}$, pick $q \in \mathbb{Q}$ with
 $X(\omega) < q < X(\omega) + \varepsilon/2$. Then $q < X(\omega) + \varepsilon/2$ gives
@@ -87,6 +107,7 @@ Hence
 \[
    \{Z < c\} \;=\; \bigcup_{q \in \mathbb{Q}} \Big( \{X < q\} \cap \{Y < c - q\} \Big).
 \]
+\emph{Read aloud:} ``the event Z-less-than-c equals the union over rational q of the intersection of X-less-than-q and Y-less-than-c-minus-q.''
 The collection $\mathbb{Q}$ is countable. Each $\{X < q\} = X^{-1}((-\infty, q))$ and each
 $\{Y < c-q\} = Y^{-1}((-\infty, c-q))$ is the pre-image of an open set, hence in $\mathcal{F}$
 by Lemma~\ref{lem:open}. A countable union of intersections of $\mathcal{F}$-sets is in

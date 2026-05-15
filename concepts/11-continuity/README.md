@@ -8,6 +8,23 @@
 ## Plain-English intro
 The epsilon-delta definition; continuity as preservation of limits; uniform vs pointwise continuity.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read aloud | Meaning |
+|---|---|---|---|
+| ε | `\epsilon` | epsilon | epsilon (small positive tolerance on the output side) |
+| δ | `\delta` | delta | delta (small positive tolerance on the input side) |
+| ⇒ | `\implies` / `\Rightarrow` | implies | logical implication: if LHS then RHS |
+| ∈ | `\in` | is an element of / in | membership of an element in a set |
+| → | `\to` | tends to / approaches | limit / function arrow (e.g. $x_n \to c$) |
+| ℝ | `\mathbb{R}` | the reals | the real numbers |
+| ℕ | `\mathbb{N}` | the natural numbers | the natural numbers $\{1, 2, 3, \dots\}$ |
+| ⊆ | `\subseteq` | is a subset of (or equal) | subset (possibly equal) |
+| ∘ | `\circ` | composed with | function composition $g \circ f$ |
+| ≤ | `\leq` | less than or equal to | non-strict inequality |
+| ≥ | `\geq` | greater than or equal to | non-strict inequality |
+| $d(x,y)$ | `d(x, y)` | distance from x to y | metric (distance) on a metric space |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

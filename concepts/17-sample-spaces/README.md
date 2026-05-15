@@ -8,6 +8,21 @@
 ## Plain-English intro
 The set of all possible outcomes of an experiment; the starting point of probability.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read as | Meaning |
+|---|---|---|---|
+| Ω | `\Omega` | Omega / sample space | Sample space: set of all possible outcomes of an experiment. |
+| ∈ | `\in` | is an element of / in | Set membership. x ∈ S means x is an element of the set S. |
+| ⊆ | `\subseteq` | is a subset of (or equal) | A ⊆ B means every element of A is in B; equality allowed. |
+| ∅ | `\emptyset` | empty set | The unique set with no elements. |
+| ∖ | `\setminus` | set minus / without | A ∖ B is the set of elements in A but not in B. |
+| × | `\times` | Cartesian product | A × B is the set of ordered pairs (a, b) with a ∈ A, b ∈ B. |
+| \|·\| | `\|S\|` | cardinality / size of | Number of elements of a (finite) set S; more generally, its cardinal. |
+| ℕ | `\mathbb{N}` | the natural numbers | Non-negative integers (0, 1, 2, …) or positive integers, depending on convention. |
+| ℱ | `\mathcal{F}` | script F / sigma-algebra | A σ-algebra: collection of measurable subsets closed under complement and countable union. |
+| ≈ | `\approx` | is approximately equal to | Approximate equality; used informally and in numerical statements. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

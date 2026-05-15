@@ -15,6 +15,21 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+Before the abstract definition, fix the standard normal PDF
+$\phi(x) = \frac{1}{\sqrt{2\pi}}\,e^{-x^2/2}$ in mind.
+At $x = 0$ its height is
+$\phi(0) = 1/\sqrt{2\pi} \approx 0.399$.
+That value is greater than nothing in particular --- but observe: a PDF
+\emph{can} exceed $1$ at a point. What must equal $1$ is the
+\emph{area} under the curve, not the heights:
+\[
+    \int_{-\infty}^{\infty} \phi(x)\,dx \;=\; 1.
+\]
+\emph{Read aloud:} the integral from minus infinity to infinity of phi of x, d x, equals one.
+Density measures probability per unit length; the bookkeeping rule is
+on the integral, not on pointwise values.
+
 \section{Definitions}
 
 \begin{definition}[Probability density function]
@@ -22,6 +37,7 @@ Let $X$ be a real-valued random variable on a probability space $(\Omega, \mathc
 \[
     P(X \in B) \;=\; \int_B f_X(x)\,dx.
 \]
+\emph{Read aloud:} the probability that X lies in B equals the integral over B of f sub X of x, d x.
 Equivalently, the law of $X$ is absolutely continuous with respect to Lebesgue measure, and $f_X = dP_X/d\lambda$ is the Radon--Nikodym derivative.
 \end{definition}
 
@@ -30,6 +46,7 @@ The cumulative distribution function $F_X(x) = P(X \le x)$ satisfies
 \[
     F_X(x) = \int_{-\infty}^{x} f_X(t)\,dt, \qquad f_X(x) = F_X'(x) \text{ a.e.}
 \]
+\emph{Read aloud:} F sub X of x equals the integral from minus infinity to x of f sub X of t, d t; and f sub X of x equals F sub X prime of x almost everywhere.
 \end{definition}
 
 \begin{proposition}[Normalization]
@@ -46,6 +63,7 @@ Define the \emph{standard Gaussian density}
 \[
     \phi(x) \;=\; \frac{1}{\sqrt{2\pi}} \exp\!\left(-\frac{x^2}{2}\right).
 \]
+\emph{Read aloud:} phi of x equals one over square-root of two pi, times e to the minus x squared over two.
 Clearly $\phi > 0$, so to show $\phi$ is a PDF we need only verify normalization.
 
 \begin{theorem}[Gaussian normalization]
@@ -54,6 +72,7 @@ The Gaussian PDF $\phi$ integrates to $1$ over $\mathbb{R}$:
 \[
     \int_{-\infty}^{\infty} \phi(x)\,dx \;=\; 1.
 \]
+\emph{Read aloud:} the integral from minus infinity to infinity of phi of x, d x, equals one.
 \end{theorem}
 
 \begin{proof}
@@ -62,22 +81,27 @@ Let $I := \int_{-\infty}^{\infty} e^{-x^2/2}\,dx$. The integral is finite by com
     I^2 \;=\; \left(\int_{-\infty}^{\infty} e^{-x^2/2}\,dx\right)\!\left(\int_{-\infty}^{\infty} e^{-y^2/2}\,dy\right)
     \;=\; \iint_{\mathbb{R}^2} e^{-(x^2 + y^2)/2}\,dx\,dy.
 \]
+\emph{Read aloud:} I squared equals the product of two one-dimensional Gaussian integrals, which equals the double integral over R-two of e to the minus x squared plus y squared over two, d x d y.
 Switch to polar coordinates $x = r\cos\theta$, $y = r\sin\theta$, with Jacobian $r$:
 \[
     I^2 \;=\; \int_{0}^{2\pi}\!\int_{0}^{\infty} e^{-r^2/2}\,r\,dr\,d\theta.
 \]
+\emph{Read aloud:} I squared equals the integral from zero to two pi, of the integral from zero to infinity of e to the minus r squared over two, times r, d r, d theta.
 The inner integral evaluates by substitution $u = r^2/2$, $du = r\,dr$:
 \[
     \int_{0}^{\infty} r\,e^{-r^2/2}\,dr \;=\; \int_{0}^{\infty} e^{-u}\,du \;=\; 1.
 \]
+\emph{Read aloud:} the integral from zero to infinity of r e to the minus r squared over two, d r, equals the integral from zero to infinity of e to the minus u, d u, which equals one.
 Therefore
 \[
     I^2 \;=\; \int_{0}^{2\pi} 1\,d\theta \;=\; 2\pi,
 \]
+\emph{Read aloud:} I squared equals the integral from zero to two pi of one, d theta, which equals two pi.
 so $I = \sqrt{2\pi}$ (taking the positive root, as $e^{-x^2/2} > 0$). Hence
 \[
     \int_{-\infty}^{\infty} \phi(x)\,dx \;=\; \frac{1}{\sqrt{2\pi}} \cdot \sqrt{2\pi} \;=\; 1. \qedhere
 \]
+\emph{Read aloud:} the integral of phi of x, d x, equals one over square-root two pi, times square-root two pi, which equals one.
 \end{proof}
 
 \begin{proposition}[Gaussian CDF]
@@ -85,6 +109,7 @@ The standard Gaussian CDF $\Phi(x) = \int_{-\infty}^{x} \phi(t)\,dt$ admits no e
 \[
     \Phi(x) \;=\; \tfrac{1}{2}\Bigl(1 + \operatorname{erf}\!\bigl(x/\sqrt{2}\bigr)\Bigr),
 \]
+\emph{Read aloud:} capital Phi of x equals one half times the quantity one plus the error function of x over square-root two.
 where $\operatorname{erf}(z) = \frac{2}{\sqrt{\pi}}\int_0^z e^{-t^2}\,dt$.
 \end{proposition}
 

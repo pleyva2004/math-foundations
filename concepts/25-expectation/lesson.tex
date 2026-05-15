@@ -15,6 +15,24 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+Roll a fair six-sided die and let $X$ be the result. Each face has probability
+$1/6$, so the expectation is
+\[
+E[X] = \frac{1 + 2 + 3 + 4 + 5 + 6}{6} = \frac{21}{6} = 3.5.
+\]
+\emph{Read aloud:} ``The expectation of X equals one plus two plus three plus four plus five plus six, all over six, which equals twenty-one over six, which equals three point five.''
+Note that $3.5$ is \emph{not} a possible outcome of the die: the expectation
+is the long-run average, not a typical value. Compare also
+\[
+E[X^2] = \frac{1 + 4 + 9 + 16 + 25 + 36}{6} = \frac{91}{6} \approx 15.17,
+\qquad
+\big(E[X]\big)^2 = (3.5)^2 = 12.25.
+\]
+\emph{Read aloud:} ``The expectation of X squared equals ninety-one over six, approximately fifteen point one seven, while the square of the expectation of X is twelve point two five.''
+Since $x \mapsto x^2$ is convex, Jensen's inequality predicts
+$E[X^2] \ge \big(E[X]\big)^2$, and indeed $15.17 > 12.25$.
+
 \section{Definitions}
 
 \begin{definition}[Expectation, discrete]
@@ -25,6 +43,7 @@ $\sum_{i} |k_i|\, p_X(k_i) < \infty$, the \emph{expectation} of $X$ is
 \[
 E[X] \;=\; \sum_{i} k_i\, p_X(k_i).
 \]
+\emph{Read aloud:} ``The expectation of X equals the sum over i of k-sub-i times p-sub-X of k-sub-i.''
 \end{definition}
 
 \begin{definition}[Expectation, continuous]
@@ -33,6 +52,7 @@ $f_X$. If $\int_{-\infty}^{\infty} |x|\, f_X(x)\, dx < \infty$, then
 \[
 E[X] \;=\; \int_{-\infty}^{\infty} x\, f_X(x)\, dx.
 \]
+\emph{Read aloud:} ``The expectation of X equals the integral from minus infinity to infinity of x times f-sub-X of x, dx.''
 \end{definition}
 
 \begin{definition}[Expectation, Lebesgue]
@@ -40,6 +60,7 @@ For an integrable measurable $X : \Omega \to \mathbb{R}$,
 \[
 E[X] \;=\; \int_{\Omega} X(\omega)\, dP(\omega).
 \]
+\emph{Read aloud:} ``The expectation of X equals the integral over Omega of X of omega, with respect to dP of omega.''
 This is constructed first for simple functions, extended to non-negative
 measurable functions via monotone approximation, and to signed functions
 via $X = X^+ - X^-$.
@@ -54,6 +75,7 @@ $E[|X|] < \infty$ and $E[|Y|] < \infty$, and let $a, b \in \mathbb{R}$. Then
 \[
 E[aX + bY] \;=\; a\,E[X] + b\,E[Y].
 \]
+\emph{Read aloud:} ``The expectation of a X plus b Y equals a times the expectation of X plus b times the expectation of Y.''
 Linearity holds whether or not $X$ and $Y$ are independent.
 \end{theorem}
 
@@ -70,6 +92,7 @@ E[Z] \;=\; E[aX + bY]
      &= a \sum_{x} \sum_{y} x\, p_{X,Y}(x, y)
         \;+\; b \sum_{x} \sum_{y} y\, p_{X,Y}(x, y).
 \end{align*}
+\emph{Read aloud:} ``The expectation of Z equals a times the double sum over x and y of x times the joint pmf, plus b times the double sum over x and y of y times the joint pmf.''
 Absolute convergence (from the integrability assumptions) permits us to
 rearrange the double sum and apply Fubini for series. Marginalising the
 joint pmf gives $\sum_{y} p_{X,Y}(x, y) = p_X(x)$ and
@@ -80,6 +103,7 @@ E[Z] &= a \sum_{x} x \left( \sum_{y} p_{X,Y}(x, y) \right)
      &= a \sum_{x} x\, p_X(x) + b \sum_{y} y\, p_Y(y) \\
      &= a\, E[X] + b\, E[Y].
 \end{align*}
+\emph{Read aloud:} ``Marginalising the joint pmf collapses each inner sum to the marginal pmf, giving a times the expectation of X plus b times the expectation of Y.''
 No use of independence was required: the joint pmf $p_{X,Y}$ carries any
 dependence structure, and it factors out of each single-variable sum only
 through its marginals.
@@ -91,6 +115,7 @@ random variable with $E[|\phi(X)|] < \infty$. Then
 \[
 \phi\!\big(E[X]\big) \;\le\; E\!\big[\phi(X)\big].
 \]
+\emph{Read aloud:} ``Phi of the expectation of X is less than or equal to the expectation of phi of X.''
 \end{proposition}
 
 \begin{proposition}[LOTUS]
@@ -102,6 +127,7 @@ E[g(X)] \;=\; \int_{\mathbb{R}} g(x)\, f_X(x)\, dx
 E[g(X)] \;=\; \sum_{k} g(k)\, p_X(k)
 \quad \text{(discrete)}.
 \]
+\emph{Read aloud:} ``The expectation of g of X equals the integral over the reals of g of x times the density of X, dx, in the continuous case, and the sum over k of g of k times the pmf of X at k in the discrete case.''
 \end{proposition}
 
 \section{Examples}
@@ -113,6 +139,7 @@ $E[X] = 1 \cdot p + 0 \cdot (1-p) = p$.
 \[
 E[X] = \int_a^b \frac{x}{b-a}\, dx = \frac{a+b}{2}.
 \]
+\emph{Read aloud:} ``The expectation of X equals the integral from a to b of x over b minus a, dx, which equals a plus b over two.''
 
 \paragraph{Binomial.} If $X \sim \mathrm{Binomial}(n, p)$, write
 $X = \sum_{i=1}^{n} X_i$ with $X_i \sim \mathrm{Bernoulli}(p)$ iid. By

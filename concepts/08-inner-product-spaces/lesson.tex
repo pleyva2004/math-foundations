@@ -24,6 +24,19 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+
+Before any axioms, look at the standard dot product on $\R^2$. Take
+$u = (3, 4)$ and $v = (-4, 3)$. Then
+$$\inner{u}{v} = 3 \cdot (-4) + 4 \cdot 3 = -12 + 12 = 0,$$
+\emph{Read aloud:} ``inner product of $u$ and $v$ equals three times negative four plus four times three, which is zero.''
+so $u$ and $v$ are \emph{orthogonal}. Their lengths are
+$$\norm{u} = \sqrt{3^2 + 4^2} = 5, \qquad \norm{v} = \sqrt{(-4)^2 + 3^2} = 5.$$
+\emph{Read aloud:} ``norm of $u$ equals the square root of nine plus sixteen, which is five; likewise norm of $v$ equals five.''
+So $u$ and $v$ are two perpendicular vectors of the same length $5$.
+The whole chapter is about which abstract structures preserve this
+``angle and length'' picture.
+
 \section{Motivation}
 
 In $\R^n$ the dot product $u \cdot v = \sum_i u_i v_i$ encodes both
@@ -63,6 +76,7 @@ the mathematician's convention here.
 \begin{definition}[Induced norm]
 The \emph{induced norm} on an inner product space $(V, \inner{\cdot}{\cdot})$ is
 $$\norm{v} := \sqrt{\inner{v}{v}}, \qquad v \in V.$$
+\emph{Read aloud:} ``norm of $v$ is defined as the square root of the inner product of $v$ with itself, for every $v$ in $V$.''
 Positive definiteness makes this well-defined and non-negative.
 \end{definition}
 
@@ -71,6 +85,7 @@ A finite or countable family $\{e_i\}_{i \in I} \subset V$ is called
 \emph{orthonormal} if
 $$\inner{e_i}{e_j} = \delta_{ij}
   = \begin{cases} 1 & i = j, \\ 0 & i \neq j.\end{cases}$$
+\emph{Read aloud:} ``inner product of $e_i$ and $e_j$ equals the Kronecker delta $\delta_{ij}$, which is one when $i$ equals $j$ and zero otherwise.''
 \end{definition}
 
 \section{The Cauchy-Schwarz inequality}
@@ -83,6 +98,7 @@ For all $u, v \in V$,
 \label{eq:cs}
 \bigl| \inner{u}{v} \bigr| \;\le\; \norm{u}\,\norm{v},
 \end{equation}
+\emph{Read aloud:} ``the absolute value of the inner product of $u$ and $v$ is less than or equal to the norm of $u$ times the norm of $v$.''
 with equality if and only if $u$ and $v$ are linearly dependent.
 \end{theorem}
 
@@ -91,6 +107,7 @@ If $v = 0$ both sides of \eqref{eq:cs} are zero and there is nothing
 to prove, so assume $v \neq 0$. The trick is to consider, for a scalar
 $t \in \F$ to be chosen, the non-negative quantity
 $$0 \le \norm{u - t v}^2 = \inner{u - t v}{u - t v}.$$
+\emph{Read aloud:} ``zero is less than or equal to the squared norm of $u$ minus $t$ times $v$, which equals the inner product of that vector with itself.''
 Expanding using linearity in the first slot and conjugate linearity in
 the second,
 \begin{align*}
@@ -99,13 +116,16 @@ the second,
   &= \norm{u}^2 - t\,\overline{\inner{u}{v}} - \bar t\,\inner{u}{v}
      + |t|^2 \norm{v}^2.
 \end{align*}
+\emph{Read aloud:} ``the inner product of $u$ minus $tv$ with itself expands as the inner product of $u$ with $u$, minus $t$ times the inner product of $v$ with $u$, minus $t$-bar times the inner product of $u$ with $v$, plus the modulus of $t$ squared times the inner product of $v$ with $v$; equivalently, norm-$u$ squared minus $t$ times the conjugate of the inner product of $u$ and $v$, minus $t$-bar times the inner product of $u$ and $v$, plus the modulus of $t$ squared times norm-$v$ squared.''
 Choose $t = \inner{u}{v} / \norm{v}^2$. Then $\bar t \inner{u}{v} =
 |\inner{u}{v}|^2 / \norm{v}^2$ and $t\,\overline{\inner{u}{v}} =
 |\inner{u}{v}|^2 / \norm{v}^2$, while $|t|^2 \norm{v}^2 =
 |\inner{u}{v}|^2 / \norm{v}^2$. Substituting,
 $$0 \le \norm{u}^2 - \frac{|\inner{u}{v}|^2}{\norm{v}^2}.$$
+\emph{Read aloud:} ``zero is less than or equal to norm-$u$ squared minus the modulus squared of the inner product of $u$ and $v$, divided by norm-$v$ squared.''
 Multiplying through by $\norm{v}^2 > 0$ and rearranging,
 $$|\inner{u}{v}|^2 \le \norm{u}^2 \norm{v}^2,$$
+\emph{Read aloud:} ``the modulus squared of the inner product of $u$ and $v$ is less than or equal to norm-$u$ squared times norm-$v$ squared.''
 and taking square roots gives \eqref{eq:cs}.
 
 For the equality case: equality forces $\norm{u - t v}^2 = 0$, so by
@@ -138,6 +158,7 @@ becomes
 $$\left|\int_0^1 f g\,dx\right|
    \le \left(\int_0^1 f^2\,dx\right)^{1/2}
        \left(\int_0^1 g^2\,dx\right)^{1/2},$$
+\emph{Read aloud:} ``the absolute value of the integral from zero to one of $f$ times $g$ $dx$ is less than or equal to the square root of the integral of $f$ squared, times the square root of the integral of $g$ squared.''
 a special case of H\"older's inequality with $p = q = 2$.
 \end{example}
 

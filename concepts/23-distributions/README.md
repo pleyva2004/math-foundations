@@ -8,6 +8,28 @@
 ## Plain-English intro
 The full description of a random variable: its cumulative distribution function, its discrete probability mass function, or its continuous probability density function.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read aloud |
+|---|---|---|
+| ∈ | `\in` | is an element of / in |
+| ⊂ | `\subset` | is a (proper) subset of |
+| ⊆ | `\subseteq` | is a subset of (or equal) |
+| ⊇ | `\supseteq` | is a superset of (or equal) |
+| ⊃ | `\supset` | is a (proper) superset of |
+| ⋃ | `\bigcup` | union over |
+| ⋂ | `\bigcap` | intersection over |
+| ∅ | `\emptyset` | empty set |
+| ℝ | `\mathbb{R}` | the reals |
+| → | `\to` | tends to / approaches |
+| ∞ | `\infty` | infinity |
+| ∫ | `\int` | integral |
+| ∑ | `\sum` | sum / sigma |
+| ℱ | `\mathcal{F}` | script F / sigma-algebra |
+| Ω | `\Omega` | Omega / sample space |
+| F_X | `F_X(x)` | CDF of X |
+| := | `:=` | is defined as |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

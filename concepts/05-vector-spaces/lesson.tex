@@ -23,11 +23,25 @@ A vector space is the algebraic structure that captures ``things you can scale a
 
 \section{Axioms}
 
+\subsection*{First, an example}
+Before stating the axioms abstractly, fix the prototype in your head. Take $V = \mathbb{R}^3$ with the field of scalars $\mathbb{F} = \mathbb{R}$. The \emph{standard basis} is
+\[
+\{e_1, e_2, e_3\} \;=\; \{(1,0,0),\ (0,1,0),\ (0,0,1)\}.
+\]
+\emph{Read aloud:} the set containing one-zero-zero, zero-one-zero, and zero-zero-one.
+Every vector in $\mathbb{R}^3$ is a unique linear combination of these three. For instance, the vector $(2, 3, 5)$ decomposes as
+\[
+(2, 3, 5) \;=\; 2\,e_1 + 3\,e_2 + 5\,e_3 \;=\; 2(1,0,0) + 3(0,1,0) + 5(0,0,1).
+\]
+\emph{Read aloud:} the vector two-three-five equals two times e-one plus three times e-two plus five times e-three.
+The coefficients $(2,3,5)$ are the \emph{coordinates} of the vector with respect to the basis. The axioms below are simply the rules that make such decompositions consistent in any space.
+
 \begin{definition}[Vector space]
 Let $\mathbb{F}$ be a field (e.g.\ $\mathbb{R}$, $\mathbb{C}$, or $\mathbb{F}_p$). A \emph{vector space over $\mathbb{F}$} is a set $V$ equipped with operations
 \[
 + : V \times V \to V, \qquad \cdot : \mathbb{F} \times V \to V
 \]
+\emph{Read aloud:} plus, from V cross V to V; and dot, from F cross V to V.
 such that $(V, +)$ is an abelian group and for all $\alpha, \beta \in \mathbb{F}$ and $u, v \in V$:
 \begin{enumerate}
   \item $\alpha(u + v) = \alpha u + \alpha v$,
@@ -65,10 +79,12 @@ Induct on $n$. The base case $n = 0$ is trivial. Suppose the result holds for $n
 \[
 w_n = \sum_{i=1}^{n-1} \alpha_i w_i + \sum_{j=n}^{m} \beta_j v_j.
 \]
+\emph{Read aloud:} w sub n equals the sum from i equals one to n minus one of alpha sub i times w sub i, plus the sum from j equals n to m of beta sub j times v sub j.
 Not all $\beta_j$ are zero, else $w_n \in \operatorname{span}(w_1, \dots, w_{n-1})$, contradicting independence of $\{w_1, \dots, w_n\}$. In particular $m \ge n$. After relabeling, $\beta_n \ne 0$, so
 \[
 v_n = \beta_n^{-1}\Bigl(w_n - \sum_{i < n} \alpha_i w_i - \sum_{j > n} \beta_j v_j\Bigr) \in \operatorname{span}(w_1, \dots, w_n, v_{n+1}, \dots, v_m).
 \]
+\emph{Read aloud:} v sub n equals one over beta sub n times the quantity w sub n minus the sum over i less than n of alpha sub i w sub i minus the sum over j greater than n of beta sub j v sub j; this lies in the span of w one through w n together with v n plus one through v m.
 Therefore $\{w_1, \dots, w_n, v_{n+1}, \dots, v_m\}$ spans $V$, completing the induction.
 \end{proof}
 

@@ -28,6 +28,19 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+
+Before the axioms, the running picture: a \emph{fair six-sided die}.
+Take $\Om = \{1, 2, 3, 4, 5, 6\}$ and $\F = 2^{\Om}$ (every subset is an event).
+Define $P(\{i\}) = 1/6$ for each face $i$, and extend by addition:
+$P(A) = |A|/6$.
+Then the three Kolmogorov axioms are visible at a glance:
+(K1) $P(A) \geq 0$ since $|A| \geq 0$;
+(K2) $P(\Om) = 6/6 = 1$;
+(K3, finite case) for disjoint events the counts add, so e.g.
+$P(\{1,2\}) = 2/6 = 1/6 + 1/6 = P(\{1\}) + P(\{2\})$.
+Every formal manoeuvre below is just a careful version of what already works for the die.
+
 \section{Setting}
 
 Throughout, $\Om$ is a non-empty set (the \emph{sample space}) and
@@ -49,6 +62,7 @@ satisfying the three \emph{Kolmogorov axioms}:
         P\!\left( \bigcup_{n=1}^{\infty} A_n \right)
         \;=\; \sum_{n=1}^{\infty} P(A_n).
     \]
+    \emph{Read aloud:} ``P of the union from $n=1$ to infinity of $A_n$ equals the sum from $n=1$ to infinity of P of $A_n$.''
 \end{enumerate}
 \end{definition}
 
@@ -70,6 +84,7 @@ Let $(\Om, \F, P)$ be a probability space. For every $A, B \in \F$,
 \[
     P(A \cup B) \;=\; P(A) + P(B) - P(A \cap B).
 \]
+\emph{Read aloud:} ``P of A union B equals P of A plus P of B minus P of A intersect B.''
 \end{theorem}
 
 \begin{proof}
@@ -85,6 +100,7 @@ finite intersections. By finite additivity,
 \begin{equation}\label{eq:step1}
     P(A \cup B) \;=\; P(A) + P(B \setminus A).
 \end{equation}
+\emph{Read aloud:} ``P of A union B equals P of A plus P of B minus A.''
 
 \smallskip
 \textbf{Step 2: $B = (B \cap A) \sqcup (B \setminus A)$ disjointly.}
@@ -94,10 +110,12 @@ reasons as in Step~1. By finite additivity,
 \[
     P(B) \;=\; P(B \cap A) + P(B \setminus A),
 \]
+\emph{Read aloud:} ``P of B equals P of B intersect A plus P of B minus A.''
 and rearranging gives
 \begin{equation}\label{eq:step2}
     P(B \setminus A) \;=\; P(B) - P(A \cap B).
 \end{equation}
+\emph{Read aloud:} ``P of B minus A equals P of B minus P of A intersect B.''
 (Note $P(B \cap A) = P(A \cap B)$ since intersection is commutative.)
 
 \smallskip
@@ -106,6 +124,7 @@ and rearranging gives
     P(A \cup B) \;=\; P(A) + \bigl( P(B) - P(A \cap B) \bigr)
                 \;=\; P(A) + P(B) - P(A \cap B). \qedhere
 \]
+\emph{Read aloud:} ``P of A union B equals P of A plus the quantity P of B minus P of A intersect B, which equals P of A plus P of B minus P of A intersect B.''
 \end{proof}
 
 \begin{remark}
@@ -115,6 +134,7 @@ The general $n$-set inclusion--exclusion formula
     \;=\; \sum_{k=1}^{n} (-1)^{k+1} \!\!\!
             \sum_{1 \leq i_1 < \cdots < i_k \leq n} \!\!\! P(A_{i_1} \cap \cdots \cap A_{i_k})
 \]
+\emph{Read aloud:} ``P of the union from $i=1$ to $n$ of $A_i$ equals the sum from $k=1$ to $n$ of negative one to the $k$ plus one, times the sum over all $k$-element index subsets $i_1 < \cdots < i_k$ of P of $A_{i_1}$ intersect dot dot dot intersect $A_{i_k}$.''
 follows by induction on $n$, with Theorem~\ref{thm:incl-excl} as the base case.
 \end{remark}
 
@@ -125,6 +145,7 @@ For every countable collection $\{A_n\}_{n \geq 1} \subseteq \F$,
 \[
     P\!\left( \bigcup_{n=1}^{\infty} A_n \right) \;\leq\; \sum_{n=1}^{\infty} P(A_n).
 \]
+\emph{Read aloud:} ``P of the union from $n=1$ to infinity of $A_n$ is less than or equal to the sum from $n=1$ to infinity of P of $A_n$.''
 \end{proposition}
 
 \begin{proof}
@@ -135,6 +156,7 @@ $\bigcup_n B_n = \bigcup_n A_n$ with $B_n \subseteq A_n$. By (K3) and monotonici
 \[
     P\!\left( \bigcup_n A_n \right) = \sum_n P(B_n) \leq \sum_n P(A_n). \qedhere
 \]
+\emph{Read aloud:} ``P of the union over $n$ of $A_n$ equals the sum over $n$ of P of $B_n$, which is less than or equal to the sum over $n$ of P of $A_n$.''
 \end{proof}
 
 \end{document}

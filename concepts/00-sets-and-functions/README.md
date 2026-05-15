@@ -8,6 +8,26 @@
 ## Plain-English intro
 The two foundational objects: collections and rules that map elements between them.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | Read aloud as | Plain-English meaning |
+|--------|---------------|------------------------|
+| $\in$ | "is an element of / in" | Set membership. $x \in S$ means $x$ is an element of the set $S$. |
+| $\notin$ | "is not an element of" | Negated set membership. |
+| $\subset$ | "is a (proper) subset of" | $A \subset B$ means every element of $A$ is in $B$ (often used for proper subsets). |
+| $\subseteq$ | "is a subset of (or equal)" | $A \subseteq B$ means every element of $A$ is in $B$; equality allowed. |
+| $\forall$ | "for all" | Universal quantifier. "For every $x$ in $S$, the property $P(x)$ holds." Used to make claims about every element of a set. |
+| $\times$ | "Cartesian product" | $A \times B$ is the set of ordered pairs $(a, b)$ with $a \in A$, $b \in B$. |
+| $f : A \to B$ | "f from A to B" | A function $f$ with domain $A$ and codomain $B$; for every $a \in A$ there is a unique $f(a) \in B$. |
+| $\to$ | "tends to / approaches" | Convergence of a sequence or value: $a_n \to L$ means $a_n$ approaches $L$. |
+| $\circ$ | "composed with" | Function composition: $(g \circ f)(x) = g(f(x))$. |
+| $\mapsto$ | "maps to" | Specifies the action of a function on an element. $x \mapsto f(x)$. |
+| $\mathbb{R}$ | "the reals" | The complete ordered field of real numbers. |
+| $\mathbb{N}$ | "the natural numbers" | Non-negative integers $(0, 1, 2, \ldots)$ or positive integers, depending on convention. |
+| $\mathbb{Z}$ | "the integers" | All integers $\ldots, -2, -1, 0, 1, 2, \ldots$. |
+| $\Omega$ | "Omega / sample space" | Sample space: set of all possible outcomes of an experiment. |
+| $\mathcal{F}$ | "script F / sigma-algebra" | A $\sigma$-algebra: collection of measurable subsets closed under complement and countable union. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

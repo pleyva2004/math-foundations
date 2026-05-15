@@ -8,6 +8,24 @@
 ## Plain-English intro
 The local linear approximation; the limit of a difference quotient; differentiation rules.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read as | Meaning |
+|---|---|---|---|
+| ∈ | `\in` | "is an element of / in" | Set membership: `x ∈ S` says `x` belongs to set `S`. |
+| ⊂ | `\subset` | "is a (proper) subset of" | Every element of the left set is in the right set. |
+| ⊆ | `\subseteq` | "is a subset of (or equal)" | Subset, possibly equal to the larger set. |
+| ↦ | `\mapsto` | "maps to" | Specifies how a function sends an input to an output, e.g. `c ↦ f'(c)`. |
+| ∘ | `\circ` | "composed with" | Function composition: `(f ∘ g)(x) = f(g(x))`. |
+| ℝ | `\mathbb{R}` | "the reals" | The set of real numbers. |
+| → | `\to` | "tends to / approaches" | Used in limits (`h \to 0`) and function signatures (`f : I \to \mathbb{R}`). |
+| ε | `\varepsilon` | "epsilon" | A small error term that vanishes in the limit. |
+| ∞ | `\infty` | "infinity" | Used in `L^\infty` norms / unbounded behaviour. |
+| \|x\| | `|x|` | "absolute value of x" | Distance of `x` from `0`; the canonical non-differentiable example at `0`. |
+| d/dx | `\frac{d}{dx}` | "derivative with respect to x" | Leibniz notation for differentiation. |
+| := | `:=` | "is defined as" | Introduces a definition (left side is being defined). |
+| ≠ | `\neq` | "is not equal to" | Negated equality, as in `g(c) \neq 0`. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

@@ -18,6 +18,17 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+Roll a fair six-sided die. Let $A = \{\,\omega : \omega \text{ is even}\,\}$ and
+$B = \{\,\omega : \omega \ge 4\,\}$. Then $A \cap B = \{4, 6\}$, so
+\[
+P(A \mid B) \;=\; \frac{P(A \cap B)}{P(B)} \;=\; \frac{2/6}{3/6} \;=\; \frac{2}{3}.
+\]
+\emph{Read aloud:} ``probability of A given B equals probability of A intersect B divided by probability of B, which is two-sixths over three-sixths, equals two-thirds.''
+Knowing that $B$ occurred shifts our belief about $A$ from $1/2$ (the unconditional
+probability of an even roll) to $2/3$. Conditional probability is exactly this
+update rule, and the rest of the lesson develops it carefully.
+
 \section{Setup}
 Throughout, let $(\Omega, \mathcal{F}, P)$ be a probability space. We use
 $A, B, \ldots$ for elements of $\mathcal{F}$ (``events'').
@@ -30,6 +41,7 @@ Let $B \in \mathcal{F}$ with $P(B) > 0$. For any $A \in \mathcal{F}$, the
 \[
 P(A \mid B) \;:=\; \frac{P(A \cap B)}{P(B)}.
 \]
+\emph{Read aloud:} ``probability of A given B is defined as probability of A intersect B, divided by probability of B.''
 \end{definition}
 
 \begin{proposition}[$P(\cdot \mid B)$ is a probability measure]
@@ -46,6 +58,7 @@ $\{A_n \cap B\}$, so
 Q\!\left(\bigcup_n A_n\right) = \frac{P\!\left(\bigcup_n (A_n \cap B)\right)}{P(B)}
 = \frac{\sum_n P(A_n \cap B)}{P(B)} = \sum_n Q(A_n). \qedhere
 \]
+\emph{Read aloud:} ``Q of the union over n of A-sub-n equals P of the union over n of A-sub-n intersect B, all over P of B; which equals the sum over n of P of A-sub-n intersect B, over P of B; which equals the sum over n of Q of A-sub-n.''
 \end{proof}
 
 \begin{definition}[Independence]
@@ -61,6 +74,7 @@ $P(B_i) > 0$ for all $i$. For any $A \in \mathcal{F}$,
 \[
 P(A) = \sum_{i=1}^n P(A \mid B_i)\, P(B_i).
 \]
+\emph{Read aloud:} ``probability of A equals the sum from i equals one to n of probability of A given B-sub-i, times probability of B-sub-i.''
 \end{lemma}
 
 \begin{proof}
@@ -69,6 +83,7 @@ By finite additivity of $P$ and the definition of conditional probability,
 \[
 P(A) = \sum_i P(A \cap B_i) = \sum_i P(A \mid B_i) P(B_i). \qedhere
 \]
+\emph{Read aloud:} ``probability of A equals the sum over i of probability of A intersect B-sub-i, which equals the sum over i of probability of A given B-sub-i, times probability of B-sub-i.''
 \end{proof}
 
 \begin{theorem}[Bayes]
@@ -76,11 +91,13 @@ Let $A, B \in \mathcal{F}$ with $P(A) > 0$ and $P(B) > 0$. Then
 \[
 P(A \mid B) \;=\; \frac{P(B \mid A)\, P(A)}{P(B)}.
 \]
+\emph{Read aloud:} ``probability of A given B equals probability of B given A, times probability of A, all over probability of B.''
 Moreover, if $\{A_i\}_{i=1}^n$ is a measurable partition of $\Omega$ with
 each $P(A_i) > 0$, then for any $j$,
 \[
 P(A_j \mid B) \;=\; \frac{P(B \mid A_j) P(A_j)}{\sum_{i=1}^n P(B \mid A_i) P(A_i)}.
 \]
+\emph{Read aloud:} ``probability of A-sub-j given B equals probability of B given A-sub-j, times probability of A-sub-j, all over the sum from i equals one to n of probability of B given A-sub-i, times probability of A-sub-i.''
 \end{theorem}
 
 \begin{proof}
@@ -89,11 +106,13 @@ By definition,
 P(A \mid B) = \frac{P(A \cap B)}{P(B)}, \qquad
 P(B \mid A) = \frac{P(A \cap B)}{P(A)}.
 \]
+\emph{Read aloud:} ``probability of A given B equals probability of A intersect B, over probability of B; and probability of B given A equals probability of A intersect B, over probability of A.''
 The second identity yields $P(A \cap B) = P(B \mid A)\, P(A)$. Substituting
 into the first gives
 \[
 P(A \mid B) = \frac{P(B \mid A)\, P(A)}{P(B)},
 \]
+\emph{Read aloud:} ``probability of A given B equals probability of B given A, times probability of A, all over probability of B.''
 which is the first claim. For the second, apply the law of total probability
 with the partition $\{A_i\}$ to expand $P(B) = \sum_i P(B \mid A_i) P(A_i)$
 in the denominator. \qedhere
@@ -107,6 +126,7 @@ Then
 \[
 P(A_1 \cap \cdots \cap A_n) \;=\; P(A_1)\, \prod_{k=2}^{n} P(A_k \mid A_1 \cap \cdots \cap A_{k-1}).
 \]
+\emph{Read aloud:} ``probability of A-one intersect dot dot dot intersect A-n equals probability of A-one, times the product from k equals two to n of probability of A-sub-k given A-one intersect dot dot dot intersect A-sub-k-minus-one.''
 \end{proposition}
 
 \begin{proof}

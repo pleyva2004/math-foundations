@@ -26,6 +26,19 @@ underlies all of discrete probability and many counting arguments in
 machine learning theory (sample-space sizes, VC growth functions,
 counting of hypothesis classes).
 
+\subsection*{First, an example}
+Before any formulas, let us count by hand. How many ways can we arrange
+the three letters $\{a, b, c\}$ in a row? List them:
+\[
+  abc,\ acb,\ bac,\ bca,\ cab,\ cba.
+\]
+\emph{Read aloud:} a-b-c, a-c-b, b-a-c, b-c-a, c-a-b, c-b-a.
+There are exactly $6$ arrangements. Notice the structure: there are $3$
+choices for the first letter; once chosen, $2$ remain for the second; and
+the last is forced. So $3 \cdot 2 \cdot 1 = 6$. This product pattern is
+the seed of the multiplication principle, of $n!$, and of the formulas
+$P(n,k)$ and $\binom{n}{k}$ developed below.
+
 \section*{Basic Principles}
 
 \begin{definition}[Multiplication Principle]
@@ -49,6 +62,9 @@ of $k$-permutations is
 \[
   P(n,k) = \frac{n!}{(n-k)!} = n(n-1)\cdots(n-k+1).
 \]
+\emph{Read aloud:} P of n comma k equals n factorial divided by the
+quantity n minus k factorial, which equals n times n minus 1, dot dot
+dot, down to n minus k plus 1.
 \end{definition}
 
 \begin{definition}[Combination]
@@ -57,6 +73,8 @@ of $S$. The number of $k$-combinations is the binomial coefficient
 \[
   \binom{n}{k} = \frac{n!}{k!(n-k)!}.
 \]
+\emph{Read aloud:} n choose k equals n factorial divided by the product
+k factorial times n minus k factorial.
 \end{definition}
 
 \begin{proposition}[Pascal's rule]
@@ -64,6 +82,8 @@ For $1 \leq k \leq n-1$,
 \[
   \binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}.
 \]
+\emph{Read aloud:} n choose k equals n minus 1 choose k minus 1, plus
+n minus 1 choose k.
 \end{proposition}
 
 \begin{proof}
@@ -89,6 +109,9 @@ For all $n \in \mathbb{Z}_{\geq 0}$ and all $x,y$ in a commutative ring,
 \[
   (x+y)^n \;=\; \sum_{k=0}^{n} \binom{n}{k} x^{k} y^{\,n-k}.
 \]
+\emph{Read aloud:} the quantity x plus y, raised to the n, equals the
+sum from k equals 0 to n of n choose k, times x to the k, times y to
+the n minus k.
 \end{theorem}
 
 \begin{proof}
@@ -106,11 +129,20 @@ term $\binom{0}{0}x^0 y^0 = 1$.
   &= \sum_{k=0}^{n} \binom{n}{k} x^{k+1} y^{n-k}
    + \sum_{k=0}^{n} \binom{n}{k} x^{k} y^{n-k+1}.
 \end{align*}
+\emph{Read aloud:} x plus y to the n plus 1 equals x plus y times x plus
+y to the n, which equals x plus y times the sum from k equals 0 to n of
+n choose k, x to the k, y to the n minus k; distributing gives the sum
+from k equals 0 to n of n choose k, x to the k plus 1, y to the n minus
+k, plus the sum from k equals 0 to n of n choose k, x to the k, y to the
+n minus k plus 1.
 Reindex the first sum with $j = k+1$:
 \[
   \sum_{k=0}^{n} \binom{n}{k} x^{k+1} y^{n-k}
   = \sum_{j=1}^{n+1} \binom{n}{j-1} x^{j} y^{n+1-j}.
 \]
+\emph{Read aloud:} the sum from k equals 0 to n of n choose k, x to the
+k plus 1, y to the n minus k, equals the sum from j equals 1 to n plus
+1 of n choose j minus 1, x to the j, y to the n plus 1 minus j.
 The second sum is already indexed in the form $\sum_{j=0}^{n}
 \binom{n}{j} x^{j} y^{n+1-j}$. Combining and isolating the $j=0$ and
 $j=n+1$ boundary terms,
@@ -123,6 +155,13 @@ $j=n+1$ boundary terms,
    + \sum_{j=1}^{n} \binom{n+1}{j} x^j y^{n+1-j}
    + y^{n+1}
 \end{align*}
+\emph{Read aloud:} x plus y to the n plus 1 equals n choose n times x to
+the n plus 1 times y to the 0, plus the sum from j equals 1 to n of the
+quantity n choose j minus 1 plus n choose j, times x to the j, y to the
+n plus 1 minus j, plus n choose 0 times x to the 0 times y to the n plus
+1; this simplifies to x to the n plus 1, plus the sum from j equals 1 to
+n of n plus 1 choose j, x to the j, y to the n plus 1 minus j, plus y to
+the n plus 1.
 by Pascal's rule. Since $\binom{n+1}{0} = \binom{n+1}{n+1} = 1$, this is
 exactly $\sum_{j=0}^{n+1} \binom{n+1}{j} x^j y^{n+1-j}$, completing the
 induction.
@@ -137,6 +176,10 @@ For finite sets $A_1,\ldots,A_n$,
   = \sum_{\emptyset \neq S \subseteq [n]} (-1)^{|S|+1}
      \left| \bigcap_{i \in S} A_i \right|.
 \]
+\emph{Read aloud:} the size of the union from i equals 1 to n of A sub
+i, equals the sum over nonempty subsets S of the index set bracket n,
+of negative one to the size of S plus 1, times the size of the
+intersection over i in S of A sub i.
 \end{theorem}
 
 \section*{Worked Examples}
@@ -155,6 +198,8 @@ divisible by $2$, $3$, or $5$:
 \[
   50 + 33 + 20 - 16 - 10 - 6 + 3 = 74.
 \]
+\emph{Read aloud:} fifty plus thirty-three plus twenty, minus sixteen,
+minus ten, minus six, plus three, equals seventy-four.
 
 \paragraph{(e) Binomial theorem.} Setting $x = y = 1$ in
 Theorem~\ref{thm:binomial} yields $2^n = \sum_{k=0}^n \binom{n}{k}$, the

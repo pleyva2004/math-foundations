@@ -19,6 +19,23 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+
+Before any abstraction, here is the $\epsilon$--$N$ game in
+miniature. Take the sequence $x_n = 1/n$ for $n = 1, 2, 3,
+\ldots$, and the candidate limit $L = 0$. We claim
+$x_n \to 0$.
+
+Suppose a skeptic demands tolerance $\epsilon = 0.01$. We must
+exhibit an index $N$ such that $|x_n - 0| < 0.01$ for every
+$n \ge N$. Choose $N = 100$: then for $n \ge 100$ we have
+$|x_n| = 1/n \le 1/100 = 0.01$, so $|x_n| < 0.01$ holds for all
+$n > 100$ (and at $n = 100$ we get equality, easily fixed by
+$N = 101$). More generally, for any $\epsilon > 0$ pick
+$N = \lceil 1/\epsilon \rceil + 1$; the same calculation gives
+$|x_n| < \epsilon$ for all $n \ge N$. The whole rest of this
+lesson is about taking this single example seriously.
+
 \section{Setting}
 
 Throughout, $(X, d)$ denotes a metric space (concept 09). A
@@ -36,6 +53,10 @@ A sequence $(x_n)$ in $X$ \emph{converges} to $L \in X$ if
 \forall \epsilon > 0,\ \exists N \in \mathbb{N},\
 \forall n \ge N,\ d(x_n, L) < \epsilon.
 \]
+\emph{Read aloud:} ``for all epsilon greater than zero, there
+exists a natural number $N$ such that, for all $n$ greater than
+or equal to $N$, the distance from $x_n$ to $L$ is less than
+epsilon.''
 We write $x_n \to L$ as $n \to \infty$, or
 $\lim_{n \to \infty} x_n = L$.
 \end{definition}
@@ -69,6 +90,10 @@ A sequence $(x_n)$ in $X$ is \emph{Cauchy} if
 \forall \epsilon > 0,\ \exists N \in \mathbb{N},\
 \forall m, n \ge N,\ d(x_m, x_n) < \epsilon.
 \]
+\emph{Read aloud:} ``for all epsilon greater than zero, there
+exists a natural number $N$ such that, for all $m$ and $n$
+greater than or equal to $N$, the distance between $x_m$ and
+$x_n$ is less than epsilon.''
 \end{definition}
 
 The Cauchy condition speaks only of the sequence's internal
@@ -110,12 +135,18 @@ $\epsilon/2 > 0$: there exists $N \in \mathbb{N}$ such that
 \[
 n \ge N \quad \Longrightarrow \quad d(x_n, L) < \frac{\epsilon}{2}.
 \]
+\emph{Read aloud:} ``$n$ greater than or equal to $N$ implies
+the distance from $x_n$ to $L$ is less than epsilon over two.''
 Now let $m, n \ge N$. By the triangle inequality
 (from the metric axioms),
 \[
 d(x_m, x_n) \le d(x_m, L) + d(L, x_n)
 < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.
 \]
+\emph{Read aloud:} ``the distance from $x_m$ to $x_n$ is less
+than or equal to the distance from $x_m$ to $L$ plus the
+distance from $L$ to $x_n$, which is less than epsilon over two
+plus epsilon over two, equals epsilon.''
 Since $\epsilon > 0$ was arbitrary, the sequence $(x_n)$
 satisfies the Cauchy criterion.
 \end{proof}

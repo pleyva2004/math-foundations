@@ -8,6 +8,27 @@
 ## Plain-English intro
 Partial derivatives; the chain rule in multiple variables; directional derivatives.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read as |
+|---|---|---|
+| ℝ | `\mathbb{R}` | the reals |
+| ℝⁿ | `\mathbb{R}^n` | R to the n |
+| ∈ | `\in` | is an element of / in |
+| ⊂ | `\subset` | is a (proper) subset of |
+| → | `\to` | tends to / approaches |
+| ∘ | `\circ` | composed with |
+| ‖·‖ | `\norm{\cdot}` | norm |
+| ∂/∂xᵢ | `\frac{\partial f}{\partial x_i}` | partial derivative with respect to xᵢ |
+| ∇ | `\nabla` | nabla / gradient |
+| lim | `\lim_{h \to 0}` | limit as h goes to 0 |
+| ∑ | `\sum_{i=1}^{n}` | sum from i=1 to n |
+| ε | `\varepsilon` | epsilon |
+| δ | `\delta` | delta |
+| ≤ | `\le` | less than or equal to |
+| · | `\cdot` | dot (product) |
+| Dᵥf | `D_v f` | directional derivative of f in direction v |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

@@ -8,6 +8,28 @@
 ## Plain-English intro
 Equivalence relations, partial and total orders, equivalence classes.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read as | Meaning |
+|---|---|---|---|
+| ∀ | `\forall` | for all | Universal quantifier. 'For every x in S, the property P(x) holds.' |
+| ∧ | `\wedge` | and | Logical conjunction. P ∧ Q is true iff both P and Q are true. |
+| ∨ | `\vee` | or | Logical disjunction (inclusive). P ∨ Q is true iff at least one of P, Q is true. |
+| ⇒ | `\Rightarrow` | implies | Material implication. P ⇒ Q means whenever P holds, Q holds. |
+| ∈ | `\in` | is an element of / in | Set membership. x ∈ S means x is an element of the set S. |
+| ⊆ | `\subseteq` | is a subset of (or equal) | A ⊆ B means every element of A is in B; equality allowed. |
+| ⋃ | `\bigcup` | union over | Indexed union over a collection of sets. |
+| ∩ | `\cap` | intersection | A ∩ B is the set of elements in both A and B. |
+| ∅ | `\emptyset` | empty set | The unique set with no elements. |
+| × | `\times` | Cartesian product | A × B is the set of ordered pairs (a, b) with a ∈ A, b ∈ B. |
+| 𝒫(·) | `\mathcal{P}(S)` | power set of | The set of all subsets of S. |
+| ∘ | `\circ` | composed with | Function composition: (g ∘ f)(x) = g(f(x)). |
+| ℤ | `\mathbb{Z}` | the integers | All integers …, -2, -1, 0, 1, 2, …. |
+| ∼ | `\sim` | is distributed as / is related to | Generic relation symbol (here: equivalence relation). |
+| ≡ | `\equiv` | is equivalent / equals by definition | Identity by definition; or equivalence (e.g. mod n). |
+| ≠ | `\neq` | is not equal to | Negated equality. |
+| ≤ | `\leq` | less than or equal to | Non-strict inequality (here: a generic partial order). |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

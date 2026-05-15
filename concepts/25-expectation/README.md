@@ -8,6 +8,29 @@
 ## Plain-English intro
 The weighted average of a random variable's values, weighted by their probability; the integral of the random variable against its distribution.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read as | Meaning |
+|---|---|---|---|
+| ℝ | `\mathbb{R}` | the reals | The complete ordered field of real numbers. |
+| 𝔼[·] | `\mathbb{E}[X]` | expectation of X | Expected value (mean) of a random variable X under its distribution. |
+| ∑ | `\sum` | sum / sigma | Indexed summation operator. |
+| ∫ | `\int` | integral | Riemann (or Lebesgue) integral; signed area / total accumulation. |
+| ∈ | `\in` | is an element of / in | Set membership. x ∈ S means x is an element of the set S. |
+| ⊂ | `\subset` | is a (proper) subset of | A ⊂ B means every element of A is in B. |
+| → | `\to` | tends to / maps to | Convergence or function arrow. |
+| ≤ | `\leq` | less than or equal to | Non-strict inequality. |
+| ∞ | `\infty` | infinity | An idealised unbounded quantity used in limits, sums, and integrals. |
+| ~ | `\sim` | is distributed as | X ~ D means X has distribution D. |
+| \|·\| | `\|x\|` | absolute value | Distance of a real number from 0. |
+| Ω | `\Omega` | Omega / sample space | Sample space: set of all possible outcomes of an experiment. |
+| ℱ | `\mathcal{F}` | script F / sigma-algebra | A σ-algebra: collection of measurable subsets closed under complement and countable union. |
+| P(·) | `P(A)` | probability of A | Probability of event A under a probability measure P. |
+| p_X | `p_X(x)` | density / pmf of X at x | Probability mass / density function for X. |
+| Bern(p) | `\mathrm{Bern}(p)` | Bernoulli of p | Distribution of a 0/1 random variable with P(X=1) = p. |
+| Bin(n, p) | `\mathrm{Bin}(n, p)` | Binomial of n, p | Number of successes in n independent Bernoulli(p) trials. |
+| U(a, b) | `U(a, b)` | Uniform on [a, b] | Continuous distribution with constant density 1/(b−a) on [a, b]. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

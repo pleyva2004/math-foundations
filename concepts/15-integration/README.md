@@ -8,6 +8,24 @@
 ## Plain-English intro
 The Riemann integral as a limit of step-function approximations; the fundamental theorem of calculus.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read aloud | Meaning |
+|---|---|---|---|
+| ∫ | `\int` | integral | Riemann (or Lebesgue) integral; signed area / total accumulation. |
+| ∑ | `\sum` | sum / sigma | Indexed summation operator. |
+| ℝ | `\mathbb{R}` | the reals | The complete ordered field of real numbers. |
+| ∈ | `\in` | is an element of / in | Set membership. x ∈ S means x is an element of the set S. |
+| → | `\to` | tends to / approaches | Convergence of a sequence or value: a_n → L means a_n approaches L. |
+| ∞ | `\infty` | infinity | An idealised unbounded quantity used in limits, sums, and integrals. |
+| ε | `\varepsilon` | epsilon | Small positive tolerance used in the ε-δ definitions of limit and continuity. |
+| δ | `\delta` | delta | Tolerance on inputs paired with ε in the ε-δ definition of continuity. |
+| ⇒ | `\Rightarrow` / `\implies` | implies | Material implication. P ⇒ Q means whenever P holds, Q holds. |
+| ≠ | `\neq` | is not equal to | Negated equality. |
+| ⊆ | `\subseteq` | is a subset of (or equal) | A ⊆ B means every element of A is in B. |
+| ∪ | `\cup` | union | A ∪ B is the set of elements in A or B (or both). |
+| η | `\eta` | eta | Greek letter eta; here, a sample point in a subinterval where f attains its infimum. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

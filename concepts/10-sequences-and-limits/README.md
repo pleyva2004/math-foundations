@@ -8,6 +8,19 @@
 ## Plain-English intro
 Convergence of sequences; the epsilon-N definition; Cauchy sequences and completeness.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read as | Meaning |
+|--------|-------|---------|---------|
+| ∀ | `\forall` | "for all" | Universal quantifier — the property holds for every element. |
+| ∃ | `\exists` | "there exists" | Existential quantifier — at least one element has the property. |
+| ∈ | `\in` | "is an element of / in" | Set membership: the left-hand object belongs to the right-hand set. |
+| ℕ | `\mathbb{N}` | "the natural numbers" | The set {0, 1, 2, …} (or {1, 2, …}); used to index sequences. |
+| ℚ | `\mathbb{Q}` | "the rationals" | All ratios p/q of integers with q ≠ 0; not complete as a metric space. |
+| ℝ | `\mathbb{R}` | "the reals" | The complete ordered field of real numbers. |
+| → | `\to` | "tends to / approaches" | Convergence arrow: x_n → L means the sequence approaches L. |
+| ∞ | `\infty` | "infinity" | Used in n → ∞ to describe the long-run / tail behaviour of a sequence. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

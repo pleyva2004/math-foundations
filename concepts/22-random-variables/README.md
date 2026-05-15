@@ -8,6 +8,28 @@
 ## Plain-English intro
 Measurable functions from the sample space to the real line; the bridge from sets-of-outcomes to numerical values.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read aloud | Meaning |
+|---|---|---|---|
+| ⇒ | `\Rightarrow` | implies | logical implication |
+| ∈ | `\in` | is an element of / in | set membership |
+| ⊂ | `\subset` | is a (proper) subset of | proper subset |
+| ⊆ | `\subseteq` | is a subset of (or equal) | subset (possibly equal) |
+| ∪ | `\cup` | union | binary union |
+| ∩ | `\cap` | intersection | binary intersection |
+| ⋃ | `\bigcup` | union over | indexed union |
+| ⋂ | `\bigcap` | intersection over | indexed intersection |
+| ℚ | `\mathbb{Q}` | the rationals | rational numbers |
+| ℝ | `\mathbb{R}` | the reals | real numbers |
+| → | `\to` | tends to / approaches (here: "to") | function arrow / limit |
+| ε | `\varepsilon` | epsilon | small positive real |
+| ∞ | `\infty` | infinity | unbounded limit |
+| ℱ | `\mathcal{F}` | script F / sigma-algebra | the σ-algebra of events |
+| Ω | `\Omega` | Omega / sample space | sample space |
+| F_X | `F_X(x)` | CDF of X at x | cumulative distribution function |
+| := | `:=` | is defined as | definitional equality |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}

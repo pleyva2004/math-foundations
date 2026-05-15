@@ -8,6 +8,22 @@
 ## Plain-English intro
 P(A | B) = P(A and B) / P(B); the update rule for new information.
 
+## 📖 Symbols you'll see in this lesson
+
+| Symbol | LaTeX | Read aloud | Meaning |
+|---|---|---|---|
+| $\Omega$ | `\Omega` | Omega / sample space | The set of all possible outcomes. |
+| $\mathcal{F}$ | `\mathcal{F}` | script F / sigma-algebra | The collection of measurable events. |
+| $P(A)$ | `P(A)` | probability of A | The probability assigned to event $A$. |
+| $P(A \mid B)$ | `P(A \mid B)` | probability of A given B | Probability of $A$ once we know $B$ occurred. |
+| $:=$ | `:=` | is defined as | Left-hand side is defined to equal the right. |
+| $\in$ | `\in` | is an element of / in | Membership in a set. |
+| $\cap$ | `\cap` | intersection | Both events occur. |
+| $\bigcup$ | `\bigcup` | union over | Union over an indexed family of sets. |
+| $\sum$ | `\sum` | sum / sigma | Summation over an index. |
+| $\prod$ | `\prod` | product | Product over an index. |
+| $\to$ | `\to` | tends to / approaches | Maps to, or limit direction. |
+
 ## Formal definition
 $$
 \text{See hand-written content below.}
