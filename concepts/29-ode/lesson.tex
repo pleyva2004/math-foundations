@@ -25,6 +25,7 @@ continuous. A \emph{first-order ordinary differential equation} (ODE) on $U$ is 
 \[
 y'(t) = f(t, y(t)),
 \]
+\emph{Read aloud:} ``y prime of t equals f of t comma y of t.''
 where $y : I \to \mathbb{R}^n$ is an unknown differentiable function defined on an interval
 $I \subseteq \mathbb{R}$ with $\{(t, y(t)) : t \in I\} \subseteq U$. The function $f$ is called the
 \emph{vector field} of the equation.
@@ -35,6 +36,7 @@ Given $(t_0, y_0) \in U$, the \emph{initial value problem} (IVP) is the pair
 \[
 y'(t) = f(t, y(t)), \qquad y(t_0) = y_0.
 \]
+\emph{Read aloud:} ``y prime of t equals f of t comma y of t, with y of t-naught equal to y-naught.''
 A \emph{solution} is a differentiable map $y : I \to \mathbb{R}^n$ with $t_0 \in I$ satisfying both
 equations.
 \end{definition}
@@ -47,10 +49,12 @@ Let $f(t, y) = -y$. The unique solution $y : \mathbb{R} \to \mathbb{R}$ of the I
 \[
 y'(t) = -y(t), \qquad y(0) = 1
 \]
+\emph{Read aloud:} ``y prime of t equals minus y of t, with y of zero equal to one.''
 is
 \[
 y(t) = e^{-t}.
 \]
+\emph{Read aloud:} ``y of t equals e to the minus t.''
 \end{theorem}
 
 \begin{proof}
@@ -59,6 +63,7 @@ $\mathbb{R}$ with
 \[
 y'(t) = \frac{d}{dt} e^{-t} = -e^{-t} = -y(t),
 \]
+\emph{Read aloud:} ``y prime of t equals d by d t of e to the minus t, which equals minus e to the minus t, which equals minus y of t.''
 so $y$ satisfies the ODE. Moreover $y(0) = e^0 = 1$, so the initial condition holds. Hence $y(t) = e^{-t}$
 is a solution.
 
@@ -68,6 +73,7 @@ $g(t) := e^{t} \tilde y(t)$. Then $g$ is differentiable with
 g'(t) = e^{t} \tilde y(t) + e^{t} \tilde y'(t)
      = e^{t} \tilde y(t) + e^{t} (-\tilde y(t)) = 0.
 \]
+\emph{Read aloud:} ``g prime of t equals e to the t times y-tilde of t plus e to the t times y-tilde prime of t, which equals e to the t times y-tilde of t plus e to the t times minus y-tilde of t, which equals zero.''
 So $g$ is constant on $\mathbb{R}$. Evaluating at $t = 0$: $g(0) = e^{0} \tilde y(0) = 1$. Thus
 $e^{t} \tilde y(t) \equiv 1$, i.e. $\tilde y(t) = e^{-t}$ for all $t \in \mathbb{R}$.
 

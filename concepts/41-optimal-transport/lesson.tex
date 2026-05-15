@@ -17,6 +17,22 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+
+Take two point masses: all probability mass sitting at $0$ for $\mu = \delta_0$, and
+all mass sitting at $1$ for $\nu = \delta_1$.  To turn $\mu$ into $\nu$ you must
+physically move the unit of mass a distance $1$, so
+\[
+W_1(\mu, \nu) \;=\; 1.
+\]
+\emph{Read aloud:} ``W-one of mu and nu equals one.''
+By contrast, $D_{\mathrm{KL}}(\mu \,\|\, \nu) = +\infty$ because the supports do not
+overlap; KL cannot tell us \emph{how far} the mass moved, only that it moved.
+For translated unit Gaussians, $W_1(\mathcal{N}(0,1), \mathcal{N}(m,1)) = |m|$ grows
+linearly in the shift while $D_{\mathrm{KL}} = m^2/2$ grows quadratically.
+Wasserstein is the distance for distributions that move \emph{in space}, not in
+shape.
+
 \section*{Setting}
 
 Let $(\mathcal{X}, d)$ be a Polish metric space (e.g.\ $\mathbb{R}^n$ with the Euclidean
@@ -30,6 +46,7 @@ are $\mu$ and $\nu$:
 \[
 \pi(A \times \mathcal{X}) = \mu(A), \qquad \pi(\mathcal{X} \times B) = \nu(B).
 \]
+\emph{Read aloud:} ``pi of A cross X equals mu of A, and pi of X cross B equals nu of B.''
 We write $\pi \in \Pi(\mu, \nu)$.  The set $\Pi(\mu, \nu)$ is always non-empty
 (contains $\mu \otimes \nu$) and weak-$*$ compact.
 \end{definition}
@@ -39,6 +56,7 @@ We write $\pi \in \Pi(\mu, \nu)$.  The set $\Pi(\mu, \nu)$ is always non-empty
 W_p(\mu, \nu) \;=\; \left( \inf_{\pi \in \Pi(\mu, \nu)}
    \int_{\mathcal{X} \times \mathcal{X}} d(x,y)^p \, d\pi(x,y) \right)^{1/p}.
 \]
+\emph{Read aloud:} ``W-p of mu and nu equals the infimum over couplings pi of the integral of d-of-x-y to the p-th power against pi, all to the one-over-p.''
 By weak-$*$ compactness of $\Pi(\mu, \nu)$ and lower semi-continuity of the cost,
 the infimum is attained.
 \end{definition}
@@ -50,6 +68,7 @@ problem is
 \[
 \inf_{T_\#\mu = \nu} \int_{\mathcal{X}} d(x, T(x))^p \, d\mu(x).
 \]
+\emph{Read aloud:} ``infimum over transport maps T pushing mu to nu of the integral of d-of-x and T-of-x to the p, against mu.''
 Every map $T$ induces a (deterministic) coupling $(\mathrm{id}, T)_\# \mu$, so the
 Monge value is always $\geq$ the Kantorovich value.  Under regularity
 (e.g.\ $\mu$ absolutely continuous on $\mathbb{R}^n$, $p > 1$), Brenier's theorem
@@ -64,6 +83,7 @@ the \emph{quantile function} is
 \[
 F_\mu^{-1}(u) \;=\; \inf\{ x \in \mathbb{R} \;:\; F_\mu(x) \geq u \}, \qquad u \in (0,1).
 \]
+\emph{Read aloud:} ``F-mu inverse of u equals the infimum of those real x for which F-mu of x is at least u, for u between zero and one.''
 If $U \sim \mathrm{Unif}(0,1)$ then $F_\mu^{-1}(U) \sim \mu$.
 
 \begin{theorem}[1D Wasserstein closed form]
@@ -72,6 +92,7 @@ Let $\mu, \nu \in \mathcal{P}_p(\mathbb{R})$ with $p \geq 1$.  Then
 \[
 W_p(\mu, \nu)^p \;=\; \int_0^1 \left| F_\mu^{-1}(u) - F_\nu^{-1}(u) \right|^p \, du.
 \]
+\emph{Read aloud:} ``W-p of mu and nu, raised to the p, equals the integral from zero to one of the absolute difference of the two quantile functions, raised to the p, du.''
 Moreover the infimum is attained by the \emph{monotone coupling}
 $\pi^* = (F_\mu^{-1}, F_\nu^{-1})_\# \mathrm{Leb}_{(0,1)}$.
 \end{theorem}
@@ -85,6 +106,7 @@ for $\nu$, so $\pi^* \in \Pi(\mu, \nu)$.  Hence
 W_p(\mu, \nu)^p \;\leq\; \int_{\mathbb{R}^2} |x-y|^p \, d\pi^*(x,y)
                   \;=\; \int_0^1 |F_\mu^{-1}(u) - F_\nu^{-1}(u)|^p \, du.
 \]
+\emph{Read aloud:} ``W-p to the p is at most the integral of x-minus-y to the p against pi-star, which equals the quantile-difference integral from zero to one.''
 
 \textbf{Lower bound (the key step).}  The cost $c(x,y) = |x-y|^p$ for $p \geq 1$
 satisfies the \emph{Monge condition} (a.k.a.\ submodularity):
@@ -92,6 +114,7 @@ for all $x < x'$ and $y < y'$,
 \[
 c(x, y) + c(x', y') \;\leq\; c(x, y') + c(x', y).
 \]
+\emph{Read aloud:} ``c-of-x-y plus c-of-x-prime-y-prime is less than or equal to c-of-x-y-prime plus c-of-x-prime-y.''
 (For $p = 1$ this is immediate: both sides equal $|x - y'| + |x' - y|$ in the
 ``crossing'' configuration but $(x'-x) + (y'-y)$ vanishes when one rearranges; the
 general case follows from convexity of $t \mapsto |t|^p$.)

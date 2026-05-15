@@ -15,6 +15,19 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+
+Before the general theory, here is the prototype. Let $X \sim \mathrm{Uniform}(0,1)$
+and define $Y = -\log X$. The transformation $g(x) = -\log x$ has inverse
+$g^{-1}(y) = e^{-y}$ and derivative magnitude $|g'(x)| = 1/x$. Plugging into the
+density-transformation rule (Theorem~\ref{thm:1d} below) with $f_X \equiv 1$ on $(0,1)$,
+\[
+f_Y(y) \;=\; f_X(e^{-y}) \cdot e^{-y} \;=\; e^{-y}, \qquad y \ge 0.
+\]
+\emph{Read aloud:} ``f sub Y of y equals f sub X of e to the minus y, times e to the minus y, which equals e to the minus y, for y greater than or equal to zero.''
+So $Y$ is exponential with rate $1$. The factor $e^{-y}$ is the Jacobian of the inverse
+map; everything that follows is a careful generalization of this single calculation.
+
 \section{Setup}
 
 Let $X$ be a continuous random variable taking values in an open set $U \subseteq \mathbb{R}^n$
@@ -44,6 +57,7 @@ and $Y = g(X)$ has density
 f_Y(y) \;=\; \frac{f_X\!\bigl(g^{-1}(y)\bigr)}{\bigl|g'\!\bigl(g^{-1}(y)\bigr)\bigr|},
 \qquad y \in (c,d).
 \]
+\emph{Read aloud:} ``f sub Y of y equals f sub X of g-inverse of y, divided by the absolute value of g-prime of g-inverse of y, for y in the open interval c to d.''
 \end{theorem}
 
 \begin{proof}
@@ -58,6 +72,7 @@ and for any $y \in (c,d)$,
 \[
 F_Y(y) \;=\; P(Y \le y) \;=\; P\bigl(g(X) \le y\bigr) \;=\; P\bigl(X \le g^{-1}(y)\bigr) \;=\; F_X\!\bigl(g^{-1}(y)\bigr).
 \]
+\emph{Read aloud:} ``capital F sub Y of y equals the probability that Y is at most y, equals the probability that g of X is at most y, equals the probability that X is at most g-inverse of y, equals capital F sub X of g-inverse of y.''
 Differentiating in $y$ (chain rule; $F_X$ is differentiable with $F_X' = f_X$, and
 $g^{-1}$ is differentiable with $(g^{-1})'(y) = 1/g'(g^{-1}(y))$ by the inverse function
 theorem),
@@ -65,6 +80,7 @@ theorem),
 f_Y(y) \;=\; F_Y'(y) \;=\; f_X\!\bigl(g^{-1}(y)\bigr)\,\bigl(g^{-1}\bigr)'(y)
 \;=\; \frac{f_X\!\bigl(g^{-1}(y)\bigr)}{g'\!\bigl(g^{-1}(y)\bigr)}.
 \]
+\emph{Read aloud:} ``f sub Y of y equals capital F sub Y prime of y, equals f sub X of g-inverse of y, times the derivative of g-inverse at y, equals f sub X of g-inverse of y divided by g-prime of g-inverse of y.''
 Since $g' > 0$, we have $|g'| = g'$, so this equals the claimed formula.
 
 \medskip
@@ -73,11 +89,13 @@ Then for $y \in (c,d)$,
 \[
 F_Y(y) \;=\; P\bigl(g(X) \le y\bigr) \;=\; P\bigl(X \ge g^{-1}(y)\bigr) \;=\; 1 - F_X\!\bigl(g^{-1}(y)\bigr).
 \]
+\emph{Read aloud:} ``capital F sub Y of y equals the probability that g of X is at most y, equals the probability that X is at least g-inverse of y, equals one minus capital F sub X of g-inverse of y.''
 Differentiating,
 \[
 f_Y(y) \;=\; -\, f_X\!\bigl(g^{-1}(y)\bigr)\,\bigl(g^{-1}\bigr)'(y)
 \;=\; -\, \frac{f_X\!\bigl(g^{-1}(y)\bigr)}{g'\!\bigl(g^{-1}(y)\bigr)}.
 \]
+\emph{Read aloud:} ``f sub Y of y equals negative f sub X of g-inverse of y times the derivative of g-inverse at y, equals negative f sub X of g-inverse of y divided by g-prime of g-inverse of y.''
 Since $g' < 0$, $-1/g' = 1/|g'|$, recovering the claimed formula.
 
 \medskip
@@ -95,6 +113,7 @@ f_Y(y) \;=\; f_X\!\bigl(g^{-1}(y)\bigr) \cdot \bigl|\det J_{g^{-1}}(y)\bigr|
 \;=\; \frac{f_X(x)}{\bigl|\det J_g(x)\bigr|}\bigg|_{x = g^{-1}(y)},
 \qquad y \in V.
 \]
+\emph{Read aloud:} ``f sub Y of y equals f sub X of g-inverse of y, times the absolute value of the determinant of the Jacobian of g-inverse at y, which also equals f sub X of x divided by the absolute value of the determinant of the Jacobian of g at x, evaluated at x equals g-inverse of y, for y in V.''
 \end{theorem}
 
 \begin{proof}[Proof sketch]
@@ -104,6 +123,7 @@ substitution theorem from analysis,
 P(Y \in B) = P(X \in g^{-1}(B)) = \int_{g^{-1}(B)} f_X(x)\, dx
 = \int_B f_X(g^{-1}(y))\,|\det J_{g^{-1}}(y)|\,dy.
 \]
+\emph{Read aloud:} ``the probability that Y lies in B equals the probability that X lies in g-inverse of B, equals the integral over g-inverse of B of f sub X of x, d-x, equals the integral over B of f sub X of g-inverse of y, times the absolute value of the determinant of the Jacobian of g-inverse at y, d-y.''
 Because $B$ was arbitrary, the integrand is the density of $Y$.
 \end{proof}
 
@@ -115,6 +135,7 @@ By Theorem~\ref{thm:1d},
 \[
 f_Y(y) \;=\; \frac{1}{1/e^{-y}} \;=\; e^{-y}, \qquad y > 0,
 \]
+\emph{Read aloud:} ``f sub Y of y equals one divided by one over e to the minus y, which equals e to the minus y, for y greater than zero.''
 i.e.\ $Y \sim \mathrm{Exp}(1)$. This identity underlies inverse-CDF sampling.
 
 \end{document}

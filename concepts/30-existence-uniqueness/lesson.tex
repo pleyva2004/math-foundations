@@ -26,6 +26,29 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+
+Before the general theorem, look at the simplest nontrivial IVP:
+$y' = y$ with $y(0) = 1$. Here $f(t, y) = y$, so $|f(t, y_1) - f(t, y_2)|
+= |y_1 - y_2|$ and $f$ is Lipschitz in $y$ with constant $L = 1$. The
+Picard iterates starting from $y_0(t) \equiv 1$ are
+\[
+  y_1(t) = 1 + \int_0^t 1 \, ds = 1 + t, \qquad
+  y_2(t) = 1 + \int_0^t (1 + s) \, ds = 1 + t + \tfrac{t^2}{2},
+\]
+\emph{Read aloud:} ``y-one of t equals one plus the integral from zero to t
+of one d-s, which is one plus t; y-two of t equals one plus the integral
+from zero to t of one plus s d-s, which is one plus t plus t-squared over
+two.''
+and inductively $y_k(t) = \sum_{j=0}^{k} t^j / j!$, the partial sums of
+the Taylor series of $e^t$. They converge uniformly on every compact
+interval to the unique solution $y(t) = e^t$.
+
+Contrast this with $y' = y^{2/3}$, $y(0) = 0$. Now $\partial_y f = \tfrac23
+y^{-1/3}$ blows up at $0$, so $f$ is \emph{not} Lipschitz near $y = 0$,
+and the IVP admits both $y \equiv 0$ and $y(t) = (t/3)^3$ as solutions.
+Lipschitz continuity is exactly what rules out this branching.
+
 \section{Setting}
 
 Let $D \subset \R \times \R^n$ be an open set, $(t_0, y_0) \in D$, and
@@ -35,6 +58,8 @@ $f : D \to \R^n$ a continuous function. We study the initial value problem
   \label{eq:ivp}
   y'(t) = f(t, y(t)), \qquad y(t_0) = y_0.
 \end{equation}
+\emph{Read aloud:} ``y-prime of t equals f of t and y of t, with y of
+t-naught equal to y-naught.''
 A \emph{solution} is a differentiable curve $y : I \to \R^n$ on an open
 interval $I \ni t_0$ satisfying \eqref{eq:ivp} pointwise.
 
@@ -47,6 +72,8 @@ interval $I \ni t_0$ satisfying \eqref{eq:ivp} pointwise.
     \| f(t, y_1) - f(t, y_2) \| \le L \, \| y_1 - y_2 \|
     \qquad \forall (t, y_1), (t, y_2) \in D.
   \]
+  \emph{Read aloud:} ``the norm of f of t y-one minus f of t y-two is at
+  most L times the norm of y-one minus y-two, for all pairs in D.''
   The smallest such $L$ is the \emph{Lipschitz constant} of $f$.
 \end{definition}
 
@@ -64,6 +91,9 @@ interval $I \ni t_0$ satisfying \eqref{eq:ivp} pointwise.
     y_0(t) \equiv y_0, \qquad
     y_{k+1}(t) \,=\, y_0 + \int_{t_0}^t f\bigl(s, y_k(s)\bigr)\, ds.
   \]
+  \emph{Read aloud:} ``y-naught of t is identically y-naught; y-sub-k-plus-one
+  of t equals y-naught plus the integral from t-naught to t of f of s and
+  y-k of s, d-s.''
   These are the \emph{Picard iterates} of the IVP.
 \end{definition}
 
@@ -80,11 +110,15 @@ become a fixed-point problem for $T$.
   \[
     R = \{ (t, y) \in \R \times \R^n : |t - t_0| \le a, \; \|y - y_0\| \le b \}.
   \]
+  \emph{Read aloud:} ``R is the set of pairs t comma y in R-cross-R-n such
+  that the absolute value of t minus t-naught is at most a, and the norm
+  of y minus y-naught is at most b.''
   Suppose $f$ is continuous on $R$ with $\|f(t, y)\| \le M$ for all
   $(t,y) \in R$, and Lipschitz in $y$ on $R$ with constant $L$. Set
   \[
     \alpha = \min\!\left(a, \, \tfrac{b}{M}\right).
   \]
+  \emph{Read aloud:} ``alpha is the minimum of a and b-over-M.''
   Then the IVP \eqref{eq:ivp} has a unique solution
   $y : [t_0 - \alpha, \, t_0 + \alpha] \to \R^n$, and the Picard iterates
   $y_k$ converge to it uniformly on that interval.
@@ -95,18 +129,26 @@ become a fixed-point problem for $T$.
   \[
     X = \{ y \in C(I, \R^n) : \|y(t) - y_0\| \le b \text{ for all } t \in I \}.
   \]
+  \emph{Read aloud:} ``X is the set of continuous functions y from I into
+  R-n such that the norm of y of t minus y-naught is at most b for all t
+  in I.''
   Equip $C(I, \R^n)$ with the sup norm $\|y\|_\infty = \sup_{t \in I}\|y(t)\|$.
   Then $X$ is a closed subset of a Banach space, hence complete. Define
   $T : X \to C(I, \R^n)$ by
   \[
     T[y](t) = y_0 + \int_{t_0}^t f\bigl(s, y(s)\bigr)\, ds.
   \]
+  \emph{Read aloud:} ``T applied to y, evaluated at t, equals y-naught plus
+  the integral from t-naught to t of f of s and y of s, d-s.''
 
   \textbf{Step 1 ($T$ maps $X$ into $X$).} For $y \in X$ and $t \in I$,
   \[
     \|T[y](t) - y_0\| \le \int_{t_0}^t \|f(s, y(s))\|\, ds
     \le M |t - t_0| \le M\alpha \le b.
   \]
+  \emph{Read aloud:} ``the norm of T-of-y at t minus y-naught is at most
+  the integral of the norm of f, which is at most M times t minus t-naught,
+  which is at most M-alpha, which is at most b.''
   Hence $T[y] \in X$.
 
   \textbf{Step 2 (Contraction in a weighted norm).} On $C(I, \R^n)$ define
@@ -120,11 +162,19 @@ become a fixed-point problem for $T$.
       &\le L \int_{t_0}^t e^{2L(s-t_0)}\, ds \cdot \|y_1 - y_2\|_w \\
       &= \tfrac{1}{2}\, \bigl(e^{2L(t-t_0)} - 1\bigr)\, \|y_1 - y_2\|_w.
   \end{align*}
+  \emph{Read aloud:} ``the norm of T-of-y-one minus T-of-y-two at t is
+  bounded by the integral of the difference of f's, then by L times the
+  integral of the difference of y's, then by L times the integral of
+  e-to-the-two-L-s-minus-t-naught d-s times the weighted norm, equaling
+  one-half times e-to-the-two-L-t-minus-t-naught minus one, times the
+  weighted norm.''
   Multiplying by $e^{-2L(t-t_0)}$ and taking sup over $t$ (the $t < t_0$
   case is symmetric) yields
   \[
     \|T[y_1] - T[y_2]\|_w \le \tfrac{1}{2}\, \|y_1 - y_2\|_w.
   \]
+  \emph{Read aloud:} ``the weighted norm of T-of-y-one minus T-of-y-two is
+  at most one-half times the weighted norm of y-one minus y-two.''
   Thus $T$ is a strict contraction on $(X, \|\cdot\|_w)$ with contraction
   factor $1/2$.
 
@@ -158,6 +208,7 @@ Modern generative models (flow matching, ELF, neural ODEs) define
 \[
   \dot x(t) = v_\theta(t, x(t))
 \]
+\emph{Read aloud:} ``x-dot of t equals v-sub-theta of t and x of t.''
 where $v_\theta$ is a neural network. On any compact set $K$, neural
 networks built from smooth activations are $C^1$ and hence Lipschitz in
 $x$ with a finite constant $L_K$. Theorem~\ref{thm:pl} therefore

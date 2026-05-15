@@ -13,6 +13,23 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+
+Before any abstract definitions, picture a coin-flip walk. Let
+$X_1, X_2, \dots$ be independent with $X_i \in \{-1, +1\}$, each value
+having probability $1/2$. Define the partial sums
+\[
+  S_n \;=\; X_1 + X_2 + \cdots + X_n, \qquad S_0 = 0.
+\]
+\emph{Read aloud:} ``S sub n equals X sub one plus X sub two plus dot dot dot
+plus X sub n, with S sub zero equal to zero.''
+Then $E[S_n] = 0$ and $\mathrm{Var}(S_n) = n$, so a typical sample path
+wanders to a distance of order $\sqrt{n}$ after $n$ steps. Plotting many
+such paths, you see trajectories that jump up or down by exactly one at
+each tick and slowly diverge as $\sqrt{n}$. This is the simplest
+non-trivial stochastic process and the prototype for everything that
+follows.
+
 \section{Definitions}
 
 \begin{definition}[Stochastic process]
@@ -23,6 +40,8 @@ random variables
 \[
   X = \{ X_t : t \in T \}, \qquad X_t : \Omega \to S \text{ measurable.}
 \]
+\emph{Read aloud:} ``X equals the collection of X sub t for t in T, where
+each X sub t is a measurable map from big Omega to S.''
 For each fixed $\omega \in \Omega$, the function $t \mapsto X_t(\omega)$ is
 called a \emph{sample path}.
 \end{definition}
@@ -35,6 +54,9 @@ $n \in \mathbb{N}$ and every measurable set $A \subseteq S$,
   P\bigl(X_{n+1} \in A \,\bigm|\, X_0, X_1, \dots, X_n\bigr)
   \;=\; P\bigl(X_{n+1} \in A \,\bigm|\, X_n\bigr).
 \]
+\emph{Read aloud:} ``The probability that X sub n plus one lies in A given
+X sub zero, X sub one, through X sub n equals the probability that X sub
+n plus one lies in A given X sub n alone.''
 Equivalently, given the present $X_n$, the future $X_{n+1}$ is independent
 of the past $(X_0, \dots, X_{n-1})$.
 \end{definition}
@@ -64,10 +86,14 @@ Each summand $X_i$ takes values $\pm 1$ with equal probability, so
 \[
   E[X_i] \;=\; (+1) \cdot \tfrac{1}{2} + (-1) \cdot \tfrac{1}{2} \;=\; 0,
 \]
+\emph{Read aloud:} ``Expectation of X sub i equals plus one times one-half
+plus minus one times one-half, which equals zero.''
 and
 \[
   E[X_i^2] \;=\; (+1)^2 \cdot \tfrac{1}{2} + (-1)^2 \cdot \tfrac{1}{2} \;=\; 1.
 \]
+\emph{Read aloud:} ``Expectation of X sub i squared equals plus one squared
+times one-half plus minus one squared times one-half, which equals one.''
 Hence $\mathrm{Var}(X_i) = E[X_i^2] - (E[X_i])^2 = 1 - 0 = 1$.
 
 By linearity of expectation,
@@ -75,6 +101,9 @@ By linearity of expectation,
   E[S_n] \;=\; E\!\left[ \sum_{i=1}^{n} X_i \right]
          \;=\; \sum_{i=1}^{n} E[X_i] \;=\; \sum_{i=1}^{n} 0 \;=\; 0.
 \]
+\emph{Read aloud:} ``Expectation of S sub n equals expectation of the sum
+from i equals one to n of X sub i, which equals the sum from i equals one
+to n of expectation of X sub i, equal to zero.''
 
 Because the $X_i$ are independent, all cross-covariances vanish:
 $\mathrm{Cov}(X_i, X_j) = 0$ for $i \neq j$. The
@@ -87,6 +116,9 @@ variance-of-a-sum identity therefore reduces to a sum of variances:
   \;=\; \sum_{i=1}^{n} 1 + 0
   \;=\; n.
 \]
+\emph{Read aloud:} ``Variance of S sub n equals variance of the sum of the
+X sub i, which equals the sum of variances plus twice the sum over i less
+than j of covariances, which collapses to the sum of ones, equal to n.''
 This proves $E[S_n] = 0$ and $\mathrm{Var}(S_n) = n$.
 \end{proof}
 

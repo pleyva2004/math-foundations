@@ -14,6 +14,19 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+
+Before the abstract framework, consider the \emph{Ornstein--Uhlenbeck} (OU) process
+$dX_t = -\theta X_t\,dt + \sigma\,dW_t$ with $\theta = 1$, $\sigma = 0.5$, $X_0 = 2$.
+The drift $-\theta X_t$ pulls the state back toward $0$; the noise term $\sigma\,dW_t$
+kicks it around with increments scaling like $\sqrt{dt}$ (not $dt$, the key Brownian
+scaling). Discretely, the Euler--Maruyama update is
+$X_{n+1} = X_n - \theta X_n\,\Delta t + \sigma\sqrt{\Delta t}\,Z_n$ with
+$Z_n \sim \mathcal{N}(0,1)$ iid. Starting at $X_0 = 2$, the mean decays like
+$2 e^{-t}$ while the variance grows toward the stationary value
+$\sigma^2/(2\theta) = 0.25/2 = 0.125$ as $t \to \infty$. Keep this picture in mind:
+deterministic pull $+$ $\sqrt{dt}$-scaled noise.
+
 \section{From ODE to SDE}
 
 Classical ODEs $\dot x = b(x,t)$ describe smooth deterministic dynamics.
@@ -22,6 +35,7 @@ $dx = b(x,t)\,dt$ with
 \[
 dX_t \;=\; b(X_t, t)\,dt \;+\; \sigma(X_t, t)\,dW_t,
 \]
+\emph{Read aloud:} ``dee-X-sub-t equals b of X-sub-t comma t, dee-t, plus sigma of X-sub-t comma t, dee-W-sub-t.''
 where $W_t$ is a standard Brownian motion on a filtered probability space
 $(\Omega, \mathcal{F}, \{\mathcal{F}_t\}, \mathbb{P})$. Because Brownian paths have
 unbounded total variation, this expression is shorthand for the It\^o integral
@@ -29,6 +43,7 @@ equation
 \[
 X_t \;=\; X_0 + \int_0^t b(X_s,s)\,ds + \int_0^t \sigma(X_s,s)\,dW_s.
 \]
+\emph{Read aloud:} ``X-sub-t equals X-naught plus the integral from zero to t of b of X-sub-s comma s, dee-s, plus the It\^o integral from zero to t of sigma of X-sub-s comma s, dee-W-sub-s.''
 
 \begin{definition}[SDE, drift, diffusion]
 A (one-dimensional, time-inhomogeneous) \emph{It\^o SDE} is the relation
@@ -56,6 +71,7 @@ Fix $N\in\mathbb{N}$, $\Delta t = T/N$, $t_n = n\,\Delta t$. The
 X_{n+1} \;=\; X_n \;+\; b(X_n, t_n)\,\Delta t \;+\; \sigma(X_n, t_n)\sqrt{\Delta t}\,Z_n,
 \qquad Z_n \stackrel{\text{iid}}{\sim} \mathcal{N}(0,1).
 \]
+\emph{Read aloud:} ``X-sub-n-plus-one equals X-sub-n plus b of X-sub-n comma t-sub-n, times Delta-t, plus sigma of X-sub-n comma t-sub-n, times square-root Delta-t, times Z-sub-n; where Z-sub-n is iid standard normal.''
 \end{definition}
 
 \begin{theorem}[Strong convergence of Euler--Maruyama]
@@ -69,6 +85,7 @@ $\Delta t = T/N$. Then there exists a constant $C = C(T, K, \mathbb{E}|X_0|^2)$ 
 \mathbb{E}\bigl[\,|X_{t_n} - X_n|\,\bigr] \;\le\; C\,\sqrt{\Delta t}
 \qquad \text{for all } 0 \le n \le N.
 \]
+\emph{Read aloud:} ``the expectation of the absolute value of X-at-t-sub-n minus X-sub-n is at most C times square-root Delta-t, for all n between zero and N.''
 That is, EM has \emph{strong order} $1/2$. (Its \emph{weak order} is $1$.)
 \end{theorem}
 
@@ -82,12 +99,14 @@ X_{t_{n+1}} - X_{t_n}
 + \underbrace{\sigma(X_{t_n}, t_n)\,\Delta W_n}_{B_n}
 + R_n,
 \]
+\emph{Read aloud:} ``X at t-sub-n-plus-one minus X at t-sub-n equals A-sub-n, the drift term b-Delta-t, plus B-sub-n, the diffusion term sigma-Delta-W-sub-n, plus a remainder R-sub-n.''
 where $R_n$ collects higher-order It\^o--Taylor corrections. The EM increment
 keeps exactly $A_n + B_n$, so the local error is $R_n$. By It\^o--Taylor expansion,
 \[
 R_n \;=\; \tfrac{1}{2}\sigma\,\partial_x\sigma \bigl((\Delta W_n)^2 - \Delta t\bigr)
 \;+\; O\bigl((\Delta t)^{3/2}\bigr) \;+\; \text{terms of order } \Delta t \cdot \Delta W_n.
 \]
+\emph{Read aloud:} ``R-sub-n equals one-half sigma times partial-x sigma times the quantity Delta-W-sub-n squared minus Delta-t, plus big-O of Delta-t to the three-halves, plus terms of order Delta-t times Delta-W-sub-n.''
 The Brownian-increment scaling $\Delta W_n \sim \sqrt{\Delta t}$ implies:
 \begin{itemize}
 \item the pathwise (strong) local error has size $\sqrt{\Delta t}\cdot\Delta t = (\Delta t)^{3/2}$
@@ -117,6 +136,7 @@ X_t = X_0 e^{-\theta t} + \sigma\!\int_0^t e^{-\theta(t-s)}\,dW_s,
 \mathrm{Var}(X_t) = \tfrac{\sigma^2}{2\theta}\bigl(1 - e^{-2\theta t}\bigr) \xrightarrow{t\to\infty}
 \tfrac{\sigma^2}{2\theta}.
 \]
+\emph{Read aloud:} ``X-sub-t equals X-naught times e-to-the-minus-theta-t, plus sigma times the It\^o integral from zero to t of e-to-the-minus-theta-times-t-minus-s, dee-W-sub-s; the variance of X-sub-t equals sigma-squared over two-theta times one minus e-to-the-minus-two-theta-t, which tends to sigma-squared over two-theta as t goes to infinity.''
 The companion code verifies the stationary variance empirically by averaging
 $X_T^2$ over many EM-simulated paths at large $T$.
 

@@ -17,6 +17,21 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+
+Before the formal machinery, compute $d(W_t^2)$ where $W_t$ is standard Brownian motion.
+Naive calculus would give $2 W_t \, dW_t$, copying $\frac{d}{dx} x^2 = 2x$. But Brownian motion
+has nonzero quadratic variation, so It\^o's lemma adds a correction:
+\[
+  d(W_t^2) \;=\; 2 W_t \, dW_t + dt.
+\]
+\emph{Read aloud:} ``d of W sub t squared equals two W sub t d W sub t plus d t.''
+The extra $dt$ comes from the heuristic $(dW_t)^2 = dt$ --- the quadratic variation of Brownian
+motion. Equivalently, in integral form, $W_1^2 - W_0^2 = 2\int_0^1 W_s \, dW_s + 1$. Since the
+It\^o integral is a martingale with mean zero, taking expectations recovers the familiar
+$\mathbb{E}[W_1^2] = 1$. The correction term $dt$ is exactly the bookkeeping needed to keep
+this identity consistent.
+
 \section{Setting}
 
 Fix a filtered probability space $(\Omega, \mathcal{F}, (\mathcal{F}_t)_{t\geq 0}, \mathbb{P})$
@@ -30,6 +45,7 @@ write $\|\Pi\| = \max_i (t_i - t_{i-1})$. The \emph{quadratic variation} of $X$ 
 \[
   [X]_t \;:=\; \lim_{\|\Pi\|\to 0} \sum_{i=1}^n \bigl(X_{t_i} - X_{t_{i-1}}\bigr)^2,
 \]
+\emph{Read aloud:} ``bracket X bracket sub t is defined as the limit, as the mesh of Pi goes to zero, of the sum from i equals one to n of X sub t-i minus X sub t-i-minus-one, all squared.''
 provided the limit exists in probability. For Brownian motion, $[W]_t = t$ a.s.
 \end{definition}
 
@@ -39,6 +55,7 @@ The \emph{It\^o integral} of $H$ against $W$ is the $L^2$-limit
 \[
   \int_0^t H_s\,dW_s \;:=\; \lim_{\|\Pi\|\to 0} \sum_{i=1}^n H_{t_{i-1}}\bigl(W_{t_i} - W_{t_{i-1}}\bigr).
 \]
+\emph{Read aloud:} ``the integral from zero to t of H sub s d W sub s is defined as the limit, as the mesh of Pi tends to zero, of the sum from i equals one to n of H sub t-i-minus-one times the quantity W sub t-i minus W sub t-i-minus-one.''
 Evaluation at the \emph{left endpoint} $t_{i-1}$ is essential: it makes $t \mapsto \int_0^t H\,dW$
 a continuous square-integrable martingale, with It\^o isometry
 $\mathbb{E}\bigl[(\int_0^t H\,dW)^2\bigr] = \mathbb{E}\int_0^t H_s^2\,ds$.
@@ -49,6 +66,7 @@ A process $X$ is an \emph{It\^o process} if
 \[
   X_t = X_0 + \int_0^t b_s\,ds + \int_0^t \sigma_s\,dW_s,
 \]
+\emph{Read aloud:} ``X sub t equals X sub zero plus the integral from zero to t of b sub s d s plus the integral from zero to t of sigma sub s d W sub s.''
 for adapted $b, \sigma$ with $\int_0^T |b_s|\,ds < \infty$ and $\int_0^T \sigma_s^2\,ds < \infty$ a.s.
 We write this symbolically as $dX_t = b_t\,dt + \sigma_t\,dW_t$.
 \end{definition}
@@ -62,11 +80,13 @@ $f \in C^2(\mathbb{R})$. Then $f(X_t)$ is again an It\^o process and
 \[
   df(X_t) \;=\; f'(X_t)\,dX_t + \tfrac{1}{2}\,f''(X_t)\,\sigma_t^2\,dt.
 \]
+\emph{Read aloud:} ``d of f of X sub t equals f prime of X sub t times d X sub t plus one half f double-prime of X sub t times sigma sub t squared d t.''
 Equivalently, in integral form,
 \[
   f(X_t) - f(X_0) \;=\; \int_0^t f'(X_s)\,b_s\,ds + \int_0^t f'(X_s)\,\sigma_s\,dW_s
   + \tfrac{1}{2}\int_0^t f''(X_s)\,\sigma_s^2\,ds.
 \]
+\emph{Read aloud:} ``f of X sub t minus f of X sub zero equals the integral from zero to t of f prime of X sub s times b sub s d s, plus the integral from zero to t of f prime of X sub s times sigma sub s d W sub s, plus one half times the integral from zero to t of f double-prime of X sub s times sigma sub s squared d s.''
 \end{theorem}
 
 \begin{proof}[Proof sketch via second-order Taylor expansion and $(dW_t)^2 = dt$]
@@ -79,6 +99,7 @@ f(X_t) - f(X_0)
  &= \sum_i f'(X_{t_{i-1}})\,\Delta_i X
    + \tfrac{1}{2}\sum_i f''(X_{t_{i-1}})\,(\Delta_i X)^2 + R_\Pi,
 \end{align*}
+\emph{Read aloud:} ``f of X sub t minus f of X sub zero equals the sum from i equals one to n of the bracket f of X sub t-i minus f of X sub t-i-minus-one, which equals the sum over i of f prime of X sub t-i-minus-one times delta-i X, plus one half times the sum over i of f double-prime of X sub t-i-minus-one times delta-i X squared, plus R sub Pi.''
 where $R_\Pi$ collects the higher-order Taylor remainder, controlled by the modulus of continuity
 of $f''$ on a compact set containing the path of $X$.
 
@@ -88,6 +109,7 @@ the sum $\sum_i f'(X_{t_{i-1}})\,\Delta_i X$ converges in $L^2$ to
 \[
 \int_0^t f'(X_s)\,b_s\,ds + \int_0^t f'(X_s)\,\sigma_s\,dW_s,
 \]
+\emph{Read aloud:} ``the integral from zero to t of f prime of X sub s times b sub s d s, plus the integral from zero to t of f prime of X sub s times sigma sub s d W sub s.''
 by definition of the It\^o integral and dominated convergence; the left-endpoint evaluation
 $f'(X_{t_{i-1}})$ is exactly what the It\^o construction requires.
 
@@ -97,12 +119,14 @@ Expand
 (\Delta_i X)^2 = b_{t_{i-1}}^2 (\Delta_i t)^2 + 2 b_{t_{i-1}}\sigma_{t_{i-1}}(\Delta_i t)(\Delta_i W)
   + \sigma_{t_{i-1}}^2 (\Delta_i W)^2 + o(\Delta_i t)\text{-corrections}.
 \]
+\emph{Read aloud:} ``delta-i X squared equals b sub t-i-minus-one squared times delta-i t squared, plus two times b sub t-i-minus-one times sigma sub t-i-minus-one times delta-i t times delta-i W, plus sigma sub t-i-minus-one squared times delta-i W squared, plus little-o of delta-i t corrections.''
 The $(\Delta_i t)^2$ contributions sum to $O(\|\Pi\| \cdot t) \to 0$. The cross-terms
 $(\Delta_i t)(\Delta_i W)$ have $L^2$-norm $O(\Delta_i t^{3/2})$, summing to $O(\|\Pi\|^{1/2}) \to 0$.
 The surviving piece is
 \[
   \sum_i f''(X_{t_{i-1}})\,\sigma_{t_{i-1}}^2\,(\Delta_i W)^2.
 \]
+\emph{Read aloud:} ``the sum over i of f double-prime of X sub t-i-minus-one times sigma sub t-i-minus-one squared times delta-i W squared.''
 Because $\mathbb{E}[(\Delta_i W)^2] = \Delta_i t$ and $\mathrm{Var}[(\Delta_i W)^2] = 2(\Delta_i t)^2$,
 a direct $L^2$ computation shows that $(\Delta_i W)^2$ may be replaced by $\Delta_i t$ in the limit:
 \[
@@ -110,6 +134,7 @@ a direct $L^2$ computation shows that $(\Delta_i W)^2$ may be replaced by $\Delt
   \;\xrightarrow[\|\Pi\|\to 0]{L^2}\;
   \int_0^t f''(X_s)\,\sigma_s^2\,ds.
 \]
+\emph{Read aloud:} ``the sum over i of f double-prime of X sub t-i-minus-one times sigma sub t-i-minus-one squared times delta-i W squared converges in L-two, as the mesh of Pi tends to zero, to the integral from zero to t of f double-prime of X sub s times sigma sub s squared d s.''
 This is precisely the heuristic identity $(dW_t)^2 = dt$ made rigorous, and it is an instance of
 the quadratic variation $[W]_t = t$.
 
@@ -133,6 +158,7 @@ With $f(x) = x^2$ and $X_t = W_t$, It\^o's lemma yields
 d(W_t^2) = 2W_t\,dW_t + dt \quad\Longrightarrow\quad
 \int_0^t W_s\,dW_s = \tfrac{1}{2}(W_t^2 - t).
 \]
+\emph{Read aloud:} ``d of W sub t squared equals two W sub t d W sub t plus d t, which implies that the integral from zero to t of W sub s d W sub s equals one half of the quantity W sub t squared minus t.''
 The classical guess $\tfrac{1}{2}W_t^2$ is off by exactly the It\^o correction $-t/2$.
 \end{remark}
 

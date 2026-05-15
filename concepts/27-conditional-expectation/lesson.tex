@@ -16,6 +16,22 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+
+Roll two fair six-sided dice. Let $Y$ be the value of the first die and $X$ be the sum of both dice. Given that the first die shows $Y = y$, the sum equals $y$ plus the value of the second die, which has expectation $3.5$ regardless of $y$. So
+\[
+E[X \mid Y = y] \;=\; y + 3.5.
+\]
+\emph{Read aloud:} the conditional expectation of capital X given capital Y equals little y, equals little y plus three point five.
+
+This means $E[X \mid Y]$ is itself a random variable, namely $Y + 3.5$. Taking expectations again recovers the unconditional mean (the \emph{tower property}):
+\[
+E\bigl[E[X \mid Y]\bigr] \;=\; E[Y + 3.5] \;=\; 3.5 + 3.5 \;=\; 7 \;=\; E[X].
+\]
+\emph{Read aloud:} expectation of expectation of capital X given capital Y equals expectation of capital Y plus three point five equals three point five plus three point five equals seven equals expectation of capital X.
+
+The rest of the lesson develops these ideas in general.
+
 \section{Setup}
 
 Throughout, $(\Omega, \mathcal{F}, P)$ is a probability space and all random variables (RVs) are real-valued unless otherwise stated. We write $L^p = L^p(\Omega, \mathcal{F}, P)$ for the usual Lebesgue spaces, and for a sub-$\sigma$-algebra $\mathcal{G} \subseteq \mathcal{F}$ we write $L^p(\mathcal{G})$ for the closed subspace of $\mathcal{G}$-measurable representatives.
@@ -26,16 +42,21 @@ Let $X, Y$ be RVs with joint density $f_{X,Y}$ (the discrete case is analogous, 
 \[
 f_{X \mid Y}(x \mid y) \;=\; \frac{f_{X,Y}(x, y)}{f_Y(y)}.
 \]
+\emph{Read aloud:} f sub capital X given capital Y of little x given little y equals f sub capital X comma capital Y of little x comma little y, divided by f sub capital Y of little y.
 
 \begin{definition}[Conditional expectation given $Y = y$]
 For each $y$ with $f_Y(y) > 0$,
 \[
 E[X \mid Y = y] \;=\; \int_{\mathbb{R}} x \, f_{X \mid Y}(x \mid y)\, dx,
 \]
+\emph{Read aloud:} expectation of capital X given capital Y equals little y, equals the integral over the real line of little x times f sub capital X given capital Y of little x given little y, d little x.
+
 assuming the integral is well-defined. The map $g : y \mapsto E[X \mid Y = y]$ is a Borel function; the random variable
 \[
 E[X \mid Y] \;:=\; g(Y)
 \]
+\emph{Read aloud:} expectation of capital X given capital Y is defined as little g of capital Y.
+
 is called the \emph{conditional expectation of $X$ given $Y$}.
 \end{definition}
 
@@ -58,10 +79,13 @@ Let $X \in L^1$ and let $\mathcal{H} \subseteq \mathcal{G} \subseteq \mathcal{F}
 \[
 E\bigl[\,E[X \mid \mathcal{G}] \,\bigm|\, \mathcal{H}\,\bigr] \;=\; E[X \mid \mathcal{H}].
 \]
+\emph{Read aloud:} expectation of, expectation of capital X given script G, given script H, equals expectation of capital X given script H.
+
 In particular, taking $\mathcal{H} = \{\emptyset, \Omega\}$ gives the unconditional identity
 \[
 E\bigl[\,E[X \mid \mathcal{G}]\,\bigr] \;=\; E[X].
 \]
+\emph{Read aloud:} expectation of expectation of capital X given script G, equals expectation of capital X.
 \end{theorem}
 
 \begin{proof}
@@ -73,14 +97,17 @@ Write $Z := E[X \mid \mathcal{G}]$ and let $W$ be any version of $E[Z \mid \math
 \[
 \int_A W \, dP \;=\; \int_A Z \, dP. \tag{$\ast$}
 \]
+\emph{Read aloud:} the integral over capital A of capital W, d capital P, equals the integral over capital A of capital Z, d capital P; star.
 By the definition of $Z = E[X \mid \mathcal{G}]$, applied to the set $A \in \mathcal{G}$,
 \[
 \int_A Z \, dP \;=\; \int_A X \, dP. \tag{$\ast\ast$}
 \]
+\emph{Read aloud:} the integral over capital A of capital Z, d capital P, equals the integral over capital A of capital X, d capital P; double star.
 Chaining $(\ast)$ and $(\ast\ast)$ gives
 \[
 \int_A W \, dP \;=\; \int_A X \, dP \qquad \text{for every } A \in \mathcal{H}.
 \]
+\emph{Read aloud:} the integral over capital A of capital W, d capital P, equals the integral over capital A of capital X, d capital P, for every capital A in script H.
 Combined with (i), this is precisely the defining property of $E[X \mid \mathcal{H}]$. By a.s.-uniqueness of conditional expectations, $W = E[X \mid \mathcal{H}]$ a.s.
 
 The unconditional form is the special case $\mathcal{H} = \{\emptyset, \Omega\}$, for which $E[\,\cdot \mid \mathcal{H}]$ collapses to the ordinary expectation.
@@ -91,6 +118,7 @@ If $X \in L^2$, then $E[X \mid \mathcal{G}]$ is the orthogonal projection of $X$
 \[
 E[X \mid \mathcal{G}] \;=\; \arg\min_{Z \in L^2(\mathcal{G})} E\!\left[(X - Z)^2\right].
 \]
+\emph{Read aloud:} expectation of capital X given script G equals arg-min over capital Z in capital L two of script G, of expectation of, open paren capital X minus capital Z, close paren, squared.
 \end{proposition}
 
 \begin{example}[Sum of two dice]
@@ -98,10 +126,12 @@ Let $Y$ and $W$ be independent and uniform on $\{1, \dots, 6\}$, and let $X = Y 
 \[
 E[X \mid Y = y] \;=\; y + E[W] \;=\; y + 3.5,
 \]
+\emph{Read aloud:} expectation of capital X given capital Y equals little y, equals little y plus expectation of capital W, equals little y plus three point five.
 so $E[X \mid Y] = Y + 3.5$. The tower property gives
 \[
 E[E[X \mid Y]] \;=\; E[Y] + 3.5 \;=\; 3.5 + 3.5 \;=\; 7 \;=\; E[X]. \qed
 \]
+\emph{Read aloud:} expectation of expectation of capital X given capital Y, equals expectation of capital Y plus three point five, equals three point five plus three point five, equals seven, equals expectation of capital X.
 \end{example}
 
 \end{document}

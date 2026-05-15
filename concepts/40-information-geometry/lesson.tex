@@ -14,6 +14,28 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+
+Let $X \sim \mathcal{N}(\mu, 1)$ with unknown mean $\mu \in \mathbb{R}$ and unit variance.
+The log-density is
+\[
+\ell(\mu) \;=\; -\tfrac{1}{2}(x - \mu)^2 \;-\; \tfrac{1}{2}\log(2\pi).
+\]
+\emph{Read aloud:} ell of mu equals minus one-half times x minus mu squared, minus one-half log two pi.
+The score is $\partial_\mu \ell = x - \mu$, and $\mathbb{E}[x - \mu] = 0$ — the score has mean zero,
+always. The Fisher information is
+\[
+F(\mu) \;=\; \mathbb{E}\!\left[(\partial_\mu \ell)^2\right] \;=\; \mathbb{E}[(x-\mu)^2] \;=\; 1.
+\]
+\emph{Read aloud:} F of mu equals expectation of partial-mu ell squared equals expectation of x minus mu squared equals one.
+Now compare two nearby Gaussians: a direct calculation gives
+\[
+D_{\mathrm{KL}}\!\left(\mathcal{N}(0,1) \,\|\, \mathcal{N}(\epsilon, 1)\right) \;=\; \tfrac{1}{2}\,\epsilon^2,
+\]
+\emph{Read aloud:} K-L divergence from N zero one to N epsilon one equals one-half epsilon squared.
+which is exactly $\tfrac{1}{2}\, F(\mu)\, \epsilon^2$. The Fisher metric \emph{is} the
+second-order curvature of KL — that is the entire content of this lesson, in one example.
+
 \section{Setting}
 
 Let $\{p_\theta : \theta \in \Theta\}$ be a smoothly parameterized family of
@@ -30,6 +52,7 @@ F(\theta)
   \;=\; \mathbb{E}_{X \sim p_\theta}\!\left[s_\theta(X)\, s_\theta(X)^\top\right]
   \;=\; -\,\mathbb{E}_{X \sim p_\theta}\!\left[\nabla_\theta^{\,2} \log p_\theta(X)\right].
 \]
+\emph{Read aloud:} F of theta equals the expectation under X drawn from p-theta of the score times its transpose, which equals minus the expectation of the Hessian of log p-theta.
 The two expressions agree under the regularity assumptions above.
 \end{definition}
 
@@ -45,6 +68,7 @@ Given a smooth loss $L : \Theta \to \mathbb{R}$, the \emph{natural gradient} is
 \[
 \widetilde{\nabla} L(\theta) \;=\; F(\theta)^{-1} \nabla L(\theta),
 \]
+\emph{Read aloud:} natural-gradient L of theta equals F of theta inverse times the ordinary gradient of L at theta.
 defined wherever $F(\theta)$ is positive definite. It is the steepest-descent
 direction under the Fisher metric.
 \end{definition}
@@ -64,6 +88,7 @@ and exchanging derivative and integral,
   \;=\; \int \frac{\nabla_\theta p_\theta(x)}{p_\theta(x)}\, p_\theta(x)\, dx
   \;=\; \mathbb{E}_{p_\theta}[s_\theta(X)]. \qedhere
 \]
+\emph{Read aloud:} zero equals the gradient in theta of the integral of p-theta of x dx, equals the integral of the gradient of p-theta dx, equals the integral of grad-p over p times p dx, equals the expectation of the score under p-theta.
 \end{proof}
 
 \section{Fisher is the local KL metric}
@@ -77,6 +102,7 @@ D_{\mathrm{KL}}\!\left(p_\theta \,\|\, p_{\theta + \epsilon}\right)
    \;=\; \tfrac{1}{2}\, \epsilon^\top F(\theta)\, \epsilon
    \;+\; O\!\left(\|\epsilon\|^3\right).
 \]
+\emph{Read aloud:} K-L divergence from p-theta to p-theta-plus-epsilon equals one-half epsilon transpose F of theta epsilon, plus big-O of norm epsilon cubed.
 \end{theorem}
 
 \begin{proof}
@@ -95,6 +121,7 @@ our smoothness hypotheses:
   + \tfrac{1}{2}\, \epsilon^\top \nabla_\epsilon^{\,2} \ell(0, x)\, \epsilon
   + R(\epsilon, x).
 \]
+\emph{Read aloud:} ell of epsilon comma x equals ell at zero plus epsilon transpose times the gradient at zero plus one-half epsilon transpose Hessian at zero epsilon, plus a remainder R of epsilon x.
 Note $\nabla_\epsilon \ell(0,x) = s_\theta(x)$ and
 $\nabla_\epsilon^{\,2} \ell(0,x) = \nabla_\theta^{\,2} \log p_\theta(x)$.
 Substituting,
@@ -104,6 +131,7 @@ Substituting,
   - \tfrac{1}{2}\, \epsilon^\top \nabla_\theta^{\,2} \log p_\theta(x)\, \epsilon
   - R(\epsilon, x).
 \]
+\emph{Read aloud:} ell at zero minus ell at epsilon equals minus epsilon transpose score, minus one-half epsilon transpose Hessian of log p-theta epsilon, minus the remainder.
 Take expectation under $p_\theta$. By Lemma~\ref{lem:score-mean},
 $\mathbb{E}_{p_\theta}[\epsilon^\top s_\theta(X)] = \epsilon^\top \mathbb{E}_{p_\theta}[s_\theta(X)] = 0$,
 so the linear term vanishes. By the Hessian form of Fisher,
@@ -114,6 +142,7 @@ $-\mathbb{E}_{p_\theta}[\nabla_\theta^{\,2} \log p_\theta(X)] = F(\theta)$, so
   \;-\; \mathbb{E}_{p_\theta}[R(\epsilon, X)]
   \;=\; \tfrac{1}{2}\, \epsilon^\top F(\theta)\, \epsilon \;+\; O\!\left(\|\epsilon\|^3\right). \qedhere
 \]
+\emph{Read aloud:} Phi of epsilon equals zero plus one-half epsilon transpose F of theta epsilon minus the expectation of the remainder, equals one-half epsilon transpose F of theta epsilon plus big-O of norm epsilon cubed.
 \end{proof}
 
 \paragraph{Consequence.} The Hessian of $\epsilon \mapsto

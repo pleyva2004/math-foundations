@@ -21,6 +21,23 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+
+Before formalising surprisal, fix intuition with coins. A \emph{fair} coin has
+$p(H) = p(T) = 0.5$, so its self-information in bits is
+$I(H) = -\log_2(0.5) = 1$ bit --- one bit of surprise per flip, no more, no less.
+\emph{Read aloud:} ``I of H equals minus log base two of one-half equals one bit.''
+
+Now bias the coin: $p(H) = 0.9$, $p(T) = 0.1$. Then
+$I(H) = -\log_2(0.9) \approx 0.152$ bits (a heads is barely surprising, since we
+expected it), while $I(T) = -\log_2(0.1) \approx 3.32$ bits (a tails is genuinely
+informative). Rare outcomes carry more surprisal: this is the whole picture.
+
+Finally, flip the fair coin twice and observe $HH$. Independence gives
+$I(HH) = I(H) + I(H) = 2$ bits --- surprises \emph{add} for independent events.
+The rest of this lesson explains why $-\log p$ is the unique function with these
+properties.
+
 \section{Motivation}
 
 Information theory begins with a deceptively simple question: how much
@@ -46,12 +63,14 @@ $p(x) > 0$. The \emph{self-information} of the outcome $x$ is
 \[
   I(x) \;=\; -\log p(x).
 \]
+\emph{Read aloud:} ``I of x equals minus log of p of x.''
 The base of the logarithm fixes the units of $I$:
 \[
   \log_2 \;\Rightarrow\; \text{bits}, \qquad
   \ln    \;\Rightarrow\; \text{nats}, \qquad
   \log_{10} \;\Rightarrow\; \text{hartleys.}
 \]
+\emph{Read aloud:} ``log base two gives bits, natural log gives nats, log base ten gives hartleys.''
 \end{definition}
 
 \begin{definition}[Self-information of an event]
@@ -74,6 +93,7 @@ Then
 \[
   I(A \cap B) \;=\; I(A) + I(B).
 \]
+\emph{Read aloud:} ``I of A intersect B equals I of A plus I of B.''
 \end{theorem}
 
 \begin{proof}
@@ -81,15 +101,18 @@ By the definition of independence,
 \[
   \Pr(A \cap B) = p_A \, p_B.
 \]
+\emph{Read aloud:} ``probability of A intersect B equals p sub A times p sub B.''
 Applying the definition of self-information,
 \[
   I(A \cap B) = -\log \Pr(A \cap B) = -\log(p_A p_B).
 \]
+\emph{Read aloud:} ``I of A intersect B equals minus log probability of A intersect B equals minus log of p sub A times p sub B.''
 Using the homomorphism property of the logarithm, $\log(xy) = \log x + \log y$
 for $x, y > 0$, we obtain
 \[
   -\log(p_A p_B) = -\log p_A - \log p_B = I(A) + I(B). \qedhere
 \]
+\emph{Read aloud:} ``minus log of p sub A times p sub B equals minus log p sub A minus log p sub B equals I of A plus I of B.''
 \end{proof}
 
 \begin{remark}
@@ -111,6 +134,7 @@ and satisfy
 \[
   f(pq) = f(p) + f(q) \qquad \text{for all } p, q \in (0,1].
 \]
+\emph{Read aloud:} ``f of p times q equals f of p plus f of q for all p, q in the half-open interval zero to one.''
 Then there exists a constant $c > 0$ such that $f(p) = -c \log p$.
 \end{theorem}
 
@@ -121,6 +145,7 @@ becomes
   g(s + t) = f(e^{-(s+t)}) = f(e^{-s} e^{-t})
            = f(e^{-s}) + f(e^{-t}) = g(s) + g(t),
 \]
+\emph{Read aloud:} ``g of s plus t equals f of e to the minus s plus t, equals f of e to the minus s times e to the minus t, equals f of e to the minus s plus f of e to the minus t, equals g of s plus g of t.''
 i.e. $g$ is additive on $[0, \infty)$. Together with continuity, Cauchy's
 functional equation gives $g(t) = c t$ for some constant $c$. Strict
 monotonicity of $f$ forces $c > 0$. Translating back,
@@ -136,10 +161,12 @@ in bits:
   I(H) = -\log_2(0.9) \approx 0.152, \qquad
   I(T) = -\log_2(0.1) \approx 3.322.
 \]
+\emph{Read aloud:} ``I of H equals minus log base two of nine-tenths, approximately zero point one five two; I of T equals minus log base two of one-tenth, approximately three point three two two.''
 The expected self-information is
 \[
   \mathbb{E}[I(X)] = 0.9 \cdot 0.152 + 0.1 \cdot 3.322 \approx 0.469 \text{ bits},
 \]
+\emph{Read aloud:} ``expectation of I of X equals zero point nine times zero point one five two plus zero point one times three point three two two, approximately zero point four six nine bits.''
 the Shannon entropy of $X$, which is strictly less than the maximum of $1$ bit
 achieved by a fair coin.
 \end{example}
@@ -151,6 +178,7 @@ loss
 \[
   \mathcal{L}_t = -\log q(x_t \mid x_{<t})
 \]
+\emph{Read aloud:} ``script L sub t equals minus log q of x sub t given x less than t.''
 is precisely the self-information that the model assigns to the observed
 token. Minimising average loss is therefore minimising mean surprisal under
 the model. Perplexity, $\exp(\overline{\mathcal{L}})$, is the

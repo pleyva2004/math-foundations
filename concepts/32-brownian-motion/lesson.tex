@@ -31,6 +31,23 @@
 \begin{document}
 \maketitle
 
+\subsection*{First, an example}
+
+Before the abstract definition, build $W_t$ by hand. Fix a horizon
+$T = 1$ and a step $\Delta t = 1/N$ for some large $N$. Draw iid
+standard Gaussians $Z_1, \dots, Z_N \sim \mathcal{N}(0,1)$ and define
+$W_0 = 0$ and recursively
+$$W_{(k+1)\Delta t} = W_{k\Delta t} + \sqrt{\Delta t}\, Z_k.$$
+\emph{Read aloud:} W at time k plus one delta t equals W at time k delta t plus square root of delta t times Z sub k.
+By the sum-of-Gaussians rule, at any fixed grid time $t = k\Delta t$,
+$W_t \sim \mathcal{N}(0, t)$, so $\Var(W_t) = t$ and
+$\Cov(W_s, W_t) = \min(s, t)$. Letting $N \to \infty$ (with linear
+interpolation between grid points) gives a continuous random function
+on $[0,1]$ — the sample path of Brownian motion. These paths are
+continuous but \emph{nowhere differentiable}: each $\sqrt{\Delta t}$
+increment is huge compared to $\Delta t$, so the path wiggles violently
+on every scale.
+
 \section{Definitions}
 
 \begin{definition}[Standard Brownian motion / Wiener process]
@@ -68,6 +85,7 @@ $\F_t^W$ at each time $t$.
 The defining property of Brownian motion that powers nearly every
 computation in stochastic calculus is its covariance kernel:
 $$\E[W_s W_t] = \min(s, t).$$
+\emph{Read aloud:} expectation of W sub s times W sub t equals minimum of s and t.
 This makes $\{W_t\}$ a centered Gaussian process; in fact this covariance
 \emph{together with} Gaussianity and the right continuity modification
 characterizes Brownian motion uniquely in distribution.
@@ -76,6 +94,7 @@ characterizes Brownian motion uniquely in distribution.
 Let $\{W_t\}_{t \geq 0}$ be a standard Brownian motion. Then for all
 $s, t \geq 0$,
 $$\E[W_s W_t] = \min(s, t).$$
+\emph{Read aloud:} expectation of W sub s times W sub t equals minimum of s and t.
 \end{theorem}
 
 \begin{proof}
@@ -85,17 +104,21 @@ $0 \leq s \leq t$, so that $\min(s,t) = s$.
 \textbf{Step 1: Decompose using independent increments.}
 Write
 $$W_t = W_s + (W_t - W_s),$$
+\emph{Read aloud:} W sub t equals W sub s plus the increment W sub t minus W sub s.
 which is valid by definition. Substituting into the product gives
 $$W_s W_t = W_s \big( W_s + (W_t - W_s) \big) = W_s^2 + W_s(W_t - W_s).$$
+\emph{Read aloud:} W sub s times W sub t equals W sub s squared plus W sub s times the increment W sub t minus W sub s.
 Taking expectations and using linearity,
 \begin{equation}\label{eq:split}
   \E[W_s W_t] = \E[W_s^2] + \E\big[W_s (W_t - W_s)\big].
 \end{equation}
+\emph{Read aloud:} expectation of W sub s times W sub t equals expectation of W sub s squared plus expectation of W sub s times the increment.
 
 \textbf{Step 2: Evaluate the first term.}
 By Definition~1 (applied with the increment $W_s - W_0 = W_s$, since
 $W_0 = 0$ a.s.), we have $W_s \sim \mathcal{N}(0, s)$. Hence
 $$\E[W_s^2] = \Var(W_s) + (\E[W_s])^2 = s + 0 = s.$$
+\emph{Read aloud:} expectation of W sub s squared equals variance of W sub s plus the square of its mean, which is s plus zero equals s.
 
 \textbf{Step 3: The cross term vanishes by independence.}
 Again by Definition~1, the increments $W_s - W_0 = W_s$ and $W_t - W_s$
@@ -103,11 +126,13 @@ are independent (these correspond to disjoint time intervals $[0,s]$ and
 $[s,t]$). Independence implies the expectation of the product is the
 product of expectations:
 $$\E\big[W_s (W_t - W_s)\big] = \E[W_s] \cdot \E[W_t - W_s] = 0 \cdot 0 = 0,$$
+\emph{Read aloud:} expectation of W sub s times the increment equals expectation of W sub s times expectation of the increment, which is zero times zero equals zero.
 since both factors are centered Gaussians with mean $0$.
 
 \textbf{Step 4: Combine.}
 Plugging Steps 2 and 3 back into~\eqref{eq:split},
 $$\E[W_s W_t] = s + 0 = s = \min(s, t),$$
+\emph{Read aloud:} expectation of W sub s times W sub t equals s plus zero equals s equals minimum of s and t.
 which proves the theorem for $s \leq t$. The case $t \leq s$ follows by
 symmetry of the inner product, completing the proof.
 \end{proof}

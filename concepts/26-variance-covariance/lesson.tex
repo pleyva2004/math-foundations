@@ -34,15 +34,33 @@ and (by Cauchy--Schwarz) $\E[XY]$ for $X, Y \in L^2(P)$.
 
 \section{Definitions}
 
+\subsection*{First, an example}
+Before the formal definitions, consider $X \sim \mathrm{Bernoulli}(p)$ with $p = 0.3$:
+$X$ takes value $1$ with probability $0.3$ and $0$ with probability $0.7$. Then
+$\E[X] = 0.3$ and $\E[X^2] = 0.3$, so
+\[
+\Var(X) = \E[X^2] - (\E[X])^2 = 0.3 - 0.09 = 0.21 = p(1 - p).
+\]
+\emph{Read aloud:} the variance of X equals expectation of X squared minus the square of the expectation of X, which is zero point three minus zero point zero nine, equals zero point two one, equals p times one minus p.
+Now let $Y = 2X$. Intuitively $Y$ moves in lockstep with $X$, just twice as far, so they
+should be perfectly positively correlated. Indeed
+\[
+\Cov(X, Y) = \Cov(X, 2X) = 2\,\Var(X) = 0.42, \qquad \rho_{X,Y} = \frac{0.42}{\sqrt{0.21}\,\sqrt{4 \cdot 0.21}} = 1.
+\]
+\emph{Read aloud:} covariance of X and Y equals covariance of X with two X equals two times variance of X equals zero point four two; and the correlation rho sub X Y equals zero point four two divided by square root of zero point two one times square root of four times zero point two one, which equals one.
+The rest of this lesson develops the definitions and identities behind these computations.
+
 \begin{definition}[Variance]
 The \emph{variance} of $X \in L^2(P)$ is
 \[
 \Var(X) \;\coloneqq\; \E\!\left[(X - \E[X])^2\right].
 \]
+\emph{Read aloud:} the variance of X is defined as the expectation of the quantity X minus the expectation of X, all squared.
 By expanding the square and applying linearity of expectation,
 \[
 \Var(X) = \E[X^2] - (\E[X])^2.
 \]
+\emph{Read aloud:} the variance of X equals the expectation of X squared minus the square of the expectation of X.
 The \emph{standard deviation} is $\sigma_X = \sqrt{\Var(X)}$.
 \end{definition}
 
@@ -52,6 +70,7 @@ The \emph{covariance} of $X, Y \in L^2(P)$ is
 \Cov(X, Y) \;\coloneqq\; \E\!\left[(X - \E[X])(Y - \E[Y])\right]
            \;=\; \E[XY] - \E[X]\,\E[Y].
 \]
+\emph{Read aloud:} the covariance of X and Y is defined as the expectation of the product of X minus the expectation of X times Y minus the expectation of Y, which equals the expectation of X times Y minus the expectation of X times the expectation of Y.
 Note $\Cov(X, X) = \Var(X)$.
 \end{definition}
 
@@ -60,6 +79,7 @@ If $\sigma_X, \sigma_Y > 0$, the \emph{(Pearson) correlation coefficient} of $X$
 \[
 \rho_{X, Y} \;\coloneqq\; \frac{\Cov(X, Y)}{\sigma_X \, \sigma_Y}.
 \]
+\emph{Read aloud:} rho sub X comma Y is defined as the covariance of X and Y divided by the product of sigma sub X and sigma sub Y.
 By Cauchy--Schwarz applied to the centered variables, $\rho_{X, Y} \in [-1, 1]$.
 \end{definition}
 
@@ -86,6 +106,7 @@ For $X, Y \in L^2(P)$,
 \[
 \Var(X + Y) \;=\; \Var(X) \;+\; \Var(Y) \;+\; 2\,\Cov(X, Y).
 \]
+\emph{Read aloud:} the variance of X plus Y equals the variance of X plus the variance of Y plus two times the covariance of X and Y.
 \end{theorem}
 
 \begin{proof}
@@ -97,6 +118,7 @@ $\E[X + Y] = \mu_X + \mu_Y$. Applying the definition of variance to $X + Y$,
   &= \E\!\left[\,\big((X - \mu_X) + (Y - \mu_Y)\big)^2\,\right] \\
   &= \E\!\left[\,(X - \mu_X)^2 + 2(X - \mu_X)(Y - \mu_Y) + (Y - \mu_Y)^2\,\right].
 \end{align*}
+\emph{Read aloud:} the variance of X plus Y equals the expectation of the square of the quantity X plus Y minus the expectation of X plus Y, which equals the expectation of the square of the centered sum X minus mu sub X plus Y minus mu sub Y, which expands to the expectation of X minus mu sub X squared plus twice X minus mu sub X times Y minus mu sub Y plus Y minus mu sub Y squared.
 By linearity of expectation,
 \begin{align*}
 \Var(X + Y)
@@ -105,6 +127,7 @@ By linearity of expectation,
    + \E\!\left[(Y - \mu_Y)^2\right] \\
   &= \Var(X) + 2\,\Cov(X, Y) + \Var(Y),
 \end{align*}
+\emph{Read aloud:} the variance of X plus Y equals the expectation of X minus mu sub X squared plus two times the expectation of X minus mu sub X times Y minus mu sub Y plus the expectation of Y minus mu sub Y squared, which equals the variance of X plus two times the covariance of X and Y plus the variance of Y.
 where the last equality uses the definitions of variance and covariance.
 \end{proof}
 
@@ -114,6 +137,7 @@ For $X_1, \dots, X_n \in L^2(P)$,
 \Var\!\left(\sum_{i=1}^n X_i\right)
   = \sum_{i=1}^n \Var(X_i) + 2\!\!\sum_{1 \le i < j \le n}\!\! \Cov(X_i, X_j).
 \]
+\emph{Read aloud:} the variance of the sum from i equals one to n of X sub i equals the sum from i equals one to n of the variance of X sub i, plus two times the sum over pairs i less than j from one to n of the covariance of X sub i and X sub j.
 In particular, if the $X_i$ are pairwise uncorrelated, then
 $\Var(\sum X_i) = \sum \Var(X_i)$.
 \end{corollary}
@@ -131,6 +155,7 @@ $\E[X^2] = p$, so
 \[
 \Var(X) = p - p^2 = p(1 - p).
 \]
+\emph{Read aloud:} the variance of X equals p minus p squared, which equals p times one minus p.
 The variance is maximized at $p = 1/2$.
 
 \end{document}
