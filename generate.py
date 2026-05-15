@@ -85,24 +85,22 @@ _(See below.)_
 
 
 def write_preserving_marker(path: Path, new_header: str):
-    """Write the header portion; preserve any existing content below MARKER.
+    """Seed a new README from the stock header ONLY when missing.
 
-    SAFETY: If the file exists and is non-trivial (>200 chars) but lacks the
-    MARKER, do NOT overwrite — the user/subagent has authored substantive
-    content without the marker contract. Re-running this script must never
-    destroy hand-written work.
+    After v1.8, the above-MARKER zone in each README carries an
+    auto-injected '📖 Symbols you'll see in this lesson' section.
+    The previous "rewrite the header on every regen" logic destroyed
+    that zone, breaking the CI Generator-Idempotency check (which in
+    turn blocked render-pdfs / commit-pdfs for 3 commits).
+
+    Per-concept READMEs are now treated as user-owned content. Manifest
+    changes (e.g. new prereqs) are not auto-propagated by this script;
+    if needed, run a dedicated re-seed utility outside the
+    idempotency-checked path.
     """
     if not path.exists():
         path.write_text(new_header)
-        return
-    existing = path.read_text()
-    if MARKER in existing:
-        below = existing.split(MARKER, 1)[1]
-        path.write_text(new_header.split(MARKER, 1)[0] + MARKER + below)
-    elif len(existing) <= 200:
-        # Empty / placeholder; safe to seed.
-        path.write_text(new_header)
-    # else: substantive content without marker — leave it alone.
+    # else: existing content (skeleton or substantive) is preserved as-is.
 
 
 def _LEVELS_TABLE_NOTE_DROPPED_COLOR_COLUMN_ABOVE():
