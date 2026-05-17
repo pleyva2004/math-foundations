@@ -4,14 +4,14 @@
 
 This glossary indexes every distinct mathematical symbol used across the 42 concept lessons. Each row gives the LaTeX symbol, how to read it aloud, a one-line plain-English meaning, and a link to the concept folder where the symbol is first introduced.
 
-**Total entries:** 157.  
+**Total entries:** 158.  
 **Source of truth:** [`notation.json`](notation.json).  
 **PDF cheatsheet:** [`notation.pdf`](notation.pdf) (compiled in CI from [`notation.tex`](notation.tex)).
 
 ## Contents
 
 - [Logic](#logic) (13 entries)
-- [Sets](#sets) (18 entries)
+- [Sets](#sets) (19 entries)
 - [Functions](#functions) (9 entries)
 - [Number systems](#number-systems) (8 entries)
 - [Linear algebra](#linear-algebra) (15 entries)
@@ -64,7 +64,8 @@ This glossary indexes every distinct mathematical symbol used across the 42 conc
 | $\times$ | "Cartesian product" | A × B is the set of ordered pairs (a, b) with a ∈ A, b ∈ B. | [00-sets-and-functions](concepts/00-sets-and-functions/README.md) |
 | $|S|$ | "cardinality / size of" | Number of elements of a (finite) set S; more generally, its cardinal. | [02-counting](concepts/02-counting/README.md) |
 | $\mathcal{P}(S)$ | "power set of" | The set of all subsets of S. \|𝒫(S)\| = 2^{\|S\|} for finite S. | [02-counting](concepts/02-counting/README.md) |
-| $\{x : P(x)\}$ | "the set of x such that P(x)" | Set-builder notation: the set of all x satisfying property P. | [00-sets-and-functions](concepts/00-sets-and-functions/README.md) |
+| $\{x : P(x)\}$ | "the set of x such that P(x)" | Set-builder notation: the set of all x satisfying property P(x). Read aloud as 'the set of x such that P of x'. The colon (or sometimes the vertical bar \|) separates the variable from the defining condition. Without set-builder syntax, infinite sets like {x : x > 0} could not be written down at all -- roster notation {x_1, x_2, ...} relies on a pattern the reader can extrapolate, but set-builder makes the membership rule explicit. | [00-sets-and-functions](concepts/00-sets-and-functions/README.md) |
+| $\{x \in S : P(x)\}$ | "the set of x in S such that P of x" | Restricted set-builder notation: the subset of S consisting of those elements satisfying P. This is the form actually used in working mathematics, because membership questions are decidable only when the parent set S is given (otherwise '{x : x \notin x}' yields Russell's paradox). When S is clear from context it is often omitted. | [00-sets-and-functions](concepts/00-sets-and-functions/README.md) |
 | $\binom{n}{k}$ | "n choose k" | Number of k-element subsets of an n-element set. | [02-counting](concepts/02-counting/README.md) |
 
 ## Functions
